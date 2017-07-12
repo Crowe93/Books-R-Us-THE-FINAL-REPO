@@ -13,7 +13,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="dependencies/freemarker.jar"/>
+	<classpathentry kind="lib" path="dependencies/freemarker.jar" sourcepath="dependencies/freemarker-2.3.25-incubating-sources.jar"/>
 	<classpathentry kind="lib" path="dependencies/gson-2.8.1.jar"/>
 	<classpathentry kind="lib" path="dependencies/jboss-modules.jar"/>
 	<classpathentry kind="lib" path="dependencies/jboss-servlet-api_3.1_spec-1.0.0.Final.jar"/>
