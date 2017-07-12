@@ -1,1 +1,6 @@
-DbAccessConfiguration.java
+/build/
+DBAccessConfiguration.java
+.classpath
+.project
+/Books-R-Us/.classpath
+/Books-R-Us/.project
