@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import cs4050.bookstore.objectlayer.*;
-import cs4050.bookstore.persistlayer.*;
+import cs4050.bookstore.objectlayer.User;
+import cs4050.bookstore.persistlayer.UserPersistImpl;
 
 public class UserLogicImpl {
 	private UserPersistImpl userPersist = new UserPersistImpl();

@@ -8,12 +8,13 @@ import cs4050.bookstore.persistlayer.DbAccessImpl;
 
 public class UserPersistImpl {
 	
-	public void insertUser(String firstName, String lastName, String email, String userName, String password, int seclevel) {
+	public int insertUser(String firstName, String lastName, String email, String userName, String password, int seclevel) {
 		String query= "INSERT INTO USER (fname, lname, email, username, password, type) VALUES ('" + firstName + "', '" 
 				+ lastName + "', '" + email + "', '" + userName + "', '" + password + "', '" + seclevel + "')";
 		
-		DbAccessImpl.create(query);
+		int r = DbAccessImpl.create(query);
 		DbAccessImpl.disconnect();
+		return r;
 	} // insertUser
 	
 	public int insertUser(User u) {
@@ -22,15 +23,16 @@ public class UserPersistImpl {
 		String email = u.getEmail();
 		String userName = u.getUsername();
 		String password = u.getPassword();
-		int type = u.getSeclevel();
+		int type = u.getType();
 		
 		int r = DbAccessImpl.create("INSERT INTO USER (fname, lname, email, username, password, type) VALUES ('" + firstName + "', '" 
 				+ lastName + "', '" + email + "', '" + userName + "', '" + password + "', '" + type + "')");
+		DbAccessImpl.disconnect();
 		return r;
-			} // insertUser
+	} // insertUser
 	
 	public int deleteUser(int id){
-		String query = "DELETE USERS FROM USERS WHERE USERS.id = " + id;
+		String query = "DELETE USER FROM USER WHERE USER.id = " + id;
 		return DbAccessImpl.delete(query);
 	} // deleteUser
 	
@@ -100,6 +102,80 @@ public class UserPersistImpl {
 		return password;
 	}//getPassword
 	
+	public int updateCardSaved(int c, int userId){
+		int r = DbAccessImpl.update("UPDATE user SET cardSaved = " + c + " WHERE id = " + userId + ";");
+		DbAccessImpl.disconnect();
+		return r;
+	}//add toggle fuction for card instead?
+	
+	public int getCardSaved(int userId){
+		ResultSet result = DbAccessImpl.retrieve("SELECT cardSaved FROM user WHERE id = "+  userId +";");
+		int c = 0;
+		try {
+			while (result.next()) {
+				c = result.getInt(1);
+			} // while
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  // try-catch
+		DbAccessImpl.disconnect();
+		return c;
+	}
+	
+	public int updateShipping(String s, int userId){
+		int r = DbAccessImpl.update("UPDATE user SET shipAddr = '" + s + "' WHERE id = " + userId + ";");
+		DbAccessImpl.disconnect();
+		return r;
+	}
+	
+	public String getShipping(int userId){
+		ResultSet result = DbAccessImpl.retrieve("SELECT shipAddr FROM user WHERE id = "+  userId +";");
+		String shipAddr = null;
+		try {
+			while (result.next()) {
+				shipAddr = result.getString(1);
+			} // while
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  // try-catch
+		DbAccessImpl.disconnect();
+		return shipAddr;
+	}
+	
+	public int updateEmail(String email, int userId) {
+		int r = DbAccessImpl.update("UPDATE user SET email = '" + email + "' WHERE id = " + userId + ";");
+		DbAccessImpl.disconnect();
+		return r;
+	}//updateEmail
+	
+	public String getEmail(int userId) {
+		ResultSet result = DbAccessImpl.retrieve("SELECT email FROM user WHERE id = "+  userId +";");
+		String email = null;
+		try {
+			while (result.next()) {
+				email = result.getString(1);
+			} // while
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  // try-catch
+		DbAccessImpl.disconnect();
+		return email;
+	}//getEmail
+	
+	public int getType(int userId){
+		ResultSet result = DbAccessImpl.retrieve("SELECT type FROM user WHERE id = "+  userId +";");
+		int type = 0;
+		try {
+			while (result.next()) {
+				type = result.getInt(1);
+			} // while
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  // try-catch
+		DbAccessImpl.disconnect();
+		return type;
+	}
+	
 	public boolean authenticateUser(String userName, String password){
 		boolean authentic = false;
 		String query = 
@@ -120,23 +196,4 @@ public class UserPersistImpl {
 		return authentic;
 	}
 
-	
-	public void updateEmail(String email, int userId) {
-		DbAccessImpl.update("UPDATE user SET email = '" + email + "' WHERE id = " + userId + ";");
-		DbAccessImpl.disconnect();
-	}//updateEmail
-	
-	public String getEmail(int userId) {
-		ResultSet result = DbAccessImpl.retrieve("SELECT email FROM user WHERE id = "+  userId +";");
-		String email = null;
-		try {
-			while (result.next()) {
-				email = result.getString(1);
-			} // while
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}  // try-catch
-		DbAccessImpl.disconnect();
-		return email;
-	}//getEmail
 }
