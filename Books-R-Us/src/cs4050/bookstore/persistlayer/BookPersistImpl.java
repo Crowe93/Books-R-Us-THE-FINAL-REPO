@@ -2,6 +2,7 @@ package cs4050.bookstore.persistlayer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import cs4050.bookstore.objectlayer.Book;
 
