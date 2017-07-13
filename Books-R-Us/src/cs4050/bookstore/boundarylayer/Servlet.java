@@ -59,7 +59,8 @@ public class Servlet extends HttpServlet {
 		 * used to display the search results or an error page if the user input is invalid.
 		 */
 		public void runTemplate(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-
+			
+			System.out.println("Request received");
 			Template template = null;
 			String templateName = null; //template to be generated
 
@@ -69,9 +70,24 @@ public class Servlet extends HttpServlet {
 			// The following Strings are used to check for a null value. Whichever string that does not have a null value is the action the client wants to perform
 			String register = request.getParameter("register"); // sign up page's "Register" button
 			String login = request.getParameter("login"); // login page's "Login" button
-
 			
+			//*********** Example Ajax Handling *****************
+			String test = request.getParameter("test");
 			
+			if (test != null)
+			{
+				ExampleJSON testJson = new ExampleJSON(1, "Here is some theorhetical data being returned");
+				try {
+					sendJsonResponse(response, testJson);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return;
+			}
+				
+			//***************************************************
+				
 			String addToCart = request.getParameter("");
 			String removeFromCart = request.getParameter("");
 			String editProfileInfo = request.getParameter("");
@@ -187,5 +203,16 @@ public class Servlet extends HttpServlet {
 		    response.setContentType("application/json");
 		    response.setCharacterEncoding("UTF-8");
 		    response.getWriter().write(json);
+		}
+		
+		class ExampleJSON {
+			public int id;
+			public String data;
+			
+			ExampleJSON(int id, String data)
+			{
+				this.id = id;
+				this.data = data;
+			}
 		}
 }
