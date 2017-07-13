@@ -1,6 +1,7 @@
 package cs4050.bookstore.boundarylayer;
 import java.io.IOException;
 import java.io.Writer;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
@@ -131,21 +133,23 @@ public class Servlet extends HttpServlet {
 				String username = request.getParameter("username");
 				String password = request.getParameter("password");
 
-				UserLogicImpl existingUser = new UserLogicImpl();
-				boolean authenticUser = existingUser.authenticateUser(username, password);
-				
-				if(authenticUser == false){ //enter here if authentification fails
-					templateName = "login.ftl"; 
-					root.put("failedLogin"," yes");
-				} else{
-					templateName = "home.ftl";
-					currentUser = username;
-					root.put("user", currentUser);
+			
+					UserLogicImpl existingUser = new UserLogicImpl();
+					boolean authenticUser = existingUser.isAdmin(username, password);
+					
+					if(authenticUser == false){ //enter here if authentification fails
+						templateName = "login.ftl"; 
+						root.put("failedLogin"," yes");
+					} else{
+						templateName = "home.ftl";
+						currentUser = username;
+						root.put("user", currentUser);
+					}
 				}
+				
 			} else if (logout != null){ 
-				templateName = "home.ftl";
-				currentUser = null;
-				root.put("logoutSuccess"," yes");
+				
+				
 			} else if (addToCart != null){
 				
 			} else if (removeFromCart != null){
@@ -153,7 +157,7 @@ public class Servlet extends HttpServlet {
 			} else if (editProfileInfo != null){
 				
 			} else if (deleteAccount != null){
-				
+				templateName = "home.ftl";
 			} else if (userEnteredPromo != null){
 				
 			} else if (order != null){

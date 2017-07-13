@@ -179,7 +179,7 @@ public class UserPersistImpl {
 	public boolean authenticateUser(String userName, String password){
 		boolean authentic = false;
 		String query = 
-				"SELECT 1 FROM USER WHERE username = '"+userName+"' AND password = '"+password+"'";
+				"SELECT * FROM USER WHERE username = '"+userName+"' AND password = '"+password+"'";
 		ResultSet resultSet = null;
 		
 		try{
