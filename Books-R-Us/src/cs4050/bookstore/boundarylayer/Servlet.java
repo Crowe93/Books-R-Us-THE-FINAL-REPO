@@ -127,10 +127,22 @@ public class Servlet extends HttpServlet {
 					currentUser = username;
 					root.put("user", currentUser);
 				}
-			} else if (logout != null){
+			} else if (logout != null){ 
 				templateName = "home.ftl";
 				currentUser = null;
 				root.put("logoutSuccess"," yes");
+			} else if (addToCart != null){
+				
+			} else if (removeFromCart != null){
+				
+			} else if (editProfileInfo != null){
+				
+			} else if (deleteAccount != null){
+				
+			} else if (userEnteredPromo != null){
+				
+			} else if (order != null){
+				
 			}
 				
 
