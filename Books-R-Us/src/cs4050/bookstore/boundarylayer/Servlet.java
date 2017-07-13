@@ -29,7 +29,7 @@ public class Servlet extends HttpServlet {
 		Configuration cfg = null;
 
 		private String templateDir = "/WEB-INF/templates";
-		String currentUser;
+		String currentUser = null;
 
 
 		/**
@@ -59,8 +59,7 @@ public class Servlet extends HttpServlet {
 		 * used to display the search results or an error page if the user input is invalid.
 		 */
 		public void runTemplate(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-			
-			System.out.println("Request received");
+
 			Template template = null;
 			String templateName = null; //template to be generated
 
@@ -68,8 +67,9 @@ public class Servlet extends HttpServlet {
 			SimpleHash root = new SimpleHash(df.build());
 			
 			// The following Strings are used to check for a null value. Whichever string that does not have a null value is the action the client wants to perform
-			String register = request.getParameter("register"); // sign up page's "Register" button
-			String login = request.getParameter("login"); // login page's "Login" button
+			String register = request.getParameter("register");
+			String login = request.getParameter("login"); 
+			String logout = request.getParameter("logout");
 			
 			//*********** Example Ajax Handling *****************
 			String test = request.getParameter("test");
@@ -92,7 +92,7 @@ public class Servlet extends HttpServlet {
 			String removeFromCart = request.getParameter("");
 			String editProfileInfo = request.getParameter("");
 			String deleteAccount = request.getParameter("");
-			String enterPromo = request.getParameter("");
+			String userEnteredPromo = request.getParameter("");
 			String order = request.getParameter("");
 
 			//vendors and admin operations below
@@ -102,14 +102,6 @@ public class Servlet extends HttpServlet {
 			String get = request.getParameter("");
 			
 			
-			
-			
-			String about = request.getParameter("about"); // home page "About Us" button
-			String leaseMyApartment = request.getParameter("leaseMyApartment"); // home page "Lease your apartment" button
-			String checkMessages = request.getParameter("checkMessages"); // home page "Inbox" button
-			String leaseIt = request.getParameter("leaseIt"); // submit their lease button
-			String loginName = null;
-
 
 			//begin checks to see what the input is
 			if (register!= null){ // check to see if user clicked the register button on the sign up page
@@ -147,7 +139,24 @@ public class Servlet extends HttpServlet {
 					root.put("failedLogin"," yes");
 				} else{
 					templateName = "home.ftl";
+					currentUser = username;
+					root.put("user", currentUser);
 				}
+			} else if (logout != null){ 
+				templateName = "home.ftl";
+				currentUser = null;
+				root.put("logoutSuccess"," yes");
+			} else if (addToCart != null){
+				
+			} else if (removeFromCart != null){
+				
+			} else if (editProfileInfo != null){
+				
+			} else if (deleteAccount != null){
+				
+			} else if (userEnteredPromo != null){
+				
+			} else if (order != null){
 				
 			}
 				
