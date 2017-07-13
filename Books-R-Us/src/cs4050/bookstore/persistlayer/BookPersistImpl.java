@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import cs4050.bookstore.objectlayer.Book;
-import cs4050.bookstore.objectlayer.User;
 
 public class BookPersistImpl {
 	public int insertBook(String title, String author, String publisher, int year, int stock, double price) {
