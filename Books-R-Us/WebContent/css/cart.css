@@ -1,6 +1,54 @@
 .table>tbody>tr>td, .table>tfoot>tr>td{
     vertical-align: middle;
 }
+
+.cart-table{
+	padding-top: 30px;
+}
+
+.cart-table p, tr{
+	font-family: 'Josefin Slab', serif !important;
+	font-size: 18px !important;
+	font-weight: 400 !important;
+}
+
+.cart-table h3{
+	font-family: 'Josefin Slab', serif !important;
+	font-size: 25px !important;
+	font-weight: bold !important;
+}
+
+.input-group .form-control{
+	width:140% !important;
+}
+
+th{
+	font-size: 20px;
+	
+}
+
+.btn{
+	font-size: 16px !important;
+	
+}
+
+.btn-default{
+	background-color:#FE980F !important;
+}
+
+
+.panel{
+	margin-top: 20px !important;
+}
+
+.input-group{
+	width: 80%;
+}
+
+.col-sm-10{
+	width: 80% !important;
+}
+
 @media screen and (max-width: 600px) {
     table#cart tbody td .form-control{
 		width:20%;
@@ -25,9 +73,7 @@
 		content: attr(data-th); font-weight: bold;
 		display: inline-block; width: 8rem;
 	}
-	
-	
-	
+		
 	table#cart tfoot td{display:block; }
 	table#cart tfoot td .btn{display:block;}
 	

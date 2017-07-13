@@ -72,21 +72,42 @@
         			
         			<!-- Left Side -->
         			<div class="col-md-6 left-side">
-        				<header style="background-color: inherit;">
-        					<span> Already a Member?</span>
-        					<h3> Log In<br> Buy Books</h3>
+        				<header style="background-color: inherit;"">
+        					<span> Need an Account?</span>
+        					<h3> Create an Account<br> Buy Books</h3>
         				</header>
         			</div>
         			
-        			<form id="" class="" name="contact-form" method="post" action="Servlet">
-        			        			
+        			<form id="" class="" name="contact-form" method="post" action="Servlet">	
+	        			
 	        			<!-- Right side -->
 	        			<div class="col-md-6 right-side">
+	        			
+	        				<span class = "input input--hoshi">
+	        					<input class="input__field input__field--hoshi" type="text" name="fname" id="fname">
+	        					<label class="input__label input__label--hoshi input__label--hoshi-color-3" for="fname">
+	        						<span class="input__label-content input__label-content--hoshi"> First Name</span>	
+	        					</label>
+	        				</span>
+	        				
+	        				<span class = "input input--hoshi">
+	        					<input class="input__field input__field--hoshi" type="text" name= "lname" id="lname">
+	        					<label class="input__label input__label--hoshi input__label--hoshi-color-3" for="lname">
+	        						<span class="input__label-content input__label-content--hoshi"> Last Name</span>
+	        					</label>
+	        				</span>
 	        				
 	        				<span class = "input input--hoshi">
 	        					<input class="input__field input__field--hoshi" type="text" name="username" id="username">
 	        					<label class="input__label input__label--hoshi input__label--hoshi-color-3" for="username">
 	        						<span class="input__label-content input__label-content--hoshi"> Username</span>
+	        					</label>
+	        				</span>
+	        				
+	        				<span class = "input input--hoshi">
+	        					<input class="input__field input__field--hoshi" type="text" name="email" id="email">
+	        					<label class="input__label input__label--hoshi input__label--hoshi-color-3" for="email">
+	        						<span class="input__label-content input__label-content--hoshi"> E-mail</span>
 	        					</label>
 	        				</span>
 	   
@@ -98,9 +119,9 @@
 	        				</span>     				
 	        				
 	        				<div class="cta">
-	        					<button name="login" type="submit" class="btn btn-primary pull-left"> Sign In</button>
+	        					<button name="register" type="submit" class="btn btn-primary pull-left"> Sign-Up Now</button>
 	        					<span>
-	        						<a href="register.html"> I am not a member</a>
+	        						<a href="login.html"> I am already a member</a>
 	        					</span>
 	        				</div>
 	        				
@@ -110,8 +131,8 @@
 	        					<li><a href="#">Linkedin</a></li>
 	        				</ul>        				   				
 	        				
-	        			</div>  
-        			</form>    			
+	        			</div>     
+        			</form> 			
         		 </div>
         	</div>       
         </div> <!-- end #main-wrapper -->

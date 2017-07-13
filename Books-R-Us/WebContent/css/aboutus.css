@@ -11,6 +11,16 @@ section {
     font-family: "Lucida Grande","Lucida Sans Unicode", Helvetica,Arial;
 
 }
+.mission-section p{
+	font-family: 'Josefin Slab', serif !important;
+	font-size: 20px !important;
+}
+
+h4{
+	font-family: 'Josefin Slab', serif !important;
+	font-size: 25px !important;
+	font-weight: bold !important;
+}
 
 /*    Carousel Fade Transition   */
 
@@ -115,11 +125,11 @@ hr.border1{
 }
 
 .fa-truck, .fa-clock-o, .fa-thumbs-up{
-    font-size: 50px !important;
+    font-size: 35px !important;
     background-color:  #33383b;
 	color: #ffffff;
-	width: 100px;
-	height: 100px;
+	width: 80px;
+	height: 80px;
 	border-radius: 50%;
 	margin: 7px 15px;
     padding-top: 22px;
