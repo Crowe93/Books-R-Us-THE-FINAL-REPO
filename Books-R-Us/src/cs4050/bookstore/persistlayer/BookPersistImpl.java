@@ -3,26 +3,74 @@ package cs4050.bookstore.persistlayer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import cs4050.bookstore.objectlayer.*;
+import cs4050.bookstore.objectlayer.Book;
 
 public class BookPersistImpl {
-	public void insertBook(String title, String author, String publisher, int year, int stock, float price) {
-		DbAccessImpl.create("INSERT INTO BOOK (title, author, publisher, year, stock, price) VALUES ('" + title + "', '" 
+	public int insertBook(String title, String author, String publisher, int year, int stock, double price) {
+		int r = 0;
+		r = DbAccessImpl.create("INSERT INTO BOOK (title, author, publisher, year, stock, price) VALUES ('" + title + "', '" 
 				+ author + "', '" + publisher + "', '" + year + "', '" + stock +"', '"+ price + "')");
 		DbAccessImpl.disconnect();
+		return r;
 	} // insertBook
 	
-	public void insertBook(String title, String author, String publisher, int year, int stock) {
-		DbAccessImpl.create("INSERT INTO BOOK (title, author, publisher, year, stock) VALUES ('" + title + "', '" 
+	public int insertBook(String title, String author, String publisher, int year, int stock) {
+		int r = 0;
+		r =DbAccessImpl.create("INSERT INTO BOOK (title, author, publisher, year, stock) VALUES ('" + title + "', '" 
 				+ author + "', '" + publisher + "', '" + year + "', '" + stock + "')");
 		DbAccessImpl.disconnect();
+		return r;
 	} // insertBook
 	
-	public void insertBook(String title, String author, String publisher, int year) {
-		DbAccessImpl.create("INSERT INTO BOOK (title, author, publisher, year) VALUES ('" + title + "', '" 
+	public int insertBook(String title, String author, String publisher, int year) {
+		int r = 0;
+		r = DbAccessImpl.create("INSERT INTO BOOK (title, author, publisher, year) VALUES ('" + title + "', '" 
 				+ author + "', '" + publisher + "', '" + year + "')");
 		DbAccessImpl.disconnect();
+		return r;
 	} // insertBook
+	
+	public int insertBook(Book b){
+		int r = 0;
+		
+		String title = b.getTitle();
+		String author = b.getAuthor();
+		String publisher = b.getPublisher();
+		int year = b.getYear();
+		int stock = b.getStock();
+		double price = b.getPrice();
+		
+		if(stock == 0 && price == 0){
+			r = this.insertBook(title, author, publisher, year);
+		}
+		else if(price == 0){
+			r = this.insertBook(title, author, publisher, year, stock);
+		}
+		else{
+			r = this.insertBook(title, author, publisher, year, stock, price);
+		}
+		
+		return r;
+	}
+	
+	public int deleteBook(int bookId){
+		String query = "DELETE BOOK FROM BOOK WHERE book.id = " + bookId;
+		return DbAccessImpl.delete(query);
+	}
+	
+	public Book getBook(int bookId){
+		Book b = null;
+		ResultSet result = DbAccessImpl.retrieve("SELECT title, author, publisher, genre, year, price FROM book WHERE id = "+  bookId +";");
+		try {
+			while (result.next()) {
+				b = new Book(bookId, result.getString(1), result.getString(2), result.getString(3), result.getString(4), result.getInt(5), result.getDouble(6));
+			} // while
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  // try-catch
+		DbAccessImpl.disconnect();
+		return b;
+	}
 	
 	public void updateStock(int stock, int id) {
 		DbAccessImpl.update("UPDATE BOOK SET stock = " + stock + " WHERE id = " + id + ";");

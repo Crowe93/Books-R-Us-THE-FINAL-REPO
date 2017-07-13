@@ -30,7 +30,8 @@
                     <div class="dropdown-content">
                         <a href="profile.html"> Profile</a>
                         <hr style="margin:0px; border-color:#d8d8d8">
-                        <a href="login.html"> WE ARE IN</a>
+                        <a> Welcome ${user} </a>
+                        
                     </div>
                 </div>                        
                 

@@ -29,7 +29,7 @@ public class Servlet extends HttpServlet {
 		Configuration cfg = null;
 
 		private String templateDir = "/WEB-INF/templates";
-		String currentUser;
+		String currentUser = null;
 
 
 		/**
@@ -67,16 +67,32 @@ public class Servlet extends HttpServlet {
 			SimpleHash root = new SimpleHash(df.build());
 			
 			// The following Strings are used to check for a null value. Whichever string that does not have a null value is the action the client wants to perform
-			String register = request.getParameter("register"); // sign up page's "Register" button
-			String login = request.getParameter("login"); // login page's "Login" button
-
+			String register = request.getParameter("register");
+			String login = request.getParameter("login"); 
+			String logout = request.getParameter("logout");
 			
+			//*********** Example Ajax Handling *****************
+			String test = request.getParameter("test");
 			
+			if (test != null)
+			{
+				ExampleJSON testJson = new ExampleJSON(1, "Here is some theorhetical data being returned");
+				try {
+					sendJsonResponse(response, testJson);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return;
+			}
+				
+			//***************************************************
+				
 			String addToCart = request.getParameter("");
 			String removeFromCart = request.getParameter("");
 			String editProfileInfo = request.getParameter("");
 			String deleteAccount = request.getParameter("");
-			String enterPromo = request.getParameter("");
+			String userEnteredPromo = request.getParameter("");
 			String order = request.getParameter("");
 
 			//vendors and admin operations below
@@ -85,7 +101,7 @@ public class Servlet extends HttpServlet {
 			String getSalesReport = request.getParameter("");
 			String get = request.getParameter("");
 			
-
+			
 
 			//begin checks to see what the input is
 			if (register!= null){ // check to see if user clicked the register button on the sign up page
@@ -123,7 +139,24 @@ public class Servlet extends HttpServlet {
 					root.put("failedLogin"," yes");
 				} else{
 					templateName = "home.ftl";
+					currentUser = username;
+					root.put("user", currentUser);
 				}
+			} else if (logout != null){ 
+				templateName = "home.ftl";
+				currentUser = null;
+				root.put("logoutSuccess"," yes");
+			} else if (addToCart != null){
+				
+			} else if (removeFromCart != null){
+				
+			} else if (editProfileInfo != null){
+				
+			} else if (deleteAccount != null){
+				
+			} else if (userEnteredPromo != null){
+				
+			} else if (order != null){
 				
 			}
 				
@@ -179,5 +212,16 @@ public class Servlet extends HttpServlet {
 		    response.setContentType("application/json");
 		    response.setCharacterEncoding("UTF-8");
 		    response.getWriter().write(json);
+		}
+		
+		class ExampleJSON {
+			public int id;
+			public String data;
+			
+			ExampleJSON(int id, String data)
+			{
+				this.id = id;
+				this.data = data;
+			}
 		}
 }

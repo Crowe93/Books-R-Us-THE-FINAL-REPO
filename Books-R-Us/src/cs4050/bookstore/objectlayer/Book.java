@@ -4,21 +4,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Book {
-	private int ISBN;
-	private String title;
-	private String author;
-	private String publisher;
-	private List<Genre> genres; 
-	private int year;
-	private double price;
-	private int stock;
-	private int sold;
-	private int hold;
-	private String imgurl;
+	private int ISBN = 0;
+	private String title = null;
+	private String author = null;
+	private String publisher = null;
+	private String genre = null; 
+	private int year = 0;
+	private double price = 0;
+	private int stock = 0;
+	private int sold = 0;
+	private int hold = 0;
+	private String imgurl = null;
 	
 	public Book() {}
 	
-	public Book(int i, String t, String a, String p, int y, int r, int s, float f, int h, String img){
+	public Book(int i, String t, String a, String p, String g, int y, int r, int s, double f, int h, String img){
+		ISBN = i;
+		title = t;
+		author = a;
+		publisher = p;
+		genre = g;
+		year = y;
+		stock = r;
+		sold = s;
+		price = f;
+		hold = h;
+		imgurl = img;
+	}
+	
+	public Book(int i, String t, String a, String p, int y, int r, int s, double f, int h, String img){
 		ISBN = i;
 		title = t;
 		author = a;
@@ -31,7 +45,7 @@ public class Book {
 		imgurl = img;
 	}
 	
-	public Book(int i, String t, String a, String p, int y, int r, float f, String img){
+	public Book(int i, String t, String a, String p, int y, int r, double f, String img){
 		ISBN = i;
 		title = t;
 		author = a;
@@ -42,7 +56,7 @@ public class Book {
 		imgurl = img;
 	}
 	
-	public Book(int i, String t, String a, String p, int y, float f, String img){
+	public Book(int i, String t, String a, String p, int y, double f, String img){
 		ISBN = i;
 		title = t;
 		author = a;
@@ -50,6 +64,16 @@ public class Book {
 		year = y;
 		price = f;
 		imgurl = img;
+	}
+	
+	public Book(int i, String t, String a, String p, String g, int y, double f){
+		ISBN = i;
+		title = t;
+		author = a;
+		publisher = p;
+		genre = g;
+		year = y;
+		price = f;
 	}
 	
 	
@@ -110,7 +134,4 @@ public class Book {
 	public void setImgurl(String imgurl) {
 		this.imgurl = imgurl;
 	}
-	
-	
-	
-}
+}//Book

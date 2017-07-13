@@ -1,57 +1,57 @@
 package cs4050.bookstore.objectlayer;
 
 public class User {
-	private int id;
-	private String email;
-	private String username;
-	private String password;
-	private int seclevel;
-	private String shipaddress;
-	private int cardsaved;
-	private String fname;
-	private String lname;
+	private int id = 0;
+	private String email = null;
+	private String username = null;
+	private String password = null;
+	private int type = 0;
+	private String shipaddress = null;
+	private int cardsaved = 0;
+	private String fname = null;
+	private String lname = null;
 	
 	public User () {}
 	
-	public User(int i, String f, String l, String e, String u, String p, int sec, String ship, int c){
+	public User(int i, String f, String l, String e, String u, String p, int t, String ship, int c){
 		id =i;
 		fname = f;
 		lname = l;
 		email = e;
 		username = u;
 		password = p; 
-		seclevel = sec;
+		type = t;
 		shipaddress = ship;
 		cardsaved = c;
 		
 	}
 	
-	public User(int i, String f, String l, String e, String u, String p, int sec, String ship){
+	public User(int i, String f, String l, String e, String u, String p, int t, String ship){
 		id =i;
 		email = e;
 		username = u;
 		password = p; 
-		seclevel = sec;
+		type = t;
 		shipaddress = ship;
 		fname = f;
 		lname = l;
 	}
 	
-	public User(int i, String f, String l, String e, String u, String p, int sec){
+	public User(int i, String f, String l, String e, String u, String p, int t){
 		id =i;
 		email = e;
 		username = u;
 		password = p; 
-		seclevel = sec;
+		type = t;
 		fname = f;
 		lname = l;
 	}
 	
-	public User(String f, String l, String e, String u, String p, int sec){
+	public User(String f, String l, String e, String u, String p, int t){
 		email = e;
 		username = u;
 		password = p; 
-		seclevel = sec;
+		type = t;
 		fname = f;
 		lname = l;
 	}
@@ -73,7 +73,7 @@ public class User {
 	}
 	
 	public String getLast(){
-		return fname;
+		return lname;
 	}
 	
 	public void setLast(String l){
@@ -104,12 +104,12 @@ public class User {
 		this.password = password;
 	}
 
-	public int getSeclevel() {
-		return seclevel;
+	public int getType() {
+		return type;
 	}
 
-	public void setSeclevel(int seclevel) {
-		this.seclevel = seclevel;
+	public void settype(int type) {
+		this.type = type;
 	}
 
 	public String getShipaddress() {
