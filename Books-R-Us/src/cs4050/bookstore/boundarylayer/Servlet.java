@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import cs4050.bookstore.logiclayer.BookLogicImpl;
 import cs4050.bookstore.logiclayer.UserLogicImpl;
 import cs4050.bookstore.objectlayer.User;
 import freemarker.template.Configuration;
@@ -84,6 +85,15 @@ public class Servlet extends HttpServlet {
 					e.printStackTrace();
 				}
 				return;
+			}
+			
+			String loadBooks = request.getParameter("loadBooks");
+			
+			if (loadBooks != null)
+			{
+				BookLogicImpl bookLogic = new BookLogicImpl();
+				
+				
 			}
 				
 			//***************************************************
@@ -159,11 +169,6 @@ public class Servlet extends HttpServlet {
 			} else if (order != null){
 				
 			}
-				
-
-
-				
-				
 				
 				
 				
