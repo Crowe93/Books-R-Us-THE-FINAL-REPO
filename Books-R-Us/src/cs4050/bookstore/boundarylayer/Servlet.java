@@ -29,7 +29,7 @@ public class Servlet extends HttpServlet {
 		Configuration cfg = null;
 
 		private String templateDir = "/WEB-INF/templates";
-		String currentUser;
+		String currentUser = null;
 
 
 		/**
@@ -67,8 +67,9 @@ public class Servlet extends HttpServlet {
 			SimpleHash root = new SimpleHash(df.build());
 			
 			// The following Strings are used to check for a null value. Whichever string that does not have a null value is the action the client wants to perform
-			String register = request.getParameter("register"); // sign up page's "Register" button
-			String login = request.getParameter("login"); // login page's "Login" button
+			String register = request.getParameter("register");
+			String login = request.getParameter("login"); 
+			String logout = request.getParameter("logout");
 
 			
 			
@@ -76,7 +77,7 @@ public class Servlet extends HttpServlet {
 			String removeFromCart = request.getParameter("");
 			String editProfileInfo = request.getParameter("");
 			String deleteAccount = request.getParameter("");
-			String enterPromo = request.getParameter("");
+			String userEnteredPromo = request.getParameter("");
 			String order = request.getParameter("");
 
 			//vendors and admin operations below
@@ -85,7 +86,7 @@ public class Servlet extends HttpServlet {
 			String getSalesReport = request.getParameter("");
 			String get = request.getParameter("");
 			
-
+			
 
 			//begin checks to see what the input is
 			if (register!= null){ // check to see if user clicked the register button on the sign up page
@@ -123,8 +124,13 @@ public class Servlet extends HttpServlet {
 					root.put("failedLogin"," yes");
 				} else{
 					templateName = "home.ftl";
+					currentUser = username;
+					root.put("user", currentUser);
 				}
-				
+			} else if (logout != null){
+				templateName = "home.ftl";
+				currentUser = null;
+				root.put("logoutSuccess"," yes");
 			}
 				
 
