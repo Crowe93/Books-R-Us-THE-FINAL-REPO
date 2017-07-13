@@ -143,21 +143,20 @@ public class Servlet extends HttpServlet {
 				String username = request.getParameter("username");
 				String password = request.getParameter("password");
 
-			
+				
 					UserLogicImpl existingUser = new UserLogicImpl();
-					boolean authenticUser = existingUser.isAdmin(username, password);
+					boolean authenticUser = existingUser.isAdmin(existingUser.getUserId(username));
 					
-					if(authenticUser == false){ //enter here if authentification fails
-						templateName = "login.ftl"; 
-						root.put("failedLogin"," yes");
-					} else{
+					if(authenticUser){ //enter here if admin has logged in
+						templateName = "adminHome.ftl"; 
+						root.put("admin", username);
+						
+					} else{ // enter here if customer has logged in
 						templateName = "home.ftl";
 						currentUser = username;
 						root.put("user", currentUser);
 					}
-				}
-				
-			} else if (logout != null){ 
+				} else if (logout != null){ 
 				
 				
 			} else if (addToCart != null){

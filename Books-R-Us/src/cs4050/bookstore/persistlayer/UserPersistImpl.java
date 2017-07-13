@@ -176,16 +176,16 @@ public class UserPersistImpl {
 		return type;
 	}
 	
-	public boolean authenticateUser(String userName, String password){
-		boolean authentic = false;
+	public int authenticateUser(String userName, String password){
+		int id = 0;
 		String query = 
-				"SELECT * FROM USER WHERE username = '"+userName+"' AND password = '"+password+"'";
+				"SELECT id FROM USER WHERE username = '"+userName+"' AND password = '"+password+"'";
 		ResultSet resultSet = null;
 		
 		try{
 			resultSet = DbAccessImpl.retrieve(query);
 			if(resultSet.next()){
-				authentic = true;
+				id = resultSet.getInt(1);
 			}
 			resultSet.close();
 		} catch (SQLException e){
@@ -193,7 +193,34 @@ public class UserPersistImpl {
 		} finally {
 			DbAccessImpl.disconnect();
 		} // try-catch
-		return authentic;
+		return id;
+	}
+	
+	public boolean isAdmin(int userId){
+		int type = 0;
+		String query = 
+				"SELECT type FROM USER WHERE id = "+userId;
+		ResultSet resultSet = null;
+		
+		try{
+			resultSet = DbAccessImpl.retrieve(query);
+			if(resultSet.next()){
+				type = resultSet.getInt(1);
+			}
+			resultSet.close();
+		} catch (SQLException e){
+			e.printStackTrace();
+		} finally {
+			DbAccessImpl.disconnect();
+		} // try-catch
+		
+		if(type == 1){
+			return true;
+		}
+		else{
+			return false;
+			
+		}
 	}
 
 }
