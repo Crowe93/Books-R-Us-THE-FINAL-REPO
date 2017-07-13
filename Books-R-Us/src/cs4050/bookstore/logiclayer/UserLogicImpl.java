@@ -40,7 +40,7 @@ public class UserLogicImpl {
 		return userPersist.getUserId(userName);
 	} // getUserId
 	
-	public boolean authenticateUser(String userName, String password) {
+	public int authenticateUser(String userName, String password) {
 		return userPersist.authenticateUser(userName, password);
 	}
 }//UserLogicImpl
