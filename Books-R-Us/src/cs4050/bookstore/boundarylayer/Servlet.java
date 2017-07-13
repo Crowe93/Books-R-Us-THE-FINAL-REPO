@@ -85,14 +85,6 @@ public class Servlet extends HttpServlet {
 			String getSalesReport = request.getParameter("");
 			String get = request.getParameter("");
 			
-			
-			
-			
-			String about = request.getParameter("about"); // home page "About Us" button
-			String leaseMyApartment = request.getParameter("leaseMyApartment"); // home page "Lease your apartment" button
-			String checkMessages = request.getParameter("checkMessages"); // home page "Inbox" button
-			String leaseIt = request.getParameter("leaseIt"); // submit their lease button
-			String loginName = null;
 
 
 			//begin checks to see what the input is
