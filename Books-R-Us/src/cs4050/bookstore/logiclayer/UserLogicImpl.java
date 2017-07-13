@@ -43,4 +43,8 @@ public class UserLogicImpl {
 	public int authenticateUser(String userName, String password) {
 		return userPersist.authenticateUser(userName, password);
 	}
+	
+	public boolean isAdmin(int userId){
+		return userPersist.isAdmin(userId);
+	}
 }//UserLogicImpl

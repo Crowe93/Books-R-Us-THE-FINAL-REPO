@@ -214,11 +214,11 @@ public class UserPersistImpl {
 			DbAccessImpl.disconnect();
 		} // try-catch
 		
-		if(type == 0){
-			return false;
+		if(type == 1){
+			return true;
 		}
 		else{
-			return true;
+			return false;
 			
 		}
 	}
