@@ -51,11 +51,11 @@ public class UserPersistImpl {
 	} // getUser
 	
 	public int getUserId(String username){
-		ResultSet result = DbAccessImpl.retrieve("SELECT id FROM user WHERE username = "+ username +";");
-		int id=0;
+		ResultSet result = DbAccessImpl.retrieve("SELECT id FROM user WHERE username = '"+ username +"';");
+		int id = 0;
 		try {
 			while (result.next()) {
-				id = result.getInt(6);
+				id = result.getInt(1);
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -199,7 +199,7 @@ public class UserPersistImpl {
 	public boolean isAdmin(int userId){
 		int type = 0;
 		String query = 
-				"SELECT type FROM USER WHERE id = "+userId;
+				"SELECT type FROM USER WHERE id = "+userId+"";
 		ResultSet resultSet = null;
 		
 		try{
@@ -219,7 +219,6 @@ public class UserPersistImpl {
 		}
 		else{
 			return false;
-			
 		}
 	}
 

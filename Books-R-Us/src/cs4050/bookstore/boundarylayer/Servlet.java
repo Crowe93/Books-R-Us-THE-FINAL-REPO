@@ -145,6 +145,8 @@ public class Servlet extends HttpServlet {
 
 				
 					UserLogicImpl existingUser = new UserLogicImpl();
+					
+					
 					boolean authenticUser = existingUser.isAdmin(existingUser.getUserId(username));
 					
 					if(authenticUser){ //enter here if admin has logged in
@@ -153,8 +155,8 @@ public class Servlet extends HttpServlet {
 						
 					} else{ // enter here if customer has logged in
 						templateName = "home.ftl";
+						root.put("user", username);
 						currentUser = username;
-						root.put("user", currentUser);
 					}
 				} else if (logout != null){ 
 				
