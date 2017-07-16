@@ -139,7 +139,7 @@ public class AdminServlet extends HttpServlet {
 				String title = request.getParameter("");
 				String author = request.getParameter("");
 				String publisher = request.getParameter("");
-				String genre = request.getParameter("");
+//				String genre = request.getParameter("");
 				String yearX = request.getParameter("");
 				String priceX = request.getParameter("");
 				String stockX = request.getParameter("");
@@ -147,8 +147,6 @@ public class AdminServlet extends HttpServlet {
 				double price = 0;
 				int year = 0;
 				int stock = 0;
-				
-				
 				
 				try{
 					ISBN = Integer.parseInt(ISBNX);
@@ -165,16 +163,13 @@ public class AdminServlet extends HttpServlet {
 				
 				if (r == 1){ //enter here if book was successfully added to the database
 					templateName = "adminHome.ftl";
+					root.put("bookAdded","yes");
+
 				} else {
-					templateName = "";
+					templateName = "adminHome.ftl";
+					root.put("addBookError","yes");
 				}
 
-				
-				
-				
-				
-				
-				
 			} else if (removeBook != null){ 
 				String idX = request.getParameter("id");
 				int id = 0;
@@ -187,6 +182,48 @@ public class AdminServlet extends HttpServlet {
 				BookLogicImpl b = new BookLogicImpl();
 				int r = b.deleteBook(id);
 				
+				if (r == 1){ //enter here if book was successfully deleted from the database
+					templateName = "adminHome.ftl";
+					root.put("bookDeleted","yes");
+
+				} else {
+					templateName = "adminHome.ftl";
+					root.put("deleteBookError","yes");
+				}
+				
+			} else if (updateBook != null){
+				String ISBNX = request.getParameter("");
+				String image = request.getParameter("");
+				String title = request.getParameter("");
+				String author = request.getParameter("");
+				String publisher = request.getParameter("");
+//				String genre = request.getParameter("");
+				String yearX = request.getParameter("");
+				String priceX = request.getParameter("");
+				String stockX = request.getParameter("");
+				int ISBN = 0;
+				double price = 0;
+				int year = 0;
+				int stock = 0;
+				
+				try{
+					ISBN = Integer.parseInt(ISBNX);
+					price = Double.parseDouble(priceX);
+					year = Integer.parseInt(yearX);
+					stock = Integer.parseInt(stockX);
+				} catch (NumberFormatException e){
+				}
+				
+				BookLogicImpl b = new BookLogicImpl();
+				int id = b.getBookId(title);
+				int r = b.updateTitle(title, id);
+				r = b.updateAuthor(author, id);
+				r = b.updatePublisher(publisher, id);
+				r = b.updateYear(year, id);
+				r = b.updatePrice(price, id);
+				
+				templateName = "adminHome.ftl";
+				root.put("bookUpdated","yes");
 			}
 
 			

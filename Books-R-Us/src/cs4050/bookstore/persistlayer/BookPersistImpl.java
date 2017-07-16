@@ -72,14 +72,12 @@ public class BookPersistImpl {
 		return b;
 	}
 	
-	public void updateStock(int stock, int id) {
-		DbAccessImpl.update("UPDATE BOOK SET stock = " + stock + " WHERE id = " + id + ";");
-		DbAccessImpl.disconnect();
+	public int updateStock(int stock, int id) {
+		return DbAccessImpl.update("UPDATE BOOK SET stock = " + stock + " WHERE id = " + id + ";");
 	}//updateStock, id
 	
-	public void updateStock(int stock, String title) {
-		DbAccessImpl.update("UPDATE BOOK SET stock = " + stock + " WHERE title = '" + title + "';");
-		DbAccessImpl.disconnect();
+	public int updateStock(int stock, String title) {
+		return DbAccessImpl.update("UPDATE BOOK SET stock = " + stock + " WHERE title = '" + title + "';");
 	}//updateStock, title
 	
 	public int getStock(int id){
@@ -108,17 +106,15 @@ public class BookPersistImpl {
 		return stock;
 	}//getStock, title
 	
-	public void updatePrice(float price, int id) {
-		DbAccessImpl.update("UPDATE BOOK SET price = " + price + " WHERE id = " + id + ";");
-		DbAccessImpl.disconnect();
+	public int updatePrice(double price, int id) {
+		return DbAccessImpl.update("UPDATE BOOK SET price = " + price + " WHERE id = " + id + ";");
 	}//updatePrice, id
 	
-	public void updatePrice(float price, String title) {
-		DbAccessImpl.update("UPDATE BOOK SET price = " + price + " WHERE title = '" + title + "';");
-		DbAccessImpl.disconnect();
+	public int updatePrice(double price, String title) {
+		return DbAccessImpl.update("UPDATE BOOK SET price = " + price + " WHERE title = '" + title + "';");
 	}//updatePrice, id
 	
-	public float getPrice(int id){
+	public double getPrice(int id){
 		ResultSet result = DbAccessImpl.retrieve("select price from book where id = " + id+";");
 		float price = -1;
 		try{
@@ -131,7 +127,7 @@ public class BookPersistImpl {
 		return price;
 	}//getPrice, id
 	
-	public float getPrice(String title){
+	public double getPrice(String title){
 		ResultSet result = DbAccessImpl.retrieve("select price from book where title = '" + title + "';");
 		float price = -1;
 		try{
@@ -179,5 +175,35 @@ public class BookPersistImpl {
 		
 		return sold;
 	}//getSold, title
+	
+	public int getBookId(String title){
+		ResultSet result = DbAccessImpl.retrieve("SELECT id FROM book WHERE title = '"+ title +"';");
+		int id = 0;
+		try {
+			while (result.next()) {
+				id = result.getInt(1);
+			} // while
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  // try-catch
+		DbAccessImpl.disconnect();
+		return id;
+	}
+	
+	public int updateTitle(String newTitle, int id) {
+		return DbAccessImpl.update("UPDATE BOOK SET title = '" + newTitle + "' WHERE id = " + id + ";");
+	}
+	
+	public int updateAuthor(String author, int id) {
+		return DbAccessImpl.update("UPDATE BOOK SET author = '" + author + "' WHERE id = " + id + ";");
+	}
+	
+	public int updatePublisher(String publisher, int id) {
+		return DbAccessImpl.update("UPDATE BOOK SET publisher = '" + publisher + "' WHERE id = " + id + ";");
+	}
+	
+	public int updateYear(int year, int id) {
+		return DbAccessImpl.update("UPDATE BOOK SET year = " + year + " WHERE id = " + id + ";");
+	}
 	
 }//BookPersistImpl

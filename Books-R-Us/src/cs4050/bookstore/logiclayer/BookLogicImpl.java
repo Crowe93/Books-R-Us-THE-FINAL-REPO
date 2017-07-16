@@ -40,5 +40,29 @@ private BookPersistImpl bookPersist = new BookPersistImpl();
 		return bookPersist.getBook(id);	
 	} // getUser
 	
+	public int getBookId(String title){
+		return bookPersist.getBookId(title);
+	}
+	
+	public int updateTitle(String title, int id){
+		return bookPersist.updateTitle(title, id);
+	}
+	
+	public int updateAuthor(String author, int id){
+		return bookPersist.updateTitle(author, id);
+	}
+	
+	public int updatePublisher(String publisher, int id){
+		return bookPersist.updatePublisher(publisher, id);
+	}
+	
+	public int updateYear(int year, int id){
+		return bookPersist.updateYear(year, id);
+	}
+	
+	public int updatePrice(double price, int id){
+		return bookPersist.updatePrice(price, id);
+	}
+	
 	
 }
