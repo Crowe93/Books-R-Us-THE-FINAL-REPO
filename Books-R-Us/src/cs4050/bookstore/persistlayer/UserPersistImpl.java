@@ -196,10 +196,10 @@ public class UserPersistImpl {
 		return id;
 	}
 	
-	public boolean isAdmin(int userId){
+	public boolean isAdmin(int userId, String password){
 		int type = 0;
 		String query = 
-				"SELECT type FROM USER WHERE id = "+userId+"";
+				"SELECT type FROM USER WHERE id = "+userId+" and password = '"+password+"'";
 		ResultSet resultSet = null;
 		
 		try{

@@ -50,7 +50,6 @@ public class BookPersistImpl {
 		else{
 			r = this.insertBook(title, author, publisher, year, stock, price);
 		}
-		
 		return r;
 	}
 	

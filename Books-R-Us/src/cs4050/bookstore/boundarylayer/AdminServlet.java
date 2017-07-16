@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-import cs4050.bookstore.logiclayer.BookLogicImpl;
-import cs4050.bookstore.logiclayer.UserLogicImpl;
+import cs4050.bookstore.logiclayer.*;
+import cs4050.bookstore.objectlayer.Book;
 import cs4050.bookstore.objectlayer.User;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapperBuilder;
@@ -25,8 +25,8 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 
 
-@WebServlet("/Servlet")
-public class Servlet extends HttpServlet {
+@WebServlet("/AdminServlet")
+public class AdminServlet extends HttpServlet {
 		private static final long serialVersionUID = 1L;
 
 		Configuration cfg = null;
@@ -38,7 +38,7 @@ public class Servlet extends HttpServlet {
 		/**
 		 * @see HttpServlet#HttpServlet()
 		 */
-		public Servlet() {
+		public AdminServlet() {
 			super();
 		}
 
@@ -69,8 +69,7 @@ public class Servlet extends HttpServlet {
 			DefaultObjectWrapperBuilder df = new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_25);
 			SimpleHash root = new SimpleHash(df.build());
 			
-			
-			
+		
 			//*********** Example Ajax Handling *****************
 			String test = request.getParameter("test");
 			
@@ -98,26 +97,21 @@ public class Servlet extends HttpServlet {
 			//***************************************************
 			
 			// The following Strings are used to check for a null value. Whichever string that does not have a null value is the action the client wants to perform
-			String register = request.getParameter("register");
-			String login = request.getParameter("login"); 
 			String logout = request.getParameter("logout");
-			String addToCart = request.getParameter("");
-			String removeFromCart = request.getParameter("");
 			String editProfileInfo = request.getParameter("");
-			String deleteAccount = request.getParameter("");
-			String userEnteredPromo = request.getParameter("");
-			String order = request.getParameter("");
+//			String deleteAccount = request.getParameter("");
 
 			//vendors and admin operations below
 			String addBook = request.getParameter("");
 			String removeBook = request.getParameter("");
+			String updateBook = request.getParameter("");
 			String getSalesReport = request.getParameter("");
 			String get = request.getParameter("");
 			
 			
 
 			//begin checks to see what the input is
-			if (register!= null){ // check to see if user clicked the register button on the sign up page
+			if (logout!= null){ 
 				System.out.println("Register triggered");
 				String email = request.getParameter("email");
 				String username = request.getParameter("username");
@@ -139,50 +133,64 @@ public class Servlet extends HttpServlet {
 					templateName = "login.ftl";
 				}
 								
-			} else if (login != null){
-				System.out.println("Login triggered");
-				String username = request.getParameter("username");
-				String password = request.getParameter("password");
+			} else if (addBook != null){
+				String ISBNX = request.getParameter("");
+				String image = request.getParameter("");
+				String title = request.getParameter("");
+				String author = request.getParameter("");
+				String publisher = request.getParameter("");
+				String genre = request.getParameter("");
+				String yearX = request.getParameter("");
+				String priceX = request.getParameter("");
+				String stockX = request.getParameter("");
+				int ISBN = 0;
+				double price = 0;
+				int year = 0;
+				int stock = 0;
+				
+				
+				
+				try{
+					ISBN = Integer.parseInt(ISBNX);
+					price = Double.parseDouble(priceX);
+					year = Integer.parseInt(yearX);
+					stock = Integer.parseInt(stockX);
+				} catch (NumberFormatException e){
+				}
+				
+				Book book = new Book(ISBN, title, author, publisher, year, stock, price, image);
+
+				BookLogicImpl b = new BookLogicImpl();
+				int r = b.insertBook(book);
+				
+				if (r == 1){ //enter here if book was successfully added to the database
+					templateName = "adminHome.ftl";
+				} else {
+					templateName = "";
+				}
 
 				
-					UserLogicImpl u = new UserLogicImpl();
-					
-					
-					boolean authenticUser = u.isAdmin(u.getUserId(username), password);
-					
-					if(authenticUser){ //enter here if admin has logged in
-						templateName = "adminHome.ftl"; 
-						root.put("admin", username);
-						
-					} else{ // enter here if customer has logged in
-						templateName = "home.ftl";
-						root.put("user", username);
-						currentUser = username;
-					}
-				} else if (logout != null){ 
 				
 				
-			} else if (addToCart != null){
 				
-			} else if (removeFromCart != null){
 				
-			} else if (editProfileInfo != null){
 				
-			} else if (deleteAccount != null){
-				templateName = "home.ftl";
-				UserLogicImpl u = new UserLogicImpl();
-				u.deleteUser(u.getUserId(currentUser));
+			} else if (removeBook != null){ 
+				String idX = request.getParameter("id");
+				int id = 0;
 				
-			} else if (userEnteredPromo != null){
+				try{
+					id = Integer.parseInt(idX);
+				} catch (NumberFormatException e){
+				}
 				
-			} else if (order != null){
+				BookLogicImpl b = new BookLogicImpl();
+				int r = b.deleteBook(id);
 				
 			}
-				
-				
-				
-				
-	
+
+			
+			
 			try {
 				template = cfg.getTemplate(templateName);
 				response.setContentType("text/html");
