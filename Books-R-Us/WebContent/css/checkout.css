@@ -1,9 +1,12 @@
-.container-fluid{
-	padding-top: 20px;
+.container{
 	font-family: 'Josefin Slab', serif !important;
 	font-size: 16px !important;
 	color: #000!important;
 	font-weight: 300 !important;
+	
+}
+
+.outer-wrapper{
 	background-color: #f9f9f9!important;
 }
 

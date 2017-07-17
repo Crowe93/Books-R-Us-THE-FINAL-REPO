@@ -66,116 +66,77 @@
 	</header>
 	
 	<div class="outer-wrapper">
-	<!-- Checkout -->
 	<div class="container wrapper">
-            <div class="row cart-body">
+            <div class="row edit-row">
+            	
                 <form class="form-horizontal" method="post" action="">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
-                    <!--REVIEW ORDER-->
-                    <div class="panel panel-default ">
-                        <div class="panel-heading">
-                            Review Order <div class="pull-right">
-                            <small><a class="afix-1" href="cart.html">Edit Cart</a></small></div>
-                        </div>
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                	<h3>-- Edit your information -- </h3>
+                	<hr>
+                	<!-- Personal Info -->
+                	<div class="panel panel-default">
+                        <div class="panel-heading"><i class="fa fa-id-card-o"></i> Basic Information</div>
                         <div class="panel-body">
                             <div class="form-group">
-                                <div class="col-sm-3 col-xs-3">
-                                    <img class="img-responsive" src="images/into-water.jpg" />
-                                </div>
-                                <div class="col-sm-6 col-xs-6">
-                                    <div class="col-xs-12">Into the Water</div>
-                                    <div class="col-xs-12"><small>Quantity:<span>1</span></small></div>
-                                </div>
-                                <div class="col-sm-3 col-xs-3 text-right">
-                                    <h6><span>$</span>25.00</h6>
+                                <div class="col-md-12"><strong>Full Name: </strong></div>
+                                <div class="col-md-12">
+                                    <input type="text" name="name" class="form-control" value="Chanice Campbell" />
                                 </div>
                             </div>
-                            <div class="form-group"><hr /></div>
                             <div class="form-group">
-                                <div class="col-sm-3 col-xs-3">
-                                    <img class="img-responsive" src="images/into-water.jpg" />
-                                </div>
-                                <div class="col-sm-6 col-xs-6">
-                                    <div class="col-xs-12">Into the Water</div>
-                                    <div class="col-xs-12"><small>Quantity:<span>1</span></small></div>
-                                </div>
-                                <div class="col-sm-3 col-xs-3 text-right">
-                                    <h6><span>$</span>25.00</h6>
+                                <div class="col-md-12"><strong>Username: </strong></div>
+                                <div class="col-md-12">
+                                    <input type="text" name="username" class="form-control" value="chan876" readonly/>
                                 </div>
                             </div>
-                            <div class="form-group"><hr /></div>
                             <div class="form-group">
-                                <div class="col-sm-3 col-xs-3">
-                                    <img class="img-responsive" src="images/history1.jpg" />
-                                </div>
-                                <div class="col-sm-6 col-xs-6">
-                                    <div class="col-xs-12">The Zookeeper's Wife</div>
-                                    <div class="col-xs-12"><small>Quantity:<span>2</span></small></div>
-                                </div>
-                                <div class="col-sm-3 col-xs-3 text-right">
-                                    <h6><span>$</span>50.00</h6>
+                                <div class="col-md-12"><strong>Email:</strong></div>
+                                <div class="col-md-12">
+                                    <input type="email" name="email" class="form-control" value="chan876@uga.edu" />
                                 </div>
                             </div>
-                            <div class="form-group"><hr /></div>
                             <div class="form-group">
-                                <div class="col-xs-12">
-                                    <strong>Subtotal</strong>
-                                    <div class="pull-right"><span>$</span><span>150.00</span></div>
-                                </div>
-                                <div class="col-xs-12">
-                                    <small>Shipping</small>
-                                    <div class="pull-right"><span>-</span></div>
+                                <div class="col-md-12"><strong>Old Password:</strong></div>
+                                <div class="col-md-12">
+                                    <input type="password" name="old-password" class="form-control" value="admin" />
                                 </div>
                             </div>
-                            <div class="form-group"><hr /></div>
                             <div class="form-group">
-                                <div class="col-xs-12">
-                                    <strong>Order Total</strong>
-                                    <div class="pull-right"><span>$</span><span>150.00</span></div>
+                                <div class="col-md-12"><strong>New Password:</strong></div>
+                                <div class="col-md-12">
+                                    <input type="password" name="new-password" class="form-control" value="admin" />
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--REVIEW ORDER END-->
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-pull-6 col-sm-pull-6">
-                    <!--SHIPPING METHOD-->
+                    
+                    <!-- Shipping Address -->
                     <div class="panel panel-default">
                         <div class="panel-heading"><i class="fa fa-map-marker"></i> Shipping Address</div>
                         <div class="panel-body">
                             <div class="form-group">
-                                <div class="col-md-6 col-xs-12">
-                                    <strong>First Name:</strong>
-                                    <input type="text" name="first_name" class="form-control" value="" />
-                                </div>
-                                
-                                <div class="col-md-6 col-xs-12">
-                                    <strong>Last Name:</strong>
-                                    <input type="text" name="last_name" class="form-control" value="" />
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <div class="col-md-12"><strong>Street Address:</strong></div>
                                 <div class="col-md-12">
-                                    <input type="text" name="address" class="form-control" value="" />
+                                    <input type="text" name="address" class="form-control" value="000 Eclipse Ave." />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12"><strong>City:</strong></div>
                                 <div class="col-md-12">
-                                    <input type="text" name="city" class="form-control" value="" />
+                                    <input type="text" name="city" class="form-control" value="Athens" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12"><strong>State:</strong></div>
                                 <div class="col-md-12">
-                                    <input type="text" name="state" class="form-control" value="" />
+                                    <input type="text" name="state" class="form-control" value="GA" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Zip / Postal Code:</strong></div>
                                 <div class="col-md-12">
-                                    <input type="text" name="zip_code" class="form-control" value="" />
+                                    <input type="text" name="zip_code" class="form-control" value="30605" />
                                 </div>
                             </div>
                         </div>
@@ -198,11 +159,11 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Credit Card Number:</strong></div>
-                                <div class="col-md-12"><input type="text" class="form-control" name="car_number" value="" /></div>
+                                <div class="col-md-12"><input type="text" class="form-control" name="car_number" value="4532 0446 1135 6103" /></div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Card CVV:</strong></div>
-                                <div class="col-md-12"><input type="text" class="form-control" name="car_code" value="" /></div>
+                                <div class="col-md-12"><input type="text" class="form-control" name="car_code" value="620" /></div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12">
@@ -215,7 +176,7 @@
                                         <option value="02">02</option>
                                         <option value="03">03</option>
                                         <option value="04">04</option>
-                                        <option value="05">05</option>
+                                        <option value="05" selected>05</option>
                                         <option value="06">06</option>
                                         <option value="07">07</option>
                                         <option value="08">08</option>
@@ -232,48 +193,32 @@
                                         <option value="2016">2016</option>
                                         <option value="2017">2017</option>
                                         <option value="2018">2018</option>
-                                        <option value="2019">2019</option>
+                                        <option value="2019" selected>2019</option>
                                         <option value="2020">2020</option>
                                         <option value="2021">2021</option>
                                         <option value="2022">2022</option>
                                 </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <span>Pay secure using your credit card.</span>
-                                </div>
-                                <div class="col-md-12">
-                                    <ul class="cards">
-                                        <li class="visa hand">Visa</li>
-                                        <li class="mastercard hand">MasterCard</li>
-                                        <li class="amex hand">Amex</li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                	<a href="final.html" class="btn btn-primary btn-submit-fix"> Place Order </a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <!--CREDIT CART PAYMENT END-->
                 </div>
-                
+                <div class="col-lg-3"></div>
                 </form>
             </div>
-            <div class="row cart-footer">
-        
+            <div class="row">
+            	<div class="col-lg-5"></div>
+            	<div class="col-lg-1"> 
+            		<a href="profile.html" class="btn btn-sm btn-default"> Cancel</a>
+            	</div>
+            	<div class="col-lg-1"> 
+            		<a href="profile.html" class="btn btn-sm btn-default"> Confirm</a>
+            	</div>
+        		<div class="col-lg-5"></div>
             </div>
     </div>
 	</div>
-	
-	
-	
-	
-	
 	
 	<!-- Footer -->
 	 <footer class="footer-distributed">
