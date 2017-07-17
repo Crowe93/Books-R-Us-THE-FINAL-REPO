@@ -15,5 +15,7 @@ import cs4050.bookstore.persistlayer.ReportPersistImpl;
 import cs4050.bookstore.persistlayer.DbAccessImpl;
 
 public class ReportLogicImpl {
+	private ReportPersistImpl reportPersist = new ReportPersistImpl();
+	
 	
 }
