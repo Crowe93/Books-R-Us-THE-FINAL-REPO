@@ -194,6 +194,7 @@ public class Servlet extends HttpServlet {
 			} else if (logout != null){ 
 				request.getSession().invalidate();
 				templateName = "home.ftl";
+				System.out.println("logout COMPLETE!");
 				
 			} else if (addToCart != null){
 				

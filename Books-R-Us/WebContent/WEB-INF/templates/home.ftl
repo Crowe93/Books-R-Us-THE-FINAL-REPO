@@ -55,7 +55,7 @@
 								<ul class="nav navbar-nav">
 									<li><a href="profile.html"><i class="fa fa-user"></i> Account</a></li>
 									<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-									<li><a href="/Servlet.java?logout=yes"><i class="fa fa-lock"></i> Logout</a></li>
+									<li><a href="Servlet?logout"><i class="fa fa-lock"></i> Logout</a></li>
 								</ul>
 							</div>
 						</div>
@@ -109,7 +109,6 @@
             </form>            
         </div>
 
-	<p>Welcome ${user}!</p>
     <!-- best seller section -->
         <div class="border">
             <span style="font-size: 20px; background-color: white; padding: 0 15px;">
