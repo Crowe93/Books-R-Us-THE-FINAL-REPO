@@ -35,6 +35,7 @@ public class Servlet extends HttpServlet {
 		String currentUser = null;
 
 
+
 		/**
 		 * @see HttpServlet#HttpServlet()
 		 */
@@ -150,17 +151,49 @@ public class Servlet extends HttpServlet {
 					
 					boolean authenticUser = u.isAdmin(u.getUserId(username), password);
 					
-					if(authenticUser){ //enter here if admin has logged in
-						templateName = "adminHome.ftl"; 
-						root.put("admin", username);
+					if(authenticUser){ //enter here if admin is trying to log in
+						int r = u.authenticateUser(username, password);
 						
-					} else{ // enter here if customer has logged in
-						templateName = "home.ftl";
-						root.put("user", username);
-						currentUser = username;
+						
+						if(r!= 0){ //enter here if authentification is successful
+							templateName = "adminHome.ftl"; 
+							
+							HttpSession session = request.getSession();
+							synchronized(session) {
+								String sessionID = session.getId();
+								session.setAttribute("sessionID", sessionID);
+								session.setAttribute("currentUser", username);
+							}
+							root.put("admin", session.getAttribute("currentUser"));
+							currentUser = username;
+						} else{ // enter here if authentification fails
+							templateName = "login.ftl";
+							root.put("failedLogin", "yes");
+						}
+						
+					} else{ // enter here if customer is trying to log in
+						int r = u.authenticateUser(username, password);
+						
+						if(r!= 0){ //enter here if authentification is successful
+							templateName = "home.ftl"; 
+							
+							HttpSession session = request.getSession();
+							synchronized(session) {
+								String sessionID = session.getId();
+								session.setAttribute("sessionID", sessionID);
+								session.setAttribute("currentUser", username);
+							}
+							root.put("user", session.getAttribute("currentUser"));
+							currentUser = username;
+						} else{ // enter here if authentification fails
+							templateName = "login.ftl";
+							root.put("failedLogin", "yes");
+						}
 					}
-				} else if (logout != null){ 
-				
+					
+			} else if (logout != null){ 
+				request.getSession().invalidate();
+				templateName = "home.ftl";
 				
 			} else if (addToCart != null){
 				
