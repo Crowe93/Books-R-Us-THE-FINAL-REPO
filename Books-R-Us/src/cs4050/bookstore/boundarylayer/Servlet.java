@@ -148,8 +148,9 @@ public class Servlet extends HttpServlet {
 				
 					UserLogicImpl u = new UserLogicImpl();
 					
-					
-					boolean authenticUser = u.isAdmin(u.getUserId(username), password);
+					int userId = u.getUserId(username);
+
+					boolean authenticUser = u.isAdmin(userId, password);
 					
 					if(authenticUser){ //enter here if admin is trying to log in
 						int r = u.authenticateUser(username, password);
@@ -163,6 +164,7 @@ public class Servlet extends HttpServlet {
 								String sessionID = session.getId();
 								session.setAttribute("sessionID", sessionID);
 								session.setAttribute("currentUser", username);
+								session.setAttribute("userId", userId);
 							}
 							root.put("admin", session.getAttribute("currentUser"));
 							currentUser = username;
@@ -201,6 +203,45 @@ public class Servlet extends HttpServlet {
 			} else if (removeFromCart != null){
 				
 			} else if (editProfileInfo != null){
+				//basic account info
+				String fname = request.getParameter("fname");
+				String lname = request.getParameter("lname");
+				String email = request.getParameter("email");
+				String username = request.getParameter("username");
+				String oldPassword = request.getParameter("password");
+				String newPassword = request.getParameter("password");
+
+				//shipping info
+				String street = request.getParameter("email");
+				String city = request.getParameter("username");
+				String state = request.getParameter("password");
+				String zipX = request.getParameter("fname");
+				int zip = 0;
+				
+				//payment info
+				String cardType = request.getParameter("lname");
+				String cardNumberX = request.getParameter("email");
+				int cardNumber = 0;
+				String cardCVVX = request.getParameter("username");
+				int cardCVV = 0;
+				String expirationMonthX = request.getParameter("password");
+				int expirationMonth = 0;
+				String expirationYearX = request.getParameter("fname");
+				int expirationYear = 0;
+				
+				try{
+					zip = Integer.parseInt(zipX);
+					cardNumber = Integer.parseInt(cardNumberX);
+					expirationMonth = Integer.parseInt(expirationMonthX);
+					expirationYear = Integer.parseInt(expirationYearX);
+				} catch (NumberFormatException e){
+				}
+
+				UserLogicImpl u = new UserLogicImpl();
+				u.getUser(request);
+
+				
+				
 				
 			} else if (deleteAccount != null){
 				templateName = "home.ftl";
