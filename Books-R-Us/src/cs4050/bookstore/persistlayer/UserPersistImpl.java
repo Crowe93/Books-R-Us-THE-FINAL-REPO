@@ -221,5 +221,23 @@ public class UserPersistImpl {
 			return false;
 		}
 	}
+	
+	public boolean cardSaved(int userId){
+		boolean saved = false;
+		
+		String query = 
+				"SELECT name FROM payment WHERE user_id = "+userId;
+		
+		ResultSet resultSet = null;
+		resultSet = DbAccessImpl.retrieve(query);
+		
+		if(resultSet == null){
+			return saved;
+		}
+		else{
+			saved = true;
+			return saved;
+		}
+	}
 
 }

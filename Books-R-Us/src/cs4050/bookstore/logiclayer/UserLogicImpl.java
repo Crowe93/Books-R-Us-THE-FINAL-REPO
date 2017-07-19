@@ -47,4 +47,8 @@ public class UserLogicImpl {
 	public boolean isAdmin(int id, String password){
 		return userPersist.isAdmin(id, password);
 	}
+	
+	public boolean cardSaved(int id){
+		return userPersist.cardSaved(id);
+	}
 }//UserLogicImpl

@@ -3,12 +3,12 @@ package cs4050.bookstore.objectlayer;
 import java.sql.Date;
 
 public class DayReport {
-	private double cashInTotal; 
-	private double cashOutTotal;
-	private double cardInTotal;// something scriptable with a few of our buttons. Admin looking at low inventory could click
-	private double cardOutTotal;// on Order to "purchase" books raising cardOut and online purchases will go to cardInTotal obviously 
-	private double netTotal;
-	private String date;
+	private double cashInTotal = 0; 
+	private double cashOutTotal = 0;
+	private double cardInTotal = 0;// something scriptable with a few of our buttons. Admin looking at low inventory could click
+	private double cardOutTotal = 0;// on Order to "purchase" books raising cardOut and online purchases will go to cardInTotal obviously 
+	private double netTotal = 0;
+	private String date = null;
 
 	public DayReport(double cashInTotal, double cashOutTotal, double cardInTotal, double cardOutTotal, Date date) {
 		this.cashInTotal = cashInTotal;

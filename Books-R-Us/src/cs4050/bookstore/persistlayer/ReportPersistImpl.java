@@ -24,14 +24,37 @@ public class ReportPersistImpl {
 		return i;
 	}
 	
-	public void createBookSales(int bookid, String date){
-		DbAccessImpl.create("INSERT INTO booksales (book_id, validDate) VALUES (" +bookid+ ", '"+ date + "')");
+	public int createDayReport(DayReport r){
+		int i = DbAccessImpl.create("INSERT INTO dayreport (cashIn, cashOut, cardIn, cardOut, validDate) "
+				+ "VALUES ("+r.getCashInTotal()+", "+r.getCashOutTotal()+", "+r.getCardInTotal()+", "+r.getCardOutTotal()+", '" + r.getDate() + "')");
 		DbAccessImpl.disconnect();
+		return i;
 	}
 	
-	public void createPublisherSales(int publisherid, String date){
-		DbAccessImpl.create("INSERT INTO publishersales (publisher_id, validDate) VALUES ("+publisherid+", '" + date + "')");
-		DbAccessImpl.disconnect();		
+	public int createBookSales(int bookid, String date){
+		int i = DbAccessImpl.create("INSERT INTO booksales (book_id, validDate) VALUES (" +bookid+ ", '"+ date + "')");
+		DbAccessImpl.disconnect();
+		return i;
+	}
+	
+	public int createBookSales(BookSales r){
+		int i = DbAccessImpl.create("INSERT INTO booksales (book_id, numSold, validDate) "
+				+ "VALUES (" +r.getBookId()+ ", "+r.getNumSold()+", '"+ r.getDate() + "')");
+		DbAccessImpl.disconnect();
+		return i;
+	}
+	
+	public int createPublisherSales(int publisherid, String date){
+		int i = DbAccessImpl.create("INSERT INTO publishersales (publisher_id, validDate) VALUES ("+publisherid+", '" + date + "')");
+		DbAccessImpl.disconnect();
+		return i;
+	}
+	
+	public int createPublisherSales(PublisherSales r){
+		int i = DbAccessImpl.create("INSERT INTO publishersales (publisher_id, numSold, netTotal, validDate) "
+				+ "VALUES ("+r.getPublisherId()+", "+r.getNumberSold()+", "+r.getNetTotal()+", '" + r.getDate() + "')");
+		DbAccessImpl.disconnect();
+		return i;
 	}
 	
 	
@@ -70,12 +93,13 @@ public class ReportPersistImpl {
 		return report;
 	}
 	
-	public BookSales getBookSales(int bookId){
+	public List<BookSales> getBookSales(int bookId){
 		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM booksales WHERE book_id = "+  bookId +";");
-		BookSales report = null;
+		ArrayList<BookSales> report = new ArrayList<BookSales>();
 		try {
 			while (result.next()) {
-				report = new BookSales(result.getInt(1), result.getInt(2), result.getDate(3));
+				BookSales bookSales = new BookSales(result.getInt(1), result.getInt(2), result.getDate(3));
+				report.add(bookSales);
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
