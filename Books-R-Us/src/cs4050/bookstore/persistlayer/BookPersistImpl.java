@@ -3,8 +3,10 @@ package cs4050.bookstore.persistlayer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import cs4050.bookstore.objectlayer.Book;
+import cs4050.bookstore.objectlayer.BookSales;
 
 public class BookPersistImpl {
 	public int insertBook(String title, String author, String publisher, int year, int stock, double price) {
@@ -205,5 +207,21 @@ public class BookPersistImpl {
 	public int updateYear(int year, int id) {
 		return DbAccessImpl.update("UPDATE BOOK SET year = " + year + " WHERE id = " + id + ";");
 	}
+	
+	public List<Book> getAllBooks(){
+		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM book;");
+		ArrayList<Book> report = new ArrayList<Book>();
+		try {
+			while (result.next()) {
+				Book book = new Book(result.getInt(0),result.getString(1),result.getString(2),result.getString(3),result.getString(4),result.getInt(5), result.getDouble(6),result.getInt(7), result.getInt(8), result.getString(9));
+				report.add(book);
+			} // while
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  // try-catch
+		DbAccessImpl.disconnect();
+		return report;
+	}
+	
 	
 }//BookPersistImpl
