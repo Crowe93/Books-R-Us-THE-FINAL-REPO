@@ -213,7 +213,7 @@ public class BookPersistImpl {
 		ArrayList<Book> report = new ArrayList<Book>();
 		try {
 			while (result.next()) {
-				Book book = new Book(result.getInt(0),result.getString(1),result.getString(2),result.getString(3),result.getString(4),result.getInt(5), result.getDouble(6),result.getInt(7), result.getInt(8), result.getString(9));
+				Book book = new Book(result.getInt("id"), result.getString("title"), result.getString("author"), result.getString("publisher"), result.getString("genre"), result.getInt("year"), result.getDouble("price"), result.getInt("stock"), result.getInt("sold"), result.getString("imgURL"));
 				report.add(book);
 			} // while
 		} catch (SQLException e) {
