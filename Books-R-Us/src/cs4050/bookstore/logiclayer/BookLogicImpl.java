@@ -65,8 +65,8 @@ private BookPersistImpl bookPersist = new BookPersistImpl();
 		return bookPersist.updatePrice(price, id);
 	}
 	
-	public List<Book> getBook(String genre){
-		
+	public Book getBook(int bookid){
+		return bookPersist.getBook(bookid);
 	}
 	
 }
