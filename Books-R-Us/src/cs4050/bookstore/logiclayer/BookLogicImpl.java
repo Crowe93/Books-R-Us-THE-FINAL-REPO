@@ -31,6 +31,14 @@ private BookPersistImpl bookPersist = new BookPersistImpl();
 		return bookPersist.deleteBook(id);
 	}
 	
+	public Book getBook(int bookid){
+		return bookPersist.getBook(bookid);
+	}
+	
+	public List<Book> getAllBooks(){
+		return bookPersist.getAllBooks();
+	}
+	
 	public Book getBook(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("bookId"));
 		return bookPersist.getBook(id);
@@ -63,10 +71,6 @@ private BookPersistImpl bookPersist = new BookPersistImpl();
 	
 	public int updatePrice(double price, int id){
 		return bookPersist.updatePrice(price, id);
-	}
-	
-	public Book getBook(int bookid){
-		return bookPersist.getBook(bookid);
 	}
 	
 }

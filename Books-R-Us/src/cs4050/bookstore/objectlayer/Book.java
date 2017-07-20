@@ -18,7 +18,7 @@ public class Book {
 	
 	public Book() {}
 	
-	public Book(int i, String t, String a, String p, String g, int y, int r, int s, double f, int h, String img){
+	public Book(int i, String t, String a, String p, String g, int y, double f, int r, int s, String img){
 		ISBN = i;
 		title = t;
 		author = a;
@@ -28,7 +28,6 @@ public class Book {
 		stock = r;
 		sold = s;
 		price = f;
-		hold = h;
 		imgurl = img;
 	}
 	
