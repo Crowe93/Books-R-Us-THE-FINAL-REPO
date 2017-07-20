@@ -37,7 +37,7 @@ public class UserPersistImpl {
 	} // deleteUser
 	
 	public User getUser(int userId) {
-		ResultSet result = DbAccessImpl.retrieve("SELECT fname, lname, email, username, password, type, shipaddr, cardsaved FROM user WHERE id = '"+  userId +"';");
+		ResultSet result = DbAccessImpl.retrieve("SELECT fname, lname, email, username, password, type, shipaddr, cardsaved FROM user WHERE id = "+  userId +";");
 		User user = null;
 		try {
 			while (result.next()) {
