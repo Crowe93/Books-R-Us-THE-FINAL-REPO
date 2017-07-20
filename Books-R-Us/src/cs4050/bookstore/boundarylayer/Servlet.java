@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,6 +17,7 @@ import com.google.gson.Gson;
 
 import cs4050.bookstore.logiclayer.BookLogicImpl;
 import cs4050.bookstore.logiclayer.UserLogicImpl;
+import cs4050.bookstore.objectlayer.Book;
 import cs4050.bookstore.objectlayer.User;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapperBuilder;
@@ -92,8 +94,15 @@ public class Servlet extends HttpServlet {
 			if (loadBooks != null)
 			{
 				BookLogicImpl bookLogic = new BookLogicImpl();
+				List<Book> books = bookLogic.getAllBooks();
 				
-				
+				try {
+					sendJsonResponse(response, books);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return;
 			}
 				
 			//***************************************************
