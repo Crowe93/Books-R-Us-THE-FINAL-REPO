@@ -200,6 +200,7 @@ public class Servlet extends HttpServlet {
 				
 			} else if (addToCart != null){
 				
+				
 			} else if (removeFromCart != null){
 				
 			} else if (editProfileInfo != null){
@@ -221,21 +222,9 @@ public class Servlet extends HttpServlet {
 				//payment info
 				String cardType = request.getParameter("lname");
 				String cardNumberX = request.getParameter("email");
-				int cardNumber = 0;
 				String cardCVVX = request.getParameter("username");
-				int cardCVV = 0;
-				String expirationMonthX = request.getParameter("password");
-				int expirationMonth = 0;
-				String expirationYearX = request.getParameter("fname");
-				int expirationYear = 0;
-				
-				try{
-					zip = Integer.parseInt(zipX);
-					cardNumber = Integer.parseInt(cardNumberX);
-					expirationMonth = Integer.parseInt(expirationMonthX);
-					expirationYear = Integer.parseInt(expirationYearX);
-				} catch (NumberFormatException e){
-				}
+				String expirationMonth = request.getParameter("password");
+				String expirationYear = request.getParameter("fname");
 
 				UserLogicImpl u = new UserLogicImpl();
 				u.getUser(request);
