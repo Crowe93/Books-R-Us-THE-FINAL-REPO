@@ -75,4 +75,9 @@ private BookPersistImpl bookPersist = new BookPersistImpl();
 		return bookPersist.updatePrice(price, id);
 	}
 	
+	public List<Book> searchBooks(int filterType, String searchVal)
+	{
+		return bookPersist.searchBooks(filterType, searchVal);
+	}
+	
 }
