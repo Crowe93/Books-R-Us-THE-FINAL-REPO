@@ -1,7 +1,6 @@
 package cs4050.bookstore.boundarylayer;
 import java.io.IOException;
 import java.io.Writer;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
