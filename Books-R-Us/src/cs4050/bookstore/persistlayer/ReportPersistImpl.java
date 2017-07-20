@@ -142,7 +142,7 @@ public class ReportPersistImpl {
 	
 	//returns all the sales for a specific publisher, across multiple dates
 	public List<PublisherSales> getPublisherSales(int publisherId){
-		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM publishersales WHERE publisher_id = '"+  publisherId +"';");
+		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM publishersales WHERE publisher_id = "+  publisherId +";");
 		ArrayList<PublisherSales> report = new ArrayList<PublisherSales>();
 		try {
 			while (result.next()) {
@@ -157,35 +157,87 @@ public class ReportPersistImpl {
 		return report;
 	}
 	
-	/**
-	 * 
-	 * Takes a date to find the report, transType = the column that needs to be updated, new amount to change to
-	 * transType 0 = cashIn, transType 1 = cashOut, transType 2 = cardIn, transType 3 = cardOut (odds out, evens in)
-	 * 
-	 * @param date
-	 * @param transactionType
-	 * @param newAmount
-	 * @return rows altered
-	 */
-	public int updateDayReport(String date, int transactionType, double newAmount){
+	public int updateDayCardIn(String date, double newAmount){
 		int i = 0;
-		if(transactionType == 0){
-			i = DbAccessImpl.update("UPDATE dayreport SET cashIn = " + newAmount + " WHERE validDate = '" + date + "';");
-			DbAccessImpl.disconnect();
-		}
-		else if(transactionType == 1){
-			i = DbAccessImpl.update("UPDATE dayreport SET cashOut = " + newAmount + " WHERE validDate = '" + date + "';");
-			DbAccessImpl.disconnect();
-		}
-		else if(transactionType == 2){
-			i = DbAccessImpl.update("UPDATE dayreport SET cardIn = " + newAmount + " WHERE validDate = '" + date + "';");
-			DbAccessImpl.disconnect();
-		}
-		else if(transactionType == 3){
-			i = DbAccessImpl.update("UPDATE dayreport SET cardOut = " + newAmount + " WHERE validDate = '" + date + "';");
-			DbAccessImpl.disconnect();
-		}
+		double oldAmount = 0;
+		ResultSet result = DbAccessImpl.retrieve("SELECT cardIn FROM dayreport WHERE date = '"+  date +"';");
 		
+		try {
+			while (result.next()) {
+				oldAmount = result.getDouble(1);
+			} // while
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  // try-catch
+		DbAccessImpl.disconnect();
+		
+		newAmount = newAmount + oldAmount;
+		
+		i = DbAccessImpl.update("UPDATE dayreport SET cardIn = " + newAmount + " WHERE validDate = '" + date + "';");
+		DbAccessImpl.disconnect();
+		return i;
+	}
+	
+	public int updateDayCardOut(String date, double newAmount){
+		int i = 0;
+		double oldAmount = 0;
+		ResultSet result = DbAccessImpl.retrieve("SELECT cardOut FROM dayreport WHERE date = '"+  date +"';");
+		
+		try {
+			while (result.next()) {
+				oldAmount = result.getDouble(1);
+			} // while
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  // try-catch
+		DbAccessImpl.disconnect();
+		
+		newAmount = newAmount + oldAmount;
+		
+		i = DbAccessImpl.update("UPDATE dayreport SET cardOut = " + newAmount + " WHERE validDate = '" + date + "';");
+		DbAccessImpl.disconnect();
+		return i;
+	}
+	
+	public int updateDayCashIn(String date, double newAmount){
+		int i = 0;
+		double oldAmount = 0;
+		ResultSet result = DbAccessImpl.retrieve("SELECT cashIn FROM dayreport WHERE date = '"+  date +"';");
+		
+		try {
+			while (result.next()) {
+				oldAmount = result.getDouble(1);
+			} // while
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  // try-catch
+		DbAccessImpl.disconnect();
+		
+		newAmount = newAmount + oldAmount;
+		
+		i = DbAccessImpl.update("UPDATE dayreport SET cashIn = " + newAmount + " WHERE validDate = '" + date + "';");
+		DbAccessImpl.disconnect();
+		return i;
+	}
+	
+	public int updateDayCashOut(String date, double newAmount){
+		int i = 0;
+		double oldAmount = 0;
+		ResultSet result = DbAccessImpl.retrieve("SELECT cashOut FROM dayreport WHERE date = '"+  date +"';");
+		
+		try {
+			while (result.next()) {
+				oldAmount = result.getDouble(1);
+			} // while
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  // try-catch
+		DbAccessImpl.disconnect();
+		
+		newAmount = newAmount + oldAmount;
+		
+		i = DbAccessImpl.update("UPDATE dayreport SET cashOut = " + newAmount + " WHERE validDate = '" + date + "';");
+		DbAccessImpl.disconnect();
 		return i;
 	}
 	
