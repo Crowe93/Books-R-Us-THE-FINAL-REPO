@@ -98,6 +98,31 @@ public class Servlet extends HttpServlet {
 				
 			//***************************************************
 			
+			//*********** Temporary Login Testing ***************
+			
+			String loginAuth = request.getParameter("loginAuth");
+			
+			if (loginAuth != null) 
+			{
+				UserLogicImpl userLogic = new UserLogicImpl();
+				int userId = userLogic.getUserId(request.getParameter("username"));
+				User user = userLogic.getUser(userId);
+				
+				try {
+					sendJsonResponse(response, user);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			
+			}
+			
+			//***************************************************
+			
+		
+			
+			
 			// The following Strings are used to check for a null value. Whichever string that does not have a null value is the action the client wants to perform
 			String register = request.getParameter("register");
 			String login = request.getParameter("login"); 
@@ -145,8 +170,9 @@ public class Servlet extends HttpServlet {
 				String username = request.getParameter("username");
 				String password = request.getParameter("password");
 
-				
+				System.out.println(username);
 					UserLogicImpl u = new UserLogicImpl();
+					User user = u.getUser(u.getUserId(username));
 					
 					
 					boolean authenticUser = u.isAdmin(u.getUserId(username), password);
@@ -165,6 +191,7 @@ public class Servlet extends HttpServlet {
 								session.setAttribute("currentUser", username);
 							}
 							root.put("admin", session.getAttribute("currentUser"));
+							root.put("userId", user.getId());
 							currentUser = username;
 						} else{ // enter here if authentification fails
 							templateName = "login.ftl";
@@ -184,6 +211,7 @@ public class Servlet extends HttpServlet {
 								session.setAttribute("currentUser", username);
 							}
 							root.put("user", session.getAttribute("currentUser"));
+							root.put("userId", user.getId());
 							currentUser = username;
 						} else{ // enter here if authentification fails
 							templateName = "login.ftl";

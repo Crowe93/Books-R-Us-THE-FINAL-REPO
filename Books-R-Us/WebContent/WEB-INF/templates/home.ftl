@@ -8,6 +8,14 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="../js/jquery-3.2.1.min.js"></script>
+        <script src="../js/loginAuth.js"></script>
+        <script>
+        $(document).ready(function () {
+        	var userId = $("#userId").val();
+			document.cookie = "userId=" + userId + ";path=/";
+        });
+        </script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
@@ -15,7 +23,7 @@
     </head>
 
     <body>
-    
+    <input type="hidden" id="userId" value="${userId}">
    	<!--header-->
 		<header id="header">
 			<div class="header_top">
