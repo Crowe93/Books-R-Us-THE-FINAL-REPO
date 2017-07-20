@@ -35,7 +35,12 @@ public class UserPersistImpl {
 	} // insertUser
 	
 	public int deleteUser(int id){
-		String query = "DELETE USER FROM USER WHERE USER.id = " + id;
+		String query = "DELETE FROM user WHERE id = " + id;
+		return DbAccessImpl.delete(query);
+	} // deleteUser
+	
+	public int deleteUser(String username){
+		String query = "DELETE FROM user WHERE username = '" + username+"'";
 		return DbAccessImpl.delete(query);
 	} // deleteUser
 	
@@ -53,7 +58,6 @@ public class UserPersistImpl {
 		return user;
 	} // getUser
 	
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public List<User> getAllUsers(){
 		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM user;");
 		ArrayList<User> users = new ArrayList<User>();
@@ -69,7 +73,6 @@ public class UserPersistImpl {
 		
 		return users;	
 	}
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public int getUserId(String username){
 		ResultSet result = DbAccessImpl.retrieve("SELECT id FROM user WHERE username = '"+ username +"';");
