@@ -3,22 +3,87 @@
  */
 $(document).ready(function () {
 	
-	$("#loadBookBtn").click(function () {
-		//load books with ajax
-		var requestURL = "Servlet?loadBooks";
-		$.get(requestURL, function (result, response) {
-			//iterate through list of books returned as json response
-			$.each(result, function (book) {
-				
-				var html = '<img src="' + book.imgurl + '" width="50px" height="50px">' + book.title + ' Author Publisher Price Stock <br>'
-				
-				$("#searchContainer").append(html);
-			});
-		});
+	loadBooks();
+	
+	
+	$(".btn-search").click(function () {
+		var searchVal = $("#search-value").val();
+		var filterType = $("#search-filter").val(); // 0 = title | 1 = isbn | 2 = author
+			
+		searchBooks(filterType, searchVal);
 		
 		
 	});
 	
+	function loadBooks() {
+		var requestURL = "Servlet?loadBooks";
+		$.get(requestURL, function (result, response) {
+			//iterate through list of books returned as json response
+			$("#book-container").html("");
+			$.each(result, function (index, book) {
+				
+				var html = 		'					<tr>' +
+				'<td data-th="Product">' +
+				'<div class="row">' +
+					'<div class="col-sm-4 hidden-xs"><img src="' + book.imgurl + '"class="img-responsive"/></div>' +
+					'<div class="col-sm-8">' +
+						'<h4 class="text-left">' + book.title + '</h4>' +
+						'<p>' + book.author + '</p>' +
+						'<p>' + book.genre + '</p>' +
+						'<p>' + book.year + '</p>' +
+					'</div>' +
+				'</div>' +
+			'</td>' +
+
+					'<td class="actions" data-th="">' +
+				'<h3 class="text-left"> $' + book.price + '</h3>' +
+				'<button name="add" type="submit" class="btn btn-info btn-default"> Add to Cart</button>		' +						
+			'</td>' +
+			
+		'</tr>';
+				
+				$("#book-container").append(html);
+			});
+		});
+	}
 	
+	function searchBooks(filterType, searchVal) {
+		//check for functional search value
+		if (!searchVal)
+			{
+				loadBooks();
+				return;
+			}
+		
+		var requestURL = "Servlet?searchBooks&filterType=" + filterType + "&searchVal=" + searchVal;
+		$.get(requestURL, function (result, response) {
+			//iterate through list of books returned as json response
+			$("#book-container").html("");
+			$.each(result, function (index, book) {
+				
+				var html = 		'					<tr>' +
+				'<td data-th="Product">' +
+				'<div class="row">' +
+					'<div class="col-sm-4 hidden-xs"><img src="' + book.imgurl + '"class="img-responsive"/></div>' +
+					'<div class="col-sm-8">' +
+						'<h4 class="text-left">' + book.title + '</h4>' +
+						'<p>' + book.author + '</p>' +
+						'<p>' + book.genre + '</p>' +
+						'<p>' + book.year + '</p>' +
+					'</div>' +
+				'</div>' +
+			'</td>' +
+
+					'<td class="actions" data-th="">' +
+				'<h3 class="text-left"> $' + book.price + '</h3>' +
+				'<button name="add" type="submit" class="btn btn-info btn-default"> Add to Cart</button>		' +						
+			'</td>' +
+			
+		'</tr>';
+				
+				$("#book-container").append(html);
+			});
+		});
+	}
 	
 });
