@@ -31,7 +31,7 @@ CREATE TABLE `book` (
   `publisher` varchar(100) DEFAULT NULL COMMENT 'Holds name of book publisher',
   `genre` varchar(45) DEFAULT NULL,
   `year` int(11) DEFAULT NULL COMMENT 'Holds year book written',
-  `price` float DEFAULT NULL COMMENT 'Holds book price',
+  `price` double DEFAULT NULL COMMENT 'Holds book price',
   `stock` int(11) DEFAULT NULL COMMENT 'Holds current amount in inventory',
   `sold` int(11) DEFAULT NULL COMMENT 'Holds number sold',
   PRIMARY KEY (`id`)
@@ -80,14 +80,10 @@ DROP TABLE IF EXISTS `cart`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cart` (
-  `user_id` int(11) DEFAULT NULL COMMENT 'Foreign Key, Reference user(id)',
-  `order_id` int(11) DEFAULT NULL COMMENT 'Foreign Key, Reference order(id)',
-  `totalPrice` double DEFAULT NULL COMMENT 'Total amount of active order',
-  `totalQty` int(11) DEFAULT NULL COMMENT 'Total number of individual items in cart',
-  KEY `cart_order_idx` (`order_id`),
-  KEY `cart_user_idx` (`user_id`),
-  CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `cart_iofk_1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `user_id_idx` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -126,82 +122,27 @@ LOCK TABLES `dayreport` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `genre`
+-- Table structure for table `item`
 --
 
-DROP TABLE IF EXISTS `genre`;
+DROP TABLE IF EXISTS `item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `genre` (
-  `book_id` int(11) NOT NULL COMMENT 'Foreign Key, Reference book(id)',
-  `genre` varchar(45) DEFAULT NULL COMMENT 'Genre type of book. A single book can belong to multiple genre. ',
-  KEY `genre_book_idx` (`book_id`),
-  CONSTRAINT `genre_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+CREATE TABLE `item` (
+  `cart_id` int(11) NOT NULL,
+  `book_id` int(11) DEFAULT NULL,
+  `qty` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`cart_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `genre`
+-- Dumping data for table `item`
 --
 
-LOCK TABLES `genre` WRITE;
-/*!40000 ALTER TABLE `genre` DISABLE KEYS */;
-/*!40000 ALTER TABLE `genre` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `order`
---
-
-DROP TABLE IF EXISTS `order`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `order` (
-  `id` int(11) NOT NULL COMMENT 'id intended to not auto increment, user_id and id are composite key',
-  `user_id` int(11) NOT NULL COMMENT 'Foreign Key, Reference user(id)',
-  `book_id` int(11) NOT NULL COMMENT 'Foreign Key, Reference book(id)',
-  `quantity` int(11) NOT NULL COMMENT 'Number of specified item to be ordered.',
-  PRIMARY KEY (`id`),
-  KEY `order_user_idx` (`user_id`),
-  KEY `order_book_idx` (`book_id`),
-  CONSTRAINT `order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT `order_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `order`
---
-
-LOCK TABLES `order` WRITE;
-/*!40000 ALTER TABLE `order` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `orderhistory`
---
-
-DROP TABLE IF EXISTS `orderhistory`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `orderhistory` (
-  `user_id` int(11) NOT NULL,
-  `order_id` int(11) DEFAULT NULL,
-  `orderDate` date DEFAULT NULL,
-  KEY `history_order_idx` (`order_id`),
-  KEY `user_id_idx` (`user_id`),
-  CONSTRAINT `order_id` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `orderhistory`
---
-
-LOCK TABLES `orderhistory` WRITE;
-/*!40000 ALTER TABLE `orderhistory` DISABLE KEYS */;
-/*!40000 ALTER TABLE `orderhistory` ENABLE KEYS */;
+LOCK TABLES `item` WRITE;
+/*!40000 ALTER TABLE `item` DISABLE KEYS */;
+/*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -268,6 +209,7 @@ CREATE TABLE `publishersales` (
   `publisher_id` int(11) NOT NULL,
   `numSold` int(11) DEFAULT NULL,
   `netTotal` double DEFAULT NULL,
+  `validDate` date NOT NULL,
   KEY `publisher_id_idx` (`publisher_id`),
   CONSTRAINT `publisher_id` FOREIGN KEY (`publisher_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -297,8 +239,8 @@ CREATE TABLE `user` (
   `password` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `type` int(11) DEFAULT NULL,
-  `cardSaved` int(11) DEFAULT NULL,
   `shipAddr` varchar(100) DEFAULT NULL,
+  `usercol` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -322,4 +264,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-12 15:05:39
+-- Dump completed on 2017-07-20 15:43:16
