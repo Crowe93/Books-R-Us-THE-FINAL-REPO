@@ -66,16 +66,16 @@
 		
 		
 		<!-- admin add order -->
-		<div class="container">
+		<div class="container" style="width:40%">
 			<h3 class="text-center"> Add New Book</h3>
 			
-			<form name="add-book" method="post" action="Servlet">
+			<form name="add-book" method="post" action="AdminServlet">
 				<div class="text-left form-group">
 				  <label for="isbn">ISBN:</label>
 				  <input type="text" class="form-control" id="isbn" name="isbn">
 				</div>
 				<div class="text-left form-group">
-				  <label for="title">Title:</label>
+				  <label for="title">Title</label>
 				  <input type="text" class="form-control" id="title" name="title">
 				</div>
 				<div class="text-left form-group">
@@ -91,6 +91,10 @@
 				  <input type="text" class="form-control" id="year" name="year">
 				</div>
 				<div class="text-left form-group">
+				  <label for="genre">Genre</label>
+				  <input type="text" class="form-control" id="genre" name="genre">
+				</div>
+				<div class="text-left form-group">
 				  <label for="price">Price:</label>
 				  <input type="text" class="form-control" id="price" name="price">
 				</div>
@@ -103,7 +107,7 @@
 				  <input type="text" class="form-control" id="image" name="image">
 				</div>
 				
-				<button type="submit" class="btn btn-primary">Add to Database</button>
+				<button type="submit" name="add-button" class="btn btn-primary">Add to Database</button>
 			</form>
 		</div>
 		
