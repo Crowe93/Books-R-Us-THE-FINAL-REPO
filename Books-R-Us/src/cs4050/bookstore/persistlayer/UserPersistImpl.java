@@ -35,7 +35,12 @@ public class UserPersistImpl {
 	} // insertUser
 	
 	public int deleteUser(int id){
-		String query = "DELETE USER FROM USER WHERE USER.id = " + id;
+		String query = "DELETE FROM user WHERE id = " + id;
+		return DbAccessImpl.delete(query);
+	} // deleteUser
+	
+	public int deleteUser(String username){
+		String query = "DELETE FROM user WHERE username = '" + username+"'";
 		return DbAccessImpl.delete(query);
 	} // deleteUser
 	
@@ -44,7 +49,7 @@ public class UserPersistImpl {
 		User user = null;
 		try {
 			while (result.next()) {
-				user = new User(userId, result.getString(0), result.getString(1), result.getString(2), result.getString(3), result.getString(4), result.getInt(5), result.getString(6));
+				user = new User(userId, result.getString("fname"), result.getString("lname"), result.getString("username"), result.getString("password"), result.getString("email"), result.getInt("type"), result.getString("shipAddr"));
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -53,7 +58,6 @@ public class UserPersistImpl {
 		return user;
 	} // getUser
 	
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public List<User> getAllUsers(){
 		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM user;");
 		ArrayList<User> users = new ArrayList<User>();
@@ -69,7 +73,6 @@ public class UserPersistImpl {
 		
 		return users;	
 	}
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public int getUserId(String username){
 		ResultSet result = DbAccessImpl.retrieve("SELECT id FROM user WHERE username = '"+ username +"';");
@@ -85,9 +88,25 @@ public class UserPersistImpl {
 		return id;
 	}
 	
-	public void updateUsername(String username, int userId) {
-		DbAccessImpl.update("UPDATE user SET username = " + username + " WHERE id = " + userId + ";");
+	public int updateFirstName(String fname, int userId) {
+		int i = 0;
+		i = DbAccessImpl.update("UPDATE user SET fname = '" + fname + "' WHERE id = " + userId + ";");
 		DbAccessImpl.disconnect();
+		return i;
+	}//updateUsername
+	
+	public int updateLastName(String lname, int userId) {
+		int i = 0;
+		i = DbAccessImpl.update("UPDATE user SET lname = '" + lname + "' WHERE id = " + userId + ";");
+		DbAccessImpl.disconnect();
+		return i;
+	}//updateUsername
+	
+	public int updateUsername(String username, int userId) {
+		int i = 0;
+		i = DbAccessImpl.update("UPDATE user SET username = '" + username + "' WHERE id = " + userId + ";");
+		DbAccessImpl.disconnect();
+		return i;
 	}//updateUsername
 	
 	public String getUsername(int userId) {
@@ -123,32 +142,13 @@ public class UserPersistImpl {
 		return password;
 	}//getPassword
 	
-	public int updateCardSaved(int c, int userId){
-		int r = DbAccessImpl.update("UPDATE user SET cardSaved = " + c + " WHERE id = " + userId + ";");
-		DbAccessImpl.disconnect();
-		return r;
-	}//add toggle fuction for card instead?
-	
-	public int getCardSaved(int userId){
-		ResultSet result = DbAccessImpl.retrieve("SELECT cardSaved FROM user WHERE id = "+  userId +";");
-		int c = 0;
-		try {
-			while (result.next()) {
-				c = result.getInt(1);
-			} // while
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}  // try-catch
-		DbAccessImpl.disconnect();
-		return c;
-	}
-	
 	public int updateShipping(String s, int userId){
 		int r = DbAccessImpl.update("UPDATE user SET shipAddr = '" + s + "' WHERE id = " + userId + ";");
 		DbAccessImpl.disconnect();
 		return r;
 	}
 	
+	//////////modify to get info from shipping table
 	public String getShipping(int userId){
 		ResultSet result = DbAccessImpl.retrieve("SELECT shipAddr FROM user WHERE id = "+  userId +";");
 		String shipAddr = null;

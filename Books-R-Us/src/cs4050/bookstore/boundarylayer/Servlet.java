@@ -105,6 +105,24 @@ public class Servlet extends HttpServlet {
 				}
 				return;
 			}
+			
+			String searchBooks = request.getParameter("searchBooks");
+			
+			if (searchBooks != null)
+			{
+				BookLogicImpl bookLogic = new BookLogicImpl();
+				int filterType = Integer.parseInt(request.getParameter("filterType"));
+				String searchVal = request.getParameter("searchVal");
+				List<Book> books = bookLogic.searchBooks(filterType, searchVal);
+				
+				try {
+					sendJsonResponse(response, books);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return;
+			}
 				
 			//***************************************************
 			
@@ -198,7 +216,6 @@ public class Servlet extends HttpServlet {
 
 				System.out.println(username);
 					UserLogicImpl u = new UserLogicImpl();
-					User user = u.getUser(u.getUserId(username));
 					
 					int userId = u.getUserId(username);
 

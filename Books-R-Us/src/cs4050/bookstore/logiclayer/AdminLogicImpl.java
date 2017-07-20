@@ -15,19 +15,14 @@ public class AdminLogicImpl {
 	UserPersistImpl userPersist = new UserPersistImpl();
 	
 	public int deleteUser(int userId){
-		int i = 0;
-		
-		
-		
-		return i;
+		return userPersist.deleteUser(userId);
 	}
-	
 	
 	public int deleteUser(String username){
-		int i = 0;
-		
-		return i;
+		return userPersist.deleteUser(username);
 	}
+	
+	
 	
 	
 }

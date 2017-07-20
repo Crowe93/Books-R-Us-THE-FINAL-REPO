@@ -61,5 +61,35 @@ public class UserLogicImpl {
 		return userPersist.cardSaved(id);
 	}
 	
+	public int updateUser(User u){
+		int i = 0;
+		int id = u.getId();
+		String f = u.getFirst();
+		String l = u.getLast();
+		String un = u.getUsername();
+		String p = u.getPassword();
+		String e = u.getEmail();
+		
+		User oldUser = userPersist.getUser(id);
+		
+		if(f!=null){
+			i += userPersist.updateFirstName(f,id);
+		}
+		if(l!=null){
+			i += userPersist.updateLastName(l, id);
+		}
+		if(un!=null){
+			i += userPersist.updateLastName(un, id);
+		}
+		if(p!=null){
+			i += userPersist.updateLastName(p, id);
+		}
+		if(e!=null){
+			i += userPersist.updateLastName(e, id);
+		}
+		
+		return i;
+	}
+	
 	
 }//UserLogicImpl

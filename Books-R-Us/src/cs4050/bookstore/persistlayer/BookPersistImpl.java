@@ -233,5 +233,45 @@ public class BookPersistImpl {
 		return report;
 	}
 	
+	public List<Book> searchBooks(int filterType, String searchVal)
+	{
+		List<Book> results = new ArrayList<Book>();
+		
+		String filterBy = "";
+		
+		switch (filterType) {
+		case 0: // title
+			filterBy = "title";
+			break;
+		case 1: // isbn
+			filterBy = "id";
+			break;
+		case 2: //author
+			filterBy = "author";
+			break;
+		default:
+			//wtf did you even do to get here
+			break;
+		}
+		
+		String query = "SELECT * FROM book WHERE " + filterBy + " REGEXP '" + searchVal + "';";
+		
+		ResultSet result = DbAccessImpl.retrieve(query);
+		
+		try {
+			while (result.next()) {
+				Book book = new Book(result.getInt("id"), result.getString("title"), result.getString("author"), result.getString("publisher"), result.getString("genre"), result.getInt("year"), result.getDouble("price"), result.getInt("stock"), result.getInt("sold"), result.getString("imgURL"));
+				results.add(book);
+			}
+		}
+		catch (SQLException e) 
+		{
+				e.printStackTrace();
+		}
+		
+		DbAccessImpl.disconnect();
+		return results;
+	}
+	
 	
 }//BookPersistImpl
