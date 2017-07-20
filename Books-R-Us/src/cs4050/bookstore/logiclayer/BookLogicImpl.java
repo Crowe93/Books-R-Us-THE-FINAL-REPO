@@ -17,10 +17,12 @@ import cs4050.bookstore.persistlayer.DbAccessImpl;
 public class BookLogicImpl {
 private BookPersistImpl bookPersist = new BookPersistImpl();
 	
+	public int insertBook(int bookId, String title, String author, String publisher, int year, String genre, double price, int stock, String imgURL) {
+		return bookPersist.insertBook(bookId, title, author, publisher, year, genre, price, stock, imgURL);
+	} // insertBook
+
 	public int insertBook(String title, String author, String publisher, int year, int stock, double price) {
-		int r = 0;
-		r = bookPersist.insertBook(title, author, publisher, year, stock, price);
-		return r;
+		return bookPersist.insertBook(title, author, publisher, year, stock, price);
 	}
 	
 	public int insertBook(Book b){

@@ -2,7 +2,10 @@ package cs4050.bookstore.persistlayer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import cs4050.bookstore.objectlayer.Item;
 import cs4050.bookstore.objectlayer.User;
 import cs4050.bookstore.persistlayer.DbAccessImpl;
 
@@ -37,11 +40,11 @@ public class UserPersistImpl {
 	} // deleteUser
 	
 	public User getUser(int userId) {
-		ResultSet result = DbAccessImpl.retrieve("SELECT fname, lname, email, username, password, type, shipaddr, cardsaved FROM user WHERE id = "+  userId +";");
+		ResultSet result = DbAccessImpl.retrieve("SELECT fname, lname, username, password, email, type, shipaddr FROM user WHERE id = "+  userId +";");
 		User user = null;
 		try {
 			while (result.next()) {
-				user = new User(userId, result.getString(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getInt(6), result.getString(7), result.getInt(8));
+				user = new User(userId, result.getString(0), result.getString(1), result.getString(2), result.getString(3), result.getString(4), result.getInt(5), result.getString(6));
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -49,6 +52,24 @@ public class UserPersistImpl {
 		DbAccessImpl.disconnect();
 		return user;
 	} // getUser
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public List<User> getAllUsers(){
+		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM user;");
+		ArrayList<User> users = new ArrayList<User>();
+		try {
+			while (result.next()) {
+				User user = new User(result.getInt(0), result.getString(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getInt(6), result.getString(7));
+				users.add(user);
+			} // while
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  // try-catch
+		DbAccessImpl.disconnect();
+		
+		return users;	
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public int getUserId(String username){
 		ResultSet result = DbAccessImpl.retrieve("SELECT id FROM user WHERE username = '"+ username +"';");

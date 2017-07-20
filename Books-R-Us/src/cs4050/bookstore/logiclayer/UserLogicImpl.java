@@ -2,6 +2,7 @@ package cs4050.bookstore.logiclayer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +41,10 @@ public class UserLogicImpl {
 		return userPersist.getUser(userId);
 	}
 	
+	public List<User> getAllUsers(){
+		return userPersist.getAllUsers();
+	}
+	
 	public int getUserId(String userName){
 		return userPersist.getUserId(userName);
 	} // getUserId
@@ -55,4 +60,6 @@ public class UserLogicImpl {
 	public boolean cardSaved(int id){
 		return userPersist.cardSaved(id);
 	}
+	
+	
 }//UserLogicImpl
