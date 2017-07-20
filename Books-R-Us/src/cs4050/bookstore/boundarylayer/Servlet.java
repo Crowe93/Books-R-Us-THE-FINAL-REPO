@@ -235,7 +235,7 @@ public class Servlet extends HttpServlet {
 								session.setAttribute("currentUser", username);
 							}
 							root.put("admin", session.getAttribute("currentUser"));
-							root.put("userId", user.getId());
+							root.put("userId", userId);
 							currentUser = username;
 						} else{ // enter here if authentification fails
 							templateName = "login.ftl";
@@ -255,7 +255,7 @@ public class Servlet extends HttpServlet {
 								session.setAttribute("currentUser", username);
 							}
 							root.put("user", session.getAttribute("currentUser"));
-							root.put("userId", user.getId());
+							root.put("userId", userId);
 							currentUser = username;
 						} else{ // enter here if authentification fails
 							templateName = "login.ftl";
