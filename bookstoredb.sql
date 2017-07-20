@@ -34,6 +34,7 @@ CREATE TABLE `book` (
   `price` double DEFAULT NULL COMMENT 'Holds book price',
   `stock` int(11) DEFAULT NULL COMMENT 'Holds current amount in inventory',
   `sold` int(11) DEFAULT NULL COMMENT 'Holds number sold',
+  `imgURL` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -240,7 +241,6 @@ CREATE TABLE `user` (
   `email` varchar(45) NOT NULL,
   `type` int(11) DEFAULT NULL,
   `shipAddr` varchar(100) DEFAULT NULL,
-  `usercol` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -264,4 +264,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-20 15:43:16
+-- Dump completed on 2017-07-20 17:21:40
