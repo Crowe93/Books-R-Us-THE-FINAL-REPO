@@ -134,29 +134,29 @@ public class AdminServlet extends HttpServlet {
 				}
 								
 			} else if (addBook != null){
-				String ISBNX = request.getParameter("");
+				String idX = request.getParameter("");
 				String image = request.getParameter("");
 				String title = request.getParameter("");
 				String author = request.getParameter("");
 				String publisher = request.getParameter("");
-//				String genre = request.getParameter("");
+				String genre = request.getParameter("");
 				String yearX = request.getParameter("");
 				String priceX = request.getParameter("");
 				String stockX = request.getParameter("");
-				int ISBN = 0;
+				int id = 0;
 				double price = 0;
 				int year = 0;
 				int stock = 0;
 				
 				try{
-					ISBN = Integer.parseInt(ISBNX);
+					id = Integer.parseInt(idX);
 					price = Double.parseDouble(priceX);
 					year = Integer.parseInt(yearX);
 					stock = Integer.parseInt(stockX);
 				} catch (NumberFormatException e){
 				}
 				
-				Book book = new Book(ISBN, title, author, publisher, year, stock, price, image);
+				Book book = new Book(id, title, author, publisher, year, stock, price, image);
 
 				BookLogicImpl b = new BookLogicImpl();
 				int r = b.insertBook(book);

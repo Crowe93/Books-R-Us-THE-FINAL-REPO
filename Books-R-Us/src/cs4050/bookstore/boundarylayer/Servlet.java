@@ -16,7 +16,7 @@ import com.google.gson.Gson;
 
 import cs4050.bookstore.logiclayer.BookLogicImpl;
 import cs4050.bookstore.logiclayer.UserLogicImpl;
-import cs4050.bookstore.objectlayer.User;
+import cs4050.bookstore.objectlayer.*;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapperBuilder;
 import freemarker.template.SimpleHash;
@@ -244,7 +244,38 @@ public class Servlet extends HttpServlet {
 				System.out.println("logout COMPLETE!");
 				
 			} else if (addToCart != null){
+				String userId = request.getParameter("userId");
+				String title = request.getParameter("title");
+				BookLogicImpl b = new BookLogicImpl();
+				int bookId = b.getBookId(title);
 				
+				Book book = b.getBook(bookId);
+				
+				int stock = book.getStock();
+				
+				
+				if(stock != 0){ //enter here if item is in stock
+					int cartId = createCart(userId); //create a cart for the user
+					
+					if (cartId != 0 ){ //enter here if the cart was successfully made
+						int x = addBookToCart(cartId, bookId);
+						
+						if(x == 0){ //enter here if the book was successfully added to the cart
+							System.out.println("Book successfully added to the cart");
+							root.put("bookAddedToCart", "yes");
+							
+						} else{ //enter here if there was an error adding a book to the cart
+							root.put("bookAddError", "yes");
+						}
+					}
+					
+				} else{ //enter here if the item is not in stock
+					root.put("itemNotInStock", "yes");
+				}
+				
+				templateName = "search.ftl";
+			
+			
 				
 			} else if (removeFromCart != null){
 				
