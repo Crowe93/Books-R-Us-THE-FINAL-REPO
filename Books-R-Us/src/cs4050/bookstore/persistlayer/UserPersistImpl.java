@@ -49,7 +49,7 @@ public class UserPersistImpl {
 		User user = null;
 		try {
 			while (result.next()) {
-				user = new User(userId, result.getString(0), result.getString(1), result.getString(2), result.getString(3), result.getString(4), result.getInt(5), result.getString(6));
+				user = new User(userId, result.getString("fname"), result.getString("lname"), result.getString("username"), result.getString("password"), result.getString("email"), result.getInt("type"), result.getString("shipAddr"));
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
