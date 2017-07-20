@@ -75,7 +75,7 @@ public class BookPersistImpl {
 		ResultSet result = DbAccessImpl.retrieve("SELECT title, author, publisher, genre, year, price FROM book WHERE id = "+  bookId +";");
 		try {
 			while (result.next()) {
-				b = new Book(bookId, result.getString(1), result.getString(2), result.getString(3), result.getString(4), result.getInt(5), result.getDouble(6));
+				b = new Book(bookId, result.getString("title"), result.getString("author"), result.getString("publisher"), result.getString("genre"), result.getInt("year"), result.getDouble("price"));
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -109,7 +109,7 @@ public class BookPersistImpl {
 		ResultSet result = DbAccessImpl.retrieve("select stock from book where title = '" + title+";");
 		int stock = -1;
 		try{
-			stock = result.getInt(1);
+			stock = result.getInt("stock");
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -130,7 +130,7 @@ public class BookPersistImpl {
 		ResultSet result = DbAccessImpl.retrieve("select price from book where id = " + id+";");
 		float price = -1;
 		try{
-			price = result.getFloat(1);
+			price = result.getFloat("price");
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -143,7 +143,7 @@ public class BookPersistImpl {
 		ResultSet result = DbAccessImpl.retrieve("select price from book where title = '" + title + "';");
 		float price = -1;
 		try{
-			price = result.getFloat(1);
+			price = result.getFloat("price");
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -166,7 +166,7 @@ public class BookPersistImpl {
 		ResultSet result = DbAccessImpl.retrieve("select sold from book where id = " + id + ";");
 		int sold = -1;
 		try{
-			sold = result.getInt(1);
+			sold = result.getInt("sold");
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -179,7 +179,7 @@ public class BookPersistImpl {
 		ResultSet result = DbAccessImpl.retrieve("select sold from book where title = '" + title + "';");
 		int sold = -1;
 		try{
-			sold = result.getInt(1);
+			sold = result.getInt("sold");
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -193,7 +193,7 @@ public class BookPersistImpl {
 		int id = 0;
 		try {
 			while (result.next()) {
-				id = result.getInt(1);
+				id = result.getInt("id");
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();

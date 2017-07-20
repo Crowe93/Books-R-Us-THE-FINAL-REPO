@@ -62,8 +62,8 @@ public class UserPersistImpl {
 		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM user;");
 		ArrayList<User> users = new ArrayList<User>();
 		try {
-			while (result.next()) {
-				User user = new User(result.getInt(0), result.getString(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getInt(6), result.getString(7));
+			while (result.next()) {				
+				User user = new User(result.getInt("id"), result.getString("fname"), result.getString("lname"), result.getString("username"), result.getString("password"), result.getString("email"), result.getInt("type"), result.getString("shipAddr"));
 				users.add(user);
 			} // while
 		} catch (SQLException e) {
@@ -88,9 +88,25 @@ public class UserPersistImpl {
 		return id;
 	}
 	
-	public void updateUsername(String username, int userId) {
-		DbAccessImpl.update("UPDATE user SET username = " + username + " WHERE id = " + userId + ";");
+	public int updateFirstName(String fname, int userId) {
+		int i = 0;
+		i = DbAccessImpl.update("UPDATE user SET fname = '" + fname + "' WHERE id = " + userId + ";");
 		DbAccessImpl.disconnect();
+		return i;
+	}//updateUsername
+	
+	public int updateLastName(String lname, int userId) {
+		int i = 0;
+		i = DbAccessImpl.update("UPDATE user SET lname = '" + lname + "' WHERE id = " + userId + ";");
+		DbAccessImpl.disconnect();
+		return i;
+	}//updateUsername
+	
+	public int updateUsername(String username, int userId) {
+		int i = 0;
+		i = DbAccessImpl.update("UPDATE user SET username = '" + username + "' WHERE id = " + userId + ";");
+		DbAccessImpl.disconnect();
+		return i;
 	}//updateUsername
 	
 	public String getUsername(int userId) {
@@ -98,7 +114,7 @@ public class UserPersistImpl {
 		String username = null;
 		try {
 			while (result.next()) {
-				username = result.getString(1);
+				username = result.getString("username");
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -117,7 +133,7 @@ public class UserPersistImpl {
 		String password = null;
 		try {
 			while (result.next()) {
-				password = result.getString(1);
+				password = result.getString("password");
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -126,38 +142,19 @@ public class UserPersistImpl {
 		return password;
 	}//getPassword
 	
-	public int updateCardSaved(int c, int userId){
-		int r = DbAccessImpl.update("UPDATE user SET cardSaved = " + c + " WHERE id = " + userId + ";");
-		DbAccessImpl.disconnect();
-		return r;
-	}//add toggle fuction for card instead?
-	
-	public int getCardSaved(int userId){
-		ResultSet result = DbAccessImpl.retrieve("SELECT cardSaved FROM user WHERE id = "+  userId +";");
-		int c = 0;
-		try {
-			while (result.next()) {
-				c = result.getInt(1);
-			} // while
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}  // try-catch
-		DbAccessImpl.disconnect();
-		return c;
-	}
-	
 	public int updateShipping(String s, int userId){
 		int r = DbAccessImpl.update("UPDATE user SET shipAddr = '" + s + "' WHERE id = " + userId + ";");
 		DbAccessImpl.disconnect();
 		return r;
 	}
 	
+	//////////modify to get info from shipping table
 	public String getShipping(int userId){
 		ResultSet result = DbAccessImpl.retrieve("SELECT shipAddr FROM user WHERE id = "+  userId +";");
 		String shipAddr = null;
 		try {
 			while (result.next()) {
-				shipAddr = result.getString(1);
+				shipAddr = result.getString("shipAddr");
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -177,7 +174,7 @@ public class UserPersistImpl {
 		String email = null;
 		try {
 			while (result.next()) {
-				email = result.getString(1);
+				email = result.getString("email");
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -191,7 +188,7 @@ public class UserPersistImpl {
 		int type = 0;
 		try {
 			while (result.next()) {
-				type = result.getInt(1);
+				type = result.getInt("type");
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -209,7 +206,7 @@ public class UserPersistImpl {
 		try{
 			resultSet = DbAccessImpl.retrieve(query);
 			if(resultSet.next()){
-				id = resultSet.getInt(1);
+				id = resultSet.getInt("id");
 			}
 			resultSet.close();
 		} catch (SQLException e){
@@ -229,7 +226,7 @@ public class UserPersistImpl {
 		try{
 			resultSet = DbAccessImpl.retrieve(query);
 			if(resultSet.next()){
-				type = resultSet.getInt(1);
+				type = resultSet.getInt("type");
 			}
 			resultSet.close();
 		} catch (SQLException e){
