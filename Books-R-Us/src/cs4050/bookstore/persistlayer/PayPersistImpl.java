@@ -19,11 +19,11 @@ public class PayPersistImpl {
 	}//insertPayment
 	
 	public Payment getPayment(int userid){
-		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM user WHERE id = "+  userid +";");
+		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM payment WHERE user_id = "+  userid +";");
 		Payment pay = null;
 		try {
 			while (result.next()) {
-				pay = new Payment(userid, result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6));
+				pay = new Payment(userid, result.getString("cardNum"), result.getString("expDate"), result.getString("csc"), result.getString("name"), result.getString("billingAddr"));
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -56,7 +56,7 @@ public class CartPersistImpl {
 		ArrayList<Item> items = new ArrayList<Item>();
 		try {
 			while (result.next()) {
-				Item item = new Item(result.getInt(0), result.getInt(1), result.getInt(2));
+				Item item = new Item(result.getInt("cart_id"), result.getInt("book_id"), result.getInt("qty"));
 				items.add(item);
 			} // while
 		} catch (SQLException e) {

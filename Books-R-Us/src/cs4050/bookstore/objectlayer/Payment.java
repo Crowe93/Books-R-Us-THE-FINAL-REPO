@@ -4,7 +4,7 @@ public class Payment {
 	private int userid;	
 	private String cardNum;
 	private String expDate;
-	private String ccs;
+	private String csc;
 	private String name;
 	private String billingaddr;
 	
@@ -14,7 +14,7 @@ public class Payment {
 		userid = u;
 		cardNum = cn;
 		expDate = e;
-		ccs = c;
+		csc = c;
 		name = n;
 		billingaddr = b; 
 	};
@@ -23,7 +23,7 @@ public class Payment {
 		userid = u;
 		cardNum = cn;
 		expDate = e;
-		ccs = c;
+		csc = c;
 		name = n; 
 	};
 	
@@ -46,11 +46,11 @@ public class Payment {
 	public void setExpDate(String expDate) {
 		this.expDate = expDate;
 	}
-	public String getCcs() {
-		return ccs;
+	public String getCsc() {
+		return csc;
 	}
-	public void setCcs(String ccs) {
-		this.ccs = ccs;
+	public void setCcs(String csc) {
+		this.csc = csc;
 	}
 	public String getName() {
 		return name;

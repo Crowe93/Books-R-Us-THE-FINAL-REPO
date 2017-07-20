@@ -62,8 +62,8 @@ public class UserPersistImpl {
 		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM user;");
 		ArrayList<User> users = new ArrayList<User>();
 		try {
-			while (result.next()) {
-				User user = new User(result.getInt(0), result.getString(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getInt(6), result.getString(7));
+			while (result.next()) {				
+				User user = new User(result.getInt("id"), result.getString("fname"), result.getString("lname"), result.getString("username"), result.getString("password"), result.getString("email"), result.getInt("type"), result.getString("shipAddr"));
 				users.add(user);
 			} // while
 		} catch (SQLException e) {
@@ -114,7 +114,7 @@ public class UserPersistImpl {
 		String username = null;
 		try {
 			while (result.next()) {
-				username = result.getString(1);
+				username = result.getString("username");
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -133,7 +133,7 @@ public class UserPersistImpl {
 		String password = null;
 		try {
 			while (result.next()) {
-				password = result.getString(1);
+				password = result.getString("password");
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -154,7 +154,7 @@ public class UserPersistImpl {
 		String shipAddr = null;
 		try {
 			while (result.next()) {
-				shipAddr = result.getString(1);
+				shipAddr = result.getString("shipAddr");
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -174,7 +174,7 @@ public class UserPersistImpl {
 		String email = null;
 		try {
 			while (result.next()) {
-				email = result.getString(1);
+				email = result.getString("email");
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -188,7 +188,7 @@ public class UserPersistImpl {
 		int type = 0;
 		try {
 			while (result.next()) {
-				type = result.getInt(1);
+				type = result.getInt("type");
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -206,7 +206,7 @@ public class UserPersistImpl {
 		try{
 			resultSet = DbAccessImpl.retrieve(query);
 			if(resultSet.next()){
-				id = resultSet.getInt(1);
+				id = resultSet.getInt("id");
 			}
 			resultSet.close();
 		} catch (SQLException e){
@@ -226,7 +226,7 @@ public class UserPersistImpl {
 		try{
 			resultSet = DbAccessImpl.retrieve(query);
 			if(resultSet.next()){
-				type = resultSet.getInt(1);
+				type = resultSet.getInt("type");
 			}
 			resultSet.close();
 		} catch (SQLException e){
