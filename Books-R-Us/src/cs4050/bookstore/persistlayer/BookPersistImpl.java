@@ -9,6 +9,14 @@ import cs4050.bookstore.objectlayer.Book;
 import cs4050.bookstore.objectlayer.BookSales;
 
 public class BookPersistImpl {
+	public int insertBook(int bookId, String title, String author, String publisher, int year, String genre, double price, int stock, String imgURL) {
+		int r = 0;
+		r = DbAccessImpl.create("INSERT INTO BOOK (id, title, author, publisher, year, genre, stock, price, imgURL) VALUES ("+bookId+", '" + title + "', '" 
+				+ author + "', '" + publisher + "', " + year + ", '"+genre+"', " + stock +", "+ price + ", '"+imgURL+"')");
+		DbAccessImpl.disconnect();
+		return r;
+	} // insertBook
+	
 	public int insertBook(String title, String author, String publisher, int year, int stock, double price) {
 		int r = 0;
 		r = DbAccessImpl.create("INSERT INTO BOOK (title, author, publisher, year, stock, price) VALUES ('" + title + "', '" 
@@ -35,13 +43,15 @@ public class BookPersistImpl {
 	
 	public int insertBook(Book b){
 		int r = 0;
-		
+		int id = b.getISBN();
 		String title = b.getTitle();
 		String author = b.getAuthor();
 		String publisher = b.getPublisher();
+		String genre = b.getGenre();
 		int year = b.getYear();
 		int stock = b.getStock();
 		double price = b.getPrice();
+		String imgUrl = b.getImgurl();
 		
 		if(stock == 0 && price == 0){
 			r = this.insertBook(title, author, publisher, year);
@@ -50,7 +60,7 @@ public class BookPersistImpl {
 			r = this.insertBook(title, author, publisher, year, stock);
 		}
 		else{
-			r = this.insertBook(title, author, publisher, year, stock, price);
+			r = this.insertBook(id, title, author, publisher, year, genre, price, stock, imgUrl);
 		}
 		return r;
 	}
@@ -213,7 +223,7 @@ public class BookPersistImpl {
 		ArrayList<Book> report = new ArrayList<Book>();
 		try {
 			while (result.next()) {
-				Book book = new Book(result.getInt(0),result.getString(1),result.getString(2),result.getString(3),result.getString(4),result.getInt(5), result.getDouble(6),result.getInt(7), result.getInt(8), result.getString(9));
+				Book book = new Book(result.getInt("id"), result.getString("title"), result.getString("author"), result.getString("publisher"), result.getString("genre"), result.getInt("year"), result.getDouble("price"), result.getInt("stock"), result.getInt("sold"), result.getString("imgURL"));
 				report.add(book);
 			} // while
 		} catch (SQLException e) {
