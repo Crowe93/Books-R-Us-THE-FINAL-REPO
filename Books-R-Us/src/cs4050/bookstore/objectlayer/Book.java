@@ -25,9 +25,9 @@ public class Book {
 		publisher = p;
 		genre = g;
 		year = y;
+		price = f;
 		stock = r;
 		sold = s;
-		price = f;
 		imgurl = img;
 	}
 	
