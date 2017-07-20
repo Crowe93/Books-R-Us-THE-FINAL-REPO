@@ -215,10 +215,12 @@ public class Servlet extends HttpServlet {
 
 				System.out.println(username);
 					UserLogicImpl u = new UserLogicImpl();
-					User user = u.getUser(u.getUserId(username));
 					
+					int userId = u.getUserId(username);
 					
-					boolean authenticUser = u.isAdmin(u.getUserId(username), password);
+					User user = u.getUser(userId);
+					
+					boolean authenticUser = u.isAdmin(userId, password);
 					
 					if(authenticUser){ //enter here if admin is trying to log in
 						int r = u.authenticateUser(username, password);
