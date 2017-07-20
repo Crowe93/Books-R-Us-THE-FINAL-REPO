@@ -88,9 +88,25 @@ public class UserPersistImpl {
 		return id;
 	}
 	
-	public void updateUsername(String username, int userId) {
-		DbAccessImpl.update("UPDATE user SET username = " + username + " WHERE id = " + userId + ";");
+	public int updateFirstName(String fname, int userId) {
+		int i = 0;
+		i = DbAccessImpl.update("UPDATE user SET fname = '" + fname + "' WHERE id = " + userId + ";");
 		DbAccessImpl.disconnect();
+		return i;
+	}//updateUsername
+	
+	public int updateLastName(String lname, int userId) {
+		int i = 0;
+		i = DbAccessImpl.update("UPDATE user SET lname = '" + lname + "' WHERE id = " + userId + ";");
+		DbAccessImpl.disconnect();
+		return i;
+	}//updateUsername
+	
+	public int updateUsername(String username, int userId) {
+		int i = 0;
+		i = DbAccessImpl.update("UPDATE user SET username = '" + username + "' WHERE id = " + userId + ";");
+		DbAccessImpl.disconnect();
+		return i;
 	}//updateUsername
 	
 	public String getUsername(int userId) {
@@ -126,32 +142,13 @@ public class UserPersistImpl {
 		return password;
 	}//getPassword
 	
-	public int updateCardSaved(int c, int userId){
-		int r = DbAccessImpl.update("UPDATE user SET cardSaved = " + c + " WHERE id = " + userId + ";");
-		DbAccessImpl.disconnect();
-		return r;
-	}//add toggle fuction for card instead?
-	
-	public int getCardSaved(int userId){
-		ResultSet result = DbAccessImpl.retrieve("SELECT cardSaved FROM user WHERE id = "+  userId +";");
-		int c = 0;
-		try {
-			while (result.next()) {
-				c = result.getInt(1);
-			} // while
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}  // try-catch
-		DbAccessImpl.disconnect();
-		return c;
-	}
-	
 	public int updateShipping(String s, int userId){
 		int r = DbAccessImpl.update("UPDATE user SET shipAddr = '" + s + "' WHERE id = " + userId + ";");
 		DbAccessImpl.disconnect();
 		return r;
 	}
 	
+	//////////modify to get info from shipping table
 	public String getShipping(int userId){
 		ResultSet result = DbAccessImpl.retrieve("SELECT shipAddr FROM user WHERE id = "+  userId +";");
 		String shipAddr = null;
