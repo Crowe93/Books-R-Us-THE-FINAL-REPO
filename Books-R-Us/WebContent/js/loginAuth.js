@@ -3,8 +3,6 @@
  */
 $(document).ready(function () {
 	var userId = $("#userId").value();
-	if (userId)
-		alert(userId);
 	
 	$("#loginSubmit").click(function () {
 		var username = $("#username").value();

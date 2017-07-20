@@ -9,17 +9,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script>
-			$(document).ready(function () { 
-	        	function getCookie(name) {
-	          	  var value = "; " + document.cookie;
-	          	  var parts = value.split("; " + name + "=");
-	          	  if (parts.length == 2) return parts.pop().split(";").shift();
-	          	}
-
-				//alert (getCookie("userId"));
-				});
-        </script>
+        <script src="js/profile.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
@@ -82,7 +72,7 @@
  		<div class="profile-body">
 	 		<div class="container">
 		 			<div class="profile" align="center">	
-		 				<div class="welcome"><h2> Welcome Back <span style="color:#FE980F; font-style:italic; font-weight:bold; ">Joe</span> !</h2></div>
+		 				<div class="welcome"><h2> Welcome Back <span style="color:#FE980F; font-style:italic; font-weight:bold;" id="fname-welcome"></span> !</h2></div>
 		 				<img class="img-circle" src="images/profile_icon.png" width="210px" height="210px">	
 		 				<div class="edit-image"><i class="fa fa-pencil"> change profile image</i></div>
 		 				
@@ -103,11 +93,11 @@
 		 						</div>
 		 						<div class="panel-body">
 						 			<div class="row basic">
-						 				<p>Name: Chanice Campbell</p>
+						 				<p>Name: <span id="fname"></span>  <span id="lname"></span></p>
 						 				<hr>
-						 				<p>Username: chan876 </p>
+						 				<p>Username: <span id="username"></span></p>
 						 				<hr>
-						 				<p>Email: chan876@uga.edu </p>
+						 				<p>Email: <span id="email"></span></p>
 						 				<hr>
 						 				<p>Password: xxxxxx </p>
 						 				<div class="edit">
