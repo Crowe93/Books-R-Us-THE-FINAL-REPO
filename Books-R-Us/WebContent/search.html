@@ -67,18 +67,110 @@
 			</div>
 		</header>
 		
-		<a href="Servlet?Login&name=test&password=test"><button>Test Servlet Call</button></a>
+		<!-- search section -->
+		<div class="container search-bar">
+			<div class="row">
+				<div class="col-md-12">
+		            <div class="input-group" id="adv-search">
+		                <input type="text" class="form-control" placeholder="Search for snippets" />
+		                <div class="input-group-btn">
+		                    <div class="btn-group" role="group">
+		                        <div class="dropdown dropdown-lg">
+		                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+		                            <div class="dropdown-menu dropdown-menu-right" role="menu">
+		                                <form class="form-horizontal" role="form">
+		                                  <div class="form-group">
+		                                    <label for="filter">Filter by</label>
+		                                    <select class="form-control">
+		                                        <option value="0" selected>Author</option>
+		                                        <option value="1">ISBN</option>
+		                                        <option value="2">Title</option>
+		                                    </select>
+		                                  </div>
+		                                  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+		                                </form>
+		                            </div>
+		                        </div>
+		                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+		                    </div>
+		                </div>
+		            </div>
+		          </div>
+		        </div>
+			</div>
+		</div> <!-- end of search bar-->
+			
+			<div class="row filter-button">
+				<div class="col-lg-4">
+					
+					<p> Price Button</p>
+				</div>
+				<div class="col-lg-4">
+					<p> Author Button</p>
+				</div>
+				<div class="col-lg-4">
+					<p>Title Button</p>
+				</div>
+			</div> <!-- end of filter button -->
+			
+			<div class="search-result">
+				<div class="container">
+					<table id="cart" class="table table-hover table-condensed">
+				 		<thead>
+							<tr>
+								<th style="width:70%" class="text-center"></th>
+								<th style="width:30%"></th>
 		
-		<button name="test" id="testAjax">Test</button>
-		<p id="testAjaxResult">
-		This is a test paragraph
-		</p>
+							</tr>
+						</thead>
+						<tbody>
+						
+							<tr>
+								<td data-th="Product">
+									<div class="row">
+										<div class="col-sm-4 hidden-xs"><img src="images/into-water.jpg"class="img-responsive"/></div>
+										<div class="col-sm-8">
+											<h4 class="text-left">Into the Water</h4>
+											<p>Mary Smith</p>
+											<p>Mystery</p>
+											<p>2017</p>
+										</div>
+									</div>
+								</td>
 		
-		<br>
-		<br>
-		<button id="loadBookBtn">Load Books</button>
-		<div>
-			<img src="http://www.qygjxz.com/data/out/35/6101578-book-image.png" width="50px" height="50px"> Title Author Publisher Price Stock
+								<td class="actions" data-th="">
+									<h3 class="text-left"> $20.30</h3>
+									<button name="add" type="submit" class="btn btn-info btn-default"> Add to Cart</button>								
+								</td>
+								
+							</tr>
+							
+							<!-- row2 -->
+							<tr>
+								<td data-th="Product">
+									<div class="row">
+										<div class="col-sm-4 hidden-xs"><img src="images/into-water.jpg"class="img-responsive"/></div>
+										<div class="col-sm-8">
+											<h4 class="text-left">Into the Water</h4>
+											<p>Mary Smith</p>
+											<p>Mystery</p>
+											<p>2017</p>
+										</div>
+									</div>
+								</td>
+		
+								<td class="actions" data-th="">
+									<h3 class="text-left"> $20.30</h3>
+									<button name="add" type="submit" class="btn btn-info btn-default"> Add to Cart</button>								
+								</td>
+								
+							</tr>
+						</tbody>
+		
+					</table>	
+				</div> <!-- end of container -->
+			</div> <!-- end of search result -->
+			
 		</div>
 		
         <!-- Footer -->
