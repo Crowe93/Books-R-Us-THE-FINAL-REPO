@@ -35,6 +35,7 @@ public class Servlet extends HttpServlet {
 		String currentUser = null;
 
 
+
 		/**
 		 * @see HttpServlet#HttpServlet()
 		 */
@@ -97,6 +98,31 @@ public class Servlet extends HttpServlet {
 				
 			//***************************************************
 			
+			//*********** Temporary Login Testing ***************
+			
+			String loginAuth = request.getParameter("loginAuth");
+			
+			if (loginAuth != null) 
+			{
+				UserLogicImpl userLogic = new UserLogicImpl();
+				int userId = userLogic.getUserId(request.getParameter("username"));
+				User user = userLogic.getUser(userId);
+				
+				try {
+					sendJsonResponse(response, user);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			
+			}
+			
+			//***************************************************
+			
+		
+			
+			
 			// The following Strings are used to check for a null value. Whichever string that does not have a null value is the action the client wants to perform
 			String register = request.getParameter("register");
 			String login = request.getParameter("login"); 
@@ -144,23 +170,59 @@ public class Servlet extends HttpServlet {
 				String username = request.getParameter("username");
 				String password = request.getParameter("password");
 
-				
+				System.out.println(username);
 					UserLogicImpl u = new UserLogicImpl();
+					User user = u.getUser(u.getUserId(username));
 					
 					
 					boolean authenticUser = u.isAdmin(u.getUserId(username), password);
 					
-					if(authenticUser){ //enter here if admin has logged in
-						templateName = "adminHome.ftl"; 
-						root.put("admin", username);
+					if(authenticUser){ //enter here if admin is trying to log in
+						int r = u.authenticateUser(username, password);
 						
-					} else{ // enter here if customer has logged in
-						templateName = "home.ftl";
-						root.put("user", username);
-						currentUser = username;
+						
+						if(r!= 0){ //enter here if authentification is successful
+							templateName = "adminHome.ftl"; 
+							
+							HttpSession session = request.getSession();
+							synchronized(session) {
+								String sessionID = session.getId();
+								session.setAttribute("sessionID", sessionID);
+								session.setAttribute("currentUser", username);
+							}
+							root.put("admin", session.getAttribute("currentUser"));
+							root.put("userId", user.getId());
+							currentUser = username;
+						} else{ // enter here if authentification fails
+							templateName = "login.ftl";
+							root.put("failedLogin", "yes");
+						}
+						
+					} else{ // enter here if customer is trying to log in
+						int r = u.authenticateUser(username, password);
+						
+						if(r!= 0){ //enter here if authentification is successful
+							templateName = "home.ftl"; 
+							
+							HttpSession session = request.getSession();
+							synchronized(session) {
+								String sessionID = session.getId();
+								session.setAttribute("sessionID", sessionID);
+								session.setAttribute("currentUser", username);
+							}
+							root.put("user", session.getAttribute("currentUser"));
+							root.put("userId", user.getId());
+							currentUser = username;
+						} else{ // enter here if authentification fails
+							templateName = "login.ftl";
+							root.put("failedLogin", "yes");
+						}
 					}
-				} else if (logout != null){ 
-				
+					
+			} else if (logout != null){ 
+				request.getSession().invalidate();
+				templateName = "home2.ftl";
+				System.out.println("logout COMPLETE!");
 				
 			} else if (addToCart != null){
 				

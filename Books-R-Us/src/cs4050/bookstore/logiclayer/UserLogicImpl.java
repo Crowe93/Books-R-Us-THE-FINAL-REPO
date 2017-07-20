@@ -36,6 +36,10 @@ public class UserLogicImpl {
 		return userPersist.getUser(id);	
 	} // getUser
 	
+	public User getUser(int userId) {
+		return userPersist.getUser(userId);
+	}
+	
 	public int getUserId(String userName){
 		return userPersist.getUserId(userName);
 	} // getUserId

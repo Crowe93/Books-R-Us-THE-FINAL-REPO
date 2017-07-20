@@ -85,7 +85,7 @@ public class AdminServlet extends HttpServlet {
 				return;
 			}
 			
-			String loadBooks = request.getParameter("loadBooks");
+			String loadBooks = request.getParameter("loadBooks"); 
 			
 			if (loadBooks != null)
 			{
