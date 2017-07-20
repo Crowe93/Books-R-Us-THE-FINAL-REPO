@@ -3,9 +3,9 @@ package cs4050.bookstore.objectlayer;
 import java.util.Date;
 
 public class BookSales {
-	private int bookId;
-	private String date;
-	private int numSold;
+	private int bookId = 0;
+	private String date = null;
+	private int numSold = 0;
 	
 	public BookSales(int bookId, int numSold, String date){
 		this.bookId = bookId;

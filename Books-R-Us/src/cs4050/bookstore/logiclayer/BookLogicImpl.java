@@ -2,6 +2,7 @@ package cs4050.bookstore.logiclayer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -64,5 +65,8 @@ private BookPersistImpl bookPersist = new BookPersistImpl();
 		return bookPersist.updatePrice(price, id);
 	}
 	
+	public Book getBook(int bookid){
+		return bookPersist.getBook(bookid);
+	}
 	
 }
