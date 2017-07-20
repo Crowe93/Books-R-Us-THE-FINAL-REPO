@@ -13,31 +13,22 @@ public class User {
 	
 	public User () {}
 	
-	public User(int i, String f, String l, String e, String u, String p, int t, String ship, int c){
+	public User(int i, String f, String l, String u, String p, String e, int t, String ship){
 		id =i;
-		fname = f;
-		lname = l;
 		email = e;
 		username = u;
 		password = p; 
 		type = t;
 		shipaddress = ship;
-		cardsaved = c;
+		fname = f;
+		lname = l;
+	}
+	
+	public User(int i, String f, String l, String u, String p, String e){
 		
 	}
 	
-	public User(int i, String f, String l, String e, String u, String p, int t, String ship){
-		id =i;
-		email = e;
-		username = u;
-		password = p; 
-		type = t;
-		shipaddress = ship;
-		fname = f;
-		lname = l;
-	}
-	
-	public User(int i, String f, String l, String e, String u, String p, int t){
+	public User(int i, String f, String l, String u, String p, String e, int t){
 		id =i;
 		email = e;
 		username = u;
@@ -47,7 +38,7 @@ public class User {
 		lname = l;
 	}
 	
-	public User(String f, String l, String e, String u, String p, int t){
+	public User(String f, String l, String u, String p, String e, int t){
 		email = e;
 		username = u;
 		password = p; 

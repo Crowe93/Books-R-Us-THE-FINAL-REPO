@@ -133,4 +133,7 @@ public class Book {
 	public void setImgurl(String imgurl) {
 		this.imgurl = imgurl;
 	}
+	public String getGenre(){
+		return genre;
+	}
 }//Book
