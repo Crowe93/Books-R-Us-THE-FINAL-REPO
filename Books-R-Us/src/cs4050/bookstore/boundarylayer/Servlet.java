@@ -115,7 +115,6 @@ public class Servlet extends HttpServlet {
 					e.printStackTrace();
 				}
 				
-			
 			}
 			
 			String userInfo = request.getParameter("userInfo");
