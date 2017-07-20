@@ -2,8 +2,14 @@
  * 
  */
 $(document).ready(function (){
+	initPage();
 	var userId = getCookie("userId");
 	loadProfile(userId);
+	
+	if (!userId)
+		{
+			$(location).attr('href','../login.html');
+		}
 	
 	function getCookie(name) {
 		  var value = "; " + document.cookie;
@@ -29,4 +35,9 @@ $(document).ready(function (){
 			}
 		});
 	}
+	
+	function initPage() {
+		$("#login-btn").hide();
+	}
 });
+
