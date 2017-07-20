@@ -118,6 +118,23 @@ public class Servlet extends HttpServlet {
 			
 			}
 			
+			String userInfo = request.getParameter("userInfo");
+			
+			if (userInfo != null) 
+			{
+				UserLogicImpl userLogic = new UserLogicImpl();
+				int userId = Integer.parseInt(request.getParameter("userId"));
+				User user = userLogic.getUser(userId);
+				
+				try {
+					sendJsonResponse(response, user);
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+				}
+				return;
+			}
+			
 			//***************************************************
 			
 		
