@@ -1,7 +1,6 @@
 package cs4050.bookstore.boundarylayer;
 import java.io.IOException;
 import java.io.Writer;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -224,6 +223,8 @@ public class AdminServlet extends HttpServlet {
 				
 				templateName = "adminHome.ftl";
 				root.put("bookUpdated","yes");
+			} else if(editProfileInfo != null){
+				
 			}
 
 			
