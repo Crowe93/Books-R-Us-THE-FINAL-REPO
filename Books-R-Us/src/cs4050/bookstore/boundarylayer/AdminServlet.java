@@ -102,7 +102,7 @@ public class AdminServlet extends HttpServlet {
 //			String deleteAccount = request.getParameter("");
 
 			//vendors and admin operations below
-			String addBook = request.getParameter("");
+			String addBook = request.getParameter("add-button");
 			String removeBook = request.getParameter("");
 			String updateBook = request.getParameter("");
 			String getSalesReport = request.getParameter("");
@@ -134,29 +134,29 @@ public class AdminServlet extends HttpServlet {
 				}
 								
 			} else if (addBook != null){
-				String ISBNX = request.getParameter("");
-				String image = request.getParameter("");
-				String title = request.getParameter("");
-				String author = request.getParameter("");
-				String publisher = request.getParameter("");
-//				String genre = request.getParameter("");
-				String yearX = request.getParameter("");
-				String priceX = request.getParameter("");
-				String stockX = request.getParameter("");
-				int ISBN = 0;
+				String idX = request.getParameter("isbn");
+				String image = request.getParameter("image");
+				String title = request.getParameter("title");
+				String author = request.getParameter("author");
+				String publisher = request.getParameter("publisher");
+				String genre = request.getParameter("genre");
+				String yearX = request.getParameter("year");
+				String priceX = request.getParameter("price");
+				String stockX = request.getParameter("quantity");
+				int id = 0;
 				double price = 0;
 				int year = 0;
 				int stock = 0;
 				
 				try{
-					ISBN = Integer.parseInt(ISBNX);
+					id = Integer.parseInt(idX);
 					price = Double.parseDouble(priceX);
 					year = Integer.parseInt(yearX);
 					stock = Integer.parseInt(stockX);
 				} catch (NumberFormatException e){
 				}
 				
-				Book book = new Book(ISBN, title, author, publisher, year, stock, price, image);
+				Book book = new Book(id, title, author, publisher, genre,year, price ,0, stock, image);
 
 				BookLogicImpl b = new BookLogicImpl();
 				int r = b.insertBook(book);
@@ -197,7 +197,7 @@ public class AdminServlet extends HttpServlet {
 				String title = request.getParameter("");
 				String author = request.getParameter("");
 				String publisher = request.getParameter("");
-//				String genre = request.getParameter("");
+				String genre = request.getParameter("");
 				String yearX = request.getParameter("");
 				String priceX = request.getParameter("");
 				String stockX = request.getParameter("");

@@ -16,9 +16,10 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 
 import cs4050.bookstore.logiclayer.BookLogicImpl;
+import cs4050.bookstore.logiclayer.CartLogicImpl;
 import cs4050.bookstore.logiclayer.UserLogicImpl;
 import cs4050.bookstore.objectlayer.Book;
-import cs4050.bookstore.objectlayer.User;
+import cs4050.bookstore.objectlayer.*;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapperBuilder;
 import freemarker.template.SimpleHash;
@@ -217,9 +218,7 @@ public class Servlet extends HttpServlet {
 					UserLogicImpl u = new UserLogicImpl();
 					
 					int userId = u.getUserId(username);
-					
-					User user = u.getUser(userId);
-					
+
 					boolean authenticUser = u.isAdmin(userId, password);
 					
 					if(authenticUser){ //enter here if admin is trying to log in
@@ -236,7 +235,7 @@ public class Servlet extends HttpServlet {
 								session.setAttribute("currentUser", username);
 							}
 							root.put("admin", session.getAttribute("currentUser"));
-							root.put("userId", user.getId());
+							root.put("userId", userId);
 							currentUser = username;
 						} else{ // enter here if authentification fails
 							templateName = "login.ftl";
@@ -256,7 +255,7 @@ public class Servlet extends HttpServlet {
 								session.setAttribute("currentUser", username);
 							}
 							root.put("user", session.getAttribute("currentUser"));
-							root.put("userId", user.getId());
+							root.put("userId", userId);
 							currentUser = username;
 						} else{ // enter here if authentification fails
 							templateName = "login.ftl";
@@ -270,10 +269,105 @@ public class Servlet extends HttpServlet {
 				System.out.println("logout COMPLETE!");
 				
 			} else if (addToCart != null){
+				String userIdX = request.getParameter("userId");
+				int userId =0;
+				String title = request.getParameter("title");
+				BookLogicImpl b = new BookLogicImpl();
+				int bookId = b.getBookId(title);
+				
+				Book book = b.getBook(bookId);
+				
+				int stock = book.getStock();
+				
+				try{
+					userId = Integer.parseInt(userIdX);
+				} catch (NumberFormatException e){
+				}
+				
+				if(stock != 0){ //enter here if item is in stock
+					CartLogicImpl c = new CartLogicImpl();
+					int cartId = c.createCart(userId); //create a cart for the user
+					
+					if (cartId != 0 ){ //enter here if the cart was successfully made
+						int x = c.addBookToCart(cartId, bookId);
+						
+						if(x == 0){ //enter here if the book was successfully added to the cart
+							System.out.println("Book successfully added to the cart");
+							root.put("bookAddedToCart", "yes");
+							
+						} else{ //enter here if there was an error adding a book to the cart
+							root.put("bookAddError", "yes");
+						}
+					}
+					
+				} else{ //enter here if the item is not in stock
+					root.put("itemNotInStock", "yes");
+				}
+				
+				templateName = "search.ftl";
+			
+			
 				
 			} else if (removeFromCart != null){
+				String userIdX = request.getParameter("userId");
+				int userId = 0;
+				String title = request.getParameter("title");
+				BookLogicImpl b = new BookLogicImpl();
+				int bookId = b.getBookId(title);
+				
+				Book book = b.getBook(bookId);
+				
+				int stock = book.getStock();
+				
+				try{
+					userId = Integer.parseInt(userIdX);
+				} catch (NumberFormatException e){
+				}
+				
+				
 				
 			} else if (editProfileInfo != null){
+				
+				String userIdX = request.getParameter("userId");
+				int userId = 0;
+				try{
+					userId = Integer.parseInt(userIdX);
+				} catch (NumberFormatException e){
+				}
+				
+				
+				//basic account info
+				String fname = request.getParameter("fname");
+				String lname = request.getParameter("lname");
+				String email = request.getParameter("email");
+				String username = request.getParameter("username");
+				String oldPassword = request.getParameter("password");
+				String newPassword = request.getParameter("password");
+
+				//shipping info
+				String street = request.getParameter("email");
+				String city = request.getParameter("username");
+				String state = request.getParameter("password");
+				String zipX = request.getParameter("fname");
+				int zip = 0;
+				
+				//payment info
+				String cardType = request.getParameter("lname");
+				String cardNumberX = request.getParameter("email");
+				String cardCVVX = request.getParameter("username");
+				String expirationMonth = request.getParameter("password");
+				String expirationYear = request.getParameter("fname");
+				
+//				User user = new User(userid, fname, lname, username, newPassword, email);
+//				
+//				
+//				
+//				UserLogicImpl u = new UserLogicImpl();
+//				
+//				u.updatePerson(user);
+
+				
+				
 				
 			} else if (deleteAccount != null){
 				templateName = "home.ftl";
