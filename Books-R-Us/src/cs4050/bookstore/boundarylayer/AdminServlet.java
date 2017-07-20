@@ -224,6 +224,8 @@ public class AdminServlet extends HttpServlet {
 				
 				templateName = "adminHome.ftl";
 				root.put("bookUpdated","yes");
+			} else if(editProfileInfo != null){
+				
 			}
 
 			
