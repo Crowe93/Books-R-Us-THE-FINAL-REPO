@@ -282,8 +282,19 @@ public class Servlet extends HttpServlet {
 					CartLogicImpl c = new CartLogicImpl();
 					int cartId = c.createCart(userId); //create a cart for the user
 					
-					if (cartId != 0 ){ //enter here if the cart was successfully made
-						System.out.println("Add item to cart");
+					if(cartId == -1){ //enter here if customer does not have a cart
+						cartId = c.createCart(userId); //create a cart for the user
+						int x = c.addBookToCart(cartId, bookId);
+						
+						if(x == 0){ //enter here if the book was successfully added to the cart
+							System.out.println("Book successfully added to the cart");
+							root.put("bookAddedToCart", "yes");
+							
+						} else{ //enter here if there was an error adding a book to the cart
+							root.put("bookAddError", "yes");
+						}	
+						
+					} else{ //enter here if the customer has a cart already
 						int x = c.addBookToCart(cartId, bookId);
 						
 						if(x == 0){ //enter here if the book was successfully added to the cart
