@@ -105,11 +105,8 @@ DROP TABLE IF EXISTS `dayreport`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dayreport` (
-  `cashIn` double DEFAULT NULL COMMENT 'Money made by cash transactions',
-  `cashOut` double DEFAULT NULL COMMENT 'Money lost by cash transactions',
-  `cardIn` double DEFAULT NULL COMMENT 'Money made by electronic transactions',
-  `cardOut` double DEFAULT NULL COMMENT 'Money lost by electronic transactions',
-  `validDate` date DEFAULT NULL COMMENT 'Day these transactions took place'
+  `validDate` date DEFAULT NULL COMMENT 'Day these transactions took place',
+  `netTotal` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -200,29 +197,28 @@ LOCK TABLES `promotion` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `publishersales`
+-- Table structure for table `shippinginfo`
 --
 
-DROP TABLE IF EXISTS `publishersales`;
+DROP TABLE IF EXISTS `shippinginfo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `publishersales` (
-  `publisher_id` int(11) NOT NULL,
-  `numSold` int(11) DEFAULT NULL,
-  `netTotal` double DEFAULT NULL,
-  `validDate` date NOT NULL,
-  KEY `publisher_id_idx` (`publisher_id`),
-  CONSTRAINT `publisher_id` FOREIGN KEY (`publisher_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+CREATE TABLE `shippinginfo` (
+  `user_id` int(11) NOT NULL,
+  `street` varchar(45) DEFAULT NULL,
+  `city` varchar(45) DEFAULT NULL,
+  `state` varchar(45) DEFAULT NULL,
+  `zip` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `publishersales`
+-- Dumping data for table `shippinginfo`
 --
 
-LOCK TABLES `publishersales` WRITE;
-/*!40000 ALTER TABLE `publishersales` DISABLE KEYS */;
-/*!40000 ALTER TABLE `publishersales` ENABLE KEYS */;
+LOCK TABLES `shippinginfo` WRITE;
+/*!40000 ALTER TABLE `shippinginfo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `shippinginfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -254,6 +250,10 @@ LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'bookstoredb'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -264,4 +264,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-20 17:21:40
+-- Dump completed on 2017-07-24 16:52:09
