@@ -260,5 +260,31 @@ public class UserPersistImpl {
 			return saved;
 		}
 	}
+	
+	public boolean verifyOldPassword(int userId, String password){
+		int type = 0;
+		String query = 
+				"SELECT type FROM USER WHERE id = "+userId+" and password = '"+password+"'";
+		ResultSet resultSet = null;
+		
+		try{
+			resultSet = DbAccessImpl.retrieve(query);
+			if(resultSet.next()){
+				type = resultSet.getInt("type");
+			}
+			resultSet.close();
+		} catch (SQLException e){
+			e.printStackTrace();
+		} finally {
+			DbAccessImpl.disconnect();
+		} // try-catch
+		
+		if(type == 2){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 
 }
