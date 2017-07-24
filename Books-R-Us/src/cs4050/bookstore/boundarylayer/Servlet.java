@@ -283,9 +283,15 @@ public class Servlet extends HttpServlet {
 				
 				if(stock != 0){ //enter here if item is in stock
 					CartLogicImpl c = new CartLogicImpl();
-					int cartId = c.createCart(userId); //create a cart for the user
+					int cartId = -1;
 					
-					if (cartId != 0 ){ //enter here if the cart was successfully made
+					try{
+						cartId = c.getCartId(userId);
+					}catch(SQLException e){
+					}
+					
+					if(cartId == -1){ //enter here if customer does not have a cart
+						cartId = c.createCart(userId); //create a cart for the user
 						int x = c.addBookToCart(cartId, bookId);
 						
 						if(x == 0){ //enter here if the book was successfully added to the cart
@@ -294,7 +300,18 @@ public class Servlet extends HttpServlet {
 							
 						} else{ //enter here if there was an error adding a book to the cart
 							root.put("bookAddError", "yes");
-						}
+						}	
+						
+					} else{ //enter here if the customer has a cart already
+						int x = c.addBookToCart(cartId, bookId);
+						
+						if(x == 0){ //enter here if the book was successfully added to the cart
+							System.out.println("Book successfully added to the cart");
+							root.put("bookAddedToCart", "yes");
+							
+						} else{ //enter here if there was an error adding a book to the cart
+							root.put("bookAddError", "yes");
+						}	
 					}
 					
 				} else{ //enter here if the item is not in stock
@@ -332,13 +349,10 @@ public class Servlet extends HttpServlet {
 				} catch (NumberFormatException e){
 				}
 				
-				
 				//basic account info
 				String fname = request.getParameter("fname");
 				String lname = request.getParameter("lname");
 				String fullName = fname.concat(" " + lname);
-				
-				
 				
 				String email = request.getParameter("email");
 				String username = request.getParameter("username");
@@ -394,6 +408,10 @@ public class Servlet extends HttpServlet {
 			} else if (userEnteredPromo != null){
 				
 			} else if (confirmOrder != null){
+			
+				
+				
+				
 				
 			}
 				
