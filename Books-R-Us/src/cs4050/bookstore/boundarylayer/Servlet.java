@@ -189,22 +189,32 @@ public class Servlet extends HttpServlet {
 				String email = request.getParameter("email");
 				String username = request.getParameter("username");
 				String password = request.getParameter("password");
+				String password2 = request.getParameter("password2");
 				String fname = request.getParameter("fname");
 				String lname = request.getParameter("lname");
 				
-				System.out.println("QUERY VALUES: " + email + " " + username + " " + password + " " + fname + " " + lname);
-				User user = new User(fname, lname, email, username, password, 2);
-				UserLogicImpl u = new UserLogicImpl();
-				int r = u.insertUser(user);
-				
-				if (r == 0){
-					templateName = "signup.ftl"; //error inserting the new user into the database.
-					root.put("registerError","yes");
+				if(password.compareTo(password2) == 0){ //enter here if the passwords match
+					System.out.println("QUERY VALUES: " + email + " " + username + " " + password + " " + fname + " " + lname);
+					User user = new User(fname, lname, email, username, password, 2);
+					UserLogicImpl u = new UserLogicImpl();
+					int r = u.insertUser(user);
+					
+					if (r == 0){
+						templateName = "signup.ftl"; //error inserting the new user into the database.
+						root.put("registerError","yes");
 
-				} else{
-					root.put("registerSuccessful","yes");
-					templateName = "login.ftl";
+					} else{
+						templateName = "login.ftl";
+						root.put("registerSuccessful","yes");
+
+					}
+				} else{ //enter here if 
+					templateName = "register.ftl";
+					root.put("passwordsNotMatching","yes");
+
 				}
+				
+				
 								
 			} else if (login != null){
 				System.out.println("Login triggered");
