@@ -98,7 +98,8 @@ public class AdminServlet extends HttpServlet {
 			// The following Strings are used to check for a null value. Whichever string that does not have a null value is the action the client wants to perform
 			String logout = request.getParameter("logout");
 			String editProfileInfo = request.getParameter("");
-//			String deleteAccount = request.getParameter("");
+			String editUserProfileInfo = request.getParameter("");
+			String deleteAccount = request.getParameter("");
 
 			//vendors and admin operations below
 			String addBook = request.getParameter("add-button");
@@ -223,7 +224,38 @@ public class AdminServlet extends HttpServlet {
 				
 				templateName = "adminHome.ftl";
 				root.put("bookUpdated","yes");
-			} else if(editProfileInfo != null){
+			} else if(editUserProfileInfo != null){
+				String userIdX = request.getParameter("userId");
+				int userId = 0;
+				try{
+					userId = Integer.parseInt(userIdX);
+				} catch (NumberFormatException e){
+				}
+				
+				
+				//basic account info
+				String fname = request.getParameter("fname");
+				String lname = request.getParameter("lname");
+				String email = request.getParameter("email");
+				String username = request.getParameter("username");
+				String oldPassword = request.getParameter("old-password");
+				String newPassword = request.getParameter("new-password");
+
+				//shipping info
+				String street = request.getParameter("address");
+				String city = request.getParameter("city");
+				String state = request.getParameter("state");
+				String zipX = request.getParameter("zip_code");
+				int zip = 0;
+				
+				//payment info
+				String cardType = request.getParameter("CreditCardType");
+				String cardNumberX = request.getParameter("car_number");
+				String cardCVVX = request.getParameter("car_code");
+				String expirationMonth = request.getParameter("car_month");
+				String expirationYear = request.getParameter("car_year");
+				
+				
 				
 			}
 
