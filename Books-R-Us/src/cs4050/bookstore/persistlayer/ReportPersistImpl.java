@@ -22,14 +22,14 @@ public class ReportPersistImpl {
 		DbAccessImpl.disconnect();
 		return i;
 	}
-	
+/*	
 	public int createDayReport(DayReport r){
 		int i = DbAccessImpl.create("INSERT INTO dayreport (cashIn, cashOut, cardIn, cardOut, validDate) "
 				+ "VALUES ("+r.getCashInTotal()+", "+r.getCashOutTotal()+", "+r.getCardInTotal()+", "+r.getCardOutTotal()+", '" + r.getDate() + "')");
 		DbAccessImpl.disconnect();
 		return i;
 	}
-	
+	*/
 	public int createBookSales(int bookid, String date){
 		int i = DbAccessImpl.create("INSERT INTO booksales (book_id, validDate) VALUES (" +bookid+ ", '"+ date + "')");
 		DbAccessImpl.disconnect();
@@ -48,14 +48,6 @@ public class ReportPersistImpl {
 		DbAccessImpl.disconnect();
 		return i;
 	}
-	
-	public int createPublisherSales(PublisherSales r){
-		int i = DbAccessImpl.create("INSERT INTO publishersales (publisher_id, numSold, netTotal, validDate) "
-				+ "VALUES ("+r.getPublisherId()+", "+r.getNumberSold()+", "+r.getNetTotal()+", '" + r.getDate() + "')");
-		DbAccessImpl.disconnect();
-		return i;
-	}
-	
 	
 	public DayReport getDayReport(String date){
 		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM dayreport WHERE validDate = '"+  date +"';");
@@ -121,40 +113,7 @@ public class ReportPersistImpl {
 		DbAccessImpl.disconnect();
 		return report;
 	}
-	
-	//returns all the sales by publisher for a given date
-	public List<PublisherSales> getPublisherSales(String date){
-		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM publishersales WHERE validDate = '"+  date +"';");
-		ArrayList<PublisherSales> report = new ArrayList<PublisherSales>();
-		try {
-			while (result.next()) {
-				PublisherSales publisherSales = new PublisherSales(result.getInt(1), result.getInt(2), result.getDouble(3), result.getDate(4));
-				report.add(publisherSales);
-			} // while
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}  // try-catch
-		DbAccessImpl.disconnect();
-		
-		return report;
-	}
-	
-	//returns all the sales for a specific publisher, across multiple dates
-	public List<PublisherSales> getPublisherSales(int publisherId){
-		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM publishersales WHERE publisher_id = "+  publisherId +";");
-		ArrayList<PublisherSales> report = new ArrayList<PublisherSales>();
-		try {
-			while (result.next()) {
-				PublisherSales publisherSales = new PublisherSales(result.getInt(1), result.getInt(2), result.getDouble(3), result.getDate(4));
-				report.add(publisherSales);
-			} // while
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}  // try-catch
-		DbAccessImpl.disconnect();
-		
-		return report;
-	}
+
 	
 	public int updateDayCardIn(String date, double newAmount){
 		int i = 0;

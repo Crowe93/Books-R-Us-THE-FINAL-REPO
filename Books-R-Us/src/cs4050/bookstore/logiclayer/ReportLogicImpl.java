@@ -13,7 +13,6 @@ import javax.servlet.http.Part;
 
 import cs4050.bookstore.objectlayer.BookSales;
 import cs4050.bookstore.objectlayer.DayReport;
-import cs4050.bookstore.objectlayer.PublisherSales;
 import cs4050.bookstore.persistlayer.ReportPersistImpl;
 import cs4050.bookstore.persistlayer.DbAccessImpl;
 
@@ -40,10 +39,6 @@ public class ReportLogicImpl {
 		return reportPersist.createPublisherSales(publisherid, date);
 	}
 	
-	public int createPublisherSales(PublisherSales r){
-		return reportPersist.createPublisherSales(r);
-	}
-	
 	public DayReport getDayReport(String date){
 		return reportPersist.getDayReport(date);
 	}
@@ -61,15 +56,6 @@ public class ReportLogicImpl {
 	//returns the books sales for a given book on a specific date
 	public BookSales getBookSales(int bookId, String date){
 		return reportPersist.getBookSales(bookId, date);
-	}
-	
-	public List<PublisherSales> getPublisherSales(String date){
-		return reportPersist.getPublisherSales(date);
-	}
-		
-	//returns all the sales for a specific publisher, across multiple dates
-	public List<PublisherSales> getPublisherSales(int publisherId){
-		return reportPersist.getPublisherSales(publisherId);
 	}
 	
 	/**
@@ -113,10 +99,7 @@ public class ReportLogicImpl {
 			i = reportPersist.createDayReport(r);
 		}
 		else{
-			i += reportPersist.updateDayCardIn(r.getDate(), r.getCardInTotal());
-			i += reportPersist.updateDayCardOut(r.getDate(), r.getCardOutTotal());
-			i += reportPersist.updateDayCashIn(r.getDate(), r.getCashInTotal());
-			i += reportPersist.updateDayCashOut(r.getDate(), r.getCashOutTotal());
+			
 		}
 		
 		return i;
