@@ -327,7 +327,7 @@ public class Servlet extends HttpServlet {
 				
 				
 			} else if (editProfileInfo != null){
-				
+
 				String userIdX = request.getParameter("userId");
 				int userId = 0;
 				try{
@@ -341,33 +341,44 @@ public class Servlet extends HttpServlet {
 				String lname = request.getParameter("lname");
 				String email = request.getParameter("email");
 				String username = request.getParameter("username");
-				String oldPassword = request.getParameter("password");
-				String newPassword = request.getParameter("password");
+				String oldPassword = request.getParameter("old-password");
+				String newPassword = request.getParameter("new-password");
 
 				//shipping info
-				String street = request.getParameter("email");
-				String city = request.getParameter("username");
-				String state = request.getParameter("password");
-				String zipX = request.getParameter("fname");
+				String street = request.getParameter("address");
+				String city = request.getParameter("city");
+				String state = request.getParameter("state");
+				String zipX = request.getParameter("zip_code");
 				int zip = 0;
 				
 				//payment info
-				String cardType = request.getParameter("lname");
-				String cardNumberX = request.getParameter("email");
-				String cardCVVX = request.getParameter("username");
-				String expirationMonth = request.getParameter("password");
-				String expirationYear = request.getParameter("fname");
+				String cardType = request.getParameter("CreditCardType");
+				String cardNumberX = request.getParameter("car_number");
+				String cardCVVX = request.getParameter("car_code");
+				String expirationMonth = request.getParameter("car_month");
+				String expirationYear = request.getParameter("car_year");
 				
-//				User user = new User(userid, fname, lname, username, newPassword, email);
-//				
-//				
-//				
-//				UserLogicImpl u = new UserLogicImpl();
-//				
-//				u.updatePerson(user);
-
+				UserLogicImpl u = new UserLogicImpl();
 				
+				int oldPasswordVerification = 0;
 				
+				try{
+					oldPasswordVerification = u.verifyOldPassword(userId, oldPassword);
+				} catch (NullPointerException e){
+				}
+						
+						
+				
+				if(oldPasswordVerification == 0){ //enter here if the user enters wrong old password
+					templateName = "edit.ftl";
+					root.put("editProfileError", "yes");
+					
+				} else{ //enter here if the old password is correct
+					User user = new User(userId, fname, lname, username, newPassword, email);
+					u.updateUser(user);
+					
+					root.put("editProfileSuccess", "yes");
+				}
 				
 			} else if (deleteAccount != null){
 				templateName = "home.ftl";
