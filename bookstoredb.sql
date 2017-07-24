@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `bookstoredb` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `bookstoredb`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: bookstoredb
@@ -145,6 +143,30 @@ LOCK TABLES `item` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `pastorder`
+--
+
+DROP TABLE IF EXISTS `pastorder`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pastorder` (
+  `orderNum` varchar(100) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `book_id` int(11) DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pastorder`
+--
+
+LOCK TABLES `pastorder` WRITE;
+/*!40000 ALTER TABLE `pastorder` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pastorder` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `payment`
 --
 
@@ -265,4 +287,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-24 17:02:56
+-- Dump completed on 2017-07-24 19:10:20
