@@ -29,6 +29,10 @@ public class CartPersistImpl {
 	}//create cart for user
 	
 	public int addBookToCart(int cartId, int bookId){
+		
+		
+		
+		
 		int i = -1;
 		ResultSet result = DbAccessImpl.retrieve("SELECT qty FROM item WHERE cart_id = "+  cartId +";");
 		try {
@@ -65,5 +69,65 @@ public class CartPersistImpl {
 		return items;
 	}
 	
+	public int getCartId(int userId){
+		ResultSet result = DbAccessImpl.retrieve("SELECT id FROM cart WHERE user_id = "+  userId +";");
+		int i = -1;
+		try {
+			while (result.next()) {
+				i = result.getInt("id");
+			} // while
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  // try-catch
+		DbAccessImpl.disconnect();
+		
+		return i;
+	}
+	
+	public int itemsInCart(int userId){
+		int cartId = getCartId(userId);
+		
+		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM item WHERE cart_id = "+  cartId +";");
+		int i = 0;
+		try {
+			while (result.next()) {
+				i++;
+			} // while
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  // try-catch
+		DbAccessImpl.disconnect();
+		
+		return i;
+	}
+	
+	public void completePurchase(int userId){
+		BookPersistImpl b = new BookPersistImpl();
+		int cartId = getCartId(userId);
+		List<Item> items = getItems(cartId);
+		int size = items.size();
+		String orderNum = Integer.toString(userId);
+		orderNum.concat(Integer.toString(cartId));
+		
+		for(int i = 0; i<=size; i++){
+			Item temp = items.get(i);
+			int bookId = temp.getBookId();
+			int qty = temp.getQty();
+			
+			int stock = b.getStock(bookId);
+			stock = stock - temp.getQty();
+			b.updateStock(stock, bookId);
+			
+			DbAccessImpl.create("INSERT INTO pastorder (orderNum, user_id, book_id, qty) "
+					+ "VALUES ('"+orderNum+"', " + userId + ", " + bookId + ", " + qty + ")");
+			DbAccessImpl.disconnect();
+			
+		}
+		
+		//clear cart
+		
+		DbAccessImpl.delete("DELETE FROM cart WHERE user_id = "+userId+";");
+		
+	}
 	
 }

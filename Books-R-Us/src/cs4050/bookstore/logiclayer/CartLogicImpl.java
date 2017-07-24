@@ -22,8 +22,6 @@ public class CartLogicImpl {
 	//returns cart id
 	public int createCart(int userId){
 		return cartPersist.createCart(userId);
-		
-		
 	}//create cart for user
 	
 	public int addBookToCart(int cartId, int bookId){
@@ -32,6 +30,10 @@ public class CartLogicImpl {
 		
 	public List<Item> getItems(int cartId){
 		return cartPersist.getItems(cartId);
+	}
+	
+	public int getCartId(int userId){
+		return cartPersist.getCartId(userId);
 	}
 	
 }
