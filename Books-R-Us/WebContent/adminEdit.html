@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>General Bookstore</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/main2.css">
+        <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/edit.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+	    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css"> 
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
+    </head>
+
+    <body>
+    
+    <!--header-->
+	<header id="header">
+		<div class="header_top">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contactinfo">
+							<ul class="nav nav-pills">
+								<li><a href=""><i class="fa fa-newspaper-o"></i> NEWS</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="social-icons pull-right"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="header-middle">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="shop-menu pull-left">
+							<ul class="nav navbar-nav">
+								<li><a href="home.html"><i class="fa fa-home"></i> Home</a></li>
+								<li><a href="search.html"><i class="fa fa-search"></i> Search</a></li>
+								<li><a href="popular.html"><i class="fa fa-star"></i> Popular</a></li>
+								<li><a href="contact.html"><i class="fa fa-envelope"></i> Contact</a></li>
+								<li><a href="aboutus.html"><i class="fa fa-info-circle"></i> About Us</a></li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="col-sm-4">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href="profile.html"><i class="fa fa-user"></i> Account</a></li>
+								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+								<li><a href="register.html"><i class="fa fa-lock"></i> Login</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	<ul class="breadcrumb">
+		<li><a href="home.html">Home</a> <span class="divider"></span></li>
+		<li><a href="admin.html">Admin</a> <span class="divider"></span></li>
+		<li class="active"> Edit</li>
+	</ul>
+	
+	
+	<div class="container admin-container">
+		<h3 class="text-center"> Update Your Admin Information </h3>
+        <p class="text-center">As an admin, you can also keep your information up-to-date!</p>
+        <hr align="center" width="60%">
+        
+        <div class="row">
+         	<div class="col-md-3">
+       			<div class="profile" align="center">	
+	 				<img class="img-circle" src="images/profile_icon.png" width="210px" height="210px">	
+	 				<div class="welcome">
+	 					<h2> Chanice Campbell</h2>
+	 					<h2> <span id="fname"></span> <span id="fname"></span></h2>
+	 					<hr>
+	 					<a href="admin.html" class="btn btn-default btn-r0"> Cancel Edit</a> 
+	 					<form>
+	 						<a href="#"><button class="btn btn-default btn-r0"> Change Photo</button></a>
+	 					</form>
+	 				</div>
+ 				</div>
+         	</div>
+         	
+         	<div class="col-md-9 basic-info">
+         		<form>
+         		<!-- Basic Info Table -->
+         			<h4 class="text-left">Basic Information</h4>
+         			<hr class="style11" width="70%" align="left">
+         			<table style="width:70%;" class="table table-hover">
+         				<thead>
+         					<tr style="width:30%"></tr>
+         					<tr style="width:70%"></tr>
+         					
+         				</thead>
+         				
+         				<tbody>
+         					<tr>
+         						<th>First Name </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="fname" class="form-control" value="Chanice">
+         							</div>
+         						</td>
+         						
+         					</tr>
+         					<tr>
+         						<th>Last Name </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="lname" class="form-control" value="Campbell">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>Username </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="username" class="form-control" value="chan876">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>E-mail </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="email" class="form-control" value="chan876@uga.edu">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>Old Password </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="password1" class="form-control" value="">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>New Password </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="password2" class="form-control" value="">
+         							</div>
+         						</td>
+         					</tr>
+                             <tr class="alignmiddle">
+         						<td> 
+         							
+         							
+         						</td>
+         						<td>
+         							<button name="editProfile" type="submit" class="btn btn-default btn-r0"> Confirm</button>  
+         							<a href="profile.html" class="btn btn-default btn-r0"> Cancel</a>         							       					
+         						</td>
+         					</tr>
+
+
+         				</tbody>
+         			</table>
+         		</form>
+         		
+         		      		
+         	</div>
+             
+		</div>
+
+		
+	</div>
+	
+	
+	<!-- Footer -->
+	 <footer class="footer-distributed">
+		<div class="footer-left">
+			<h3>Company<span>logo</span></h3>
+			<p class="footer-links">
+				<a href="home.html">Home</a> ·
+				<a href="search.html">Search</a> ·
+				<a href="popular.html">Popular</a> ·
+				<a href="contact.html">Contact</a> ·
+				<a href="aboutus.html">About Us</a> ·
+				<a href="profile.html">Account</a>
+			</p>
+			<p class="footer-company-name">Books-R-Us &copy; 2017</p>
+		</div>
+	
+		<div class="footer-center">
+			<div>
+				<i class="fa fa-map-marker"></i>
+				<p><span>200 D.W. Brooks Drive </span> Athens, Georgia</p>
+			</div>
+			<div>
+				<i class="fa fa-phone"></i>
+				<p>+1 555 123456</p>
+			</div>
+			<div>
+				<i class="fa fa-envelope"></i>
+				<p><a href="mailto:support@company.com">support@company.com</a></p>
+			</div>
+		</div>
+	
+		<div class="footer-right">
+			<p class="footer-company-about">
+				<span>About the company</span>
+				Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+			</p>
+			<div class="footer-icons">
+	
+				<a href="#"><i class="fa fa-facebook"></i></a>
+				<a href="#"><i class="fa fa-twitter"></i></a>
+				<a href="#"><i class="fa fa-linkedin"></i></a>
+			    <a href="#"><i class="fa fa-github"></i></a>
+			</div>
+		</div>
+	</footer>
+    
+	</body>
+</html>
