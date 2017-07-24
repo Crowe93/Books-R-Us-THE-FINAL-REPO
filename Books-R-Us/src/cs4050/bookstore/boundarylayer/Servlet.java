@@ -176,7 +176,7 @@ public class Servlet extends HttpServlet {
 			String editProfileInfo = request.getParameter("");
 			String deleteAccount = request.getParameter("");
 			String userEnteredPromo = request.getParameter("");
-			String order = request.getParameter("");
+			String confirmOrder = request.getParameter("confirmOrder");
 
 			//vendors and admin operations below
 			String addBook = request.getParameter("");
@@ -367,7 +367,7 @@ public class Servlet extends HttpServlet {
 					
 				} catch (NullPointerException e){
 				}
-						
+				
 						
 				
 				if(oldPasswordVerification == 0){ //enter here if the user enters wrong old password
@@ -388,7 +388,7 @@ public class Servlet extends HttpServlet {
 				
 			} else if (userEnteredPromo != null){
 				
-			} else if (order != null){
+			} else if (confirmOrder != null){
 				
 			}
 				
