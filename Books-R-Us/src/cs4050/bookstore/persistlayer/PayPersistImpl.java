@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import cs4050.bookstore.objectlayer.*;
 
 public class PayPersistImpl {
-	public void insertPayment(int userid, String cardNum, String expDate, String csc, String name, String billingaddr){
-		DbAccessImpl.create("INSERT INTO payment (userid, cardNum, expDate, csc, name, billingaddr) VALUES ('" + userid + "', '" 
+	public int insertPayment(int userid, String cardNum, String expDate, String csc, String name, String billingaddr){
+		int i = DbAccessImpl.create("INSERT INTO payment (userid, cardNum, expDate, csc, name, billingaddr) VALUES ('" + userid + "', '" 
 				+ cardNum + "', '" + expDate + "', '" + csc + "', '" + name + "', '" + billingaddr + "')");
 		
 		DbAccessImpl.disconnect();
+		return i;
 	}//insertPayment
 	
 	public Payment getPayment(int userid){
@@ -32,5 +33,35 @@ public class PayPersistImpl {
 		
 		return pay;
 	}
+	
+	public int updateCardNum(String c, int userId){
+		int i = 0;
+		i = DbAccessImpl.update("UPDATE payment SET cardNum = '" + c + "' WHERE user_id = " + userId + ";");
+		DbAccessImpl.disconnect();
+		return i;
+	}
+	
+	public int updateExpDate(String e, int userId){
+		int i = 0;
+		i = DbAccessImpl.update("UPDATE payment SET expDate = '" + e + "' WHERE user_id = " + userId + ";");
+		DbAccessImpl.disconnect();
+		return i;
+	}
+	
+	public int updateName(String n, int userId){
+		int i = 0;
+		i = DbAccessImpl.update("UPDATE payment SET name = '" + n + "' WHERE user_id = " + userId + ";");
+		DbAccessImpl.disconnect();
+		return i;
+	}
+	
+	public int updateBillingAddr(String b, int userId){
+		int i = 0;
+		i = DbAccessImpl.update("UPDATE payment SET billingaddr = '" + b + "' WHERE user_id = " + userId + ";");
+		DbAccessImpl.disconnect();
+		return i;
+	}
+	
+	
 	
 }
