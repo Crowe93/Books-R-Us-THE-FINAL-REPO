@@ -266,29 +266,21 @@ public class Servlet extends HttpServlet {
 				System.out.println("logout COMPLETE!");
 				
 			} else if (addToCart != null){
-				String userIdX = request.getParameter("userId");
-				int userId =0;
+				System.out.println("Starting add-to-cart sequence");
+				int userId = Integer.parseInt(request.getParameter("userId"));
 				int bookId = Integer.parseInt(request.getParameter("bookId"));
 				BookLogicImpl b = new BookLogicImpl();
 				
 				Book book = b.getBook(bookId);
+				System.out.println(book.getTitle());
 				
 				int stock = book.getStock();
-				
-				try{
-					userId = Integer.parseInt(userIdX);
-				} catch (NumberFormatException e){
-				}
+				System.out.println("Stock: " + stock);
 				
 				if(stock != 0){ //enter here if item is in stock
-					
+					System.out.println("Creating cart for user");
 					CartLogicImpl c = new CartLogicImpl();
-					int cartId = -1;
-					
-					try{
-						cartId = c.getCartId(userId);
-					}catch(SQLException e){
-					}
+					int cartId = c.createCart(userId); //create a cart for the user
 					
 					if(cartId == -1){ //enter here if customer does not have a cart
 						cartId = c.createCart(userId); //create a cart for the user
@@ -311,7 +303,7 @@ public class Servlet extends HttpServlet {
 							
 						} else{ //enter here if there was an error adding a book to the cart
 							root.put("bookAddError", "yes");
-						}	
+						}
 					}
 					
 				} else{ //enter here if the item is not in stock
@@ -349,10 +341,13 @@ public class Servlet extends HttpServlet {
 				} catch (NumberFormatException e){
 				}
 				
+				
 				//basic account info
 				String fname = request.getParameter("fname");
 				String lname = request.getParameter("lname");
 				String fullName = fname.concat(" " + lname);
+				
+				
 				
 				String email = request.getParameter("email");
 				String username = request.getParameter("username");
@@ -408,12 +403,7 @@ public class Servlet extends HttpServlet {
 			} else if (userEnteredPromo != null){
 				
 			} else if (confirmOrder != null){
-				
-			
-				
-				
-				
-				
+
 			}
 				
 				
