@@ -260,5 +260,25 @@ public class UserPersistImpl {
 			return saved;
 		}
 	}
+	
+	public int verifyOldPassword(int userId, String password){
+		int r = 0;
+		String query = 
+				"SELECT id FROM USER WHERE id = "+userId+" AND password = '"+password+"'";
+		ResultSet resultSet = null;
+		
+		try{
+			resultSet = DbAccessImpl.retrieve(query);
+			if(resultSet.next()){
+				r = resultSet.getInt("id");
+			}
+			resultSet.close();
+		} catch (SQLException e){
+			e.printStackTrace();
+		} finally {
+			DbAccessImpl.disconnect();
+		} // try-catch
+		return r;
+	}
 
 }

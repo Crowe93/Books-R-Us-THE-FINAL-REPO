@@ -57,6 +57,10 @@ public class UserLogicImpl {
 		return userPersist.isAdmin(id, password);
 	}
 	
+	public int verifyOldPassword(int id, String password){
+		return userPersist.verifyOldPassword(id, password);
+	}
+	
 	public boolean cardSaved(int id){
 		return userPersist.cardSaved(id);
 	}
