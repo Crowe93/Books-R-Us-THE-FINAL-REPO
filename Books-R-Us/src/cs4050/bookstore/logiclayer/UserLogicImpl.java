@@ -79,13 +79,13 @@ public class UserLogicImpl {
 			i += userPersist.updateLastName(l, id);
 		}
 		if(un!=null){
-			i += userPersist.updateLastName(un, id);
+			i += userPersist.updateUsername(un, id);
 		}
 		if(p!=null){
-			i += userPersist.updateLastName(p, id);
+			i += userPersist.updatePassword(p, id);
 		}
 		if(e!=null){
-			i += userPersist.updateLastName(e, id);
+			i += userPersist.updateEmail(e, id);
 		}
 		
 		return i;
