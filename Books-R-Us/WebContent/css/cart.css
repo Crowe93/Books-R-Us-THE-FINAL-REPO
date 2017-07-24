@@ -1,3 +1,7 @@
+html,body,h1,h2,h3,h4,h5,h6 {
+	font-family: 'Raleway', sans-serif !important
+}
+
 .table>tbody>tr>td, .table>tfoot>tr>td{
     vertical-align: middle;
 }
@@ -7,16 +11,18 @@
 }
 
 .cart-table p, tr{
-	font-family: 'Josefin Slab', serif !important;
-	font-size: 18px !important;
+	font-family: 'Raleway', sans-serif !important;
+	font-size: 14px !important;
 	font-weight: 400 !important;
 }
 
 .cart-table h3{
-	font-family: 'Josefin Slab', serif !important;
+	font-family: 'Raleway', sans-serif !important;
 	font-size: 25px !important;
 	font-weight: bold !important;
 }
+
+
 
 .input-group .form-control{
 	width:140% !important;
