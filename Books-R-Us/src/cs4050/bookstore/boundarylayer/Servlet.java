@@ -15,10 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-import cs4050.bookstore.logiclayer.BookLogicImpl;
-import cs4050.bookstore.logiclayer.CartLogicImpl;
-import cs4050.bookstore.logiclayer.UserLogicImpl;
-import cs4050.bookstore.objectlayer.Book;
+import cs4050.bookstore.logiclayer.*;
 import cs4050.bookstore.objectlayer.*;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapperBuilder;
@@ -171,7 +168,7 @@ public class Servlet extends HttpServlet {
 			String register = request.getParameter("register");
 			String login = request.getParameter("login"); 
 			String logout = request.getParameter("logout");
-			String addToCart = request.getParameter("");
+			String addToCart = request.getParameter("addToCart");
 			String removeFromCart = request.getParameter("");
 			String editProfileInfo = request.getParameter("");
 			String deleteAccount = request.getParameter("");
@@ -269,26 +266,35 @@ public class Servlet extends HttpServlet {
 				System.out.println("logout COMPLETE!");
 				
 			} else if (addToCart != null){
-				String userIdX = request.getParameter("userId");
-				int userId =0;
-				String title = request.getParameter("title");
+				System.out.println("Starting add-to-cart sequence");
+				int userId = Integer.parseInt(request.getParameter("userId"));
+				int bookId = Integer.parseInt(request.getParameter("bookId"));
 				BookLogicImpl b = new BookLogicImpl();
-				int bookId = b.getBookId(title);
 				
 				Book book = b.getBook(bookId);
+				System.out.println(book.getTitle());
 				
 				int stock = book.getStock();
-				
-				try{
-					userId = Integer.parseInt(userIdX);
-				} catch (NumberFormatException e){
-				}
+				System.out.println("Stock: " + stock);
 				
 				if(stock != 0){ //enter here if item is in stock
+					System.out.println("Creating cart for user");
 					CartLogicImpl c = new CartLogicImpl();
 					int cartId = c.createCart(userId); //create a cart for the user
 					
-					if (cartId != 0 ){ //enter here if the cart was successfully made
+					if(cartId == -1){ //enter here if customer does not have a cart
+						cartId = c.createCart(userId); //create a cart for the user
+						int x = c.addBookToCart(cartId, bookId);
+						
+						if(x == 0){ //enter here if the book was successfully added to the cart
+							System.out.println("Book successfully added to the cart");
+							root.put("bookAddedToCart", "yes");
+							
+						} else{ //enter here if there was an error adding a book to the cart
+							root.put("bookAddError", "yes");
+						}	
+						
+					} else{ //enter here if the customer has a cart already
 						int x = c.addBookToCart(cartId, bookId);
 						
 						if(x == 0){ //enter here if the book was successfully added to the cart
@@ -305,7 +311,7 @@ public class Servlet extends HttpServlet {
 				}
 				
 				templateName = "search.ftl";
-			
+				return;
 			
 				
 			} else if (removeFromCart != null){
@@ -339,6 +345,10 @@ public class Servlet extends HttpServlet {
 				//basic account info
 				String fname = request.getParameter("fname");
 				String lname = request.getParameter("lname");
+				String fullName = fname.concat(" " + lname);
+				
+				
+				
 				String email = request.getParameter("email");
 				String username = request.getParameter("username");
 				String oldPassword = request.getParameter("old-password");
@@ -348,18 +358,20 @@ public class Servlet extends HttpServlet {
 				String street = request.getParameter("address");
 				String city = request.getParameter("city");
 				String state = request.getParameter("state");
-				String zipX = request.getParameter("zip_code");
-				int zip = 0;
+				String zip = request.getParameter("zip_code");
+				String fullAddress = street.concat(" " + city + " " + state + " " + zip);
 				
 				//payment info
 				String cardType = request.getParameter("CreditCardType");
-				String cardNumberX = request.getParameter("car_number");
-				String cardCVVX = request.getParameter("car_code");
+				String cardNumber = request.getParameter("car_number");
+				String cardCVV = request.getParameter("car_code");
 				String expirationMonth = request.getParameter("car_month");
 				String expirationYear = request.getParameter("car_year");
-				
+				String expirationDate = expirationMonth.concat("/" + expirationYear);
 				UserLogicImpl u = new UserLogicImpl();
-				
+				PayLogicImpl p = new PayLogicImpl();
+				ShipLogicImpl s = new ShipLogicImpl();
+
 				int oldPasswordVerification = 0;
 				
 				try{
@@ -377,7 +389,9 @@ public class Servlet extends HttpServlet {
 				} else{ //enter here if the old password is correct
 					User user = new User(userId, fname, lname, username, newPassword, email);
 					u.updateUser(user);
-					
+					Shipping sX = new Shipping(userId, street, city, state, zip);
+					s.insertShipping(sX);
+					p.insertPayment(userId, cardNumber, expirationDate, cardCVV,fullName, fullAddress);
 					root.put("editProfileSuccess", "yes");
 				}
 				
@@ -389,7 +403,7 @@ public class Servlet extends HttpServlet {
 			} else if (userEnteredPromo != null){
 				
 			} else if (confirmOrder != null){
-				
+
 			}
 				
 				

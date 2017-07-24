@@ -13,6 +13,10 @@ form{
 	padding-left: 20px !important;
 }
 
+.update-info{
+	padding-right: 50 px !important;
+}
+
 hr{
 	margin-top: 5px !important;
 	margin-bottom: 5px !important;
@@ -26,6 +30,7 @@ hr{
 
 .all-final{
 	margin-bottom: 0px !important;
+	padding-top: 30px !important;
 }
 
 th{
