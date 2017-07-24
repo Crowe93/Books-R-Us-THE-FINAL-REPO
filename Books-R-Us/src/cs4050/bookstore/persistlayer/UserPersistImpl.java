@@ -123,9 +123,10 @@ public class UserPersistImpl {
 		return username;
 	}//getUsername
 	
-	public void updatePassword(String password, int userId) {
-		DbAccessImpl.update("UPDATE user SET password = '" + password + "' WHERE id = " + userId + ";");
+	public int updatePassword(String password, int userId) {
+		int i = DbAccessImpl.update("UPDATE user SET password = '" + password + "' WHERE id = " + userId + ";");
 		DbAccessImpl.disconnect();
+		return i;
 	}//updatePassword
 	
 	public String getPassword(int userId) {
@@ -141,27 +142,6 @@ public class UserPersistImpl {
 		DbAccessImpl.disconnect();
 		return password;
 	}//getPassword
-	
-	public int updateShipping(String s, int userId){
-		int r = DbAccessImpl.update("UPDATE user SET shipAddr = '" + s + "' WHERE id = " + userId + ";");
-		DbAccessImpl.disconnect();
-		return r;
-	}
-	
-	//////////modify to get info from shipping table
-	public String getShipping(int userId){
-		ResultSet result = DbAccessImpl.retrieve("SELECT shipAddr FROM user WHERE id = "+  userId +";");
-		String shipAddr = null;
-		try {
-			while (result.next()) {
-				shipAddr = result.getString("shipAddr");
-			} // while
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}  // try-catch
-		DbAccessImpl.disconnect();
-		return shipAddr;
-	}
 	
 	public int updateEmail(String email, int userId) {
 		int r = DbAccessImpl.update("UPDATE user SET email = '" + email + "' WHERE id = " + userId + ";");
