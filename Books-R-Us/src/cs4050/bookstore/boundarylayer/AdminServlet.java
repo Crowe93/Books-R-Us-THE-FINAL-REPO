@@ -224,6 +224,13 @@ public class AdminServlet extends HttpServlet {
 				templateName = "adminHome.ftl";
 				root.put("bookUpdated","yes");
 			} else if(editProfileInfo != null){
+				//basic account info
+				String fname = request.getParameter("fname");
+				String lname = request.getParameter("lname");
+				String email = request.getParameter("email");
+				String username = request.getParameter("username");
+				String oldPassword = request.getParameter("old-password");
+				String newPassword = request.getParameter("new-password");
 				
 			}
 

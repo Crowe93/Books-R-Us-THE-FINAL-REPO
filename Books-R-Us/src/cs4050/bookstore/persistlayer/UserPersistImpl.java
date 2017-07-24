@@ -261,16 +261,17 @@ public class UserPersistImpl {
 		}
 	}
 	
-	public boolean verifyOldPassword(int userId, String password){
-		int type = 0;
+
+	public int verifyOldPassword(int userId, String password){
+		int r = 0;
 		String query = 
-				"SELECT type FROM USER WHERE id = "+userId+" and password = '"+password+"'";
+				"SELECT id FROM USER WHERE id = "+userId+" AND password = '"+password+"'";
 		ResultSet resultSet = null;
 		
 		try{
 			resultSet = DbAccessImpl.retrieve(query);
 			if(resultSet.next()){
-				type = resultSet.getInt("type");
+				r = resultSet.getInt("id");
 			}
 			resultSet.close();
 		} catch (SQLException e){
@@ -278,13 +279,7 @@ public class UserPersistImpl {
 		} finally {
 			DbAccessImpl.disconnect();
 		} // try-catch
-		
-		if(type == 2){
-			return true;
-		}
-		else{
-			return false;
-		}
+		return r;
 	}
 
 }

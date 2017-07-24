@@ -360,25 +360,26 @@ public class Servlet extends HttpServlet {
 				
 				UserLogicImpl u = new UserLogicImpl();
 				
-				boolean oldPasswordVerification = u.verifyOldPassword(userId, oldPassword);
+				int oldPasswordVerification = 0;
 				
-				if(oldPasswordVerification){ //enter here if the user enters in the correct old password
-					User user = new User(userid, fname, lname, username, newPassword, email);
-					
-					UserLogicImpl u = new UserLogicImpl();
-					
-					u.updatePerson(user);
-				} else{
+				try{
+					oldPasswordVerification = u.verifyOldPassword(userId, oldPassword);
+				} catch (NullPointerException e){
+				}
+						
+						
+				
+				if(oldPasswordVerification == 0){ //enter here if the user enters wrong old password
 					templateName = "edit.ftl";
 					root.put("editProfileError", "yes");
+					
+				} else{ //enter here if the old password is correct
+					User user = new User(userId, fname, lname, username, newPassword, email);
+					u.updateUser(user);
+					
+					root.put("editProfileSuccess", "yes");
 				}
-				
-				
-				
-				
-
-				
-				
+			
 				
 			} else if (deleteAccount != null){
 				templateName = "home.ftl";
