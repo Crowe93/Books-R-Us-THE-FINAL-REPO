@@ -11,7 +11,7 @@ public class CartPersistImpl {
 	//returns cart id
 	public int createCart(int userId){
 		int i = 0;
-		i = DbAccessImpl.create("INSERT INTO cart (user_id) VALUES ("+userId+")");
+		i = DbAccessImpl.create("INSERT INTO cart (user_id) VALUES ("+ userId +")");
 		DbAccessImpl.disconnect();
 		System.out.println("Creating new cart for user");
 		ResultSet result = DbAccessImpl.retrieve("SELECT id FROM cart WHERE user_id = "+  userId +";");
@@ -31,7 +31,7 @@ public class CartPersistImpl {
 	public int addBookToCart(int cartId, int bookId){
 		int i = -1;
 		ResultSet result = DbAccessImpl.retrieve("SELECT qty FROM item WHERE cart_id = "+  cartId +" AND book_id =" + bookId +";");
-		if (result)
+		
 		try {
 			while (result.next()) {
 				i = result.getInt("qty");

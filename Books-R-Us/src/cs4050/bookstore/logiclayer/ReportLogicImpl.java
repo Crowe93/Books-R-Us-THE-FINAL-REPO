@@ -23,9 +23,9 @@ public class ReportLogicImpl {
 		return reportPersist.createDayReport(date);
 	}
 	
-	public int createDayReport(DayReport r){
+/*	public int createDayReport(DayReport r){
 		return reportPersist.createDayReport(r);
-	}
+	}*/
 
 	public int createBookSales(int bookid, String date){
 		return reportPersist.createBookSales(bookid, date);
@@ -39,9 +39,10 @@ public class ReportLogicImpl {
 		return reportPersist.createPublisherSales(publisherid, date);
 	}
 	
-	public DayReport getDayReport(String date){
+/*	public DayReport getDayReport(String date){
 		return reportPersist.getDayReport(date);
 	}
+	*/
 	
 	//returns all book sales for a given date
 	public List<BookSales> getBookSales(String date){
@@ -68,7 +69,7 @@ public class ReportLogicImpl {
 	 * @param amount
 	 * @return
 	 */
-	public int updateDayReport(String date, int field, double amount){
+/*	public int updateDayReport(String date, int field, double amount){
 		int i = 0;
 		if(reportPersist.getDayReport(date) == null){
 			reportPersist.createDayReport(date);
@@ -91,9 +92,9 @@ public class ReportLogicImpl {
 		}
 		
 		return i;
-	}
+	}*/
 	
-	public int updateDayReport(DayReport r){
+/*	public int updateDayReport(DayReport r){
 		int i = 0;
 		if(reportPersist.getDayReport(r.getDate()) == null){
 			i = reportPersist.createDayReport(r);
@@ -103,7 +104,7 @@ public class ReportLogicImpl {
 		}
 		
 		return i;
-	}
+	}*/
 	
 	public int updateBookSales(String date, int bookId, int numSold){
 		int i = 0;

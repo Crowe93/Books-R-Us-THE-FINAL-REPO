@@ -49,7 +49,7 @@ public class ReportPersistImpl {
 		return i;
 	}
 	
-	public DayReport getDayReport(String date){
+/*	public DayReport getDayReport(String date){
 		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM dayreport WHERE validDate = '"+  date +"';");
 		DayReport report = null;
 		try {
@@ -67,7 +67,7 @@ public class ReportPersistImpl {
 		}
 		
 		return report;
-	}
+	}*/
 	
 	public List<BookSales> getBookSales(String date){
 		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM booksales WHERE validDate = '"+  date +"';");

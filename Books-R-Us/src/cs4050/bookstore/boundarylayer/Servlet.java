@@ -267,13 +267,13 @@ public class Servlet extends HttpServlet {
 				
 			} else if (addToCart != null){
 				System.out.println("Starting add-to-cart sequence");
-				String userIdX = request.getParameter("userId");
-				int userId = 0;
+				int userId = Integer.parseInt(request.getParameter("userId"));
 				int bookId = Integer.parseInt(request.getParameter("bookId"));
 				BookLogicImpl b = new BookLogicImpl();
 				
 				Book book = b.getBook(bookId);
 				System.out.println(book.getTitle());
+				
 				int stock = book.getStock();
 				System.out.println("Stock: " + stock);
 				
