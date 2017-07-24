@@ -200,17 +200,17 @@ public class Servlet extends HttpServlet {
 					int r = u.insertUser(user);
 					
 					if (r == 0){
-						templateName = "signup.ftl"; //error inserting the new user into the database.
-						root.put("registerError","yes");
+						templateName = "register.ftl"; //error inserting the new user into the database.
+						root.put("registerError","yes"); //username or email already used
 
 					} else{
 						templateName = "login.ftl";
 						root.put("registerSuccessful","yes");
 
 					}
-				} else{ //enter here if 
+				} else{ //enter here if passwords do not match
 					templateName = "register.ftl";
-					root.put("passwordsNotMatching","yes");
+					root.put("passwordMatchingError","yes");
 
 				}
 				
