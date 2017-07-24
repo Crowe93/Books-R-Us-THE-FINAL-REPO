@@ -15,10 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-import cs4050.bookstore.logiclayer.BookLogicImpl;
-import cs4050.bookstore.logiclayer.CartLogicImpl;
-import cs4050.bookstore.logiclayer.UserLogicImpl;
-import cs4050.bookstore.objectlayer.Book;
+import cs4050.bookstore.logiclayer.*;
 import cs4050.bookstore.objectlayer.*;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapperBuilder;
@@ -339,6 +336,10 @@ public class Servlet extends HttpServlet {
 				//basic account info
 				String fname = request.getParameter("fname");
 				String lname = request.getParameter("lname");
+				String fullName = fname.concat(" " + lname);
+				
+				
+				
 				String email = request.getParameter("email");
 				String username = request.getParameter("username");
 				String oldPassword = request.getParameter("old-password");
@@ -348,18 +349,20 @@ public class Servlet extends HttpServlet {
 				String street = request.getParameter("address");
 				String city = request.getParameter("city");
 				String state = request.getParameter("state");
-				String zipX = request.getParameter("zip_code");
-				int zip = 0;
+				String zip = request.getParameter("zip_code");
+				String fullAddress = street.concat(" " + city + " " + state + " " + zip);
 				
 				//payment info
 				String cardType = request.getParameter("CreditCardType");
-				String cardNumberX = request.getParameter("car_number");
-				String cardCVVX = request.getParameter("car_code");
+				String cardNumber = request.getParameter("car_number");
+				String cardCVV = request.getParameter("car_code");
 				String expirationMonth = request.getParameter("car_month");
 				String expirationYear = request.getParameter("car_year");
-				
+				String expirationDate = expirationMonth.concat("/" + expirationYear);
 				UserLogicImpl u = new UserLogicImpl();
-				
+				PayLogicImpl p = new PayLogicImpl();
+				ShipLogicImpl s = new ShipLogicImpl();
+
 				int oldPasswordVerification = 0;
 				
 				try{
@@ -377,7 +380,9 @@ public class Servlet extends HttpServlet {
 				} else{ //enter here if the old password is correct
 					User user = new User(userId, fname, lname, username, newPassword, email);
 					u.updateUser(user);
-					
+					Shipping sX = new Shipping(userId, street, city, state, zip);
+					s.insertShipping(sX);
+					p.insertPayment(userId, cardNumber, expirationDate, cardCVV,fullName, fullAddress);
 					root.put("editProfileSuccess", "yes");
 				}
 				
