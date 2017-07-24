@@ -35,6 +35,7 @@ CREATE TABLE `book` (
   `stock` int(11) DEFAULT NULL COMMENT 'Holds current amount in inventory',
   `sold` int(11) DEFAULT NULL COMMENT 'Holds number sold',
   `imgURL` varchar(100) DEFAULT NULL,
+  `minimum` int(11) DEFAULT '2',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -153,7 +154,7 @@ DROP TABLE IF EXISTS `payment`;
 CREATE TABLE `payment` (
   `user_id` int(11) NOT NULL,
   `cardNum` varchar(16) NOT NULL,
-  `expDate` varchar(5) DEFAULT NULL,
+  `expDate` varchar(7) DEFAULT NULL,
   `csc` varchar(3) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   `billingAddr` varchar(100) DEFAULT NULL,
@@ -264,4 +265,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-24 16:52:09
+-- Dump completed on 2017-07-24 17:02:56
