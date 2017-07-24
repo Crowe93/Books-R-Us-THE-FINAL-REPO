@@ -13,11 +13,11 @@ public class CartPersistImpl {
 		int i = 0;
 		i = DbAccessImpl.create("INSERT INTO cart (user_id) VALUES ("+userId+")");
 		DbAccessImpl.disconnect();
-		
+		System.out.println("Creating new cart for user");
 		ResultSet result = DbAccessImpl.retrieve("SELECT id FROM cart WHERE user_id = "+  userId +";");
 		try {
 			while (result.next()) {
-				i = result.getInt(0);
+				i = result.getInt("id");
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -30,17 +30,20 @@ public class CartPersistImpl {
 	
 	public int addBookToCart(int cartId, int bookId){
 		int i = -1;
-		ResultSet result = DbAccessImpl.retrieve("SELECT qty FROM item WHERE cart_id = "+  cartId +";");
+		ResultSet result = DbAccessImpl.retrieve("SELECT qty FROM item WHERE cart_id = "+  cartId +" AND book_id =" + bookId +";");
+		if (result)
 		try {
 			while (result.next()) {
-				i = result.getInt(0);
+				i = result.getInt("qty");
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}  // try-catch
 		DbAccessImpl.disconnect();
 		
-		i += i;
+		
+		i++;
+		
 		
 		String query= "INSERT INTO item (qty) VALUES ("+i+") WHERE cart_id = "+cartId+";";
 		

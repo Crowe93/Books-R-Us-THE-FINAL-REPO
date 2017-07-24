@@ -266,26 +266,24 @@ public class Servlet extends HttpServlet {
 				System.out.println("logout COMPLETE!");
 				
 			} else if (addToCart != null){
+				System.out.println("Starting add-to-cart sequence");
 				String userIdX = request.getParameter("userId");
-				int userId =0;
+				int userId = 0;
 				int bookId = Integer.parseInt(request.getParameter("bookId"));
 				BookLogicImpl b = new BookLogicImpl();
 				
 				Book book = b.getBook(bookId);
-				
+				System.out.println(book.getTitle());
 				int stock = book.getStock();
-				
-				try{
-					userId = Integer.parseInt(userIdX);
-				} catch (NumberFormatException e){
-				}
+				System.out.println("Stock: " + stock);
 				
 				if(stock != 0){ //enter here if item is in stock
-					
+					System.out.println("Creating cart for user");
 					CartLogicImpl c = new CartLogicImpl();
 					int cartId = c.createCart(userId); //create a cart for the user
 					
 					if (cartId != 0 ){ //enter here if the cart was successfully made
+						System.out.println("Add item to cart");
 						int x = c.addBookToCart(cartId, bookId);
 						
 						if(x == 0){ //enter here if the book was successfully added to the cart

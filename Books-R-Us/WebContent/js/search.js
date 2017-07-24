@@ -5,7 +5,6 @@ $(document).ready(function () {
 	
 	loadBooks();
 	
-	
 	$(".btn-search").click(function () {
 		var searchVal = $("#search-value").val();
 		var filterType = $("#search-filter").val(); // 0 = title | 1 = isbn | 2 = author
@@ -15,7 +14,8 @@ $(document).ready(function () {
 		
 	});
 	
-	$(".add-book-btn").click(function () {
+	$(document).on("click", ".add-book-btn", function () {
+		//alert("Test");
 		var userId = getCookie("userId");
 		var bookId = $(this).attr("bookId");
 		addToCart(userId, bookId);
@@ -26,6 +26,9 @@ $(document).ready(function () {
 		$.get(requestURL, function (result, response) {
 			if (result) {
 				alert("added successfully!");
+			}
+			else {
+				alert("something");
 			}
 		});
 	}
@@ -52,7 +55,7 @@ $(document).ready(function () {
 
 					'<td class="actions" data-th="">' +
 				'<h3 class="text-left"> $' + book.price + '</h3>' +
-				'<button name="add" type="submit" class="btn btn-info btn-default add-book-btn" bookId="' + book.ISBN + '"> Add to Cart</button>		' +						
+				'<button class="btn btn-info btn-default add-book-btn" bookId="' + book.ISBN + '"> Add to Cart</button>		' +						
 			'</td>' +
 			
 		'</tr>';
@@ -91,7 +94,7 @@ $(document).ready(function () {
 
 					'<td class="actions" data-th="">' +
 				'<h3 class="text-left"> $' + book.price + '</h3>' +
-				'<button name="add" type="submit" class="btn btn-info btn-default add-book-btn" bookId="' + book.ISBN + '"> Add to Cart</button>		' +						
+				'<button class="btn btn-info btn-default add-book-btn" bookId="' + book.ISBN + '"> Add to Cart</button>		' +						
 			'</td>' +
 			
 		'</tr>';
