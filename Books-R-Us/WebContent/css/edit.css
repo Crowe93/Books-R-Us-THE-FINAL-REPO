@@ -2,19 +2,32 @@ html,body,h1,h2,h3,h4,h5,h6 {
 	font-family: 'Raleway', sans-serif !important;
 }
 
-<<<<<<< HEAD
 h4{
 	color: #FE980F !important;
 	font-style: italic !important;
 	
-=======
-h6{
-	font-size: 13px !important;
->>>>>>> branch 'master' of https://github.com/Crowe93/Books-R-Us-THE-FINAL-REPO.git
 }
 
-.table>tbody>tr>td, .table>tfoot>tr>td{
-    vertical-align: middle;
+.edit-form{
+	padding-bottom: 30px !important;
+}
+
+.admin-container{
+	padding-bottom: 30px !important;
+}
+
+.basic-info{
+	padding-left: 50px !important;
+}
+
+h6{
+	font-size: 13px !important;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th {
+	vertical-align: middle !important;
+	border-bottom: 1px solid #ddd !important;
+	border-top: none !important;
 }
 
 .cart-table p{
@@ -41,7 +54,7 @@ h6{
 }
 
 th{
-	font-size: 20px;
+	font-size: 15px;
 }
 
 .table{
@@ -60,11 +73,6 @@ th{
 	border-radius: 0px !important;
 }
 
-<<<<<<< HEAD
-.btn-c{
-	background-color: #FE980F !important;
-	color: white !important;
-=======
 .btn-r0:hover{
 	background-color: #FE980F !important;
 	color:white !important;
@@ -92,7 +100,6 @@ th{
 
 .col-sm-10{
 	width: 80% !important;
->>>>>>> branch 'master' of https://github.com/Crowe93/Books-R-Us-THE-FINAL-REPO.git
 }
 
 .form-control{
