@@ -29,6 +29,8 @@ html,body,h1,h2,h3,h4,h5,h6 {
 
 hr{
 	width: 60%;	
+	margin-top: 10px !important;
+    margin-bottom: 10px !important;
 }
 
 button[disabled],html input[disabled]{
@@ -43,11 +45,6 @@ button[disabled],html input[disabled]{
 
 .label{
 	width:10px;
-}
-
-hr{
-	margin-top: 10px !important;
-    margin-bottom: 10px !important;
 }
 
 .date>a{

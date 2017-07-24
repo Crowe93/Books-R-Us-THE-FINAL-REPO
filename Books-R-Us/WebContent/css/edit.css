@@ -1,6 +1,47 @@
-.all-info{
-	background-color: #f7f7f7 !important;
-	border: 1px solid #e5e5e5;
-	padding-bottom: 12px;
-	margin-bottom: 20px;
-}	
+html,body,h1,h2,h3,h4,h5,h6 {
+	font-family: 'Raleway', sans-serif !important
+}
+
+h2{
+	font-family: 'Raleway', sans-serif !important;
+	font-size: 20px !important;	
+	font-weight: 300 !important;
+}
+
+h4{
+	color: orange !important;
+	font-style: italic !important;
+	
+}
+
+.breadcrumb{
+	font-family: 'Raleway', sans-serif !important;
+}
+
+.btn{
+	border-radius: 0px !important;
+}
+
+.btn-c{
+	background-color: orange !important;
+	color: white !important;
+}
+
+.form-control{
+	border-radius: 0px !important;
+}
+
+th{
+	 vertical-align: middle !important; 
+}
+
+.table>tbody>tr>th, .table>tbody>tr>td{
+	border-bottom: 1px dotted #ddd !important;
+	border-top: none !important;
+}
+
+hr.style11 {
+	height: 6px;
+	background: url(http://ibrahimjabbari.com/english/images/hr-11.png) repeat-x 0 0;
+    border: 0;
+}
