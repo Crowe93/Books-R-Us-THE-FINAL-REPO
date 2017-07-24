@@ -15,6 +15,21 @@ $(document).ready(function () {
 		
 	});
 	
+	$(".add-book-btn").click(function () {
+		var userId = getCookie("userId");
+		var bookId = $(this).attr("bookId");
+		addToCart(userId, bookId);
+	});
+	
+	function addToCart(userId, bookId) {
+		var requestURL = "Servlet?addToCart&userId=" + userId + "&bookId=" + bookId;
+		$.get(requestURL, function (result, response) {
+			if (result) {
+				alert("added successfully!");
+			}
+		});
+	}
+	
 	function loadBooks() {
 		var requestURL = "Servlet?loadBooks";
 		$.get(requestURL, function (result, response) {
@@ -37,7 +52,7 @@ $(document).ready(function () {
 
 					'<td class="actions" data-th="">' +
 				'<h3 class="text-left"> $' + book.price + '</h3>' +
-				'<button name="add" type="submit" class="btn btn-info btn-default"> Add to Cart</button>		' +						
+				'<button name="add" type="submit" class="btn btn-info btn-default add-book-btn" bookId="' + book.ISBN + '"> Add to Cart</button>		' +						
 			'</td>' +
 			
 		'</tr>';
@@ -76,7 +91,7 @@ $(document).ready(function () {
 
 					'<td class="actions" data-th="">' +
 				'<h3 class="text-left"> $' + book.price + '</h3>' +
-				'<button name="add" type="submit" class="btn btn-info btn-default"> Add to Cart</button>		' +						
+				'<button name="add" type="submit" class="btn btn-info btn-default add-book-btn" bookId="' + book.ISBN + '"> Add to Cart</button>		' +						
 			'</td>' +
 			
 		'</tr>';
@@ -85,5 +100,11 @@ $(document).ready(function () {
 			});
 		});
 	}
+	
+	function getCookie(name) {
+		  var value = "; " + document.cookie;
+		  var parts = value.split("; " + name + "=");
+		  if (parts.length == 2) return parts.pop().split(";").shift();
+		}
 	
 });

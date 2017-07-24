@@ -168,7 +168,7 @@ public class Servlet extends HttpServlet {
 			String register = request.getParameter("register");
 			String login = request.getParameter("login"); 
 			String logout = request.getParameter("logout");
-			String addToCart = request.getParameter("");
+			String addToCart = request.getParameter("addToCart");
 			String removeFromCart = request.getParameter("");
 			String editProfileInfo = request.getParameter("");
 			String deleteAccount = request.getParameter("");
@@ -268,9 +268,8 @@ public class Servlet extends HttpServlet {
 			} else if (addToCart != null){
 				String userIdX = request.getParameter("userId");
 				int userId =0;
-				String title = request.getParameter("title");
+				int bookId = Integer.parseInt(request.getParameter("bookId"));
 				BookLogicImpl b = new BookLogicImpl();
-				int bookId = b.getBookId(title);
 				
 				Book book = b.getBook(bookId);
 				
@@ -282,6 +281,7 @@ public class Servlet extends HttpServlet {
 				}
 				
 				if(stock != 0){ //enter here if item is in stock
+					
 					CartLogicImpl c = new CartLogicImpl();
 					int cartId = -1;
 					
@@ -319,7 +319,7 @@ public class Servlet extends HttpServlet {
 				}
 				
 				templateName = "search.ftl";
-			
+				return;
 			
 				
 			} else if (removeFromCart != null){
