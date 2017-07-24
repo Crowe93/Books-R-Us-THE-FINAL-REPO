@@ -408,6 +408,7 @@ public class Servlet extends HttpServlet {
 			} else if (userEnteredPromo != null){
 				
 			} else if (confirmOrder != null){
+				
 			
 				
 				
