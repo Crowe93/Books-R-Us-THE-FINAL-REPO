@@ -7,7 +7,6 @@ import java.util.List;
 
 import cs4050.bookstore.objectlayer.BookSales;
 import cs4050.bookstore.objectlayer.DayReport;
-import cs4050.bookstore.objectlayer.PublisherSales;
 
 public class ReportPersistImpl {
 	//date format yyyy-mm-dd

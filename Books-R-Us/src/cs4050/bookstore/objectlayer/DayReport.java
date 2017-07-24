@@ -1,34 +1,40 @@
 package cs4050.bookstore.objectlayer;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DayReport {
-	private double cashInTotal = 0; 
-	private double cashOutTotal = 0;
-	private double cardInTotal = 0;// something scriptable with a few of our buttons. Admin looking at low inventory could click
-	private double cardOutTotal = 0;// on Order to "purchase" books raising cardOut and online purchases will go to cardInTotal obviously 
 	private double netTotal = 0;
 	private String date = null;
+	private String time = null;
+	private List<BookSales> booksales;
 
-	public DayReport(double cashInTotal, double cashOutTotal, double cardInTotal, double cardOutTotal, Date date) {
-		this.cashInTotal = cashInTotal;
-		this.cashOutTotal = cashOutTotal;
-		this.cardInTotal = cardInTotal;
-		this.cardOutTotal = cardOutTotal;
-		this.netTotal = (cashInTotal + cardInTotal) - (cashOutTotal + cardOutTotal);
+	public DayReport(double net, Date date, List<BookSales> b) {
+//		this.cashInTotal = cashInTotal;
+//		this.cashOutTotal = cashOutTotal;
+//		this.cardInTotal = cardInTotal;
+//		this.cardOutTotal = cardOutTotal;
+		this.netTotal = net;
 		this.date = date.toString();
+		Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        time = (sdf.format(cal.getTime())).toString();
+        booksales = b;
 	}
 
 	public DayReport(double cashInTotal, double cashOutTotal, double cardInTotal, double cardOutTotal, String date) {
-		this.cashInTotal = cashInTotal;
-		this.cashOutTotal = cashOutTotal;
-		this.cardInTotal = cardInTotal;
-		this.cardOutTotal = cardOutTotal;
+//		this.cashInTotal = cashInTotal;
+//		this.cashOutTotal = cashOutTotal;
+//		this.cardInTotal = cardInTotal;
+//		this.cardOutTotal = cardOutTotal;
 		this.netTotal = (cashInTotal + cardInTotal) - (cashOutTotal + cardOutTotal);
 		this.date = date;
 	}
 
-	public double getCashInTotal() {
+/*	public double getCashInTotal() {
 		return cashInTotal;
 	}
 
@@ -59,7 +65,7 @@ public class DayReport {
 	public void setCardOutTotal(double cardOutTotal) {
 		this.cardOutTotal = cardOutTotal;
 	}
-
+*/
 	public double getNetTotal() {
 		return netTotal;
 	}

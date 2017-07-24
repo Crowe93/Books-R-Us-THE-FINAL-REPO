@@ -1,21 +1,32 @@
+html,body,h1,h2,h3,h4,h5,h6 {
+	font-family: 'Raleway', sans-serif !important;
+}
+
+h6{
+	font-size: 13px !important;
+}
+
 .table>tbody>tr>td, .table>tfoot>tr>td{
     vertical-align: middle;
 }
 
-.cart-table{
-	padding-top: 30px;
-}
-
-.cart-table p, tr{
-	font-family: 'Josefin Slab', serif !important;
-	font-size: 18px !important;
+.cart-table p{
+	font-family: 'Raleway', sans-serif !important;
+	font-size: 13px !important;
 	font-weight: 400 !important;
 }
 
-.cart-table h3{
-	font-family: 'Josefin Slab', serif !important;
-	font-size: 25px !important;
-	font-weight: bold !important;
+.cart-table tr{
+	font-size: 16px !important;
+}
+
+.cart-table h5{
+	font-family: 'Raleway', sans-serif !important;
+	font-size: 16px !important;
+}
+
+.cart-table h4{
+	font-size: 17px !important;
 }
 
 .input-group .form-control{
@@ -24,21 +35,43 @@
 
 th{
 	font-size: 20px;
-	
+}
+
+.table{
+	margin-bottom: -20px !important;
 }
 
 .btn{
-	font-size: 16px !important;
-	
+	font-size: 14px !important;
 }
 
 .btn-default{
-	background-color:#FE980F !important;
+	color: #6e6e6e!important;
 }
 
+.btn-r0{
+	border-radius: 0px !important;
+}
+
+.btn-r0:hover{
+	background-color: #FE980F !important;
+	color:white !important;
+	border: 1px solid #FE980F !important;
+}
 
 .panel{
 	margin-top: 20px !important;
+	border-radius: 0px !important;
+}
+
+.panel-body>p{
+	font-size: 16px !important;
+}
+
+.random{
+	padding-top: 20px !important;
+	padding-bottom: 20px !important;
+	font-size: 20px !important;
 }
 
 .input-group{
@@ -47,6 +80,18 @@ th{
 
 .col-sm-10{
 	width: 80% !important;
+}
+
+.form-control{
+	border-radius: 0px !important;
+}
+
+.total-price>p{
+	font-size: 14px !important;
+}
+
+.total-price, .random{
+	cursor: default !important;
 }
 
 @media screen and (max-width: 600px) {

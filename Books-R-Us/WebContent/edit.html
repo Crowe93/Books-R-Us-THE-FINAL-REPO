@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,14 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/main2.css">
         <link rel="stylesheet" href="css/footer.css">
-        <link rel="stylesheet" href="css/checkout.css">
+        <link rel="stylesheet" href="css/edit.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css"> 
-	    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:300" rel="stylesheet">    
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
     </head>
 
     <body>
@@ -65,191 +66,270 @@
 		</div>
 	</header>
 	
-	<div class="outer-wrapper">
-	<div class="container wrapper">
-            <div class="row edit-row">
-            	
-                <form class="form-horizontal" method="post" action="Servlet">
-                <div class="col-lg-3"></div>
-                <div class="col-lg-6">
-                	<h3>-- Edit your information -- </h3>
-                	<hr>
-                	<!-- Personal Info -->
-                	<div class="panel panel-default">
-                        <div class="panel-heading"><i class="fa fa-id-card-o"></i> Basic Information</div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>First Name: </strong></div>
-                                <div class="col-md-12">
-                                    <input type="text" name="fname" class="form-control" value="Chanice" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>Last Name: </strong></div>
-                                <div class="col-md-12">
-                                    <input type="text" name="lname" class="form-control" value="Campbell" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>Username: </strong></div>
-                                <div class="col-md-12">
-                                    <input type="text" name="username" class="form-control" value="chan876" readonly/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>Email:</strong></div>
-                                <div class="col-md-12">
-                                    <input type="email" name="email" class="form-control" value="chan876@uga.edu" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>Old Password:</strong></div>
-                                <div class="col-md-12">
-                                    <input type="password" name="old-password" class="form-control" value="admin" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>New Password:</strong></div>
-                                <div class="col-md-12">
-                                    <input type="password" name="new-password" class="form-control" value="admin" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Shipping Address -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><i class="fa fa-map-marker"></i> Shipping Address</div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>Street Address:</strong></div>
-                                <div class="col-md-12">
-                                    <input type="text" name="address" class="form-control" value="000 Eclipse Ave." />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>City:</strong></div>
-                                <div class="col-md-12">
-                                    <input type="text" name="city" class="form-control" value="Athens" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>State:</strong></div>
-                                <div class="col-md-12">
-                                    <input type="text" name="state" class="form-control" value="GA" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>Zip / Postal Code:</strong></div>
-                                <div class="col-md-12">
-                                    <input type="text" name="zip_code" class="form-control" value="30605" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--SHIPPING METHOD END-->
-                    <!--CREDIT CART PAYMENT-->
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><span><i class="fa fa-lock"></i></span> Secure Payment</div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>Card Type:</strong></div>
-                                <div class="col-md-12">
-                                    <select id="CreditCardType" name="CreditCardType" class="form-control">
-                                        <option value="5">Visa</option>
-                                        <option value="6">MasterCard</option>
-                                        <option value="7">American Express</option>
-                                        <option value="8">Discover</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>Credit Card Number:</strong></div>
-                                <div class="col-md-12"><input type="text" class="form-control" name="car_number" value="4532 0446 1135 6103" /></div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>Card CVV:</strong></div>
-                                <div class="col-md-12"><input type="text" class="form-control" name="car_code" value="620" /></div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <strong>Expiration Date:</strong>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control" name="">
-                                        <option value="">Month</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05" selected>05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                </select>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control" name="">
-                                        <option value="">Year</option>
-                                        <option value="2015">2015</option>
-                                        <option value="2016">2016</option>
-                                        <option value="2017">2017</option>
-                                        <option value="2018">2018</option>
-                                        <option value="2019" selected>2019</option>
-                                        <option value="2020">2020</option>
-                                        <option value="2021">2021</option>
-                                        <option value="2022">2022</option>
-                                </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--CREDIT CART PAYMENT END-->
-                </div>
-                <div class="col-lg-3"></div>
-		    <div class="row">
-			<div class="col-lg-5"></div>
-			<div class="col-lg-1"> 
-				<a href="profile.html" class="btn btn-sm btn-default"> Cancel</a>
-			</div>
-			<div class="col-lg-1"> 
-				<!-- <a href="profile.html" class="btn btn-sm btn-default"> Confirm</a> -->
-				<button name="editProfile" type="submit" class="btn btn-sm btn-default"> Confirm</button>
+	<ul class="breadcrumb">
+		<li><a href="home.html">Home</a> <span class="divider"></span></li>
+		<li><a href="profile.html">Profile</a> <span class="divider"></span></li>
+		<li class="active"> Edit</li>
+	</ul>
+	
+	
+	<div class="container">
+		<h3 class="text-center"> Edit your information </h3>
+        <p class="text-center">Did you recently move? Need to change your password? Update your profile!</p>
+        <hr align="center" width="60%">
+        
+        <div class="row">
+         	<div class="col-md-3">
+       			<div class="profile" align="center">	
+	 				<img class="img-circle" src="images/profile_icon.png" width="210px" height="210px">	
+	 				<div class="welcome">
+	 					<h2> Chanice Campbell</h2>
+	 					<h2> <span id="fname"></span> <span id="fname"></span></h2>
+	 					<hr>
+	 					<a href="profile.html" class="btn btn-default"> Cancel Edit</a> 
+	 					<form>
+	 						<a href="#"><button class="btn btn-default"> Change Photo</button></a>
+	 					</form>
+	 				</div>
+ 				</div>
+         	</div>
+         	
+         	<div class="col-md-9">
+         		<form>
+         		<!-- Basic Info Table -->
+         			<h4 class="text-left">Basic Information</h4>
+         			<hr class="style11" width="70%" align="left">
+         			<table style="width:70%;" class="table table-hover">
+         				<thead>
+         					<tr style="width:30%"></tr>
+         					<tr style="width:70%"></tr>
+         					
+         				</thead>
+         				
+         				<tbody>
+         					<tr>
+         						<th>First Name </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="fname" class="form-control" value="Chanice">
+         							</div>
+         						</td>
+         						
+         					</tr>
+         					<tr>
+         						<th>Last Name </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="lname" class="form-control" value="Campbell">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>Username </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="username" class="form-control" value="chan876">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>E-mail </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="email" class="form-control" value="chan876@uga.edu">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>Old Password </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="password1" class="form-control" value="">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>New Password </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="password2" class="form-control" value="">
+         							</div>
+         						</td>
+         					</tr>
+         				
+         				</tbody>
+         			</table>
+         			
+         			<br>
+         			<!-- Shipping Address Table -->
+         			<h4 class="text-left">Shipping Address</h4>
+         			<hr class="style11" width="70%" align="left">
+         			<table style="width:70%;" class="table table-hover">
+         				<thead>
+         					<tr style="width:30%"></tr>
+         					<tr style="width:70%"></tr>
+         					
+         				</thead>
+         				
+         				<tbody>
+         					<tr>
+         						<th>Street Address </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="address" class="form-control" value="404 Eclipse Ave.">
+         							</div>
+         						</td>
+         						
+         					</tr>
+         					<tr>
+         						<th>City </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="city" class="form-control" value="Athens">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>State </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="state" class="form-control" value="GA">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>Zip/Postal Code </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="zip_code" class="form-control" value="30606">
+         							</div>
+         						</td>
+         					</tr>
+         					
+         				</tbody>
+         			</table>
+         			
+         			<br>
+         			<!-- Payment Method Table -->
+         			<h4 class="text-left">Payment Method</h4>
+         			<hr class="style11" width="70%" align="left">
+         			<table style="width:70%;" class="table table-hover">
+         				<thead>
+         					<tr style="width:30%"></tr>
+         					<tr style="width:70%"></tr>
+         					
+         				</thead>
+         				
+         				<tbody>
+         					<tr>
+         						<th>Card Type </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<select id="CreditCardType" name="CreditCardType" class="form-control">
+			                                <option value="5">Visa</option>
+			                                <option value="6">MasterCard</option>
+			                                <option value="7">American Express</option>
+			                                <option value="8">Discover</option>
+			                            </select>
+         							</div>
+         						</td>
+         						
+         					</tr>
+         					<tr>
+         						<th>Credit Card # </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="card_number" class="form-control" value="9454 1748 1263 5742">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>Card CCV </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="card_code" class="form-control" value="504">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>Expiration Date </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<select class="form-control" name="exp_date">
+			                                <option value="">Month</option>
+			                                <option value="01">01</option>
+			                                <option value="02">02</option>
+			                                <option value="03">03</option>
+			                                <option value="04">04</option>
+			                                <option value="05" selected>05</option>
+			                                <option value="06">06</option>
+			                                <option value="07">07</option>
+			                                <option value="08">08</option>
+			                                <option value="09">09</option>
+			                                <option value="10">10</option>
+			                                <option value="11">11</option>
+			                                <option value="12">12</option>
+				                        </select>
 
-			</div>
-				<div class="col-lg-5"></div>
-		    </div>
-                </form>
-            </div>
-            <div class="row">
-            	<div class="col-lg-5"></div>
-            	<div class="col-lg-1"> 
-            		<a href="profile.html" class="btn btn-sm btn-default"> Cancel</a>
-            	</div>
-            	<div class="col-lg-1"> 
-            		<!-- <a href="profile.html" class="btn btn-sm btn-default"> Confirm</a> -->
-            		<button name="editProfile" type="submit" class="btn btn-sm btn-default"> Confirm</button>
-            		
-            	</div>
-        		<div class="col-lg-5"></div>
-            </div>
-    </div>
+         							</div>
+         						</td>
+         					</tr>
+         					
+         					<tr>
+         						<th>Expiration Year </th>
+         						<td>
+         							<div class="col-xs-9">
+										<select class="form-control" name="exp_year">
+				                                <option value="">Year</option>
+				                                <option value="2015">2015</option>
+				                                <option value="2016">2016</option>
+				                                <option value="2017">2017</option>
+				                                <option value="2018">2018</option>
+				                                <option value="2019" selected>2019</option>
+				                                <option value="2020">2020</option>
+				                                <option value="2021">2021</option>
+				                                <option value="2022">2022</option>
+				                        </select>
+
+         							</div>
+         						</td>
+         					</tr>
+         					<tr class="alignmiddle">
+         						<td> 
+         							
+         							
+         						</td>
+         						<td>
+         							<button name="editProfile" type="submit" class="btn btn-default btn-c"> Confirm</button>  
+         							<a href="profile.html" class="btn btn-default"> Cancel</a>         							       					
+         						</td>
+         					</tr>
+         					
+         				</tbody>
+         			</table>
+         		
+     			
+         		</form>
+         		
+         		      		
+         	</div>
+             
+		</div>
+
+		
 	</div>
+	
 	
 	<!-- Footer -->
 	 <footer class="footer-distributed">
 		<div class="footer-left">
 			<h3>Company<span>logo</span></h3>
 			<p class="footer-links">
-				<a href="home.html">Home</a>·
-				<a href="search.html">Search</a>·
-				<a href="popular.html">Popular</a>·
-				<a href="contact.html">Contact</a>·
-				<a href="aboutus.html">About Us</a>·
+				<a href="home.html">Home</a> �
+				<a href="search.html">Search</a> �
+				<a href="popular.html">Popular</a> �
+				<a href="contact.html">Contact</a> �
+				<a href="aboutus.html">About Us</a> �
 				<a href="profile.html">Account</a>
 			</p>
 			<p class="footer-company-name">Books-R-Us &copy; 2017</p>
@@ -287,3 +367,373 @@
     
 	</body>
 </html>
+=======
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>General Bookstore</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/main2.css">
+        <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/edit.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+	    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css"> 
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
+    </head>
+
+    <body>
+    
+    <!--header-->
+	<header id="header">
+		<div class="header_top">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contactinfo">
+							<ul class="nav nav-pills">
+								<li><a href=""><i class="fa fa-newspaper-o"></i> NEWS</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="social-icons pull-right"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="header-middle">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="shop-menu pull-left">
+							<ul class="nav navbar-nav">
+								<li><a href="home.html"><i class="fa fa-home"></i> Home</a></li>
+								<li><a href="search.html"><i class="fa fa-search"></i> Search</a></li>
+								<li><a href="popular.html"><i class="fa fa-star"></i> Popular</a></li>
+								<li><a href="contact.html"><i class="fa fa-envelope"></i> Contact</a></li>
+								<li><a href="aboutus.html"><i class="fa fa-info-circle"></i> About Us</a></li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="col-sm-4">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href="profile.html"><i class="fa fa-user"></i> Account</a></li>
+								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+								<li><a href="register.html"><i class="fa fa-lock"></i> Login</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	<ul class="breadcrumb">
+		<li><a href="home.html">Home</a> <span class="divider"></span></li>
+		<li><a href="profile.html">Profile</a> <span class="divider"></span></li>
+		<li class="active"> Edit</li>
+	</ul>
+	
+	
+	<div class="container">
+		<h3 class="text-center"> Edit your information </h3>
+        <p class="text-center">Did you recently move? Need to change your password? Update your profile!</p>
+        <hr align="center" width="60%">
+        
+        <div class="row">
+         	<div class="col-md-3">
+       			<div class="profile" align="center">	
+	 				<img class="img-circle" src="images/profile_icon.png" width="210px" height="210px">	
+	 				<div class="welcome">
+	 					<h2> Chanice Campbell</h2>
+	 					<h2> <span id="fname"></span> <span id="fname"></span></h2>
+	 					<hr>
+	 					<a href="profile.html" class="btn btn-default"> Cancel Edit</a> 
+	 					<form>
+	 						<a href="#"><button class="btn btn-default"> Change Photo</button></a>
+	 					</form>
+	 				</div>
+ 				</div>
+         	</div>
+         	
+         	<div class="col-md-9">
+         		<form>
+         		<!-- Basic Info Table -->
+         			<h4 class="text-left">Basic Information</h4>
+         			<hr class="style11" width="70%" align="left">
+         			<table style="width:70%;" class="table table-hover">
+         				<thead>
+         					<tr style="width:30%"></tr>
+         					<tr style="width:70%"></tr>
+         					
+         				</thead>
+         				
+         				<tbody>
+         					<tr>
+         						<th>First Name </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="fname" class="form-control" value="Chanice">
+         							</div>
+         						</td>
+         						
+         					</tr>
+         					<tr>
+         						<th>Last Name </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="lname" class="form-control" value="Campbell">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>Username </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="username" class="form-control" value="chan876">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>E-mail </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="email" class="form-control" value="chan876@uga.edu">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>Old Password </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="password1" class="form-control" value="">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>New Password </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="password2" class="form-control" value="">
+         							</div>
+         						</td>
+         					</tr>
+         				
+         				</tbody>
+         			</table>
+         			
+         			<br>
+         			<!-- Shipping Address Table -->
+         			<h4 class="text-left">Shipping Address</h4>
+         			<hr class="style11" width="70%" align="left">
+         			<table style="width:70%;" class="table table-hover">
+         				<thead>
+         					<tr style="width:30%"></tr>
+         					<tr style="width:70%"></tr>
+         					
+         				</thead>
+         				
+         				<tbody>
+         					<tr>
+         						<th>Street Address </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="address" class="form-control" value="404 Eclipse Ave.">
+         							</div>
+         						</td>
+         						
+         					</tr>
+         					<tr>
+         						<th>City </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="city" class="form-control" value="Athens">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>State </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="state" class="form-control" value="GA">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>Zip/Postal Code </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="email" class="form-control" value="30606">
+         							</div>
+         						</td>
+         					</tr>
+         					
+         				</tbody>
+         			</table>
+         			
+         			<br>
+         			<!-- Payment Method Table -->
+         			<h4 class="text-left">Payment Method</h4>
+         			<hr class="style11" width="70%" align="left">
+         			<table style="width:70%;" class="table table-hover">
+         				<thead>
+         					<tr style="width:30%"></tr>
+         					<tr style="width:70%"></tr>
+         					
+         				</thead>
+         				
+         				<tbody>
+         					<tr>
+         						<th>Card Type </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<select id="CreditCardType" name="CreditCardType" class="form-control">
+			                                <option value="5">Visa</option>
+			                                <option value="6">MasterCard</option>
+			                                <option value="7">American Express</option>
+			                                <option value="8">Discover</option>
+			                            </select>
+         							</div>
+         						</td>
+         						
+         					</tr>
+         					<tr>
+         						<th>Credit Card # </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="city" class="form-control" value="9454 1748 1263 5742">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>Card CCV </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="state" class="form-control" value="504">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>Expiration Date </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<select class="form-control" name="">
+			                                <option value="">Month</option>
+			                                <option value="01">01</option>
+			                                <option value="02">02</option>
+			                                <option value="03">03</option>
+			                                <option value="04">04</option>
+			                                <option value="05" selected>05</option>
+			                                <option value="06">06</option>
+			                                <option value="07">07</option>
+			                                <option value="08">08</option>
+			                                <option value="09">09</option>
+			                                <option value="10">10</option>
+			                                <option value="11">11</option>
+			                                <option value="12">12</option>
+				                        </select>
+
+         							</div>
+         						</td>
+         					</tr>
+         					
+         					<tr>
+         						<th>Expiration Year </th>
+         						<td>
+         							<div class="col-xs-9">
+										<select class="form-control" name="">
+				                                <option value="">Year</option>
+				                                <option value="2015">2015</option>
+				                                <option value="2016">2016</option>
+				                                <option value="2017">2017</option>
+				                                <option value="2018">2018</option>
+				                                <option value="2019" selected>2019</option>
+				                                <option value="2020">2020</option>
+				                                <option value="2021">2021</option>
+				                                <option value="2022">2022</option>
+				                        </select>
+
+         							</div>
+         						</td>
+         					</tr>
+         					<tr class="alignmiddle">
+         						<td> 
+         							
+         							
+         						</td>
+         						<td>
+         							<button name="editProfile" type="submit" class="btn btn-default btn-c"> Confirm</button>  
+         							<a href="profile.html" class="btn btn-default"> Cancel</a>         							       					
+         						</td>
+         					</tr>
+         					
+         				</tbody>
+         			</table>
+         		
+     			
+         		</form>
+         		
+         		      		
+         	</div>
+             
+		</div>
+
+		
+	</div>
+	
+	
+	<!-- Footer -->
+	 <footer class="footer-distributed">
+		<div class="footer-left">
+			<h3>Company<span>logo</span></h3>
+			<p class="footer-links">
+				<a href="home.html">Home</a> ·
+				<a href="search.html">Search</a> ·
+				<a href="popular.html">Popular</a> ·
+				<a href="contact.html">Contact</a> ·
+				<a href="aboutus.html">About Us</a> ·
+				<a href="profile.html">Account</a>
+			</p>
+			<p class="footer-company-name">Books-R-Us &copy; 2017</p>
+		</div>
+	
+		<div class="footer-center">
+			<div>
+				<i class="fa fa-map-marker"></i>
+				<p><span>200 D.W. Brooks Drive </span> Athens, Georgia</p>
+			</div>
+			<div>
+				<i class="fa fa-phone"></i>
+				<p>+1 555 123456</p>
+			</div>
+			<div>
+				<i class="fa fa-envelope"></i>
+				<p><a href="mailto:support@company.com">support@company.com</a></p>
+			</div>
+		</div>
+	
+		<div class="footer-right">
+			<p class="footer-company-about">
+				<span>About the company</span>
+				Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+			</p>
+			<div class="footer-icons">
+	
+				<a href="#"><i class="fa fa-facebook"></i></a>
+				<a href="#"><i class="fa fa-twitter"></i></a>
+				<a href="#"><i class="fa fa-linkedin"></i></a>
+			    <a href="#"><i class="fa fa-github"></i></a>
+			</div>
+		</div>
+	</footer>
+    
+	</body>
+</html>
+>>>>>>> branch 'master' of https://github.com/Crowe93/Books-R-Us-THE-FINAL-REPO.git

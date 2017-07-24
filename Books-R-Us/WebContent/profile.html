@@ -10,10 +10,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="js/profile.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-		<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:300" rel="stylesheet">        
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
     </head>
 
 
@@ -68,160 +67,245 @@
 			</div>
 		</header>
  
- 		
- 		<!-- profile -->
- 		<div class="profile-body">
-	 		<div class="container">
-		 			<div class="profile" align="center">	
-		 				<div class="welcome"><h2> Welcome Back <span style="color:#FE980F; font-style:italic; font-weight:bold;" id="fname-welcome"></span> !</h2></div>
+ 		<div class="container-fluid profile-body">
+ 			<div class="row">
+ 			
+ 				<div class="col-md-3">
+ 					<div class="profile" align="center">	
 		 				<img class="img-circle" src="images/profile_icon.png" width="210px" height="210px">	
-		 				<div class="edit-image"><i class="fa fa-pencil"> change profile image</i></div>
-		 				
-		 				<!-- Delete Account -->
-		 				<div class="delete-account">
+		 				<div class="welcome">
+		 					<h2> Chanice Campbell</h2>
+		 					<h2> <span id="fname"></span> <span id="fname"></span></h2>
+		 					<hr>
+		 					<a href="edit.html"><button class="btn btn-default btn-small"> Edit Profile</button></a>
 		 					<form>
-		 						<button name="delete-b" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>						
+		 						<button name="delete-b" class="btn btn-default btn-small"> Delete Account</button>
 		 					</form>
-						</div>
+		 				</div>
 		 			</div>
-			 			
-			 		<div class="row">
-			 			
-			 			<div class="col-md-12">
-		 					<div class="panel panel-default">
-		 						<div class="panel-heading"> 
-		 							<h3 class="panel-title">Basic Info</h3>
-		 						</div>
-		 						<div class="panel-body">
-						 			<div class="row basic">
-						 				<p>Name: <span id="fname"></span>  <span id="lname"></span></p>
-						 				<hr>
-						 				<p>Username: <span id="username"></span></p>
-						 				<hr>
-						 				<p>Email: <span id="email"></span></p>
-						 				<hr>
-						 				<p>Password: xxxxxx </p>
-						 				<div class="edit">
-						 					<a href="edit.html" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-						 				</div>
-						 		
-						 		
-						 			</div>
-						 		</div>
-				 			</div>
-			 			
-			 			</div>		 			 		
-			 		</div>
-		 			
-		 			<div class="row">
-		 				<!-- Shipping Address -->
-		 				<div class="col-md-6">
-				 			<div class="panel panel-default">
-				 				<div class="panel-heading"> 
-		 							<h3 class="panel-title">Shipping Address</h3>
-		 						</div>
-				 				<div class="panel-body">
-						 			<div class="row basic">
-						 				<p>Name: Chanice Campbell</p>
-						 				<p>Username: chan876 </p>
-						 				<p>Email: chan876@uga.edu </p>
-						 				<p>Password: xxxxxx </p>
-						 				<div class="edit">
-						 					<a href="edit.html" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-						 				</div>
-						 			</div>
-					 			</div>
-				 			</div>
-		 				</div>
+ 				</div>
+ 				
+ 				<div class="col-md-5">
+ 					<div class="info"> 
+	 					<h3>Personal Info</h3>
+	 					<hr align="left">
+	 					<div class="btn-group">
+	 						<button type="button" disabled class="btn btn-primary">First Name</button>
+	 						<button type="button" disabled class="btn btn-default"><span id="fname"></span></button>
+	 					</div>
+	 					
+	 					<div class="btn-group">
+	 						<button type="button" disabled class="btn btn-primary">Last Name</button>
+	 						<button type="button" disabled class="btn btn-default"><span id="lname"></span></button>
+	 					</div>
+	 					<br>
+	 					<div class="btn-group">
+	 						<button type="button" disabled class="btn btn-primary">Username</button>
+	 						<button type="button" disabled class="btn btn-default"><span id="username"></span></button>
+	 					</div>
+	 					
+	 					<div class="btn-group">
+	 						<button type="button" disabled class="btn btn-primary">E-mail</button>
+	 						<button type="button" disabled class="btn btn-default"><span id="email"></span></button>
+	 					</div>
+	 					
+	 					<div class="btn-group">
+	 						<button type="button" disabled class="btn btn-primary">Password</button>
+	 						<button type="button" disabled class="btn btn-default"> ********** </button>
+	 					</div>
+ 					</div>
+ 					
+ 					<div class="info">
+	 					<h3>Shipping Address</h3>
+	 					<hr align="left">
+	 					<div class="btn-group">
+	 						<button type="button" disabled class="btn btn-primary">Street Address</button>
+	 						<button type="button" disabled class="btn btn-default">101 Water Ave.</button>
+	 					</div>
+	 					<br>
+	 					<div class="btn-group">
+	 						<button type="button" disabled class="btn btn-primary">City</button>
+	 						<button type="button" disabled class="btn btn-default">Athens</button>
+	 					</div>
+	 					<div class="btn-group">
+	 						<button type="button" disabled class="btn btn-primary">State</button>
+	 						<button type="button" disabled class="btn btn-default">GA</button>
+	 					</div>
+	 					<br>
+	 					<div class="btn-group">
+	 						<button type="button" disabled class="btn btn-primary">Zip Code</button>
+	 						<button type="button" disabled class="btn btn-default">30605</button>
+	 					</div>
+ 					</div>
+ 					
+ 					<div class="info">
+	 					<h3>Payment Method</h3>
+	 					<hr align="left">
+	 					
+	 					<div class="btn-group">
+	 						<button type="button" disabled class="btn btn-primary">Card Type</button>
+	 						<button type="button" disabled class="btn btn-default">VISA</button>
+	 					</div>
+	 					<br>
+	 					<div class="btn-group">
+	 						<button type="button" disabled class="btn btn-primary">Credit Card Number</button>
+	 						<button type="button" disabled class="btn btn-default">1653 6544 8698 1524</button>
+	 					</div>
+	 					<div class="btn-group">
+	 						<button type="button" disabled class="btn btn-primary">Card CVV</button>
+	 						<button type="button" disabled class="btn btn-default"> *** </button>
+	 					</div>
+	 					<br>
+	 					<div class="btn-group">
+	 						<button type="button" disabled class="btn btn-primary">Exp Month</button>
+	 						<button type="button" disabled class="btn btn-default">06</button>
+	 					</div>
+	 					<div class="btn-group">
+	 						<button type="button" disabled class="btn btn-primary">Exp Year</button>
+	 						<button type="button" disabled class="btn btn-default">18</button>
+	 					</div>
+	 				</div>
+	 				
+
+ 				</div>
+ 				
+ 				<div class="col-md-4">
+ 					<div class="info">
+	 					<h3>Previous Orders</h3>
+		 				<hr align="left">
 		 				
-		 				<!-- Payment Method -->
-		 				<div class="col-md-6">
-				 			<div class="panel panel-default">
-				 				<div class="panel-heading"> 
-		 							<h3 class="panel-title">Payment Method</h3>
-		 						</div>
-				 				<div class="panel-body">
-						 			<div class="row basic">
-						 				<p>Name: Chanice Campbell</p>
-						 				<p>Username: chan876 </p>
-						 				<p>Email: chan876@uga.edu </p>
-						 				<p>Password: xxxxxxxxx </p>
-						 				<div class="edit">
-						 					<a href="edit.html" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-						 				</div>
-						 			</div>
-						 		</div>
-				 			</div>
+		 				<div class="order">
+			 				<div class="row">
+				 				<div class="col-md-6 date">
+					 				<a href="#collapseExample" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"> 
+				 						07/30/17
+				 					</a>
+				 				</div>
+				 				<div class="col-md-6 status">
+				 					<p style="color:#e72621; font-weight:bold;">STATUS: SHIPPED<p>
+				 				</div>
+			 				</div>
+			 				<table class="table table-hover">
+			 					
+			 					<thead>
+			 						<tr>
+			 							<th style="width:20%"></th>
+			 							<th style="width:80%"></th>
+			 						</tr>
+			 					</thead>
+			 					
+			 					<tbody class="collapse" id="collapseExample">
+			 						<tr>
+			 							<td> 
+			 								<img src="images/into-water.jpg" style="width:100px; height:auto;">
+			 							</td>
+			 							<td>
+			 								<h3> Into the Water</h3>
+			 								<p>By Paula Hawkins</p>
+			 								<br>
+			 								<p style="font-size:15px">1 x $14.50</p>
+			 							</td>												
+			 						</tr>
+			 						<tr>
+			 							<td> 
+			 								<img src="images/into-water.jpg" style="width:100px; height:auto;">
+			 							</td>
+			 							<td>
+			 								<h3> Into the Water</h3>
+			 								<p>By Paula Hawkins</p>
+			 								<br>
+			 								<p style="font-size:15px">2 x $11.98</p>
+			 							</td>												
+			 						</tr>
+			 						<tr> 
+			 							<td></td>
+			 							<td class="text-right order-footer">
+			 								<h5>Order#: 5413546</h5>
+			 								<h5>Shipping: FREE</h5>
+			 								
+			 								<h5 style="font-weight:bold"> Total: $40.98</h5>
+			 							</td>
+			 						</tr>
+			 					
+			 					</tbody>
+			 				
+			 				</table>
 		 				</div>
-		 		</div>
-		 		
-		 		<!-- Previous Orders -->
-		 		<div class="row">
-		 			<div class="col-lg-12">
-	 					<div class="panel panel-default">
-	 						<div class="panel-heading"> 
-		 						<h3 class="panel-title">Previous Orders</h3>
-		 					</div>
-	 						<div class="panel-body">
-					 			<div class="row basic">
-									<!-- Right here, add an if statement. If no orders, leave this div class empty or something (sounds kinda threatening) -->
-									<a href ="#order-info" data-toggle="collapse"> Order#: 56894</a>
-									<div id="order-info" class="collapse">
-										<div class="item">
-											<p> Order Placed: 07/17/17 </p>
-											<p> Shipping: FREE </p>
-											<p> Total: $45.54 </p>
-											<div class="row each-item">
-												<div class="col-md-1"> 
-													<i class="fa fa-circle-thin"></i>
-												</div>
-												<div class="col-md-2 book-icon"> 
-													<img src="images/into-water.jpg" style="width:100px; height:auto;">
-												</div>
-												<div class="col-md-4 item item-detail"> 
-													<p>Into the Waters</p>
-													<p>Lily Weathers</p>
-													<p><span style="color:#FE980F; font-style:italic; ">$20.15</span></p>
-												</div>
-											</div>
-											
-											<div class="row each-item">
-												<div class="col-md-1"> 
-													<i class="fa fa-circle-thin"></i>
-												</div>
-												<div class="col-md-2 book-icon"> 
-													<img src="images/history1.jpg" style="width:100px; height:auto;">
-												</div>
-												<div class="col-md-4 item item-detail"> 
-													<p>Into the Waters</p>
-													<p>Lily Weathers</p>
-													<p><span style="color:#FE980F; font-style:italic; font-weight:bold; ">$20.15</span></p>
-												</div>
-											</div>
-										</div>
-										
-									</div>
-									
-					 			</div>
-					 		</div>
-			 			</div>
-		 			
-		 			</div>		 			 		
-		 		</div>	
+		 				<!-- new order -->
+		 				<div class="order">
+			 				<div class="row">
+				 				<div class="col-md-6 date">
+					 				<a href="#collapseExample1" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample1"> 
+				 						01/15/16
+				 					</a>
+				 				</div>
+				 				<div class="col-md-6">
+				 					<p style="color:#38a13a; font-weight:bold;">STATUS: DELIVERED<p>
+				 				</div>
+			 				</div>
+			 				<table class="table table-hover">
+			 					
+			 					<thead>
+			 						<tr>
+			 							<th style="width:20%"></th>
+			 							<th style="width:80%"></th>
+			 						</tr>
+			 					</thead>
+			 					
+			 					<tbody class="collapse" id="collapseExample1">
+			 						<tr>
+			 							<td> 
+			 								<img src="images/into-water.jpg" style="width:100px; height:auto;">
+			 							</td>
+			 							<td>
+			 								<h3> Into the Water</h3>
+			 								<p>By Paula Hawkins</p>
+			 								<br>
+			 								<p style="font-size:15px">3 x $9.30</p>
+			 							</td>												
+			 						</tr>
+			 						<tr>
+			 							<td> 
+			 								<img src="images/history1.jpg" style="width:100px; height:auto;">
+			 							</td>
+			 							<td>
+			 								<h3> The Zookeeper's Wife</h3>
+			 								<p>By Paula Hawkins</p>
+			 								<br>
+			 								<p style="font-size:15px">1 x $20.00</p>
+			 							</td>												
+			 						</tr>
+			 						<tr> 
+			 							<td></td>
+			 							<td class="text-right order-footer">
+			 								<h5>Order#: 5413546</h5>
+			 								<h5>Shipping: FREE</h5>
+			 								<h5 style="font-weight: bold;">Total: $68.20</h5>
+			 							</td>
+			 						</tr>
+			 					
+			 					</tbody>
+			 				
+			 				</table>
+		 				</div>
+	 				</div>
+ 				</div>
+ 		
  			</div>
  		</div>
- 	 
+ 		
+ 			 
  	 
  	    <!-- Footer -->
         <footer class="footer-distributed">
 			<div class="footer-left">
 				<h3>Company<span>logo</span></h3>
 				<p class="footer-links">
-					<a href="home.html">Home</a>·
-					<a href="search.html">Search</a>·
-					<a href="popular.html">Popular</a>·
-					<a href="contact.html">Contact</a>·
-					<a href="aboutus.html">About Us</a>·
+					<a href="home.html">Home</a> ·
+					<a href="search.html">Search</a> ·
+					<a href="popular.html">Popular</a> ·
+					<a href="contact.html">Contact</a> ·
+					<a href="aboutus.html">About Us</a> ·
 					<a href="profile.html">Account</a>
 				</p>
 				<p class="footer-company-name">Books-R-Us &copy; 2017</p>
@@ -234,7 +318,7 @@
 				</div>
 				<div>
 					<i class="fa fa-phone"></i>
-					<p>+1 555 123456</p>
+					<p>+1 555 123 4567</p>
 				</div>
 				<div>
 					<i class="fa fa-envelope"></i>

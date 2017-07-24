@@ -1,49 +1,47 @@
 section {
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 50px;
 }
 
 .quote {
     color: rgba(0,0,0,.1);
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 15px;
-    font-family: "Lucida Grande","Lucida Sans Unicode", Helvetica,Arial;
-
+    margin-bottom: 10px;
+    font-size: 15px !important;	
 }
+
+.fa-4x{
+	font-size:2em !important;
+}
+
+.carousel img{
+	height: 200px !important;
+	width: 200px !important;
+	min-width: 0% !important;
+}
+
+blockquote p{
+	font-size: 14px !important;
+	font-family: 'Raleway', sans-serif !important;
+	font-style: italic;	
+}
+
 .mission-section p{
-	font-family: 'Josefin Slab', serif !important;
-	font-size: 20px !important;
+	font-family: 'Raleway', sans-serif !important;	
+	font-size: 16px !important;
 }
 
 h4{
-	font-family: 'Josefin Slab', serif !important;
+	font-family: 'Raleway', sans-serif !important;	
 	font-size: 25px !important;
 	font-weight: bold !important;
 }
 
-/*    Carousel Fade Transition   */
-
-#fade-quote-carousel.carousel {
-  padding-bottom: 10px;
-}
-#fade-quote-carousel.carousel .carousel-inner .item {
-  opacity: 0;
-  -webkit-transition-property: opacity;
-      -ms-transition-property: opacity;
-          transition-property: opacity;
-}
-#fade-quote-carousel.carousel .carousel-inner .active {
-  opacity: 1;
-  -webkit-transition-property: opacity;
-      -ms-transition-property: opacity;
-          transition-property: opacity;
-}
 #fade-quote-carousel.carousel .carousel-indicators {
-  bottom: -35px;
+  bottom: -45px;
 }
 #fade-quote-carousel.carousel .carousel-indicators > li {
-  background-color: orange;
+  background-color: #FE980F;
   border: none;
   padding-top:20px;
 }
@@ -51,76 +49,30 @@ h4{
     text-align: center;
     border: none;
 }
-#fade-quote-carousel .profile-circle {
-    width: 256px;
-    height: 256px;
-    margin: 0 auto;
-    border-radius: 50%;
-}
-
-img{
-    width: 256px;
-    height: auto;
-}
 
 hr.border1{
     margin: 0px !important;
 }
 
 .mission-section{
-    background-color: #dddddd;
+    background-color: #f7f7f7;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
 	box-sizing: border-box;
 	width: 100%;
 	text-align: left;
-	font-family: "Lucida Grande","Lucida Sans Unicode", Helvetica,Arial;
+	font-family: 'Raleway', sans-serif !important;	
 	padding: 25px 50px;
-    height: 400px;
-}
-
-.mission-section>h4{
-    font-size: 35px;
-    font-family: "Lucida Grande","Lucida Sans Unicode", Helvetica,Arial;
-
-}
-
-
-.mission-section>hr{
-    width: 60%;
-    border-top: 1.5px solid #fff;
+   
 }
 
 .inner-mission>p{
-    font-size: 15px;
+    font-size: 15px !important;
 }
 
-.inner-mission{
-    width: 100%;
-    text-align: center;
-    padding-left: 70px;
-    padding-right: 70px;
-}
-
-/*Offer section*/
-.mission-offer{
-    text-align: center;
-}
-
-.offer-icon{
-    display: inline-block !important;
-    text-align: center;
-    padding-right: 65px;
-    padding-left: 70px;
-    padding-top: 5px;
-}
-
-.offer-icon>p{
-    font-size: 20px !important;
-}
 
 .mission-offer p{
-    font-size:15px;
-    font-family: "Lucida Grande","Lucida Sans Unicode", Helvetica,Arial;
+    font-size:15px !important;
+    font-family: 'Raleway', sans-serif !important;	
     color: #33383b;
 }
 
@@ -137,10 +89,5 @@ hr.border1{
 }
 
 .fa-truck:hover,.fa-clock-o:hover, .fa-thumbs-up:hover {
-    background-color: orange;
-}
-
-.offer-icon>span{
-    font: normal 35px 'Cookie', cursive;
-
+    background-color: #FE980F;
 }

@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cs4050.bookstore.objectlayer.Item;
-import cs4050.bookstore.objectlayer.PublisherSales;
-
 
 public class CartPersistImpl {
 	
