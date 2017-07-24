@@ -8,41 +8,69 @@ html,body,h1,h2,h3,h4,h5,h6 {
 	color: #000!important;
 	font-weight: 300 !important;
 }
+form{
+	padding-top: 0px !important;
+	padding-left: 20px !important;
+}
 
-.outer-wrapper{
-	
+hr{
+	margin-top: 5px !important;
+	margin-bottom: 5px !important;
+}
+
+.table>tbody>tr>th, .table>tbody>tr>td{
+	border-bottom: 1px dotted #ddd !important;
+	border-top: none !important;
+	font-size: 14px !important;
+}
+
+.all-final{
+	margin-bottom: 0px !important;
+}
+
+th{
+	 vertical-align: middle !important; 
+}
+
+.table>tbody>tr{
+	padding-top: 10px !important;
+}
+
+.page-title{
+	margin-left: 20px;
+}
+
+h2{
+	font-size: 17px !important;
+}
+
+h3{
+	font-size: 16px !important;
+}
+
+h4{
+	color: #FE980F !important;
+	font-style: italic !important;
+	font-size: 16px !important;	
+}
+
+h5{
+	font-size: 16px !important;
+}
+
+.btn-r0:hover{
+	background-color: #FE980F !important;
+	color:white !important;
+	border: 1px solid #FE980F !important;
+}
+
+.form-control{
+	border-radius: 0px !important;
 }
 
 /* images*/
 ol, ul {
   list-style: none;
-}
-
-.cards{
-    padding-left:0;
-}
-
-.cards .mastercard {
-  background-position: -51px 0;
-}
-
-.cards .amex {
-  background-position: -102px 0;
-}
-.cards li {
-  -webkit-transition: all .2s;
-  -moz-transition: all .2s;
-  -ms-transition: all .2s;
-  -o-transition: all .2s;
-  transition: all .2s;
-  float: left;
-  height: 32px;
-  margin-right: 8px;
-  text-indent: -9999px;
-  width: 51px;
-}
-.cards li:last-child {
-  margin-right: 0;
 }
 
 /*
@@ -58,30 +86,19 @@ ol, ul {
 }
 
 .btn{
-    border-radius: 1px;
+    border-radius: 0px !important;
 }
 .btn-sm, .btn-group-sm > .btn{
-    border-radius: 1px;
+    border-radius: 0px;
 }
 .input-sm, .form-horizontal .form-group-sm .form-control{
     border-radius: 1px;
 }
 
-.panel-heading {
-    border-top-left-radius: 1px;
-    border-top-right-radius: 1px;
-    font-size: 18px !important;
-}
-
-/* Making panel less rounded*/
-.panel {
-    border-radius: 1px !important;
-}
 
 hr {
     border-color: #999 -moz-use-text-color -moz-use-text-color;
 }
-
 
 .btn-link {
     color: #888;

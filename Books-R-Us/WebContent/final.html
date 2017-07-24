@@ -4,6 +4,7 @@
       <title>General Bookstore</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/main2.css">
+        <link rel="stylesheet" href="css/final.css">
         <link rel="stylesheet" href="css/footer.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -11,7 +12,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-		<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:300" rel="stylesheet">        
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">       
     </head>
 
 
@@ -64,26 +65,124 @@
 			</div>
 		</header>
 		
-		
-		<!-- Order confirm -->
-		<div class="container">
-			<div class="row">
-				<p> Order #56455 has been placed </p>
-		
-			</div>
+		<div class="page-title">
+			<h2 class="text-center" > Thank You <span style="font-style: italic; color: #FE980F">Chanice</span> !</h2>
+	        <p class="text-center" style="font-style: italic"> Your Order has been Placed. Check your E-mail for Confirmation. </p>
+	        <hr style="width:60%">
 		</div>
 		
 		
+		<!-- Order confirm -->
+		<div class="container">
+		
+			<!-- order number section -->
+			<div class="order">
+				<h3 class="text-center"> <kbd class="text-center"> Order#: 365742152-5145</kbd></h3>
+			</div>
+			
+			<!-- table with books -->
+			<div class="row">
+				<table style="width:60%" id="cart" class="table table-condensed" align="center">
+		 		<thead>
+					<tr>
+						<th style="width:50%"><h3 class="text-left">Product</h3></th>
+						<th style="width:20%"><h3 class="text-left">Price</h3></th>
+						<th style="width:10%"><h3 class="text-left">Quantity</h3></th>
+						<th style="width:20%"><h3 class="text-center">Sub-total</h3></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td data-th="Product">
+							<div class="row">
+								<div class="col-sm-4 hidden-xs"><img style="width:100px; height: auto;" src="images/into-water.jpg"class="img-responsive"/></div>
+								<div class="col-sm-8">
+									<h5 class="nomargin">Into the Water</h5>
+									<p class="text-left">Novel by Paula Hawkins</p>
+								</div>
+							</div>
+						</td>
+						<td data-th="Price">$10.15</td>
+						<td data-th="Quantity">
+							<input type="number" class="form-control text-center" value="2" readonly>
+						</td>
+						<td data-th="Subtotal" class="text-center">$20.30</td>
+					</tr>
+					<!-- row2 -->
+					<tr>
+						<td data-th="Product">
+							<div class="row">
+								<div class="col-sm-4 hidden-xs"><img style="width:100px; height: auto;" src="images/history1.jpg"class="img-responsive"/></div>
+								<div class="col-sm-8">
+									<h5 class="nomargin">The Zookeeper's Wife</h5>
+									<p>Novel by Diane Ackerman</p>
+								</div>
+							</div>
+						</td>
+						<td data-th="Price">$5.99</td>
+						<td data-th="Quantity">
+							<input type="number" class="form-control text-center" value="1" readonly>
+						</td>
+						<td data-th="Subtotal" class="text-center">$1.99</td>
+					</tr>
+					
+					<!-- row3 -->
+					<tr>
+						<td data-th="Product">
+							<div class="row">
+								<div class="col-sm-4 hidden-xs"><img style="width:100px; height: auto;" src="images/spies.jpg"class="img-responsive"/></div>
+								<div class="col-sm-8">
+									<h5 class="nomargin">House of Spies</h5>
+									<p>Novel by Daniel Silva</p>
+								</div>
+							</div>
+						</td>
+						<td data-th="Price">$5.99</td>
+						<td data-th="Quantity">
+							<input type="number" class="form-control text-center" value="1" readonly>
+						</td>
+						<td data-th="Subtotal" class="text-center">$1.99</td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<div class="row under-table">
+				<!-- promo code  -->
+				<div class="col-sm-6"></div>
+				
+				<!-- total section-->
+				<div class="col-sm-2"></div>
+				<div class="col-sm-4 total-price">
+					<p>Subtotal: $45.54</p>
+					<p>Shipping: $5.99 </p>
+					<p>Promo Code: N/A </p>
+					<hr align="left" style="width:40%" class="in-price">
+					<div class="total">
+						<h3 class="text-left" style="font-weight: bold">TOTAL: $51.53 </h3>
+					</div>
+
+				</div>
+			</div>	
+		</div>
+		</div>
+		
+		
+         <div class="cc-button" align="center">
+         	<!-- This button should clear shopping cart -->
+         	<a href="search.html"> <button name="finishOrder" type="submit" class="btn btn-default btn-r0"> Continue Shopping</button></a>          							
+         </div>
+
 		<!-- Footer -->
         <footer class="footer-distributed">
 			<div class="footer-left">
 				<h3>Company<span>logo</span></h3>
 				<p class="footer-links">
-					<a href="home.html">Home</a>·
-					<a href="search.html">Search</a>·
-					<a href="popular.html">Popular</a>·
-					<a href="contact.html">Contact</a>·
-					<a href="aboutus.html">About Us</a>·
+					<a href="home.html">Home</a> ·
+					<a href="search.html">Search</a> ·
+					<a href="popular.html">Popular</a> ·
+					<a href="contact.html">Contact</a> ·
+					<a href="aboutus.html">About Us</a> ·
 					<a href="profile.html">Account</a>
 				</p>
 				<p class="footer-company-name">Books-R-Us &copy; 2017</p>
