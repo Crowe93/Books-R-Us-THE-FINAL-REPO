@@ -1,6 +1,8 @@
+CREATE DATABASE  IF NOT EXISTS `bookstoredb` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `bookstoredb`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: bookstoredb
+-- Host: 127.0.0.1    Database: bookstoredb
 -- ------------------------------------------------------
 -- Server version	5.7.18-log
 
@@ -35,7 +37,7 @@ CREATE TABLE `book` (
   `imgURL` varchar(100) DEFAULT NULL,
   `minimum` int(11) DEFAULT '2',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,6 +46,7 @@ CREATE TABLE `book` (
 
 LOCK TABLES `book` WRITE;
 /*!40000 ALTER TABLE `book` DISABLE KEYS */;
+INSERT INTO `book` VALUES (1,'test','test','test','test',1999,10,5,0,'https://cdn.vox-cdn.com/uploads/chorus_asset/file/8552631/leather_book_preview.png',3);
 /*!40000 ALTER TABLE `book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,10 +84,11 @@ DROP TABLE IF EXISTS `cart`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cart` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(45) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `user_id_idx` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `FK_user_id_uses_user.id_idx` (`user_id`),
+  CONSTRAINT `FK_user_id_uses_user.id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,6 +97,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` VALUES (10,2),(11,3);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,6 +124,30 @@ LOCK TABLES `dayreport` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `genre`
+--
+
+DROP TABLE IF EXISTS `genre`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `genre` (
+  `book_id` int(11) NOT NULL,
+  `genre` varchar(45) DEFAULT NULL,
+  KEY `book_id_idx` (`book_id`),
+  CONSTRAINT `genre_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `genre`
+--
+
+LOCK TABLES `genre` WRITE;
+/*!40000 ALTER TABLE `genre` DISABLE KEYS */;
+/*!40000 ALTER TABLE `genre` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `item`
 --
 
@@ -140,6 +169,61 @@ CREATE TABLE `item` (
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order`
+--
+
+DROP TABLE IF EXISTS `order`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `order` (
+  `id` int(11) NOT NULL COMMENT 'id intended to not auto increment, user_id and id are composite key',
+  `user_id` int(11) NOT NULL,
+  `book_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `book_id` (`book_id`),
+  CONSTRAINT `order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `order_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order`
+--
+
+LOCK TABLES `order` WRITE;
+/*!40000 ALTER TABLE `order` DISABLE KEYS */;
+/*!40000 ALTER TABLE `order` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orderhistory`
+--
+
+DROP TABLE IF EXISTS `orderhistory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `orderhistory` (
+  `user_id` int(11) NOT NULL,
+  `order_id` int(11) DEFAULT NULL,
+  `orderDate` date DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  KEY `order_id_idx` (`order_id`),
+  CONSTRAINT `order_id` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orderhistory`
+--
+
+LOCK TABLES `orderhistory` WRITE;
+/*!40000 ALTER TABLE `orderhistory` DISABLE KEYS */;
+/*!40000 ALTER TABLE `orderhistory` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -220,6 +304,32 @@ LOCK TABLES `promotion` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `publishersales`
+--
+
+DROP TABLE IF EXISTS `publishersales`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `publishersales` (
+  `publisher_id` int(11) NOT NULL,
+  `numSold` int(11) DEFAULT NULL,
+  `netTotal` double DEFAULT NULL,
+  `validDate` date NOT NULL,
+  KEY `publisher_id_idx` (`publisher_id`),
+  CONSTRAINT `publisher_id` FOREIGN KEY (`publisher_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `publishersales`
+--
+
+LOCK TABLES `publishersales` WRITE;
+/*!40000 ALTER TABLE `publishersales` DISABLE KEYS */;
+/*!40000 ALTER TABLE `publishersales` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `shippinginfo`
 --
 
@@ -262,7 +372,7 @@ CREATE TABLE `user` (
   `shipAddr` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -271,12 +381,9 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'Chris','Rowe','test@email.com','crowe','noob',2,NULL),(2,'test','test','test','test','test',2,NULL),(3,'a','j','j','j','j',2,'j');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'bookstoredb'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -287,4 +394,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-24 19:10:20
+-- Dump completed on 2017-07-24 19:57:02
