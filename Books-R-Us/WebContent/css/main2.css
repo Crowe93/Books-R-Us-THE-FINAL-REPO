@@ -2,6 +2,14 @@ body {
 	margin: 0;
 }
 
+
+hr.style11 {
+	height: 6px;
+	background: url(http://ibrahimjabbari.com/english/images/hr-11.png) repeat-x 0 0;
+    border: 0;
+}
+
+
 h3 {
 	color: black !important;
 	margin-top: 10px !important;
