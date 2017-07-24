@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:300" rel="stylesheet">        
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">        
     </head>
 
     <body>
@@ -63,18 +63,23 @@
 			</div>
 		</div>
 	</header>
- 
-    
+ 	
+ 	<ul class="breadcrumb">
+		<li><a href="home.html">Home</a> <span class="divider"></span></li>
+		<li><a href="search.html">Search</a> <span class="divider"></span></li>
+		<li class="active"> Cart</li>
+	</ul>
+	
     <!-- Cart -->
     <div class="cart-table">
 	    <div class="container">
 			<table id="cart" class="table table-hover table-condensed">
 		 		<thead>
 					<tr>
-						<th style="width:50%">Product</th>
-						<th style="width:10%">Price</th>
-						<th style="width:8%">Quantity</th>
-						<th style="width:22%" class="text-center">Subtotal</th>
+						<th style="width:35%"><h4 class="text-left">Product</h4></th>
+						<th style="width:25%"><h4 class="text-left">Price</h4></th>
+						<th style="width:7%"><h4 class="text-left">Quantity</h4></th>
+						<th style="width:23%"><h4 class="text-center">Subtotal</h4></th>
 						<th style="width:10%"></th>
 					</tr>
 				</thead>
@@ -82,10 +87,10 @@
 					<tr>
 						<td data-th="Product">
 							<div class="row">
-								<div class="col-sm-4 hidden-xs"><img src="images/into-water.jpg"class="img-responsive"/></div>
+								<div class="col-sm-4 hidden-xs"><img style="width:100px; height: auto;" src="images/into-water.jpg"class="img-responsive"/></div>
 								<div class="col-sm-8">
-									<h4 class="nomargin">Into the Water</h4>
-									<p>Quis aute iure reprehenderit it nulla pariatur. Lorem ipsum dolor sit amet.</p>
+									<h5 class="nomargin">Into the Water</h5>
+									<p class="text-left">Novel by Paula Hawkins</p>
 								</div>
 							</div>
 						</td>
@@ -95,7 +100,7 @@
 						</td>
 						<td data-th="Subtotal" class="text-center">$20.30</td>
 						<td class="actions" data-th="">
-							<button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+							<button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
 							<button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>								
 						</td>
 					</tr>
@@ -103,10 +108,10 @@
 					<tr>
 						<td data-th="Product">
 							<div class="row">
-								<div class="col-sm-4 hidden-xs"><img src="images/history1.jpg"class="img-responsive"/></div>
+								<div class="col-sm-4 hidden-xs"><img style="width:100px; height: auto;" src="images/history1.jpg"class="img-responsive"/></div>
 								<div class="col-sm-8">
-									<h4 class="nomargin">The Zookeeper's Wife</h4>
-									<p>Quis aute iure reprehenderit it nulla pariatur. Lorem ipsum dolor sit amet.</p>
+									<h5 class="nomargin">The Zookeeper's Wife</h5>
+									<p>Novel by Diane Ackerman</p>
 								</div>
 							</div>
 						</td>
@@ -116,7 +121,29 @@
 						</td>
 						<td data-th="Subtotal" class="text-center">$1.99</td>
 						<td class="actions" data-th="">
-							<button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+							<button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+							<button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>								
+						</td>
+					</tr>
+					
+					<!-- row3 -->
+					<tr>
+						<td data-th="Product">
+							<div class="row">
+								<div class="col-sm-4 hidden-xs"><img style="width:100px; height: auto;" src="images/spies.jpg"class="img-responsive"/></div>
+								<div class="col-sm-8">
+									<h5 class="nomargin">House of Spies</h5>
+									<p>Novel by Daniel Silva</p>
+								</div>
+							</div>
+						</td>
+						<td data-th="Price">$5.99</td>
+						<td data-th="Quantity">
+							<input type="number" class="form-control text-center" value="1">
+						</td>
+						<td data-th="Subtotal" class="text-center">$1.99</td>
+						<td class="actions" data-th="">
+							<button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
 							<button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>								
 						</td>
 					</tr>
@@ -132,30 +159,30 @@
 					<div class="col-sm-10">							
 						<div class="input-group">
 						  <span class="input-group-addon" id="basic-addon3">Promo Code</span>
-						  <input type="text" class="form-control" >
+						  <input type="text" class="form-control">
 						</div>
 					</div>
 					
 					<div class="apply"><button type="submit" class="btn btn-secondary">Apply</button></div>
 					
-									
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<p><i class=" fa fa-minus-square-o"></i> Flat Rate shipping of $5.99</p>
-							<p><i class=" fa fa-minus-square-o"></i> Free shipping with $50+ purchase </p>
-						</div>
+					<br>				
+					<div class="random">
+							<h6 class="text-center"> Flat rate shipping of $5.99</h6>
+							<h6 class="text-center"> Free shipping with $50+ purchase </h6>
+							<hr style="width:80%">
+							<p class="text-muted text-center"> ALL SALES ARE <span style="font-style: italic; font-weight: bold;">FINAL.</span></p>
 					</div>
 				</div>
 				
 				<!-- total section-->
 				<div class="col-sm-2"></div>
-				<div class="col-sm-4">
+				<div class="col-sm-4 total-price">
 					<p>Subtotal: $45.54</p>
 					<p>Shipping: $5.99 </p>
-					<p>Promo Code: - </p>
+					<p>Promo Code: N/A </p>
 					<hr>
 					<div class="total">
-						<h3>TOTAL: $51.53 </h3>
+						<h4 class="text-left" style="font-weight: bold">TOTAL: $51.53 </h4>
 					</div>
 
 				</div>
@@ -166,13 +193,13 @@
 		<div style="padding-bottom:30px;" class="container-fluid">
 	    	<div class="row">
 			   <div style="padding-left:60px;" class="col-sm-1">
-			   		<a href="seach.html" class="btn btn-default"><i class="fa fa-angle-left"></i> Continue Shopping</a>
+			   		<a href="search.html" class="btn btn-default btn-r0"><i class="fa fa-angle-left"></i> Continue Shopping</a>
 			   </div>
 			   
 			   <div class="col-sm-10"></div>
 			   
 			   <div class="col-sm-1">
-			   		<a href="checkout.html" class="btn btn-default ">Checkout <i class="fa fa-angle-right"></i></a>
+			   		<a href="checkout.html" class="btn btn-default btn-r0">Checkout <i class="fa fa-angle-right"></i></a>
 			   </div>
 			</div>
 		</div>
@@ -185,11 +212,11 @@
 	<div class="footer-left">
 		<h3>Company<span>logo</span></h3>
 		<p class="footer-links">
-			<a href="home.html">Home</a>·
-			<a href="search.html">Search</a>·
-			<a href="popular.html">Popular</a>·
-			<a href="contact.html">Contact</a>·
-			<a href="aboutus.html">About Us</a>·
+			<a href="home.html">Home</a> ·
+			<a href="search.html">Search</a> ·
+			<a href="popular.html">Popular</a> ·
+			<a href="contact.html">Contact</a> ·
+			<a href="aboutus.html">About Us</a> ·
 			<a href="profile.html">Account</a>
 		</p>
 		<p class="footer-company-name">Books-R-Us &copy; 2017</p>
