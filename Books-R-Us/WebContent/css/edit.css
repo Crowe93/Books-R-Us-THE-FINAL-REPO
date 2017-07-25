@@ -4,12 +4,18 @@ html,body,h1,h2,h3,h4,h5,h6 {
 
 h4{
 	color: #FE980F !important;
-	font-style: italic !important;
-	
+}
+
+.table{
+	padding-top: 0px !important;
 }
 
 .edit-form{
 	padding-bottom: 30px !important;
+}
+
+.admin-profile{
+	padding-top: 100px !important;
 }
 
 .admin-container{

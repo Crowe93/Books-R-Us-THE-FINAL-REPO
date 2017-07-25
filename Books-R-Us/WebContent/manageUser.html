@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/footer.css">
      <link rel="stylesheet" href="css/style.css" >
     <link rel="stylesheet" href="css/admin_style.css" >
+    <script src="js/print.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -64,101 +65,19 @@
 		
 	       	 <div class="row bg-title">
 	            <div class="col-lg-3">
-	                <h4 class="page-title">Dashboard Overview</h4> </div>
+	                <h4 class="page-title">Dashboard</h4> </div>
 	            <div class="col-lg-9">
 	                <ol class="breadcrumb">
 	                    <li><a href="admin.html">Dashboard</a></li>
+	                    <li><a href="manageUser.html">Manage User</a></li>
 	                </ol>
 	            </div>
 	         </div>
         
         <div class="dashboard">
-            <div class="row">
-                <div class="col-lg-4 col-sm-6 col-xs-12">
-                    <div class="white-box analytics-info">
-                        <h3 class="box-title">TOTAL USERS </h3>
-                        <span>689</span> 
-                       
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 col-xs-12">
-                    <div class="white-box analytics-info">
-                        <h3 class="box-title">TOTAL VENDOR</h3><span>20</span>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 col-xs-12">
-                    <div class="white-box analytics-info">
-                        <h3 class="box-title">TOTAL SALES</h3><span>1652</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12 col-lg-12 col-sm-12">
-                    <div class="white-box">
-                        <div class="col-md-3 col-sm-4 col-xs-6 pull-right">
-                            <select class="form-control pull-right row b-none">
-                                <option>March 2017</option>
-                                <option>April 2017</option>
-                                <option>May 2017</option>
-                                <option>June 2017</option>
-                                <option selected>July 2017</option>
-                            </select>
-                        </div>
-                        <h3 class="box-title">Recent sales</h3>
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>USERNAME</th>
-                                        <th>STATUS</th>
-                                        <th>DATE</th>
-                                        <th>PRICE</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td class="txt-oflo">chan876</td>
-                                        <td>DELIVERED</td>
-                                        <td class="txt-oflo">April 18, 2017</td>
-                                        <td><span class="text-success">$150.64</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td class="txt-oflo">ssmith</td>
-                                        <td>SHIPPED</td>
-                                        <td class="txt-oflo">April 19, 2017</td>
-                                        <td><span class="text-info">$120</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td class="txt-oflo">aalex</td>
-                                        <td>SHIPPED</td>
-                                        <td class="txt-oflo">April 19, 2017</td>
-                                        <td><span class="text-info">$60</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td class="txt-oflo">w.jump</td>
-                                        <td>CANCELLED</td>
-                                        <td class="txt-oflo">April 20, 2017</td>
-                                        <td><span class="text-danger">$24</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td class="txt-oflo">k.wilson</td>
-                                        <td>DELIVERED</td>
-                                        <td class="txt-oflo">April 21, 2017</td>
-                                        <td><span class="text-success">$94.25</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
+  			<!-- Print Button -->
+	 		<button onclick="printPage()" class="btn btn-default btn-r0 pull-right"> Print Page</button>
 
             <!--User Table-->    
             <div class="row">
@@ -246,66 +165,7 @@
                 </div>
             </div>
 
-            <!--Book Table-->    
-            <div class="row">
-                <div class="col-md-12 col-lg-12 col-sm-12">
-                    <div class="white-box">
-                        <h3 class="box-title">Manage Books</h3>
-                        <div class="table-responsive">
-                            <table id="books" class="table table-hover">
-                                <thead>
-                                    <tr>
-                                    	<th> # </th>
-                                    	<th>TITLE</th>
-                                        <th>ISBN</th>                                        
-                                        <th>AUTHOR</th>
-                                        <th>PUBLISHER</th>
-                                        <th>GENRE</th>
-                                        <th>YEAR</th>
-                                        <th>PRICE</th>
-                                        <th>QUANTITY</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                    	<td>1</td>
-                                    	<td>Into the Water</td>
-                                        <td>5248623488847</td>
-                                        <td>Paula Hawkins</td>
-                                        <td>Penguin Publishing Group</td>
-                                        <td>Mystery, Romance, Action</td>
-                                        <td>2017</td>
-                                        <td>$20.80</td>
-                                        <td>150</td>
-                                    </tr>
-                                    <tr>
-                                    	<td>2</td>
-                                    	<td>Into the Water</td>
-                                        <td>5248623488847</td>
-                                        <td>Paula Hawkins</td>
-                                        <td>Penguin Publishing Group</td>
-                                        <td>Mystery, Romance, Action</td>
-                                        <td>2017</td>
-                                        <td>$20.80</td>
-                                        <td>150</td>
-                                    </tr>
-                                    <tr>
-                                    	<td>3</td>
-                                    	<td>Into the Water</td>
-                                        <td>5248623488847</td>
-                                        <td>Paula Hawkins</td>
-                                        <td>Penguin Publishing Group</td>
-                                        <td>Mystery, Romance, Action</td>
-                                        <td>2017</td>
-                                        <td>$20.80</td>
-                                        <td>150</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div> <!--End of tables -->
+            
           </div>
         </div>
     </div>

@@ -1,0 +1,126 @@
+html,body,h1,h2,h3,h4,h5,h6 {
+	font-family: 'Raleway', sans-serif !important;
+	color: black !important;
+}
+
+.go{
+	background-color: #fff !important;
+	border: 1px solid #9e9e9e!important;
+	
+}
+
+.go:hover{
+	background-color: #FE980F !important;
+	color:white !important;
+	border: 1px solid #FE980F !important;
+}
+
+.pull-right{
+	margin-bottom: 20px ! important;
+	margin-right: 100px !important;	
+}
+
+.btn-r0{
+	border-radius: 0px !important;
+}
+
+.btn-r0:hover{
+	background-color: #FE980F !important;
+	color:white !important;
+	border: 1px solid #FE980F !important;
+}
+
+html{
+	background-color: rgba(120,130,140,.13) !important;
+}
+
+.sidebar{
+  background: #fff;
+  box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+}
+
+#side-menu a{
+	color: #333 !important;
+}
+
+#side-menu > li > a:hover,
+#side-menu > li > a:focus {
+  background: rgba(0, 0, 0, 0.07);
+   border-left: 3px solid #FE980F !important;
+   font-weight: 800 !important;
+}
+#side-menu>li>a.active {
+  color: #333;
+  background: rgba(0, 0, 0, 0.07);
+   border-left: 3px solid #FE980F !important;
+  font-weight: 800 !important;
+}
+
+#page-wrapper{
+	background-color: rgba(120,130,140,.13) !important;
+}
+
+.logo{
+	font: normal 40px 'Cookie', cursive !important;
+	color: #FE980F !important;
+}
+
+.logo-c{
+	font: normal 35px 'Cookie', cursive !important;
+}
+
+.bg-title{
+	 box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08) !important;
+	 background-color: #292c2f;
+	 margin-left: 0px !important;
+	 margin-right: 0px !important;
+	 padding-left: 0px !important;
+}
+
+.page-title{
+	font-family: 'Raleway', sans-serif !important;
+	font-size: 19px !important;
+	color: #fff !important;
+}
+
+.breadcrumb a{
+	color: #fff !important;
+}
+
+.white-box{
+	box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+}
+
+.container-fluid{
+	padding-right: 0px !important;
+	padding-left: 0px !important;
+}
+
+.dashboard{
+	padding-left: 20px;
+}
+
+.text-success{
+	color: #7ace4c !important;
+}
+
+.text-info{
+	color: #41b3f9 !important;
+}
+
+.text-danger{
+	color: #f33155 !important;
+}
+
+.box-title{
+	color: #FE980F !important;
+	font-weight: 600 !important;
+}
+
+tbody{
+	color: #333 !important;
+}
+
+tr{
+	height: 50px !important;
+}

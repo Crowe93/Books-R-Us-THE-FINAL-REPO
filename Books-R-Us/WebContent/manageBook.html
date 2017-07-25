@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>General Bookstore</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main2.css">
+    <link rel="stylesheet" href="css/footer.css">
+     <link rel="stylesheet" href="css/style.css" >
+    <link rel="stylesheet" href="css/admin_style.css" >
+    <script src="js/print.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
+	
+</head>
+
+<body>
+	
+	<!-- Side Nav Bar -->
+    <div class="navbar-default sidebar" role="navigation">
+       <div class="sidebar-nav slimscrollsidebar">
+           <div class="sidebar-head">
+               <h3 class="logo-c">Company<span class="logo">logo</span></h3>
+           </div>
+           <ul class="nav" id="side-menu">
+               <li style="padding: 70px 0 0;">
+                   <a href="admin.html" class="active"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Dashboard</a>
+               </li>
+               <li>
+                   <a href="adminProfile.html"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Admin Profile</a>
+               </li>
+               <hr width="80%">
+               <li>
+                   <a href="manageUser.html"><i class="fa fa-user-o fa-fw" aria-hidden="true"></i>Manage Users</a>
+               </li>
+               <li>
+                   <a href="manageBook.html"><i class="fa fa-book fa-fw" aria-hidden="true"></i>Manage Books</a>
+               </li>
+               <li>
+                   <a href="add-book.html"><i class="fa fa-book fa-fw" aria-hidden="true"></i>Add Books</a>
+               </li>
+               <li>
+                   <a href="manageReport.html"><i class="fa fa-file-text-o fa-fw" aria-hidden="true"></i>Manage Reports</a>
+               </li>
+               <hr width="80%">
+               <li>
+                   <a href="home.html"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Main Site</a>
+               </li>
+               <li>
+                   <a href="#"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>Logout</a>
+               </li>
+           </ul>
+       </div>   
+   	</div>
+   	
+   	
+   	<div id="page-wrapper">
+
+		<div class="container-fluid">
+		
+	       	 <div class="row bg-title">
+	            <div class="col-lg-3">
+	                <h4 class="page-title">Dashboard</h4> </div>
+	            <div class="col-lg-9">
+	                <ol class="breadcrumb">
+	                    <li><a href="admin.html">Dashboard</a></li>
+	                    <li><a href="manageBook.html">Manage Book</a></li>
+	                </ol>
+	            </div>
+	         </div>
+        
+        <div class="dashboard">
+           
+  			<!-- Print Button -->
+	 		<button onclick="printPage()" class="btn btn-default btn-r0 pull-right"> Print Page</button>
+
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="white-box">
+                        <h3 class="box-title">Manage Books</h3>
+                        <div class="table-responsive">
+                            <table id="books" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                    	<th> # </th>
+                                    	<th>TITLE</th>
+                                        <th>ISBN</th>                                        
+                                        <th>AUTHOR</th>
+                                        <th>PUBLISHER</th>
+                                        <th>GENRE</th>
+                                        <th>YEAR</th>
+                                        <th>PRICE</th>
+                                        <th>QUANTITY</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    	<td>1</td>
+                                    	<td>Into the Water</td>
+                                        <td>5248623488847</td>
+                                        <td>Paula Hawkins</td>
+                                        <td>Penguin Publishing Group</td>
+                                        <td>Mystery, Romance, Action</td>
+                                        <td>2017</td>
+                                        <td>$20.80</td>
+                                        <td>150</td>
+                                    </tr>
+                                    <tr>
+                                    	<td>2</td>
+                                    	<td>Into the Water</td>
+                                        <td>5248623488847</td>
+                                        <td>Paula Hawkins</td>
+                                        <td>Penguin Publishing Group</td>
+                                        <td>Mystery, Romance, Action</td>
+                                        <td>2017</td>
+                                        <td>$20.80</td>
+                                        <td>150</td>
+                                    </tr>
+                                    <tr>
+                                    	<td>3</td>
+                                    	<td>Into the Water</td>
+                                        <td>5248623488847</td>
+                                        <td>Paula Hawkins</td>
+                                        <td>Penguin Publishing Group</td>
+                                        <td>Mystery, Romance, Action</td>
+                                        <td>2017</td>
+                                        <td>$20.80</td>
+                                        <td>150</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div> <!--End of tables -->
+
+            
+          </div>
+        </div>
+    </div>
+
+    
+    
+</body>
+
+</html>

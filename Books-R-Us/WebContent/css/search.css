@@ -2,6 +2,10 @@ html,body,h1,h2,h3,h4,h5,h6 {
 	font-family: 'Raleway', sans-serif !important;
 }
 
+.footer-distributed{
+	bottom: 0;
+}
+
 form{
 	padding-top: 0px !important;
 }

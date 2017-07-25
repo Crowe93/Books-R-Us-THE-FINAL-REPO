@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>General Bookstore</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main2.css">
+    <link rel="stylesheet" href="css/footer.css">
+     <link rel="stylesheet" href="css/style.css" >
+     <link rel="stylesheet" href="css/edit.css">
+    <link rel="stylesheet" href="css/admin_style.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
+	
+</head>
+
+<body>
+	
+	<!-- Side Nav Bar -->
+    <div class="navbar-default sidebar" role="navigation">
+       <div class="sidebar-nav slimscrollsidebar">
+           <div class="sidebar-head">
+               <h3 class="logo-c">Company<span class="logo">logo</span></h3>
+           </div>
+           <ul class="nav" id="side-menu">
+               <li style="padding: 70px 0 0;">
+                   <a href="admin.html" class="active"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Dashboard</a>
+               </li>
+               <li>
+                   <a href="adminProfile.html"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Admin Profile</a>
+               </li>
+               <hr width="80%">
+               <li>
+                   <a href="manageUser.html"><i class="fa fa-user-o fa-fw" aria-hidden="true"></i>Manage Users</a>
+               </li>
+               <li>
+                   <a href="manageBook.html"><i class="fa fa-book fa-fw" aria-hidden="true"></i>Manage Books</a>
+               </li>
+               <li>
+                   <a href="add-book.html"><i class="fa fa-book fa-fw" aria-hidden="true"></i>Add Books</a>
+               </li>
+               <li>
+                   <a href="manageReport.html"><i class="fa fa-file-text-o fa-fw" aria-hidden="true"></i>Manage Reports</a>
+               </li>
+               <hr width="80%">
+               <li>
+                   <a href="home.html"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Main Site</a>
+               </li>
+               <li>
+                   <a href="#"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>Logout</a>
+               </li>
+           </ul>
+       </div>   
+   	</div>
+   	
+   	
+   	<div id="page-wrapper">
+
+		<div class="container-fluid">
+		
+	       	 <div class="row bg-title">
+	            <div class="col-lg-3">
+	                <h4 class="page-title">Dashboard</h4> </div>
+	            <div class="col-lg-9">
+	                <ol class="breadcrumb">
+	                    <li><a href="admin.html">Dashboard</a></li>
+	                   <li><a href="adminProfile.html">Profile</a></li>
+	                </ol>
+	            </div>
+	         </div>
+        
+        <div class="dashboard">
+
+            <!--User Table-->    
+        <div class="row" >
+        	
+         	<div class="col-md-3">
+       			<div class="admin-profile" align="center">	
+	 				<img class="img-square" src="images/profile_icon.png" width="210px" height="210px">	
+	 				<div class="welcome">
+	 					<h2> Chanice Campbell</h2>
+	 					<h2> <span id="fname"></span> <span id="fname"></span></h2>
+	 					<hr>
+	 					<a href="admin.html" class="btn btn-default btn-r0"> Cancel Edit</a> 
+	 					<form>
+	 						<a href="#"><button class="btn btn-default btn-r0"> Change Photo</button></a>
+	 					</form>
+	 				</div>
+ 				</div>
+         	</div>
+         	
+         	<div class="col-md-9 basic-info">
+         		<form>
+         		<!-- Basic Info Table -->
+         			<table class="table" style="width:70%">
+         				<thead>
+         					<tr style="width:30%"></tr>
+         					<tr style="width:70%"></tr>
+         					
+         				</thead>
+         				
+         				<tbody>
+         					<tr>
+         						<th>First Name </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="fname" class="form-control" value="Chanice">
+         							</div>
+         						</td>
+         						
+         					</tr>
+         					<tr>
+         						<th>Last Name </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="lname" class="form-control" value="Campbell">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>Username </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="username" class="form-control" value="chan876">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>E-mail </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="email" class="form-control" value="chan876@uga.edu">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>Old Password </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="password" class="form-control" value="">
+         							</div>
+         						</td>
+         					</tr>
+         					<tr>
+         						<th>New Password </th>
+         						<td>
+         							<div class="col-xs-9">
+         								<input type="text" name="password2" class="form-control" value="">
+         							</div>
+         						</td>
+         					</tr>
+                             <tr class="alignmiddle">
+         						<td> 
+         							
+         							
+         						</td>
+         						<td>
+         							<button name="editProfile" type="submit" class="btn btn-default btn-r0"> Confirm</button>  
+         							<a href="admin.html" class="btn btn-default btn-r0"> Cancel</a>         							       					
+         						</td>
+         					</tr>
+
+
+         				</tbody>
+         			</table>
+         		</form>
+         		
+         		      		
+         	</div>
+             </div>
+
+          </div>
+        </div>
+    </div>
+    
+    
+    
+</body>
+
+</html>
