@@ -71,6 +71,18 @@ public class CartPersistImpl {
 		return r;
 	}
 	
+	public int removeBookFromCart(int cartId, int bookId) {
+		/*
+		 * REMOVE BOOK FROM CART
+		 * DELETE FROM item WHERE cart_id = cartId AND book_id = bookId
+		 */
+		String query = "DELETE FROM item WHERE cart_id=" + cartId + " AND book_id=" + bookId +";";
+		int rowsDeleted = DbAccessImpl.delete(query);
+		DbAccessImpl.disconnect();
+		
+		return rowsDeleted;
+	}
+	
 	public List<Item> getItems(int userId){
 		/*
 		 * RETREIVE CART FOR USER

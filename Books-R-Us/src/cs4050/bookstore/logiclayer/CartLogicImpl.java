@@ -27,6 +27,10 @@ public class CartLogicImpl {
 	public int addBookToCart(int cartId, int bookId){
 		return cartPersist.addBookToCart(cartId, bookId);
 	}
+	
+	public int removeBookFromCart(int cartId, int bookId) {
+		return cartPersist.removeBookFromCart(cartId, bookId);
+	}
 		
 	public List<Item> getItems(int userId){
 		return cartPersist.getItems(userId);

@@ -312,21 +312,14 @@ public class Servlet extends HttpServlet {
 			
 				
 			} else if (removeFromCart != null){
-				String userIdX = request.getParameter("userId");
-				int userId = 0;
-				String title = request.getParameter("title");
-				BookLogicImpl b = new BookLogicImpl();
-				int bookId = b.getBookId(title);
+				int userId = Integer.parseInt(request.getParameter("userId"));
+				int bookId = Integer.parseInt(request.getParameter("bookId"));
+				CartLogicImpl c = new CartLogicImpl();
 				
-				Book book = b.getBook(bookId);
+				int cartId = c.getCartId(userId);
 				
-				int stock = book.getStock();
-				
-				try{
-					userId = Integer.parseInt(userIdX);
-				} catch (NumberFormatException e){
-				
-				}
+				c.removeBookFromCart(cartId, bookId);
+				return;
 				
 			} else if (viewCart != null) {
 				int userId = Integer.parseInt(request.getParameter("userId"));
