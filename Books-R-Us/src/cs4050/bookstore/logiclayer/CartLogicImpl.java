@@ -28,8 +28,8 @@ public class CartLogicImpl {
 		return cartPersist.addBookToCart(cartId, bookId);
 	}
 		
-	public List<Item> getItems(int cartId){
-		return cartPersist.getItems(cartId);
+	public List<Item> getItems(int userId){
+		return cartPersist.getItems(userId);
 	}
 	
 	public int getCartId(int userId){

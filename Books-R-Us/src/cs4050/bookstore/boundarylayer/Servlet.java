@@ -169,7 +169,8 @@ public class Servlet extends HttpServlet {
 			String login = request.getParameter("login"); 
 			String logout = request.getParameter("logout");
 			String addToCart = request.getParameter("addToCart");
-			String removeFromCart = request.getParameter("");
+			String viewCart = request.getParameter("viewCart");
+			String removeFromCart = request.getParameter("removeFromCart");
 			String editProfileInfo = request.getParameter("");
 			String deleteAccount = request.getParameter("");
 			String userEnteredPromo = request.getParameter("");
@@ -324,9 +325,20 @@ public class Servlet extends HttpServlet {
 				try{
 					userId = Integer.parseInt(userIdX);
 				} catch (NumberFormatException e){
+				
 				}
 				
-				
+			} else if (viewCart != null) {
+				int userId = Integer.parseInt(request.getParameter("userId"));
+				CartLogicImpl c = new CartLogicImpl();
+				List<Item> items = c.getItems(userId);
+				try {
+					sendJsonResponse(response, items);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return;
 				
 			} else if (editProfileInfo != null){
 

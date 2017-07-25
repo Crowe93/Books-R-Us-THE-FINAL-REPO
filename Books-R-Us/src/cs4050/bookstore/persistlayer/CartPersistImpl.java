@@ -71,12 +71,17 @@ public class CartPersistImpl {
 		return r;
 	}
 	
-	public List<Item> getItems(int cartId){
-		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM item WHERE cart_id = "+  cartId +";");
+	public List<Item> getItems(int userId){
+		/*
+		 * RETREIVE CART FOR USER
+		 * SELECT * FROM (cart, item) WHERE cart.user_id = userId AND cart.id = item.cart_id;
+		 */
+		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM (cart, item) WHERE cart.user_id = " + userId + " AND cart.id = item.cart_id" + ";");
 		ArrayList<Item> items = new ArrayList<Item>();
 		try {
 			while (result.next()) {
 				Item item = new Item(result.getInt("cart_id"), result.getInt("book_id"), result.getInt("qty"));
+				item.loadBook();
 				items.add(item);
 			} // while
 		} catch (SQLException e) {
