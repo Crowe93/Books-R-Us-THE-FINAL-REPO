@@ -78,18 +78,16 @@
         					<h3> Create an Account<br> Buy Books.</h3>
         				</header>
         			</div>
-        			
-        			<form id="Servlet" class="text-left" name="contact-form" method="post" action="Servlet">	
-	        			
-	        			<!-- Right side -->
-	        			<div class="col-md-6 right-side">
-	        			        			</div>
         			<#if registerError??>
 					Registration error! Your username may already be taken or your email already exists in our database!
 					</#if>
 					<#if passwordMatchingError??>
 					 Error! Please make sure your passwords match!
 					</#if>
+        			<form id="Servlet" class="text-left" name="contact-form" method="post" action="Servlet">	
+	        			<!-- Right side -->
+	        			<div class="col-md-6 right-side">
+	        		
 	        				<span class = "input input--hoshi">
 	        					<input class="input__field input__field--hoshi" type="text" name="fname" id="fname">
 	        					<label class="input__label input__label--hoshi input__label--hoshi-color-3" for="fname">

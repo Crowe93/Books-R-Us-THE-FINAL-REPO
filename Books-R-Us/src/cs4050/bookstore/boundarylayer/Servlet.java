@@ -287,36 +287,22 @@ public class Servlet extends HttpServlet {
 				int stock = book.getStock();
 				System.out.println("Stock: " + stock);
 				
-				if(stock != 0){ //enter here if item is in stock
+				if(stock != 0) { //enter here if item is in stock
 					System.out.println("Creating cart for user");
 					CartLogicImpl c = new CartLogicImpl();
-					int cartId = c.createCart(userId); //create a cart for the user
+					int cartId = c.createCart(userId); //create a cart for the user, return current cart id if it already exists
+
+					int x = c.addBookToCart(cartId, bookId);
 					
-					if(cartId == -1){ //enter here if customer does not have a cart
-						cartId = c.createCart(userId); //create a cart for the user
-						int x = c.addBookToCart(cartId, bookId);
+					if(x == 0){ //enter here if the book was successfully added to the cart
+						System.out.println("Book successfully added to the cart");
+						root.put("bookAddedToCart", "yes");
 						
-						if(x == 0){ //enter here if the book was successfully added to the cart
-							System.out.println("Book successfully added to the cart");
-							root.put("bookAddedToCart", "yes");
-							
-						} else{ //enter here if there was an error adding a book to the cart
-							root.put("bookAddError", "yes");
-						}	
-						
-					} else{ //enter here if the customer has a cart already
-						int x = c.addBookToCart(cartId, bookId);
-						
-						if(x == 0){ //enter here if the book was successfully added to the cart
-							System.out.println("Book successfully added to the cart");
-							root.put("bookAddedToCart", "yes");
-							
-						} else{ //enter here if there was an error adding a book to the cart
-							root.put("bookAddError", "yes");
-						}
+					} else{ //enter here if there was an error adding a book to the cart
+						root.put("bookAddError", "yes");
 					}
-					
-				} else{ //enter here if the item is not in stock
+				}
+				else{ //enter here if the item is not in stock
 					root.put("itemNotInStock", "yes");
 				}
 				
