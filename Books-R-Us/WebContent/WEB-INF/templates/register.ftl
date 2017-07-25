@@ -15,6 +15,7 @@
     <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     
 </head>
 <body>
@@ -74,17 +75,23 @@
         			<div class="col-md-6 left-side">
         				<header style="background-color: inherit;"">
         					<span> Need an Account?</span>
-        					<h3> Create an Account<br> Buy Books</h3>
+        					<h3> Create an Account<br> Buy Books.</h3>
         				</header>
         			</div>
+        			<div>
         			<#if registerError??>
-					Registration error! Your username may already be taken!
+					Registration error! Your username may already be taken or your email already exists in our database!
 					</#if>
-					
-        			<form id="Servlet" class="" name="contact-form" method="post" action="Servlet">	
+					<#if passwordMatchingError??>
+					 Error! Please make sure your passwords match!
+					</#if>
+					</div>
+        			<form id="Servlet" class="text-left" name="contact-form" method="post" action="Servlet">	
+	        			
 	        			<!-- Right side -->
 	        			<div class="col-md-6 right-side">
-	        			
+	        			        			</div>
+
 	        				<span class = "input input--hoshi">
 	        					<input class="input__field input__field--hoshi" type="text" name="fname" id="fname">
 	        					<label class="input__label input__label--hoshi input__label--hoshi-color-3" for="fname">
@@ -118,10 +125,17 @@
 	        					<label class="input__label input__label--hoshi input__label--hoshi-color-3" for="password">
 	        						<span class="input__label-content input__label-content--hoshi"> Password</span>
 	        					</label>
-	        				</span>     				
+	        				</span>    
+	        				
+	        				<span class = "input input--hoshi">
+	        					<input class="input__field input__field--hoshi" type="password" name="password2" id="password2">
+	        					<label class="input__label input__label--hoshi input__label--hoshi-color-3" for="password2">
+	        						<span class="input__label-content input__label-content--hoshi"> Confirm Password</span>
+	        					</label>
+	        				</span>   				
 	        				
 	        				<div class="cta">
-	        					<button name="register" type="submit" class="btn btn-primary pull-left"> Sign-Up Now</button>
+	        					<button name="register" type="submit" class="btn btn-default pull-left"> Sign-Up Now</button>
 	        					<span>
 	        						<a href="login.html"> I am already a member</a>
 	        					</span>
@@ -146,11 +160,11 @@
 			<div class="footer-left">
 				<h3>Company<span>logo</span></h3>
 				<p class="footer-links">
-					<a href="home.html">Home</a>�
-					<a href="search.html">Search</a>�
-					<a href="popular.html">Popular</a>�
-					<a href="contact.html">Contact</a>�
-					<a href="aboutus.html">About Us</a>�
+					<a href="home.html">Home</a> �
+					<a href="search.html">Search</a> �
+					<a href="popular.html">Popular</a> �
+					<a href="contact.html">Contact</a> �
+					<a href="aboutus.html">About Us</a> �
 					<a href="profile.html">Account</a>
 				</p>
 				<p class="footer-company-name">Books-R-Us &copy; 2017</p>

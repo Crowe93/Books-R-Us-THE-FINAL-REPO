@@ -1,3 +1,23 @@
+html,body,h1,h2,h3,h4,h5,h6 {
+	font-family: 'Raleway', sans-serif !important;
+}
+
+form{
+	padding-top: 0px !important;
+}
+
+#search-filter{
+	width: 100px !important;
+}
+
+.input-group .form-control {
+    width: 500px !important;
+}
+
+.page-title{
+	padding-top: 20px !important;
+}
+
 .jumbotron{
      font-family: "Lucida Grande","Lucida Sans Unicode", Helvetica,Arial;
      margin-bottom: 0px !important; 
@@ -8,7 +28,7 @@
 }
 
 .search-bar{
-	padding-top: 20px;
+	
 	padding-bottom: 20px;
 }
 

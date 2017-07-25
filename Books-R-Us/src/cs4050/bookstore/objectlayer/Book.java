@@ -15,6 +15,7 @@ public class Book {
 	private int sold = 0;
 	private int hold = 0;
 	private String imgurl = null;
+	private int minimum = 5;
 	
 	public Book() {}
 	
@@ -31,17 +32,18 @@ public class Book {
 		imgurl = img;
 	}
 	
-	public Book(int i, String t, String a, String p, int y, int r, int s, double f, int h, String img){
+	public Book(int i, String t, String a, String p, String g, int y, double f, int r, int s, String img, int m){
 		ISBN = i;
 		title = t;
 		author = a;
 		publisher = p;
+		genre = g;
 		year = y;
+		price = f;
 		stock = r;
 		sold = s;
-		price = f;
-		hold = h;
 		imgurl = img;
+		minimum = m;
 	}
 	
 	public Book(int i, String t, String a, String p, int y, int r, double f, String img){
@@ -135,5 +137,11 @@ public class Book {
 	}
 	public String getGenre(){
 		return genre;
+	}
+	public void setMinimum(int m){
+		this.minimum = m;
+	}
+	public int getMinimum(){
+		return minimum;
 	}
 }//Book
