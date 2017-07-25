@@ -12,6 +12,20 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/jquery-3.2.1.min.js></script>
     <script src="js/loginAuth.js></script>
+    <script>
+        $(document).ready(function () {
+        	var userId = $("#userId").val();
+			document.cookie = "userId=" + userId + ";path=/";
+			
+			$(document).on("click", "#btn-logout", function () {
+				deleteCookie("userId");
+			});
+			
+			function deleteCookie(name) {
+				document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+			}
+        });    
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">

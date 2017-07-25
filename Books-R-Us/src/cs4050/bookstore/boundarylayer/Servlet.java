@@ -169,7 +169,8 @@ public class Servlet extends HttpServlet {
 			String login = request.getParameter("login"); 
 			String logout = request.getParameter("logout");
 			String addToCart = request.getParameter("addToCart");
-			String removeFromCart = request.getParameter("");
+			String viewCart = request.getParameter("viewCart");
+			String removeFromCart = request.getParameter("removeFromCart");
 			String editProfileInfo = request.getParameter("");
 			String deleteAccount = request.getParameter("");
 			String userEnteredPromo = request.getParameter("");
@@ -311,22 +312,26 @@ public class Servlet extends HttpServlet {
 			
 				
 			} else if (removeFromCart != null){
-				String userIdX = request.getParameter("userId");
-				int userId = 0;
-				String title = request.getParameter("title");
-				BookLogicImpl b = new BookLogicImpl();
-				int bookId = b.getBookId(title);
+				int userId = Integer.parseInt(request.getParameter("userId"));
+				int bookId = Integer.parseInt(request.getParameter("bookId"));
+				CartLogicImpl c = new CartLogicImpl();
 				
-				Book book = b.getBook(bookId);
+				int cartId = c.getCartId(userId);
 				
-				int stock = book.getStock();
+				c.removeBookFromCart(cartId, bookId);
+				return;
 				
-				try{
-					userId = Integer.parseInt(userIdX);
-				} catch (NumberFormatException e){
+			} else if (viewCart != null) {
+				int userId = Integer.parseInt(request.getParameter("userId"));
+				CartLogicImpl c = new CartLogicImpl();
+				List<Item> items = c.getItems(userId);
+				try {
+					sendJsonResponse(response, items);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				
-				
+				return;
 				
 			} else if (editProfileInfo != null){
 
@@ -371,7 +376,7 @@ public class Servlet extends HttpServlet {
 				int oldPasswordVerification = 0;
 				
 				try{
-					oldPasswordVerification = 0;//u.verifyOldPassword(userId, oldPassword);
+					u.verifyOldPassword(userId, oldPassword);
 					
 				} catch (NullPointerException e){
 				}

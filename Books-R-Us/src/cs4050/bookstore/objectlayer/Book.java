@@ -19,19 +19,6 @@ public class Book {
 	
 	public Book() {}
 	
-	public Book(int i, String t, String a, String p, String g, int y, double f, int r, int s, String img){
-		ISBN = i;
-		title = t;
-		author = a;
-		publisher = p;
-		genre = g;
-		year = y;
-		price = f;
-		stock = r;
-		sold = s;
-		imgurl = img;
-	}
-	
 	public Book(int i, String t, String a, String p, String g, int y, double f, int r, int s, String img, int m){
 		ISBN = i;
 		title = t;
@@ -44,6 +31,19 @@ public class Book {
 		sold = s;
 		imgurl = img;
 		minimum = m;
+	}
+	
+	public Book(int i, String t, String a, String p, String g, int y, double f, int r, int s, String img){
+		ISBN = i;
+		title = t;
+		author = a;
+		publisher = p;
+		genre = g;
+		year = y;
+		price = f;
+		stock = r;
+		sold = s;
+		imgurl = img;
 	}
 	
 	public Book(int i, String t, String a, String p, int y, int r, double f, String img){

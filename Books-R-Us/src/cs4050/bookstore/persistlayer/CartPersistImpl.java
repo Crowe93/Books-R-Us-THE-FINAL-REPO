@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cs4050.bookstore.objectlayer.Item;
+import cs4050.bookstore.objectlayer.PastOrder;
 
 public class CartPersistImpl {
 	
@@ -71,12 +72,29 @@ public class CartPersistImpl {
 		return r;
 	}
 	
-	public List<Item> getItems(int cartId){
-		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM item WHERE cart_id = "+  cartId +";");
+	public int removeBookFromCart(int cartId, int bookId) {
+		/*
+		 * REMOVE BOOK FROM CART
+		 * DELETE FROM item WHERE cart_id = cartId AND book_id = bookId
+		 */
+		String query = "DELETE FROM item WHERE cart_id=" + cartId + " AND book_id=" + bookId +";";
+		int rowsDeleted = DbAccessImpl.delete(query);
+		DbAccessImpl.disconnect();
+		
+		return rowsDeleted;
+	}
+	
+	public List<Item> getItems(int userId){
+		/*
+		 * RETREIVE CART FOR USER
+		 * SELECT * FROM (cart, item) WHERE cart.user_id = userId AND cart.id = item.cart_id;
+		 */
+		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM (cart, item) WHERE cart.user_id = " + userId + " AND cart.id = item.cart_id" + ";");
 		ArrayList<Item> items = new ArrayList<Item>();
 		try {
 			while (result.next()) {
 				Item item = new Item(result.getInt("cart_id"), result.getInt("book_id"), result.getInt("qty"));
+				item.loadBook();
 				items.add(item);
 			} // while
 		} catch (SQLException e) {
@@ -132,18 +150,22 @@ public class CartPersistImpl {
 			int bookId = temp.getBookId();
 			int qty = temp.getQty();
 			
+			PastOrder p = new PastOrder(orderNum, userId, bookId, qty);
+			
+			DbAccessImpl.create("INSERT INTO pastorder (orderNum, user_id, book_id, qty, date) "
+					+ "VALUES ('"+orderNum+"', "+userId+", "+bookId+", "+qty+", '"+p.getDate()+"')");
+			DbAccessImpl.disconnect();
+			
 			int stock = b.getStock(bookId);
 			stock = stock - temp.getQty();
 			b.updateStock(stock, bookId);
 			
-			DbAccessImpl.create("INSERT INTO pastorder (orderNum, user_id, book_id, qty) "
-					+ "VALUES ('"+orderNum+"', " + userId + ", " + bookId + ", " + qty + ")");
-			DbAccessImpl.disconnect();
-			
+			int sold = b.getSold(bookId);
+			sold = sold + temp.getQty();
+			b.updateSold(sold, bookId);
 		}
 		
 		//clear cart
-		
 		DbAccessImpl.delete("DELETE FROM cart WHERE user_id = "+userId+";");
 		
 	}

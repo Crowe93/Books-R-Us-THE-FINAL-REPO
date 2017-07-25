@@ -72,10 +72,10 @@ public class BookPersistImpl {
 	
 	public Book getBook(int bookId){
 		Book b = null;
-		ResultSet result = DbAccessImpl.retrieve("SELECT title, author, publisher, genre, year, price, stock FROM book WHERE id = "+  bookId +";");
+		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM book WHERE id = "+  bookId +";");
 		try {
 			while (result.next()) {
-				b = new Book(bookId, result.getString("title"), result.getString("author"), result.getString("publisher"), result.getString("genre"), result.getInt("year"), result.getDouble("price"));
+				b = new Book(result.getInt("id"), result.getString("title"), result.getString("author"), result.getString("publisher"), result.getString("genre"), result.getInt("year"), result.getDouble("price"), result.getInt("stock"), result.getInt("sold"), result.getString("imgURL"));
 				b.setStock(result.getInt("stock"));
 			} // while
 		} catch (SQLException e) {

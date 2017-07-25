@@ -7,29 +7,25 @@ import java.util.List;
 
 import cs4050.bookstore.objectlayer.BookSales;
 import cs4050.bookstore.objectlayer.DayReport;
+import cs4050.bookstore.objectlayer.InventoryReport;
+import cs4050.bookstore.objectlayer.Book;
 
 public class ReportPersistImpl {
 	//date format yyyy-mm-dd
 	
-	/**
-	 * Will return 0 on failure to insert 
-	 * 
-	 * @param date
-	 * @return number of rows altered
-	 */
 	public int createDayReport(String date){
-		int i = DbAccessImpl.create("INSERT INTO dayreport (cashIn, cashOut, cardIn, cardOut, validDate) VALUES (0, 0, 0, 0, '" + date + "')");
+		int i = DbAccessImpl.create("INSERT INTO dayreport (validDate, netTotal) VALUES ('" + date + "', 0)");
 		DbAccessImpl.disconnect();
 		return i;
 	}
-/*	
+	
 	public int createDayReport(DayReport r){
-		int i = DbAccessImpl.create("INSERT INTO dayreport (cashIn, cashOut, cardIn, cardOut, validDate) "
-				+ "VALUES ("+r.getCashInTotal()+", "+r.getCashOutTotal()+", "+r.getCardInTotal()+", "+r.getCardOutTotal()+", '" + r.getDate() + "')");
+		int i = DbAccessImpl.create("INSERT INTO dayreport (validDate, netTotal) "
+				+ "VALUES ('"+r.getDate()+"', "+r.getNetTotal()+")");
 		DbAccessImpl.disconnect();
 		return i;
 	}
-	*/
+	
 	public int createBookSales(int bookid, String date){
 		int i = DbAccessImpl.create("INSERT INTO booksales (book_id, validDate) VALUES (" +bookid+ ", '"+ date + "')");
 		DbAccessImpl.disconnect();
@@ -43,18 +39,15 @@ public class ReportPersistImpl {
 		return i;
 	}
 	
-	public int createPublisherSales(int publisherid, String date){
-		int i = DbAccessImpl.create("INSERT INTO publishersales (publisher_id, validDate) VALUES ("+publisherid+", '" + date + "')");
-		DbAccessImpl.disconnect();
-		return i;
-	}
-	
-/*	public DayReport getDayReport(String date){
+	public DayReport getDayReport(String date){
+		List<BookSales> sales = getBookSales(date);
+		
 		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM dayreport WHERE validDate = '"+  date +"';");
 		DayReport report = null;
 		try {
 			while (result.next()) {
-				report = new DayReport( result.getDouble(1), result.getDouble(2), result.getDouble(3), result.getDouble(4), result.getString(5));
+				report = new DayReport(date, result.getDouble("netTotal"), sales);
+				break;
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -67,7 +60,7 @@ public class ReportPersistImpl {
 		}
 		
 		return report;
-	}*/
+	}
 	
 	public List<BookSales> getBookSales(String date){
 		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM booksales WHERE validDate = '"+  date +"';");
@@ -114,11 +107,10 @@ public class ReportPersistImpl {
 		return report;
 	}
 
-	
-	public int updateDayCardIn(String date, double newAmount){
+	public int updateDayNetTotal(String date, double toAdd){
 		int i = 0;
 		double oldAmount = 0;
-		ResultSet result = DbAccessImpl.retrieve("SELECT cardIn FROM dayreport WHERE date = '"+  date +"';");
+		ResultSet result = DbAccessImpl.retrieve("SELECT netTotal FROM dayreport WHERE date = '"+  date +"';");
 		
 		try {
 			while (result.next()) {
@@ -129,72 +121,9 @@ public class ReportPersistImpl {
 		}  // try-catch
 		DbAccessImpl.disconnect();
 		
-		newAmount = newAmount + oldAmount;
+		double newAmount = toAdd + oldAmount;
 		
-		i = DbAccessImpl.update("UPDATE dayreport SET cardIn = " + newAmount + " WHERE validDate = '" + date + "';");
-		DbAccessImpl.disconnect();
-		return i;
-	}
-	
-	public int updateDayCardOut(String date, double newAmount){
-		int i = 0;
-		double oldAmount = 0;
-		ResultSet result = DbAccessImpl.retrieve("SELECT cardOut FROM dayreport WHERE date = '"+  date +"';");
-		
-		try {
-			while (result.next()) {
-				oldAmount = result.getDouble(1);
-			} // while
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}  // try-catch
-		DbAccessImpl.disconnect();
-		
-		newAmount = newAmount + oldAmount;
-		
-		i = DbAccessImpl.update("UPDATE dayreport SET cardOut = " + newAmount + " WHERE validDate = '" + date + "';");
-		DbAccessImpl.disconnect();
-		return i;
-	}
-	
-	public int updateDayCashIn(String date, double newAmount){
-		int i = 0;
-		double oldAmount = 0;
-		ResultSet result = DbAccessImpl.retrieve("SELECT cashIn FROM dayreport WHERE date = '"+  date +"';");
-		
-		try {
-			while (result.next()) {
-				oldAmount = result.getDouble(1);
-			} // while
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}  // try-catch
-		DbAccessImpl.disconnect();
-		
-		newAmount = newAmount + oldAmount;
-		
-		i = DbAccessImpl.update("UPDATE dayreport SET cashIn = " + newAmount + " WHERE validDate = '" + date + "';");
-		DbAccessImpl.disconnect();
-		return i;
-	}
-	
-	public int updateDayCashOut(String date, double newAmount){
-		int i = 0;
-		double oldAmount = 0;
-		ResultSet result = DbAccessImpl.retrieve("SELECT cashOut FROM dayreport WHERE date = '"+  date +"';");
-		
-		try {
-			while (result.next()) {
-				oldAmount = result.getDouble(1);
-			} // while
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}  // try-catch
-		DbAccessImpl.disconnect();
-		
-		newAmount = newAmount + oldAmount;
-		
-		i = DbAccessImpl.update("UPDATE dayreport SET cashOut = " + newAmount + " WHERE validDate = '" + date + "';");
+		i = DbAccessImpl.update("UPDATE dayreport SET netTotal = " + newAmount + " WHERE validDate = '" + date + "';");
 		DbAccessImpl.disconnect();
 		return i;
 	}
@@ -218,14 +147,21 @@ public class ReportPersistImpl {
 		return i;
 	}
 	
-	public int updatePublisherSales(int publisherId, int numSold, double netTotal, String date){
-		int i = 0;
+	public InventoryReport getInvReport(String date){
+		InventoryReport ir;
+		List<Book> books = new ArrayList<Book>();
+		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM book WHERE stock <= 5;");
 		
-		i = DbAccessImpl.update("UPDATE publishersales SET numSold = " + numSold + ", netTotal = "+netTotal+" WHERE validDate = '" + date + "' "
-				+ "AND publisher_id = "+publisherId+";");
+		try {
+			while (result.next()) {
+				Book b = new Book(result.getInt("id"), result.getString("title"), result.getString("author"), result.getString("publisher"), result.getString("genre"), result.getInt("year"), result.getDouble("price"), result.getInt("stock"), result.getInt("sold"), result.getString("imgURL"), result.getInt("minimum"));
+				books.add(b);
+			} // while
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  // try-catch
 		DbAccessImpl.disconnect();
-		
-		return i;
+		return ir = new InventoryReport(books);
 	}
 	
 }

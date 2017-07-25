@@ -12,9 +12,18 @@ public class DayReport {
 	private String time = null;
 	private List<BookSales> booksales;
 
-	public DayReport(double net, Date date, List<BookSales> b) {
+	public DayReport(Date date, double net, List<BookSales> b) {
 		this.netTotal = net;
 		this.date = date.toString();
+		Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        time = (sdf.format(cal.getTime())).toString();
+        booksales = b;
+	}
+	
+	public DayReport(String date, double net, List<BookSales> b) {
+		this.netTotal = net;
+		this.date = date;
 		Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         time = (sdf.format(cal.getTime())).toString();

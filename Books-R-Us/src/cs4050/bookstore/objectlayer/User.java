@@ -38,7 +38,8 @@ public class User {
 		lname = l;
 	}
 	
-	public User(String f, String l, String u, String p, String e, int t){
+	public User(String f, String l, String e, String u, String p, int t){
+		
 		email = e;
 		username = u;
 		password = p; 
