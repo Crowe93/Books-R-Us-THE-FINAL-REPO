@@ -160,6 +160,9 @@ public class CartPersistImpl {
 			stock = stock - temp.getQty();
 			b.updateStock(stock, bookId);
 			
+			int sold = b.getSold(bookId);
+			sold = sold + temp.getQty();
+			b.updateSold(sold, bookId);
 		}
 		
 		//clear cart
