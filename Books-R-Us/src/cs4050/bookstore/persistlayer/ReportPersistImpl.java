@@ -22,14 +22,14 @@ public class ReportPersistImpl {
 		DbAccessImpl.disconnect();
 		return i;
 	}
-/*	
+	
 	public int createDayReport(DayReport r){
-		int i = DbAccessImpl.create("INSERT INTO dayreport (cashIn, cashOut, cardIn, cardOut, validDate) "
-				+ "VALUES ("+r.getCashInTotal()+", "+r.getCashOutTotal()+", "+r.getCardInTotal()+", "+r.getCardOutTotal()+", '" + r.getDate() + "')");
+		int i = DbAccessImpl.create("INSERT INTO dayreport (validDate, netTotal) "
+				+ "VALUES ('"+r.getDate()+"', "+r.getNetTotal()+")");
 		DbAccessImpl.disconnect();
 		return i;
 	}
-	*/
+	
 	public int createBookSales(int bookid, String date){
 		int i = DbAccessImpl.create("INSERT INTO booksales (book_id, validDate) VALUES (" +bookid+ ", '"+ date + "')");
 		DbAccessImpl.disconnect();

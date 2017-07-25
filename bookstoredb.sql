@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `bookstoredb` /*!40100 DEFAULT CHARACTER SET utf8
 USE `bookstoredb`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: bookstoredb
+-- Host: localhost    Database: bookstoredb
 -- ------------------------------------------------------
 -- Server version	5.7.18-log
 
@@ -37,7 +37,7 @@ CREATE TABLE `book` (
   `imgURL` varchar(100) DEFAULT NULL,
   `minimum` int(11) DEFAULT '2',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `book` (
 
 LOCK TABLES `book` WRITE;
 /*!40000 ALTER TABLE `book` DISABLE KEYS */;
-INSERT INTO `book` VALUES (1,'test','test','test','test',1999,10,5,0,'https://cdn.vox-cdn.com/uploads/chorus_asset/file/8552631/leather_book_preview.png',3);
+INSERT INTO `book` VALUES (1,'test','test','test','test',1999,10,5,0,'https://cdn.vox-cdn.com/uploads/chorus_asset/file/8552631/leather_book_preview.png',3),(2,'The Kite Runner','Khaled Hosseini','Riverhead Books','Drama',2003,15,5,0,'https://upload.wikimedia.org/wikipedia/en/6/62/Kite_runner.jpg',3),(3,'Hitchhiker\'s Guide To The Galaxy','Douglas Adams','Pan Books','Science Fiction',1979,15,5,0,'https://images-na.ssl-images-amazon.com/images/I/A1HGWCA36hL.jpg',3),(4,'Lord of the Rings: The Fellowship of the Ring','J. R. R. Tolkien','Allen & Unwin','Fantasy',1954,15,5,0,'https://images-na.ssl-images-amazon.com/images/I/41kUPvqlguL.jpg',3),(6,'Lord of the Rings: The Two Towers','J. R. R. Tolkien','Allen & Unwin','Fantasy',1954,15,5,0,'https://images-na.ssl-images-amazon.com/images/I/41cnYEiew3L._SX304_BO1,204,203,200_.jpg',3),(7,'Lord of the Rings: The Return of the King','J. R. R. Tolkien','Allen & Unwin','Fantasy',1955,15,5,0,'https://i.stack.imgur.com/071TF.jpg',3),(8,'A Tale of Two Cities','Charles Dickens','Signet Classics','History',1859,12,5,0,'http://images.gr-assets.com/books/1410762334l/135625.jpg',2),(9,'The Adventures of Sherlock Holmes','Arthur Conan Doyle','George Newnes','Mystery',1892,12,5,0,'http://t2.gstatic.com/images?q=tbn:ANd9GcStWjErePCa5zwizPuciyRBDXWQY8fHKcyvrzegbxAdcA8ZN5ms',2),(10,'The Hunt for Red October','Tom Clancy','Naval Institute Press','Action',1984,12,5,0,'http://t2.gstatic.com/images?q=tbn:ANd9GcR0r7EouCdLxXfyIUU1QCGGKrGrh7v35ACAqXLz0hoTjaEtQ5gI',2),(11,'The Handmaid\'s Tale','Margaret Atwood','McClelland and Stewart','Science Fiction',1985,15,5,0,'https://images-na.ssl-images-amazon.com/images/I/41aPpkv7ZjL._SY346_.jpg',2),(12,'A Dirty Job','Christopher Moore','Harper Collins','Comedy',2006,12,5,0,'http://ecx.images-amazon.com/images/I/51Afkc1pDEL._SX329_BO1,204,203,200_.jpg',2);
 /*!40000 ALTER TABLE `book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +87,7 @@ CREATE TABLE `cart` (
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_user_id_uses_user.id_idx` (`user_id`),
-  CONSTRAINT `FK_user_id_uses_user.id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_user_id_uses_user.id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -97,7 +97,6 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (10,2),(11,3);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,61 +171,6 @@ LOCK TABLES `item` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `order`
---
-
-DROP TABLE IF EXISTS `order`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `order` (
-  `id` int(11) NOT NULL COMMENT 'id intended to not auto increment, user_id and id are composite key',
-  `user_id` int(11) NOT NULL,
-  `book_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  KEY `book_id` (`book_id`),
-  CONSTRAINT `order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT `order_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `order`
---
-
-LOCK TABLES `order` WRITE;
-/*!40000 ALTER TABLE `order` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `orderhistory`
---
-
-DROP TABLE IF EXISTS `orderhistory`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `orderhistory` (
-  `user_id` int(11) NOT NULL,
-  `order_id` int(11) DEFAULT NULL,
-  `orderDate` date DEFAULT NULL,
-  PRIMARY KEY (`user_id`),
-  KEY `order_id_idx` (`order_id`),
-  CONSTRAINT `order_id` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `orderhistory`
---
-
-LOCK TABLES `orderhistory` WRITE;
-/*!40000 ALTER TABLE `orderhistory` DISABLE KEYS */;
-/*!40000 ALTER TABLE `orderhistory` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `pastorder`
 --
 
@@ -237,7 +181,8 @@ CREATE TABLE `pastorder` (
   `orderNum` varchar(100) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `book_id` int(11) DEFAULT NULL,
-  `qty` int(11) DEFAULT NULL
+  `qty` int(11) DEFAULT NULL,
+  `date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -369,10 +314,11 @@ CREATE TABLE `user` (
   `password` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `type` int(11) DEFAULT NULL,
-  `shipAddr` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -381,9 +327,17 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Chris','Rowe','test@email.com','crowe','noob',2,NULL),(2,'test','test','test','test','test',2,NULL),(3,'a','j','j','j','j',2,'j');
+INSERT INTO `user` VALUES (1,'Chris','Rowe','ccr','pass','ccr@uga.edu',0),(4,'Michael','Tostenson','mat','pass','mat@uga.edu',0),(8,'Justin','Chiu','jmc','pass','jmc@uga.edu',0),(9,'Eric','Holbrook','ebh','pass','ebh@uga.edu',0),(10,'Chanice','Campbell','cmc','pass','cmc@uga.edu',0),(11,'BookStore','Owner','admin','admin','admin@bookstore.com',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'bookstoredb'
+--
+
+--
+-- Dumping routines for database 'bookstoredb'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -394,4 +348,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-24 19:57:02
+-- Dump completed on 2017-07-25 17:25:17
