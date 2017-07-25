@@ -13,8 +13,8 @@ import javax.servlet.http.Part;
 
 import cs4050.bookstore.objectlayer.BookSales;
 import cs4050.bookstore.objectlayer.DayReport;
+import cs4050.bookstore.objectlayer.InventoryReport;
 import cs4050.bookstore.persistlayer.ReportPersistImpl;
-import cs4050.bookstore.persistlayer.DbAccessImpl;
 
 public class ReportLogicImpl {
 	private ReportPersistImpl reportPersist = new ReportPersistImpl();
@@ -23,9 +23,9 @@ public class ReportLogicImpl {
 		return reportPersist.createDayReport(date);
 	}
 	
-/*	public int createDayReport(DayReport r){
+	public int createDayReport(DayReport r){
 		return reportPersist.createDayReport(r);
-	}*/
+	}
 
 	public int createBookSales(int bookid, String date){
 		return reportPersist.createBookSales(bookid, date);
@@ -35,14 +35,9 @@ public class ReportLogicImpl {
 		return reportPersist.createBookSales(r);
 	}
 	
-	public int createPublisherSales(int publisherid, String date){
-		return reportPersist.createPublisherSales(publisherid, date);
-	}
-	
-/*	public DayReport getDayReport(String date){
+	public DayReport getDayReport(String date){
 		return reportPersist.getDayReport(date);
 	}
-	*/
 	
 	//returns all book sales for a given date
 	public List<BookSales> getBookSales(String date){
@@ -59,64 +54,48 @@ public class ReportLogicImpl {
 		return reportPersist.getBookSales(bookId, date);
 	}
 	
-	/**
-	 * 
-	 * Field refers to what column you want to update 0=cardIn, 1=cardOut, 2=cashIn, 3=cardOut
-	 * Amount is the value you want to add to current field, can be positive or negative
-	 * 
-	 * @param date
-	 * @param field
-	 * @param amount
-	 * @return
-	 */
-/*	public int updateDayReport(String date, int field, double amount){
+	
+	public int updateDayReport(String date, double toAdd){
 		int i = 0;
 		if(reportPersist.getDayReport(date) == null){
 			reportPersist.createDayReport(date);
-		}
-		
-		if(field == 0){
-			i = reportPersist.updateDayCardIn(date, amount);
-		}
-		else if(field == 1){
-			i = reportPersist.updateDayCardOut(date, amount);
-		}
-		else if(field == 2){
-			i = reportPersist.updateDayCashIn(date, amount);
-		}
-		else if(field == 3){
-			i = reportPersist.updateDayCashOut(date, amount);
+			i = reportPersist.updateDayNetTotal(date, toAdd);
 		}
 		else{
-			System.out.println(field + " is not a valid field");
+			i = reportPersist.updateDayNetTotal(date, toAdd);
 		}
-		
 		return i;
-	}*/
+	}
 	
-/*	public int updateDayReport(DayReport r){
+	//takes a DayReport object that holds the date to be modified and the amount to ADD to the database
+	public int updateDayReport(DayReport r){
 		int i = 0;
 		if(reportPersist.getDayReport(r.getDate()) == null){
-			i = reportPersist.createDayReport(r);
+			reportPersist.createDayReport(r);
+			i = reportPersist.updateDayNetTotal(r.getDate(), r.getNetTotal());
 		}
 		else{
-			
+			i = reportPersist.updateDayNetTotal(r.getDate(), r.getNetTotal());
 		}
-		
 		return i;
-	}*/
+	}
 	
 	public int updateBookSales(String date, int bookId, int numSold){
 		int i = 0;
 		
 		if(reportPersist.getBookSales(bookId, date) == null){
 			reportPersist.createBookSales(bookId, date);
+			i = reportPersist.updateBookSales(bookId, numSold, date);
+		}
+		else{
+			i = reportPersist.updateBookSales(bookId, numSold, date);
 		}
 		
-		
-		
-		
 		return i;
+	}
+	
+	public InventoryReport getInvReport(String date){
+		return reportPersist.getInvReport(date);
 	}
 	
 	

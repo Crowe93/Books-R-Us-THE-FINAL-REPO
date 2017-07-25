@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cs4050.bookstore.objectlayer.Item;
+import cs4050.bookstore.objectlayer.PastOrder;
 
 public class CartPersistImpl {
 	
@@ -149,18 +150,22 @@ public class CartPersistImpl {
 			int bookId = temp.getBookId();
 			int qty = temp.getQty();
 			
+			PastOrder p = new PastOrder(orderNum, userId, bookId, qty);
+			
+			DbAccessImpl.create("INSERT INTO pastorder (orderNum, user_id, book_id, qty, date) "
+					+ "VALUES ('"+orderNum+"', "+userId+", "+bookId+", "+qty+", '"+p.getDate()+"')");
+			DbAccessImpl.disconnect();
+			
 			int stock = b.getStock(bookId);
 			stock = stock - temp.getQty();
 			b.updateStock(stock, bookId);
 			
-			DbAccessImpl.create("INSERT INTO pastorder (orderNum, user_id, book_id, qty) "
-					+ "VALUES ('"+orderNum+"', " + userId + ", " + bookId + ", " + qty + ")");
-			DbAccessImpl.disconnect();
-			
+			int sold = b.getSold(bookId);
+			sold = sold + temp.getQty();
+			b.updateSold(sold, bookId);
 		}
 		
 		//clear cart
-		
 		DbAccessImpl.delete("DELETE FROM cart WHERE user_id = "+userId+";");
 		
 	}
