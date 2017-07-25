@@ -10,42 +10,57 @@ public class CartPersistImpl {
 	
 	//returns cart id
 	public int createCart(int userId){
-		int i = 0;
-		i = DbAccessImpl.create("INSERT INTO cart (user_id) VALUES ("+ userId +")");
-		DbAccessImpl.disconnect();
-		System.out.println("Creating new cart for user");
+		
+		int cartId = 0;
+		
+		/*
+		 * CHECK IF CART EXISTS
+		 * SELECT * FROM cart WHERE user_id = userId
+		 */
+		String cartExistsQuery = "SELECT * FROM cart WHERE user_id=" + userId+ ";";
+		ResultSet existsResult = DbAccessImpl.retrieve(cartExistsQuery);
+		
+		try {
+			//check to see if they exist
+			if (existsResult.next()) {
+				return existsResult.getInt("id");
+			}
+			//they don't exist in the database, create them now
+			else {
+				DbAccessImpl.create("INSERT INTO cart (user_id) VALUES ("+ userId +")");
+				System.out.println("Creating new cart for user");
+				DbAccessImpl.disconnect();
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+
+
 		ResultSet result = DbAccessImpl.retrieve("SELECT id FROM cart WHERE user_id = "+  userId +";");
 		try {
 			while (result.next()) {
-				i = result.getInt("id");
+				cartId = result.getInt("id");
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}  // try-catch
 		DbAccessImpl.disconnect();
-		return i;
+		return cartId;
 		
 		
 	}//create cart for user
 	
 	public int addBookToCart(int cartId, int bookId){
 		int i = -1;
-		ResultSet result = DbAccessImpl.retrieve("SELECT qty FROM item WHERE cart_id = "+  cartId +" AND book_id =" + bookId +";");
 		
-		try {
-			while (result.next()) {
-				i = result.getInt("qty");
-			} // while
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}  // try-catch
-		DbAccessImpl.disconnect();
+		/*
+		 * ADD BOOK TO CART
+		 * INSERT INTO ITEM (cart_id, book_id, qty) VALUES (cartId, bookId, 1)
+		 */
 		
-		
-		i++;
-		
-		
-		String query= "INSERT INTO item (qty) VALUES ("+i+") WHERE cart_id = "+cartId+";";
+		String query= "INSERT INTO item (cart_id, book_id, qty) VALUES (" + cartId + ", " + bookId + ", 1);";
 		
 		int r = DbAccessImpl.create(query);
 		DbAccessImpl.disconnect();
