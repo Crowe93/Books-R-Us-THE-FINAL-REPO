@@ -376,7 +376,7 @@ public class Servlet extends HttpServlet {
 				int oldPasswordVerification = 0;
 				
 				try{
-					oldPasswordVerification = 0;//u.verifyOldPassword(userId, oldPassword);
+					u.verifyOldPassword(userId, oldPassword);
 					
 				} catch (NullPointerException e){
 				}

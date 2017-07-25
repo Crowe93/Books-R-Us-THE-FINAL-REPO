@@ -3,13 +3,10 @@
  */
 $(document).ready(function (){
 	initPage();
-	var userId = getCookie("userId");
-	loadProfile(userId);
 	
-	if (!userId)
-		{
-			$(location).attr('href','../login.html');
-		}
+	var userId = getCookie("userId");
+	
+	loadProfile(userId);
 	
 	function getCookie(name) {
 		  var value = "; " + document.cookie;

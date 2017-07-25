@@ -8,12 +8,21 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="../js/jquery-3.2.1.min.js"></script>
-        <script src="../js/loginAuth.js"></script>
+        <script src="../../js/jquery-3.2.1.min.js"></script>
+        <script src="../../js/loginRedirect.js"></script>
+        <script src="../../js/loginAuth.js"></script>
         <script>
         $(document).ready(function () {
         	var userId = $("#userId").val();
 			document.cookie = "userId=" + userId + ";path=/";
+			
+			$(document).on("click", "#btn-logout", function () {
+				deleteCookie("userId");
+			});
+			
+			function deleteCookie(name) {
+				document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+			}
         });
         </script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -63,7 +72,7 @@
 								<ul class="nav navbar-nav">
 									<li><a href="profile.html"><i class="fa fa-user"></i> Account</a></li>
 									<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-									<li><a href="Servlet?logout"><i class="fa fa-lock"></i> Logout</a></li>
+									<li><a href="home.html" id="btn-logout"><i class="fa fa-lock"></i> Logout</a></li>
 								</ul>
 							</div>
 						</div>
