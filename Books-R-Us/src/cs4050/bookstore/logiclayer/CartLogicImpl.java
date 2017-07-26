@@ -44,4 +44,8 @@ public class CartLogicImpl {
 		return cartPersist.updateQty(userId, bookId, newQty);
 	}
 	
+	public String confirmOrder(int userId) {
+		return cartPersist.completePurchase(userId);
+	}
+	
 }

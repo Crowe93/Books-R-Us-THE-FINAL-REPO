@@ -416,7 +416,11 @@ public class Servlet extends HttpServlet {
 				u.deleteUser(u.getUserId(currentUser));
 				return;
 			} else if (confirmOrder != null){
-
+				int userId = Integer.parseInt(request.getParameter("userId"));
+				CartLogicImpl c = new CartLogicImpl();
+				String orderNum = c.confirmOrder(userId);
+				sendJsonStatus(response, 1, "Order number: " + orderNum);
+				return;
 			}
 				
 				
@@ -482,7 +486,7 @@ public class Servlet extends HttpServlet {
 			public int status;
 			public String msg;
 			
-			ResultStatus(int id, String msg)
+			ResultStatus(int status, String msg)
 			{
 				this.status = status;
 				this.msg = msg;

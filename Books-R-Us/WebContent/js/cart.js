@@ -22,6 +22,36 @@ $(document).ready(function () {
 		removeFromCart(userId, bookId);
 	});
 	
+	
+	$("#btn-checkout").click(function () {
+			//save qty changes to cart
+			//alert("click");
+			saveCart(userId);
+		});
+		
+		function saveCart(userId) {
+		//iterate over ever product in cart
+			$.ajaxSetup({async: false});
+			$(".book-data").each(function (index) {
+				var bookId = $(this).find(".book-id").val();
+				var qty = $(this).find(".qty-select").val();
+				
+				var requestURL = "Servlet?updateCart&userId=" + userId + "&bookId=" + bookId + "&qty=" + qty;
+				//alert(requestURL);
+				
+			$.get(requestURL, function (status, result) {
+					
+				});
+			})
+			$.ajaxSetup({async: true});
+			changePage();
+			
+		}
+		
+	function changePage() {
+		$(location).attr("href", "checkout.html");
+	}
+	
 	function loadCart(userId) {
 		var requestURL = "Servlet?viewCart&userId=" + userId;
 		$.get(requestURL, function (result, response) {
@@ -57,7 +87,8 @@ $(document).ready(function () {
 	}
 	
 	function getItemHTML(id, title, author, price, img, qty) {
-		var html = '<tr>' +
+		var html = '<tr class="book-data">' +
+						'<input type="hidden" class="book-id" value="' + id + '">' +
 			'<td data-th="Product">' +
 				'<div class="row">' +
 					'<div class="col-sm-4 hidden-xs"><img style="width:100px; height: auto;" src="' + img + '" class="img-responsive"/></div>' +

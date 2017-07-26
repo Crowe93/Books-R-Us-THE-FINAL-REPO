@@ -7,6 +7,23 @@ $(document).ready(function () {
 	
 	loadProfileInfo(userId);
 	
+	$("#btn-confirm").click(function () {
+		confirmOrder(userId);
+	});
+	
+	function confirmOrder(userId) {
+		
+		var requestURL = "Servlet?confirmOrder&userId=" + userId;
+		$.get(requestURL, function (result, status) {
+			//console.log(result);
+			if (result.status == 1) {
+				alert(result.msg);
+			}
+			else
+				alert("Error: " + result.msg);
+		});
+		
+}
 	
 	function loadCart(userId) {
 		var requestURL = "Servlet?viewCart&userId=" + userId;

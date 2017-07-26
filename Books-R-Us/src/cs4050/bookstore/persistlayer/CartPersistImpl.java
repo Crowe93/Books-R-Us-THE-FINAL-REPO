@@ -169,10 +169,10 @@ public class CartPersistImpl {
 		List<Item> items = getItems(cartId);
 		int size = items.size();
 		String orderNum = Integer.toString(userId);
-		orderNum.concat(Integer.toString(cartId));
+		orderNum = orderNum.concat(Integer.toString(cartId));
 		int x = 0;
 		
-		for(int i = 0; i<=size; i++){
+		for(int i = 0; i < size; i++){
 			Item temp = items.get(i);
 			int bookId = temp.getBookId();
 			int qty = temp.getQty();
