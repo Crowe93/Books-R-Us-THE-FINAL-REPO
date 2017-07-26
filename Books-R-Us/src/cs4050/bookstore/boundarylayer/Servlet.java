@@ -158,6 +158,7 @@ public class Servlet extends HttpServlet {
 			String addToCart = request.getParameter("addToCart");
 			String viewCart = request.getParameter("viewCart");
 			String removeFromCart = request.getParameter("removeFromCart");
+			String updateCart = request.getParameter("updateCart");
 			String editProfile = request.getParameter("editProfile");
 			String deleteAccount = request.getParameter("deleteAccount");
 			String checkout = request.getParameter("checkout");
@@ -333,6 +334,16 @@ public class Servlet extends HttpServlet {
 					e.printStackTrace();
 				}
 				return;
+			} else if (updateCart != null) {
+				
+				int userId = Integer.parseInt(request.getParameter("userId"));
+				int bookId = Integer.parseInt(request.getParameter("bookId"));
+				int newQty = Integer.parseInt(request.getParameter("qty"));
+				
+				CartLogicImpl c = new CartLogicImpl();
+				int result = c.updateQty(userId, bookId, newQty);
+				
+				return;
 				
 			} else if (checkout != null) {
 				int userId = Integer.parseInt(request.getParameter("userId"));
@@ -376,13 +387,11 @@ public class Servlet extends HttpServlet {
 				//p.insertPayment(userId, cardNumber, expirationDate, cardCVV,fullName, fullAddress);
 				return;
 				
-			} else if (deleteAccount != null){
+			} else if (deleteAccount != null) {
 				templateName = "home.ftl";
 				UserLogicImpl u = new UserLogicImpl();
 				u.deleteUser(u.getUserId(currentUser));
-				
-			} else if (userEnteredPromo != null){
-				
+				return;
 			} else if (confirmOrder != null){
 
 			}

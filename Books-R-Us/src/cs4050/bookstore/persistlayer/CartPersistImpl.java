@@ -110,6 +110,23 @@ public class CartPersistImpl {
 		return items;
 	}
 	
+	public int updateQty(int userId, int bookId, int newQty) {
+		/*
+		 * UPDATE item SET qty = newQty WHERE book_id = bookId AND cart_id = cartId
+		 */
+		System.out.println("UPDATING CART INFO------");
+		
+		
+		int cartId = getCartId(userId);
+		
+		String query = "UPDATE item SET qty = " + newQty + " WHERE book_id = " + bookId + " AND cart_id = " + cartId + ";";
+		System.out.println(query);
+		
+		int rowsUpdated = DbAccessImpl.update(query);
+		
+		return rowsUpdated;
+	}
+	
 	public int getCartId(int userId){
 		ResultSet result = DbAccessImpl.retrieve("SELECT id FROM cart WHERE user_id = "+  userId +";");
 		int i = -1;
