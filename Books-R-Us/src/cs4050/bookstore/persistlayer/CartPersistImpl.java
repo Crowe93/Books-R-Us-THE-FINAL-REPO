@@ -163,13 +163,13 @@ public class CartPersistImpl {
 		BookPersistImpl b = new BookPersistImpl();
 		ReportPersistImpl r = new ReportPersistImpl();
 		int cartId = getCartId(userId);
-		List<Item> items = getItems(cartId);
+		List<Item> items = getItems(userId);
 		int size = items.size();
 		String orderNum = Integer.toString(userId);
-		orderNum.concat(Integer.toString(cartId));
+		orderNum = orderNum.concat(Integer.toString(cartId));
 		int x = 0;
 		
-		for(int i = 0; i<=size; i++){
+		for(int i = 0; i < size; i++){
 			Item temp = items.get(i);
 			int bookId = temp.getBookId();
 			int qty = temp.getQty();
