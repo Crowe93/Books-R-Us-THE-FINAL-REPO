@@ -369,13 +369,20 @@ public class Servlet extends HttpServlet {
 				UserLogicImpl u = new UserLogicImpl();
 				PayLogicImpl p = new PayLogicImpl();
 				ShipLogicImpl s = new ShipLogicImpl();
+				
+				int r = u.verifyOldPassword(userId, oldPassword);
+				if(r == 0){ //enter here if the old password does not match their current password in the database
+					sendJsonStatus(response, 0, "Error! Old password does not match the one in our database.");
+				}else{ //enter here if the old password matches with the current password in the database
+					User user = new User(userId, fname, lname, username, null, email);
+					u.updateUser(user);
+					Shipping sX = new Shipping(userId, street, city, state, zip);
+					s.insertShipping(sX);
+					p.insertPayment(userId, cardNumber, expirationDate, cardCVV, cardType, fullAddress);
+					return;
+				}
 
-				User user = new User(userId, fname, lname, username, null, email);
-				u.updateUser(user);
-				Shipping sX = new Shipping(userId, street, city, state, zip);
-				s.insertShipping(sX);
-				p.insertPayment(userId, cardNumber, expirationDate, cardCVV, cardType, fullAddress);
-				return;
+
 				
 			} else if (deleteAccount != null){
 				templateName = "home.ftl";
