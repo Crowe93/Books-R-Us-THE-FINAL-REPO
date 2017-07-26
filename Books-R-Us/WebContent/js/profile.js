@@ -5,7 +5,6 @@ $(document).ready(function (){
 	initPage();
 	
 	var userId = getCookie("userId");
-	
 	loadProfile(userId);
 	
 	function getCookie(name) {
@@ -19,10 +18,13 @@ $(document).ready(function (){
 		var requestURL = "Servlet?userInfo&userId=" + userId;
 		$.get(requestURL, function (result, status) {
 			if (status) {
+				console.log(result);
 				//populate profile page with result data
 				$("#fname-welcome").text(result.fname);
+				$("#fname-side").text(result.fname);
 				$("#fname").text(result.fname);
 				$("#lname").text(result.lname);
+				$("#lname-side").text(result.lname);
 				$("#username").text(result.username);
 				$("#email").text(result.email);
 			}
