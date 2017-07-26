@@ -44,7 +44,6 @@ public class User {
 	}
 	
 	public User(String f, String l, String e, String u, String p, int t){
-		
 		email = e;
 		username = u;
 		password = p; 
