@@ -295,38 +295,17 @@ public class Servlet extends HttpServlet {
 					
 					if(x == 0){ //enter here if the book was successfully added to the cart
 						System.out.println("Book successfully added to the cart");
-						result.status = 1;
-						result.msg = "Added to Cart";
-						try {
-							sendJsonResponse(response, result);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+						sendJsonStatus(response, 1, "Added to cart");
 						
 					} else{ //enter here if there was an error adding a book to the cart
 						//root.put("bookAddError", "yes");
 
-						result.status = 1;
-						result.msg = "Added to Cart";
-						try {
-							sendJsonResponse(response, result);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+						sendJsonStatus(response, 1, "Added to cart");
 					}
 				}
 				else{ //enter here if the item is not in stock
 					//root.put("itemNotInStock", "yes");
-					result.status = 0;
-					result.msg = "Item not in stock";
-					try {
-						sendJsonResponse(response, result);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					sendJsonStatus(response, 0, "Item not in stock");
 				}
 				
 				//templateName = "search.ftl";
@@ -455,6 +434,16 @@ public class Servlet extends HttpServlet {
 		    response.setContentType("application/json");
 		    response.setCharacterEncoding("UTF-8");
 		    response.getWriter().write(json);
+		}
+		
+		protected void sendJsonStatus(HttpServletResponse response, int success, String msg){
+			ResultStatus result = new ResultStatus(success, msg);
+			try {
+				sendJsonResponse(response, result);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		class ResultStatus {

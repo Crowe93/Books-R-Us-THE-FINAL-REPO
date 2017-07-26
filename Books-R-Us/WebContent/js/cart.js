@@ -22,6 +22,18 @@ $(document).ready(function () {
 		removeFromCart(userId, bookId);
 	});
 	
+	$("#btn-checkout").click(function () {
+		//save qty changes to cart
+		
+	});
+	
+	function saveCart() {
+		//iterate over ever product in cart
+		$(".book-data").each(function (index) {
+			
+		})
+	}
+	
 	function loadCart(userId) {
 		var requestURL = "Servlet?viewCart&userId=" + userId;
 		$.get(requestURL, function (result, response) {
@@ -57,7 +69,8 @@ $(document).ready(function () {
 	}
 	
 	function getItemHTML(id, title, author, price, img, qty) {
-		var html = '<tr>' +
+		var html = '<tr class="book-data">' +
+		'<span class="product-info" bookId="' + id + '" hidden></span>' +
 			'<td data-th="Product">' +
 				'<div class="row">' +
 					'<div class="col-sm-4 hidden-xs"><img style="width:100px; height: auto;" src="' + img + '" class="img-responsive"/></div>' +
