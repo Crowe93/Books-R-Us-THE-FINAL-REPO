@@ -52,13 +52,13 @@ public class UserPersistImpl {
 		try {
 			while (result.next()) {
 				user = new User(userId, result.getString("fname"), result.getString("lname"), result.getString("username"), result.getString("password"), result.getString("email"), result.getInt("type"), "");
-				user.loadPayment();
-				user.loadShipping();
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}  // try-catch
 		DbAccessImpl.disconnect();
+		user.loadPayment();
+		user.loadShipping();
 		return user;
 	} // getUser
 	

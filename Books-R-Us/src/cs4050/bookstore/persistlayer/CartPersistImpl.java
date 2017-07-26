@@ -97,12 +97,14 @@ public class CartPersistImpl {
 		try {
 			while (result.next()) {
 				Item item = new Item(result.getInt("cart_id"), result.getInt("book_id"), result.getInt("qty"));
-				item.loadBook();
 				items.add(item);
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}  // try-catch
+		for (Item i : items) {
+			i.loadBook();
+		}
 		DbAccessImpl.disconnect();
 		
 		return items;

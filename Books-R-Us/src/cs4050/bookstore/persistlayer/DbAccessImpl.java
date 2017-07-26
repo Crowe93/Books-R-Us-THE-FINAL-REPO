@@ -58,6 +58,7 @@ public class DbAccessImpl  {
 	 */
 	public static ResultSet retrieve (String query) {
 		ResultSet result = null;
+		System.out.println("RETRIEVE: " + query);
 		try {
 			con = connect();	
 			Statement stmt = con.createStatement();
@@ -65,6 +66,7 @@ public class DbAccessImpl  {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // try-catch
+		System.out.println("RETRIEVE SUCCESS");
 		return result;
 	} // retrieve
 	

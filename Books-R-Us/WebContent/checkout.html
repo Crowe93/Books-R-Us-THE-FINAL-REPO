@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="js/checkout.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css"> 
@@ -100,7 +101,7 @@
          						<th>Name </th>
          						<td>
          							<div class="col-xs-10">
-         								<input type="text" name="full_name" class="form-control" value="Chanice Campbell">
+         								<input type="text" name="full_name"  id="full-name" class="form-control" value="Chanice Campbell">
          							</div>
          						</td>
          						
@@ -109,7 +110,7 @@
          						<th>Street Address </th>
          						<td>
          							<div class="col-xs-10">
-         								<input type="text" name="address" class="form-control" value="404 Eclipse Ave.">
+         								<input type="text" name="address" id="addr-address" class="form-control" value="404 Eclipse Ave.">
          							</div>
          						</td>
          						
@@ -118,7 +119,7 @@
          						<th>City </th>
          						<td>
          							<div class="col-xs-10">
-         								<input type="text" name="city" class="form-control" value="Athens">
+         								<input type="text" name="city" id="addr-city" class="form-control" value="Athens">
          							</div>
          						</td>
          					</tr>
@@ -126,7 +127,7 @@
          						<th>State </th>
          						<td>
          							<div class="col-xs-10">
-         								<input type="text" name="state" class="form-control" value="GA">
+         								<input type="text" name="state" id="addr-state" class="form-control" value="GA">
          							</div>
          						</td>
          					</tr>
@@ -134,7 +135,7 @@
          						<th>Zip/Postal Code </th>
          						<td>
          							<div class="col-xs-10">
-         								<input type="text" name="zip_code" class="form-control" value="30606">
+         								<input type="text" name="zip_code" id="addr-zip" class="form-control" value="30606">
          							</div>
          						</td>
          					</tr>
@@ -158,7 +159,7 @@
          						<th>Card Type </th>
          						<td>
          							<div class="col-xs-10">
-         								<select id="CreditCardType" name="CreditCardType" class="form-control">
+         								<select id="CreditCardType" name="CreditCardType" id="card-type" class="form-control">
 			                                <option value="5">Visa</option>
 			                                <option value="6">MasterCard</option>
 			                                <option value="7">American Express</option>
@@ -172,7 +173,7 @@
          						<th>Credit Card # </th>
          						<td>
          							<div class="col-xs-10">
-         								<input type="text" name="card_number" class="form-control" value="9454 1748 1263 5742">
+         								<input type="text" name="card_number" class="form-control" id="card-number" value="9454 1748 1263 5742">
          							</div>
          						</td>
          					</tr>
@@ -180,7 +181,7 @@
          						<th>Card CCV </th>
          						<td>
          							<div class="col-xs-10">
-         								<input type="text" name="card_code" class="form-control" value="504">
+         								<input type="text" name="card_code" class="form-control" id="card-ccv" value="504">
          							</div>
          						</td>
          					</tr>
@@ -248,7 +249,7 @@
 						<th style="width:20%"><h3 class="text-center">Sub-total</h3></th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="cart-container">
 					<tr>
 						<td data-th="Product">
 							<div class="row">
