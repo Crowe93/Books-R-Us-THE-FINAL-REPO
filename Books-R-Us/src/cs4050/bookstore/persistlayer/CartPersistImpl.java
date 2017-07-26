@@ -100,15 +100,34 @@ public class CartPersistImpl {
 		try {
 			while (result.next()) {
 				Item item = new Item(result.getInt("cart_id"), result.getInt("book_id"), result.getInt("qty"));
-				item.loadBook();
 				items.add(item);
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}  // try-catch
+		for (Item i : items) {
+			i.loadBook();
+		}
 		DbAccessImpl.disconnect();
 		
 		return items;
+	}
+	
+	public int updateQty(int userId, int bookId, int newQty) {
+		/*
+		 * UPDATE item SET qty = newQty WHERE book_id = bookId AND cart_id = cartId
+		 */
+		System.out.println("UPDATING CART INFO------");
+		
+		
+		int cartId = getCartId(userId);
+		
+		String query = "UPDATE item SET qty = " + newQty + " WHERE book_id = " + bookId + " AND cart_id = " + cartId + ";";
+		System.out.println(query);
+		
+		int rowsUpdated = DbAccessImpl.update(query);
+		
+		return rowsUpdated;
 	}
 	
 	public int getCartId(int userId){

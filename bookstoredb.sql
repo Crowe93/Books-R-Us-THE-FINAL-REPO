@@ -156,7 +156,7 @@ DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
   `cart_id` int(11) NOT NULL,
   `book_id` int(11) NOT NULL,
-  `qty` varchar(45) DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL,
   KEY `book_FK_01_idx` (`book_id`),
   KEY `cart_FK_01_idx` (`cart_id`),
   CONSTRAINT `cart_FK_01` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
@@ -209,7 +209,7 @@ CREATE TABLE `payment` (
   `cardNum` varchar(16) NOT NULL,
   `expDate` varchar(7) DEFAULT NULL,
   `csc` varchar(3) DEFAULT NULL,
-  `name` varchar(100) DEFAULT NULL,
+  `cardType` varchar(100) DEFAULT NULL,
   `billingAddr` varchar(100) DEFAULT NULL,
   KEY `user_id_idx` (`user_id`),
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -288,7 +288,9 @@ CREATE TABLE `shippinginfo` (
   `street` varchar(45) DEFAULT NULL,
   `city` varchar(45) DEFAULT NULL,
   `state` varchar(45) DEFAULT NULL,
-  `zip` varchar(45) DEFAULT NULL
+  `zip` varchar(45) DEFAULT NULL,
+  KEY `user_FK_01_idx` (`user_id`),
+  CONSTRAINT `user_FK_01` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -350,4 +352,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-25 22:28:55
+-- Dump completed on 2017-07-26 10:21:13

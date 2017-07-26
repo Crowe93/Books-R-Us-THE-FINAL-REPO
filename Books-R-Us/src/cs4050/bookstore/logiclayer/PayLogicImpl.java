@@ -10,8 +10,8 @@ import cs4050.bookstore.persistlayer.PayPersistImpl;
 public class PayLogicImpl {
 	private PayPersistImpl payPersist = new PayPersistImpl();
 	
-	public int insertPayment(int userid, String cardNum, String expDate, String csc, String name, String billingaddr){
-		return payPersist.insertPayment(userid, cardNum, expDate, csc, name, billingaddr);
+	public int insertPayment(int userid, String cardNum, String expDate, String csc, String cardType, String billingaddr){
+		return payPersist.insertPayment(userid, cardNum, expDate, csc, cardType, billingaddr);
 	}
 	
 	public Payment getPayment(int userid){

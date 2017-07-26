@@ -40,4 +40,8 @@ public class CartLogicImpl {
 		return cartPersist.getCartId(userId);
 	}
 	
+	public int updateQty(int userId, int bookId, int newQty) {
+		return cartPersist.updateQty(userId, bookId, newQty);
+	}
+	
 }

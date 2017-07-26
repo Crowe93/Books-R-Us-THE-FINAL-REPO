@@ -158,6 +158,7 @@ public class Servlet extends HttpServlet {
 			String addToCart = request.getParameter("addToCart");
 			String viewCart = request.getParameter("viewCart");
 			String removeFromCart = request.getParameter("removeFromCart");
+			String updateCart = request.getParameter("updateCart");
 			String editProfile = request.getParameter("editProfile");
 			String deleteAccount = request.getParameter("deleteAccount");
 			String checkout = request.getParameter("checkout");
@@ -295,38 +296,17 @@ public class Servlet extends HttpServlet {
 					
 					if(x == 0){ //enter here if the book was successfully added to the cart
 						System.out.println("Book successfully added to the cart");
-						result.status = 1;
-						result.msg = "Added to Cart";
-						try {
-							sendJsonResponse(response, result);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+						sendJsonStatus(response, 1, "Added to cart");
 						
 					} else{ //enter here if there was an error adding a book to the cart
 						//root.put("bookAddError", "yes");
 
-						result.status = 1;
-						result.msg = "Added to Cart";
-						try {
-							sendJsonResponse(response, result);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+						sendJsonStatus(response, 1, "Added to cart");
 					}
 				}
 				else{ //enter here if the item is not in stock
 					//root.put("itemNotInStock", "yes");
-					result.status = 0;
-					result.msg = "Item not in stock";
-					try {
-						sendJsonResponse(response, result);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					sendJsonStatus(response, 0, "Item not in stock");
 				}
 				
 				//templateName = "search.ftl";
@@ -354,6 +334,16 @@ public class Servlet extends HttpServlet {
 					e.printStackTrace();
 				}
 				return;
+			} else if (updateCart != null) {
+				
+				int userId = Integer.parseInt(request.getParameter("userId"));
+				int bookId = Integer.parseInt(request.getParameter("bookId"));
+				int newQty = Integer.parseInt(request.getParameter("qty"));
+				
+				CartLogicImpl c = new CartLogicImpl();
+				int result = c.updateQty(userId, bookId, newQty);
+				
+				return;
 				
 			} else if (checkout != null) {
 				int userId = Integer.parseInt(request.getParameter("userId"));
@@ -378,6 +368,7 @@ public class Servlet extends HttpServlet {
 				String city = request.getParameter("city");
 				String state = request.getParameter("state");
 				String zip = request.getParameter("zip");
+				String fullAddress = street + " " + city + ", " + state + " " + zip;
 				
 				//payment info
 				String cardType = request.getParameter("cardType");
@@ -385,25 +376,30 @@ public class Servlet extends HttpServlet {
 				String cardCVV = request.getParameter("cardccv");
 				String expirationMonth = request.getParameter("expDate");
 				String expirationYear = request.getParameter("expYear");
-				//String expirationDate = expirationMonth.concat("/" + expirationYear);
+				String expirationDate = expirationMonth.concat("/" + expirationYear);
 				UserLogicImpl u = new UserLogicImpl();
 				PayLogicImpl p = new PayLogicImpl();
 				ShipLogicImpl s = new ShipLogicImpl();
-
-				User user = new User(userId, fname, lname, username, null, email);
-				u.updateUser(user);
-				Shipping sX = new Shipping(userId, street, city, state, zip);
-				s.insertShipping(sX);
-				//p.insertPayment(userId, cardNumber, expirationDate, cardCVV,fullName, fullAddress);
-				return;
 				
-			} else if (deleteAccount != null){
+				int r = u.verifyOldPassword(userId, oldPassword);
+				if(r == 0){ //enter here if the old password does not match their current password in the database
+					sendJsonStatus(response, 0, "Error! Old password does not match the one in our database.");
+				}else{ //enter here if the old password matches with the current password in the database
+					User user = new User(userId, fname, lname, username, null, email);
+					u.updateUser(user);
+					Shipping sX = new Shipping(userId, street, city, state, zip);
+					s.insertShipping(sX);
+					p.insertPayment(userId, cardNumber, expirationDate, cardCVV, cardType, fullAddress);
+					return;
+				}
+
+
+				
+			} else if (deleteAccount != null) {
 				templateName = "home.ftl";
 				UserLogicImpl u = new UserLogicImpl();
 				u.deleteUser(u.getUserId(currentUser));
-				
-			} else if (userEnteredPromo != null){
-				
+				return;
 			} else if (confirmOrder != null){
 
 			}
@@ -455,6 +451,16 @@ public class Servlet extends HttpServlet {
 		    response.setContentType("application/json");
 		    response.setCharacterEncoding("UTF-8");
 		    response.getWriter().write(json);
+		}
+		
+		protected void sendJsonStatus(HttpServletResponse response, int success, String msg){
+			ResultStatus result = new ResultStatus(success, msg);
+			try {
+				sendJsonResponse(response, result);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		class ResultStatus {
