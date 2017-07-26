@@ -45,11 +45,13 @@ public class UserPersistImpl {
 	} // deleteUser
 	
 	public User getUser(int userId) {
-		ResultSet result = DbAccessImpl.retrieve("SELECT fname, lname, username, password, email, type, shipaddr FROM user WHERE id = "+  userId +";");
+		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM user WHERE id = "+  userId +";");
 		User user = null;
 		try {
 			while (result.next()) {
-				user = new User(userId, result.getString("fname"), result.getString("lname"), result.getString("username"), result.getString("password"), result.getString("email"), result.getInt("type"), result.getString("shipAddr"));
+				user = new User(userId, result.getString("fname"), result.getString("lname"), result.getString("username"), result.getString("password"), result.getString("email"), result.getInt("type"), "");
+				user.loadPayment();
+				user.loadShipping();
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -63,7 +65,7 @@ public class UserPersistImpl {
 		ArrayList<User> users = new ArrayList<User>();
 		try {
 			while (result.next()) {				
-				User user = new User(result.getInt("id"), result.getString("fname"), result.getString("lname"), result.getString("username"), result.getString("password"), result.getString("email"), result.getInt("type"), result.getString("shipAddr"));
+				User user = new User(result.getInt("id"), result.getString("fname"), result.getString("lname"), result.getString("username"), result.getString("password"), result.getString("email"), result.getInt("type"), "");
 				users.add(user);
 			} // while
 		} catch (SQLException e) {
@@ -104,6 +106,7 @@ public class UserPersistImpl {
 	
 	public int updateUsername(String username, int userId) {
 		int i = 0;
+		System.out.println("Updating username");
 		i = DbAccessImpl.update("UPDATE user SET username = '" + username + "' WHERE id = " + userId + ";");
 		DbAccessImpl.disconnect();
 		return i;

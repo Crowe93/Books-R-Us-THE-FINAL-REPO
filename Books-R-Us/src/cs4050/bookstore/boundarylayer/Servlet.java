@@ -171,7 +171,7 @@ public class Servlet extends HttpServlet {
 			String addToCart = request.getParameter("addToCart");
 			String viewCart = request.getParameter("viewCart");
 			String removeFromCart = request.getParameter("removeFromCart");
-			String editProfileInfo = request.getParameter("");
+			String editProfile = request.getParameter("editProfile");
 			String deleteAccount = request.getParameter("");
 			String userEnteredPromo = request.getParameter("");
 			String confirmOrder = request.getParameter("confirmOrder");
@@ -333,68 +333,42 @@ public class Servlet extends HttpServlet {
 				}
 				return;
 				
-			} else if (editProfileInfo != null){
+			} else if (editProfile != null){
 
-				String userIdX = request.getParameter("userId");
-				int userId = 0;
-				try{
-					userId = Integer.parseInt(userIdX);
-				} catch (NumberFormatException e){
-				}
+				int userId = Integer.parseInt(request.getParameter("userId"));
 				
 				
 				//basic account info
 				String fname = request.getParameter("fname");
 				String lname = request.getParameter("lname");
-				String fullName = fname.concat(" " + lname);
-				
-				
-				
 				String email = request.getParameter("email");
 				String username = request.getParameter("username");
-				String oldPassword = request.getParameter("old-password");
-				String newPassword = request.getParameter("new-password");
+				String oldPassword = request.getParameter("oldpassword");
+				String newPassword = request.getParameter("newpassword");
 
 				//shipping info
 				String street = request.getParameter("address");
 				String city = request.getParameter("city");
 				String state = request.getParameter("state");
-				String zip = request.getParameter("zip_code");
-				String fullAddress = street.concat(" " + city + " " + state + " " + zip);
+				String zip = request.getParameter("zip");
 				
 				//payment info
-				String cardType = request.getParameter("CreditCardType");
-				String cardNumber = request.getParameter("car_number");
-				String cardCVV = request.getParameter("car_code");
-				String expirationMonth = request.getParameter("car_month");
-				String expirationYear = request.getParameter("car_year");
-				String expirationDate = expirationMonth.concat("/" + expirationYear);
+				String cardType = request.getParameter("cardType");
+				String cardNumber = request.getParameter("cardNum");
+				String cardCVV = request.getParameter("cardccv");
+				String expirationMonth = request.getParameter("expDate");
+				String expirationYear = request.getParameter("expYear");
+				//String expirationDate = expirationMonth.concat("/" + expirationYear);
 				UserLogicImpl u = new UserLogicImpl();
 				PayLogicImpl p = new PayLogicImpl();
 				ShipLogicImpl s = new ShipLogicImpl();
 
-				int oldPasswordVerification = 0;
-				
-				try{
-					u.verifyOldPassword(userId, oldPassword);
-					
-				} catch (NullPointerException e){
-				}
-				
-						
-				
-				if(oldPasswordVerification == 0){ //enter here if the user enters wrong old password
-					templateName = "edit.ftl";
-					root.put("editProfileError", "yes");
-					
-				} else{ //enter here if the old password is correct
-					User user = new User(userId, fname, lname, username, newPassword, email);
-					u.updateUser(user);
-					Shipping sX = new Shipping(userId, street, city, state, zip);
-					s.insertShipping(sX);
-					p.insertPayment(userId, cardNumber, expirationDate, cardCVV,fullName, fullAddress);
-					root.put("editProfileSuccess", "yes");
-				}
+				User user = new User(userId, fname, lname, username, null, email);
+				u.updateUser(user);
+				Shipping sX = new Shipping(userId, street, city, state, zip);
+				s.insertShipping(sX);
+				//p.insertPayment(userId, cardNumber, expirationDate, cardCVV,fullName, fullAddress);
+				return;
 				
 			} else if (deleteAccount != null){
 				templateName = "home.ftl";

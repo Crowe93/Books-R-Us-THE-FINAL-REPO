@@ -1,15 +1,18 @@
 package cs4050.bookstore.objectlayer;
 
+import cs4050.bookstore.logiclayer.PayLogicImpl;
+import cs4050.bookstore.logiclayer.ShipLogicImpl;
+
 public class User {
 	private int id = 0;
 	private String email = null;
 	private String username = null;
 	private String password = null;
 	private int type = 0;
-	private String shipaddress = null;
-	private int cardsaved = 0;
 	private String fname = null;
 	private String lname = null;
+	private Shipping shipping;
+	private Payment payment;
 	
 	public User () {}
 	
@@ -19,18 +22,27 @@ public class User {
 		username = u;
 		password = p; 
 		type = t;
-		shipaddress = ship;
 		fname = f;
 		lname = l;
 	}
 	
+	public void loadShipping() {
+		ShipLogicImpl ship = new ShipLogicImpl();
+		shipping = ship.getShipping(id);
+	}
+	
+	public void loadPayment() {
+		PayLogicImpl pay = new PayLogicImpl();
+		payment = pay.getPayment(id);
+	}
+	
 	public User(int i, String f, String l, String u, String p, String e){
 		id = i;
-		email = e;
-		username = u;
-		password = p;
 		fname = f;
 		lname = l;
+		username = u;
+		password = p;
+		email = e;
 	}
 	
 	public User(int i, String f, String l, String u, String p, String e, int t){
@@ -108,20 +120,5 @@ public class User {
 		this.type = type;
 	}
 
-	public String getShipaddress() {
-		return shipaddress;
-	}
-
-	public void setShipaddress(String shipaddress) {
-		this.shipaddress = shipaddress;
-	}
-
-	public int getCardsaved() {
-		return cardsaved;
-	}
-
-	public void setCardsaved(int cardsaved) {
-		this.cardsaved = cardsaved;
-	}
 	
 }//User

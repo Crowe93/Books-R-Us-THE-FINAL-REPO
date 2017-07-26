@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `bookstoredb` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `bookstoredb`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: bookstoredb
@@ -88,7 +86,7 @@ CREATE TABLE `cart` (
   PRIMARY KEY (`id`),
   KEY `FK_user_id_uses_user.id_idx` (`user_id`),
   CONSTRAINT `FK_user_id_uses_user.id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,9 +153,11 @@ DROP TABLE IF EXISTS `item`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `item` (
   `cart_id` int(11) NOT NULL,
-  `book_id` int(11) DEFAULT NULL,
+  `book_id` int(11) NOT NULL,
   `qty` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`cart_id`)
+  KEY `book_FK_01_idx` (`book_id`),
+  KEY `cart_FK_01_idx` (`cart_id`),
+  CONSTRAINT `cart_FK_01` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -348,4 +348,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-25 17:25:17
+-- Dump completed on 2017-07-25 21:16:31

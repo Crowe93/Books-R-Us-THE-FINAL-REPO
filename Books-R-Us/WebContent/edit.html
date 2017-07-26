@@ -10,6 +10,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="js/loginRedirect.js"></script>
+        <script src="js/edit.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css"> 
@@ -83,8 +84,7 @@
        			<div class="profile" align="center">	
 	 				<img class="img-circle" src="images/profile_icon.png" width="210px" height="210px">	
 	 				<div class="welcome">
-	 					<h2> Chanice Campbell</h2>
-	 					<h2> <span id="fname"></span> <span id="fname"></span></h2>
+	 					<h2> <span id="fname-side"></span> <span id="lname-side"></span></h2>
 	 					<hr>
 	 					<a href="profile.html" class="btn btn-default btn-r0"> Cancel Edit</a> 
 	 					<form>
@@ -95,7 +95,7 @@
          	</div>
          	
          	<div class="col-md-9">
-         		<form class="edit-form">
+         		<form class="edit-form" >
          		<!-- Basic Info Table -->
          			<h4 class="text-left">Basic Information</h4>
          			<hr class="style11" width="70%" align="left">
@@ -111,7 +111,7 @@
          						<th>First Name </th>
          						<td>
          							<div class="col-xs-9">
-         								<input type="text" name="fname" class="form-control" value="Chanice">
+         								<input type="text" id="fname" name="fname" class="form-control" value="x">
          							</div>
          						</td>
          						
@@ -120,7 +120,7 @@
          						<th>Last Name </th>
          						<td>
          							<div class="col-xs-9">
-         								<input type="text" name="lname" class="form-control" value="Campbell">
+         								<input type="text" id="lname" name="lname" class="form-control" value="x">
          							</div>
          						</td>
          					</tr>
@@ -128,7 +128,7 @@
          						<th>Username </th>
          						<td>
          							<div class="col-xs-9">
-         								<input type="text" name="username" class="form-control" value="chan876">
+         								<input type="text" id="username" name="username" class="form-control" value="x">
          							</div>
          						</td>
          					</tr>
@@ -136,7 +136,7 @@
          						<th>E-mail </th>
          						<td>
          							<div class="col-xs-9">
-         								<input type="text" name="email" class="form-control" value="chan876@uga.edu">
+         								<input type="text" id="email" name="email" class="form-control" value="x">
          							</div>
          						</td>
          					</tr>
@@ -144,7 +144,7 @@
          						<th>Old Password </th>
          						<td>
          							<div class="col-xs-9">
-         								<input type="text" name="password1" class="form-control" value="">
+         								<input type="text" id="password-old" name="password1" class="form-control" value="">
          							</div>
          						</td>
          					</tr>
@@ -152,7 +152,7 @@
          						<th>New Password </th>
          						<td>
          							<div class="col-xs-9">
-         								<input type="text" name="password2" class="form-control" value="">
+         								<input type="text" id="password-new" name="password2" class="form-control" value="">
          							</div>
          						</td>
          					</tr>
@@ -176,7 +176,7 @@
          						<th>Street Address </th>
          						<td>
          							<div class="col-xs-9">
-         								<input type="text" name="address" class="form-control" value="404 Eclipse Ave.">
+         								<input type="text" id="addr-address" name="address" class="form-control" value="x">
          							</div>
          						</td>
          						
@@ -185,7 +185,7 @@
          						<th>City </th>
          						<td>
          							<div class="col-xs-9">
-         								<input type="text" name="city" class="form-control" value="Athens">
+         								<input type="text" id="addr-city" name="city" class="form-control" value="x">
          							</div>
          						</td>
          					</tr>
@@ -193,7 +193,7 @@
          						<th>State </th>
          						<td>
          							<div class="col-xs-9">
-         								<input type="text" name="state" class="form-control" value="GA">
+         								<input type="text" id="addr-state" name="state" class="form-control" value="x">
          							</div>
          						</td>
          					</tr>
@@ -201,7 +201,7 @@
          						<th>Zip/Postal Code </th>
          						<td>
          							<div class="col-xs-9">
-         								<input type="text" name="email" class="form-control" value="30606">
+         								<input type="text" id="addr-zip" name="email" class="form-control" value="x">
          							</div>
          						</td>
          					</tr>
@@ -225,7 +225,7 @@
          						<th>Card Type </th>
          						<td>
          							<div class="col-xs-9">
-         								<select id="CreditCardType" name="CreditCardType" class="form-control">
+         								<select id="card-type" name="CreditCardType" class="form-control">
 			                                <option value="5">Visa</option>
 			                                <option value="6">MasterCard</option>
 			                                <option value="7">American Express</option>
@@ -239,7 +239,7 @@
          						<th>Credit Card # </th>
          						<td>
          							<div class="col-xs-9">
-         								<input type="text" name="city" class="form-control" value="9454 1748 1263 5742">
+         								<input type="text" id="card-number" name="city" class="form-control" value="x">
          							</div>
          						</td>
          					</tr>
@@ -247,7 +247,7 @@
          						<th>Card CCV </th>
          						<td>
          							<div class="col-xs-9">
-         								<input type="text" name="state" class="form-control" value="504">
+         								<input type="text" id="card-ccv" name="state" class="form-control" value="x">
          							</div>
          						</td>
          					</tr>
@@ -255,7 +255,7 @@
          						<th>Expiration Date </th>
          						<td>
          							<div class="col-xs-9">
-         								<select class="form-control" name="">
+         								<select class="form-control" id="card-exp-day" name="">
 			                                <option value="">Month</option>
 			                                <option value="01">01</option>
 			                                <option value="02">02</option>
@@ -279,7 +279,7 @@
          						<th>Expiration Year </th>
          						<td>
          							<div class="col-xs-9">
-										<select class="form-control" name="">
+										<select class="form-control" id="card-exp-year" name="">
 				                                <option value="">Year</option>
 				                                <option value="2015">2015</option>
 				                                <option value="2016">2016</option>
@@ -300,7 +300,7 @@
          							
          						</td>
          						<td>
-         							<button name="editProfile" type="submit" class="btn btn-default btn-r0"> Confirm</button>  
+         							<span id="btn-submit"   class="btn btn-default btn-r0"> Confirm</span>  
          							<a href="profile.html" class="btn btn-default btn-r0"> Cancel</a>         							       					
          						</td>
          					</tr>

@@ -7,7 +7,12 @@ import cs4050.bookstore.objectlayer.Shipping;
 public class ShipPersistImpl {
 
 	public int insertShipping(Shipping s){
-		int r = DbAccessImpl.create("INSERT INTO shippinginfo (user_id, street, city, state, zip) "
+		
+		/*
+		 * REPLACE INTO shippinginfo (user_id, street, city, state, zip) VALUES (etc)
+		 */
+		
+		int r = DbAccessImpl.create("REPLACE INTO shippinginfo (user_id, street, city, state, zip) "
 				+ "VALUES ("+s.getUserId()+", '"+s.getStreet()+"', '"+s.getCity()+"', '"+s.getState()+"', '"+s.getZip()+"');");
 		DbAccessImpl.disconnect();
 		return r;
