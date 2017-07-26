@@ -95,7 +95,7 @@ public class AdminServlet extends HttpServlet {
 				
 			//***************************************************
 			
-			// The following Strings are used to check for a null value. Whichever string that does not have a null value is the action the client wants to perform
+			// The following Strings are used to check for a null value
 			String logout = request.getParameter("logout");
 			String editProfileInfo = request.getParameter("");
 			String editUserProfileInfo = request.getParameter("");

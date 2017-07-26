@@ -368,6 +368,7 @@ public class Servlet extends HttpServlet {
 				String city = request.getParameter("city");
 				String state = request.getParameter("state");
 				String zip = request.getParameter("zip");
+				String fullAddress = street + " " + city + ", " + state + " " + zip;
 				
 				//payment info
 				String cardType = request.getParameter("cardType");
@@ -375,17 +376,24 @@ public class Servlet extends HttpServlet {
 				String cardCVV = request.getParameter("cardccv");
 				String expirationMonth = request.getParameter("expDate");
 				String expirationYear = request.getParameter("expYear");
-				//String expirationDate = expirationMonth.concat("/" + expirationYear);
+				String expirationDate = expirationMonth.concat("/" + expirationYear);
 				UserLogicImpl u = new UserLogicImpl();
 				PayLogicImpl p = new PayLogicImpl();
 				ShipLogicImpl s = new ShipLogicImpl();
+				
+				int r = u.verifyOldPassword(userId, oldPassword);
+				if(r == 0){ //enter here if the old password does not match their current password in the database
+					sendJsonStatus(response, 0, "Error! Old password does not match the one in our database.");
+				}else{ //enter here if the old password matches with the current password in the database
+					User user = new User(userId, fname, lname, username, null, email);
+					u.updateUser(user);
+					Shipping sX = new Shipping(userId, street, city, state, zip);
+					s.insertShipping(sX);
+					p.insertPayment(userId, cardNumber, expirationDate, cardCVV, cardType, fullAddress);
+					return;
+				}
 
-				User user = new User(userId, fname, lname, username, null, email);
-				u.updateUser(user);
-				Shipping sX = new Shipping(userId, street, city, state, zip);
-				s.insertShipping(sX);
-				//p.insertPayment(userId, cardNumber, expirationDate, cardCVV,fullName, fullAddress);
-				return;
+
 				
 			} else if (deleteAccount != null) {
 				templateName = "home.ftl";
