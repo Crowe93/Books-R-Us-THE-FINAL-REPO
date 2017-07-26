@@ -1,38 +1,38 @@
 package cs4050.bookstore.objectlayer;
 
 public class Payment {
-	private int userid;	
-	private String cardNum;
-	private String expDate;
-	private String csc;
-	private String name;
-	private String billingaddr;
+	private int userId = 0;	
+	private String cardNum = null;
+	private String expDate = null;
+	private String csc = null;
+	private String cardType = null;
+	private String billingaddr = null;
 	
 	public Payment(){};
 	
 	public Payment(int u, String cn, String e, String c, String n, String b){
-		userid = u;
+		userId = u;
 		cardNum = cn;
 		expDate = e;
 		csc = c;
-		name = n;
+		cardType = n;
 		billingaddr = b; 
 	};
 	
 	public Payment(int u, String cn, String e, String c, String n){
-		userid = u;
+		userId = u;
 		cardNum = cn;
 		expDate = e;
 		csc = c;
-		name = n; 
+		cardType = n; 
 	};
 	
 	
-	public int getUserid() {
-		return userid;
+	public int getUserId() {
+		return userId;
 	}
 	public void setUserid(int userid) {
-		this.userid = userid;
+		this.userId = userid;
 	}
 	public String getCardNum() {
 		return cardNum;
@@ -52,11 +52,11 @@ public class Payment {
 	public void setCcs(String csc) {
 		this.csc = csc;
 	}
-	public String getName() {
-		return name;
+	public String getCardType() {
+		return cardType;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setCardType(String cardType) {
+		this.cardType = cardType;
 	}
 	public String getBillingaddr() {
 		return billingaddr;
