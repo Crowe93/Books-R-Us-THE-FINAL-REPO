@@ -140,7 +140,7 @@ public class CartPersistImpl {
 		return i;
 	}
 	
-	public void completePurchase(int userId){
+	public String completePurchase(int userId){
 		BookPersistImpl b = new BookPersistImpl();
 		ReportPersistImpl r = new ReportPersistImpl();
 		int cartId = getCartId(userId);
@@ -168,15 +168,14 @@ public class CartPersistImpl {
 			int sold = b.getSold(bookId);
 			sold = sold + temp.getQty();
 			b.updateSold(sold, bookId);
-			
-			
-			
-		}
+		}//for
 		
 		//clear cart
 		if(x>0){
 			DbAccessImpl.delete("DELETE FROM cart WHERE user_id = "+userId+";");
 		}//if stored in past order
+		
+		return orderNum;
 		
 	}
 	
