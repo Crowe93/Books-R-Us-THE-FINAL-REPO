@@ -17,18 +17,34 @@ $(document).ready(function () {
 	$(document).on("click", ".add-book-btn", function () {
 		//alert("Test");
 		var userId = getCookie("userId");
+		
+		//test for user id
+		if (!userId)
+			$(location).attr('href','../Books-R-Us/login.html');
+		
 		var bookId = $(this).attr("bookId");
-		addToCart(userId, bookId);
+		addToCart(userId, bookId, $(this));
 	});
 	
-	function addToCart(userId, bookId) {
+	function addToCart(userId, bookId, buttonElement) {
+		
+		
 		var requestURL = "Servlet?addToCart&userId=" + userId + "&bookId=" + bookId;
 		$.get(requestURL, function (result, response) {
 			if (result) {
-				alert("added successfully!");
+				if (result.status == 1)
+					{
+						buttonElement.text(result.msg);
+						buttonElement.removeClass("add-book-btn");
+					}
+				else
+					{
+						buttonElement.text(result.msg);
+					}
+
 			}
 			else {
-				alert("something");
+
 			}
 		});
 	}

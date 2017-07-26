@@ -17,6 +17,8 @@
         	var userId = $("#userId").val();
 			document.cookie = "userId=" + userId + ";path=/";
 			
+			$(location).attr('href','../Books-R-Us/admin.html')
+			
 			$(document).on("click", "#btn-logout", function () {
 				deleteCookie("userId");
 			});
