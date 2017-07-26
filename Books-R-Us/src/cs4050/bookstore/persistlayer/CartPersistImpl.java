@@ -166,7 +166,7 @@ public class CartPersistImpl {
 		BookPersistImpl b = new BookPersistImpl();
 		ReportLogicImpl r = new ReportLogicImpl();
 		int cartId = getCartId(userId);
-		List<Item> items = getItems(cartId);
+		List<Item> items = getItems(userId);
 		int size = items.size();
 		String orderNum = Integer.toString(userId);
 		orderNum = orderNum.concat(Integer.toString(cartId));

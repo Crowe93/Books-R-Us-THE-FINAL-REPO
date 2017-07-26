@@ -97,6 +97,7 @@ public class BookPersistImpl {
 		ResultSet result = DbAccessImpl.retrieve("select stock from book where id = " + id+";");
 		int stock = -1;
 		try{
+			result.next();
 			stock = result.getInt(1);
 		}
 		catch (SQLException e) {
@@ -110,6 +111,7 @@ public class BookPersistImpl {
 		ResultSet result = DbAccessImpl.retrieve("select stock from book where title = '" + title+";");
 		int stock = -1;
 		try{
+			result.next();
 			stock = result.getInt("stock");
 		}
 		catch (SQLException e) {
@@ -131,6 +133,7 @@ public class BookPersistImpl {
 		ResultSet result = DbAccessImpl.retrieve("select price from book where id = " + id+";");
 		float price = -1;
 		try{
+			result.next();
 			price = result.getFloat("price");
 		}
 		catch (SQLException e) {
@@ -144,6 +147,7 @@ public class BookPersistImpl {
 		ResultSet result = DbAccessImpl.retrieve("select price from book where title = '" + title + "';");
 		float price = -1;
 		try{
+			result.next();
 			price = result.getFloat("price");
 		}
 		catch (SQLException e) {

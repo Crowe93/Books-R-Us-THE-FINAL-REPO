@@ -115,6 +115,7 @@ public class DbAccessImpl  {
 	 * @return the amount of rows affected by this query.
 	 */
 	public static int delete (String query) {
+		System.out.println(query);
 		int rows = 0;
 		try {
 			con = connect();	
