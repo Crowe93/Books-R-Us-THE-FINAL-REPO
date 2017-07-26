@@ -68,7 +68,7 @@ $(document).ready(function () {
 		var cardType = $("#card-type").val();
 		var cardNum = $("#card-number").val();
 		var cardCCV = $("#card-ccv").val();
-		var expDate = $("#card-exp-date").val();
+		var expDate = $("#card-exp-day").val();
 		var expYear = $("#card-exp-year").val();
 		
 		//build request URL (kill me)
