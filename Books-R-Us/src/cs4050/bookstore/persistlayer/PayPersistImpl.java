@@ -11,15 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import cs4050.bookstore.objectlayer.*;
 
 public class PayPersistImpl {
-<<<<<<< HEAD
-	public int insertPayment(int userid, String cardNum, String expDate, String csc, String name, String billingaddr){
-		int i = DbAccessImpl.create("INSERT INTO payment (userid, cardNum, expDate, csc, cardType, billingaddr) VALUES ('" + userid + "', '" 
-				+ cardNum + "', '" + expDate + "', '" + csc + "', '" + name + "', '" + billingaddr + "')");
-=======
 	public int insertPayment(int userid, String cardNum, String expDate, String csc, String cardType, String billingaddr){
 		int i = DbAccessImpl.create("REPLACE INTO payment (user_id, cardNum, expDate, csc, cardType, billingaddr) VALUES ('" + userid + "', '" 
 				+ cardNum + "', '" + expDate + "', '" + csc + "', '" + cardType + "', '" + billingaddr + "')");
->>>>>>> branch 'master' of https://github.com/Crowe93/Books-R-Us-THE-FINAL-REPO.git
 		
 		DbAccessImpl.disconnect();
 		return i;
