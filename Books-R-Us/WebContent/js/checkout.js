@@ -14,9 +14,9 @@ $(document).ready(function () {
 	function confirmOrder(userId) {
 		
 		var requestURL = "Servlet?confirmOrder&userId=" + userId;
-		$.get(requestURL, function (result, status) {
+		$.get(requestURL, function (result) {
 			//console.log(result);
-			if (result.status == 1) {
+			if (result.status) {
 				alert(result.msg);
 			}
 			else
@@ -27,7 +27,7 @@ $(document).ready(function () {
 	
 	function loadCart(userId) {
 		var requestURL = "Servlet?viewCart&userId=" + userId;
-		$.get(requestURL, function (result, response) {
+		$.get(requestURL, function (result) {
 			$("#cart-container").html(""); //clear out cart element
 			if (result) {
 				//iterate over each book and populate html

@@ -110,7 +110,7 @@ public class ReportPersistImpl {
 	public int updateDayNetTotal(String date, double toAdd){
 		int i = 0;
 		double oldAmount = 0;
-		ResultSet result = DbAccessImpl.retrieve("SELECT netTotal FROM dayreport WHERE date = '"+  date +"';");
+		ResultSet result = DbAccessImpl.retrieve("SELECT netTotal FROM dayreport WHERE validDate = '"+  date +"';");
 		
 		try {
 			while (result.next()) {
