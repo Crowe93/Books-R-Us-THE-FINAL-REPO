@@ -25,7 +25,12 @@ public class User {
 	}
 	
 	public User(int i, String f, String l, String u, String p, String e){
-		
+		id = i;
+		email = e;
+		username = u;
+		password = p;
+		fname = f;
+		lname = l;
 	}
 	
 	public User(int i, String f, String l, String u, String p, String e, int t){
