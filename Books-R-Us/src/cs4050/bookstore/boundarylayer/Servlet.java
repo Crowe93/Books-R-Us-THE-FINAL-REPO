@@ -165,6 +165,7 @@ public class Servlet extends HttpServlet {
 			String checkout = request.getParameter("checkout");
 			String userEnteredPromo = request.getParameter("");
 			String confirmOrder = request.getParameter("confirmOrder");
+			String loadOrders = request.getParameter("loadOrders");
 
 			//vendors and admin operations below
 			String addBook = request.getParameter("");
@@ -377,7 +378,7 @@ public class Servlet extends HttpServlet {
 				String cardCVV = request.getParameter("cardccv");
 				String expirationMonth = request.getParameter("expDate");
 				String expirationYear = request.getParameter("expYear");
-				String expirationDate = expirationMonth.concat("/" + expirationYear);
+				String expirationDate = expirationMonth + "/" + expirationYear;
 				UserLogicImpl u = new UserLogicImpl();
 				PayLogicImpl p = new PayLogicImpl();
 				ShipLogicImpl s = new ShipLogicImpl();
@@ -421,6 +422,18 @@ public class Servlet extends HttpServlet {
 				String orderNum = c.confirmOrder(userId);
 				sendJsonStatus(response, 1, "Order number: " + orderNum);
 				return;
+			} else if (loadOrders != null) {
+				int userId = Integer.parseInt(request.getParameter("userId"));
+				UserLogicImpl u = new UserLogicImpl();
+				List<CompleteOrder> orders = u.loadOrders(userId);
+				try {
+					sendJsonResponse(response, orders);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return;
+				
 			}
 				
 				

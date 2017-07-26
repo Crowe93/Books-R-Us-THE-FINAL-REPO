@@ -120,21 +120,21 @@
 	 					<hr align="left">
 	 					<div class="btn-group">
 	 						<button type="button" disabled class="btn btn-primary">Street Address</button>
-	 						<button type="button" disabled class="btn btn-default">101 Water Ave.</button>
+	 						<button type="button" id="addr-address" disabled class="btn btn-default">101 Water Ave.</button>
 	 					</div>
 	 					<br>
 	 					<div class="btn-group">
 	 						<button type="button" disabled class="btn btn-primary">City</button>
-	 						<button type="button" disabled class="btn btn-default">Athens</button>
+	 						<button type="button" id="addr-city" disabled class="btn btn-default">Athens</button>
 	 					</div>
 	 					<div class="btn-group">
 	 						<button type="button" disabled class="btn btn-primary">State</button>
-	 						<button type="button" disabled class="btn btn-default">GA</button>
+	 						<button type="button" id="addr-state" disabled class="btn btn-default">GA</button>
 	 					</div>
 	 					<br>
 	 					<div class="btn-group">
 	 						<button type="button" disabled class="btn btn-primary">Zip Code</button>
-	 						<button type="button" disabled class="btn btn-default">30605</button>
+	 						<button type="button" id="addr-zip" disabled class="btn btn-default">30605</button>
 	 					</div>
  					</div>
  					
@@ -149,20 +149,20 @@
 	 					<br>
 	 					<div class="btn-group">
 	 						<button type="button" disabled class="btn btn-primary">Credit Card Number</button>
-	 						<button type="button" disabled class="btn btn-default">1653 6544 8698 1524</button>
+	 						<button type="button" id="card-number" disabled class="btn btn-default">1653 6544 8698 1524</button>
 	 					</div>
 	 					<div class="btn-group">
 	 						<button type="button" disabled class="btn btn-primary">Card CVV</button>
-	 						<button type="button" disabled class="btn btn-default"> *** </button>
+	 						<button type="button" id="card-ccv" disabled class="btn btn-default"> *** </button>
 	 					</div>
 	 					<br>
 	 					<div class="btn-group">
 	 						<button type="button" disabled class="btn btn-primary">Exp Month</button>
-	 						<button type="button" disabled class="btn btn-default">06</button>
+	 						<button type="button" id="card-exp-day" disabled class="btn btn-default">06</button>
 	 					</div>
 	 					<div class="btn-group">
 	 						<button type="button" disabled class="btn btn-primary">Exp Year</button>
-	 						<button type="button" disabled class="btn btn-default">18</button>
+	 						<button type="button" id="card-exp-year" disabled class="btn btn-default">18</button>
 	 					</div>
 	 				</div>
 	 				
@@ -173,7 +173,7 @@
  					<div class="info">
 	 					<h3>Previous Orders</h3>
 		 				<hr align="left">
-		 				
+		 				<div id="order-container">
 		 				<div class="order">
 			 				<div class="row">
 				 				<div class="col-md-6 date">
@@ -287,6 +287,7 @@
 			 					</tbody>
 			 				
 			 				</table>
+		 				</div>
 		 				</div>
 	 				</div>
  				</div>

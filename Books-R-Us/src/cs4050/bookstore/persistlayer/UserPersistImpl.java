@@ -3,9 +3,12 @@ package cs4050.bookstore.persistlayer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import cs4050.bookstore.objectlayer.CompleteOrder;
 import cs4050.bookstore.objectlayer.Item;
+import cs4050.bookstore.objectlayer.PastOrder;
 import cs4050.bookstore.objectlayer.User;
 import cs4050.bookstore.persistlayer.DbAccessImpl;
 
@@ -264,6 +267,39 @@ public class UserPersistImpl {
 			DbAccessImpl.disconnect();
 		} // try-catch
 		return r;
+	}
+	
+	public List<CompleteOrder> loadOrders(int userId) {
+		List<CompleteOrder> orders = new ArrayList<CompleteOrder>();
+		String query = "SELECT * FROM pastorder WHERE user_id=" + userId + ";";
+		HashMap<String, CompleteOrder> orderHash = new HashMap<String, CompleteOrder>();
+		
+		ResultSet resultSet = DbAccessImpl.retrieve(query);
+		try {
+			while (resultSet.next()) {
+				String orderNum = resultSet.getString("orderNum");
+				PastOrder temp = new PastOrder(resultSet.getString("orderNum"), resultSet.getInt("user_id"), resultSet.getInt("book_id"), resultSet.getInt("qty"), resultSet.getString("date"));
+				if (!orderHash.containsKey(orderNum))
+				{
+					//create CompleteOrder
+					CompleteOrder order = new CompleteOrder(temp);
+					orderHash.put(orderNum, order);
+				}
+				else {
+					//add order entry
+					orderHash.get(orderNum).addEntry(temp);
+				}
+			}
+			for (String key : orderHash.keySet()) {
+				orders.add(orderHash.get(key));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return orders;
 	}
 
 }

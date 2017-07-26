@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import cs4050.bookstore.objectlayer.CompleteOrder;
 import cs4050.bookstore.objectlayer.User;
 import cs4050.bookstore.persistlayer.UserPersistImpl;
 
@@ -59,6 +60,14 @@ public class UserLogicImpl {
 	
 	public int verifyOldPassword(int id, String password){
 		return userPersist.verifyOldPassword(id, password);
+	}
+	
+	public List<CompleteOrder> loadOrders(int userId) {
+		List<CompleteOrder> orders = userPersist.loadOrders(userId);
+		for (CompleteOrder order : orders) {
+			order.loadBookInfo();
+		}
+		return orders;
 	}
 	
 	public boolean cardSaved(int id){
