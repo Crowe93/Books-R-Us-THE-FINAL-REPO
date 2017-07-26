@@ -97,11 +97,12 @@ $(document).ready(function () {
 		$("#cart-sub-total").html("Subtotal: $" + total.toFixed(2));
 		
 		if (total < 50) { //include shipping in cost
+			$("#shipping-amt").html("Shipping: $5.99");
 			var actualTotal = total + parseFloat($("#shipping-amt").attr("shipping-amt"));
 			$("#final-total").html("$" + actualTotal.toFixed(2));
 		}
 		else {
-			$("#shipping-amt").html("Shipping: $0 (order over $50!)")
+			$("#shipping-amt").html("Shipping: $0 (order over $50)");
 			$("#final-total").html("$" + total.toFixed(2));
 		}
 

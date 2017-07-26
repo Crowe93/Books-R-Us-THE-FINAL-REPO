@@ -7,11 +7,23 @@ $(document).ready(function (){
 	var userId = getCookie("userId");
 	loadProfile(userId);
 	
+	$("#btn-delete-account").click(function () {
+		var requestURL = "Servlet?deleteAccount&userId=" + userId;
+		$.get(requestURL, function (status, result) { 
+			deleteCookie("userId");
+			$(location).attr('href','../Books-R-Us/home.html')
+		});
+	});
+	
 	function getCookie(name) {
 		  var value = "; " + document.cookie;
 		  var parts = value.split("; " + name + "=");
 		  if (parts.length == 2) return parts.pop().split(";").shift();
 		}
+	
+	function deleteCookie(name) {
+		document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+	}
 
 	function loadProfile(userId) {
 		//make ajax call to servlet

@@ -73,19 +73,6 @@ public class Servlet extends HttpServlet {
 			
 			
 			//*********** Example Ajax Handling *****************
-			String test = request.getParameter("test");
-			
-			if (test != null)
-			{
-				ExampleJSON testJson = new ExampleJSON(1, "Here is some theorhetical data being returned");
-				try {
-					sendJsonResponse(response, testJson);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return;
-			}
 			
 			String loadBooks = request.getParameter("loadBooks");
 			
@@ -172,7 +159,8 @@ public class Servlet extends HttpServlet {
 			String viewCart = request.getParameter("viewCart");
 			String removeFromCart = request.getParameter("removeFromCart");
 			String editProfile = request.getParameter("editProfile");
-			String deleteAccount = request.getParameter("");
+			String deleteAccount = request.getParameter("deleteAccount");
+			String checkout = request.getParameter("checkout");
 			String userEnteredPromo = request.getParameter("");
 			String confirmOrder = request.getParameter("confirmOrder");
 
@@ -276,6 +264,14 @@ public class Servlet extends HttpServlet {
 				templateName = "home2.ftl";
 				System.out.println("logout COMPLETE!");
 				
+			} else if (deleteAccount != null) {
+				int userId = Integer.parseInt(request.getParameter("userId"));
+				UserLogicImpl u = new UserLogicImpl();
+				
+				u.deleteUser(userId);
+				
+				return;
+			
 			} else if (addToCart != null){
 				System.out.println("Starting add-to-cart sequence");
 				int userId = Integer.parseInt(request.getParameter("userId"));
@@ -288,6 +284,8 @@ public class Servlet extends HttpServlet {
 				int stock = book.getStock();
 				System.out.println("Stock: " + stock);
 				
+				ResultStatus result = new ResultStatus(0, "");
+				
 				if(stock != 0) { //enter here if item is in stock
 					System.out.println("Creating cart for user");
 					CartLogicImpl c = new CartLogicImpl();
@@ -297,17 +295,41 @@ public class Servlet extends HttpServlet {
 					
 					if(x == 0){ //enter here if the book was successfully added to the cart
 						System.out.println("Book successfully added to the cart");
-						root.put("bookAddedToCart", "yes");
+						result.status = 1;
+						result.msg = "Added to Cart";
+						try {
+							sendJsonResponse(response, result);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						
 					} else{ //enter here if there was an error adding a book to the cart
-						root.put("bookAddError", "yes");
+						//root.put("bookAddError", "yes");
+
+						result.status = 1;
+						result.msg = "Added to Cart";
+						try {
+							sendJsonResponse(response, result);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
 				else{ //enter here if the item is not in stock
-					root.put("itemNotInStock", "yes");
+					//root.put("itemNotInStock", "yes");
+					result.status = 0;
+					result.msg = "Item not in stock";
+					try {
+						sendJsonResponse(response, result);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 				
-				templateName = "search.ftl";
+				//templateName = "search.ftl";
 				return;
 			
 				
@@ -332,6 +354,11 @@ public class Servlet extends HttpServlet {
 					e.printStackTrace();
 				}
 				return;
+				
+			} else if (checkout != null) {
+				int userId = Integer.parseInt(request.getParameter("userId"));
+				
+				
 				
 			} else if (editProfile != null){
 
@@ -430,14 +457,14 @@ public class Servlet extends HttpServlet {
 		    response.getWriter().write(json);
 		}
 		
-		class ExampleJSON {
-			public int id;
-			public String data;
+		class ResultStatus {
+			public int status;
+			public String msg;
 			
-			ExampleJSON(int id, String data)
+			ResultStatus(int id, String msg)
 			{
-				this.id = id;
-				this.data = data;
+				this.status = status;
+				this.msg = msg;
 			}
 		}
 }

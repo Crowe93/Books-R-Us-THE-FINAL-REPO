@@ -220,7 +220,7 @@ public class BookPersistImpl {
 	}
 	
 	public List<Book> getAllBooks(){
-		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM book;");
+		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM book ORDER BY price;");
 		ArrayList<Book> report = new ArrayList<Book>();
 		try {
 			while (result.next()) {
@@ -255,7 +255,7 @@ public class BookPersistImpl {
 			break;
 		}
 		
-		String query = "SELECT * FROM book WHERE " + filterBy + " REGEXP '" + searchVal + "';";
+		String query = "SELECT * FROM book WHERE " + filterBy + " REGEXP '" + searchVal + "' ORDER BY price;";
 		
 		ResultSet result = DbAccessImpl.retrieve(query);
 		
