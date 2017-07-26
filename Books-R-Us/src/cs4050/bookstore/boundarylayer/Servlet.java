@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 
 import cs4050.bookstore.logiclayer.*;
 import cs4050.bookstore.objectlayer.*;
+import cs4050.bookstore.persistlayer.UserPersistImpl;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapperBuilder;
 import freemarker.template.SimpleHash;
@@ -376,16 +377,30 @@ public class Servlet extends HttpServlet {
 				String cardCVV = request.getParameter("cardccv");
 				String expirationMonth = request.getParameter("expDate");
 				String expirationYear = request.getParameter("expYear");
-				String expirationDate = expirationMonth + "/" + expirationYear;
+				String expirationDate = expirationMonth.concat("/" + expirationYear);
 				UserLogicImpl u = new UserLogicImpl();
 				PayLogicImpl p = new PayLogicImpl();
 				ShipLogicImpl s = new ShipLogicImpl();
 				
+			
+
+				if(oldPassword .equals("")){
+					UserPersistImpl y = new UserPersistImpl();
+					String pass = y.getPassword(userId);
+					User user = new User(userId, fname, lname, username, pass, email);
+					u.updateUser(user);
+					Shipping sX = new Shipping(userId, street, city, state, zip);
+					s.insertShipping(sX);
+					p.insertPayment(userId, cardNumber, expirationDate, cardCVV, cardType, fullAddress);
+					return;
+				}
+				
 				int r = u.verifyOldPassword(userId, oldPassword);
 				if(r == 0){ //enter here if the old password does not match their current password in the database
 					sendJsonStatus(response, 0, "Error! Old password does not match the one in our database.");
+					return;
 				}else{ //enter here if the old password matches with the current password in the database
-					User user = new User(userId, fname, lname, username, null, email);
+					User user = new User(userId, fname, lname, username, newPassword, email);
 					u.updateUser(user);
 					Shipping sX = new Shipping(userId, street, city, state, zip);
 					s.insertShipping(sX);

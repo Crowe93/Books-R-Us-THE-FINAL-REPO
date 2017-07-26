@@ -11,9 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import cs4050.bookstore.objectlayer.*;
 
 public class PayPersistImpl {
+<<<<<<< HEAD
+	public int insertPayment(int userid, String cardNum, String expDate, String csc, String name, String billingaddr){
+		int i = DbAccessImpl.create("INSERT INTO payment (userid, cardNum, expDate, csc, cardType, billingaddr) VALUES ('" + userid + "', '" 
+				+ cardNum + "', '" + expDate + "', '" + csc + "', '" + name + "', '" + billingaddr + "')");
+=======
 	public int insertPayment(int userid, String cardNum, String expDate, String csc, String cardType, String billingaddr){
 		int i = DbAccessImpl.create("REPLACE INTO payment (user_id, cardNum, expDate, csc, cardType, billingaddr) VALUES ('" + userid + "', '" 
 				+ cardNum + "', '" + expDate + "', '" + csc + "', '" + cardType + "', '" + billingaddr + "')");
+>>>>>>> branch 'master' of https://github.com/Crowe93/Books-R-Us-THE-FINAL-REPO.git
 		
 		DbAccessImpl.disconnect();
 		return i;
@@ -24,7 +30,7 @@ public class PayPersistImpl {
 		Payment pay = null;
 		try {
 			while (result.next()) {
-				pay = new Payment(userid, result.getString("cardNum"), result.getString("expDate"), result.getString("csc"), result.getString("name"), result.getString("billingAddr"));
+				pay = new Payment(userid, result.getString("cardNum"), result.getString("expDate"), result.getString("csc"), result.getString("cardType"), result.getString("billingAddr"));
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -48,9 +54,9 @@ public class PayPersistImpl {
 		return i;
 	}
 	
-	public int updateName(String n, int userId){
+	public int updateCardType(String n, int userId){
 		int i = 0;
-		i = DbAccessImpl.update("UPDATE payment SET name = '" + n + "' WHERE user_id = " + userId + ";");
+		i = DbAccessImpl.update("UPDATE payment SET cardType = '" + n + "' WHERE user_id = " + userId + ";");
 		DbAccessImpl.disconnect();
 		return i;
 	}

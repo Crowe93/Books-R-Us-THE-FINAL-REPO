@@ -29,6 +29,11 @@ public class DayReport {
         time = (sdf.format(cal.getTime())).toString();
         booksales = b;
 	}
+	
+	public DayReport(String date, double net){
+		this.netTotal = net;
+		this.date = date;
+	}
 
 	public double getNetTotal() {
 		return netTotal;

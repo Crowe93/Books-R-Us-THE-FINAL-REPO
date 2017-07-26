@@ -1,6 +1,8 @@
 package cs4050.bookstore.objectlayer;
 
 import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class BookSales {
 	private int bookId = 0;
@@ -17,6 +19,16 @@ public class BookSales {
 		this.bookId = bookId;
 		this.numSold = numSold;
 		this.date = date.toString();
+	}
+	
+	public BookSales(int bookId, int numSold){
+		this.bookId = bookId;
+		this.numSold = numSold;
+
+		Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        
+		date = (sdf.format(cal.getTime())).toString();
 	}
 	
 	public String getDate() {
