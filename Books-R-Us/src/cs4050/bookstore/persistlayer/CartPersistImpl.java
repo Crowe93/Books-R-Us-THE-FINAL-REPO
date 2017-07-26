@@ -55,21 +55,24 @@ public class CartPersistImpl {
 	
 	public int addBookToCart(int cartId, int bookId){
 		
-		
-		
-		
 		int i = -1;
-		
-		/*
-		 * ADD BOOK TO CART
-		 * INSERT INTO ITEM (cart_id, book_id, qty) VALUES (cartId, bookId, 1)
-		 */
-		
-		String query= "INSERT INTO item (cart_id, book_id, qty) VALUES (" + cartId + ", " + bookId + ", 1);";
-		
-		int r = DbAccessImpl.create(query);
+		int qty = 0;
+		ResultSet result = DbAccessImpl.retrieve("SELECT qty FROM item WHERE cart_id = "+ cartId +" AND book_id = "+bookId+";");
+		try {
+			while (result.next()) {
+				qty = result.getInt("qty");
+			} // while
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  // try-catch
 		DbAccessImpl.disconnect();
-		return r;
+		
+		if(qty == 0){
+			String query= "INSERT INTO item (cart_id, book_id, qty) VALUES (" + cartId + ", " + bookId + ", 1);";
+			i = DbAccessImpl.create(query);
+			DbAccessImpl.disconnect();
+		}
+		return i;
 	}
 	
 	public int removeBookFromCart(int cartId, int bookId) {
@@ -139,11 +142,13 @@ public class CartPersistImpl {
 	
 	public void completePurchase(int userId){
 		BookPersistImpl b = new BookPersistImpl();
+		ReportPersistImpl r = new ReportPersistImpl();
 		int cartId = getCartId(userId);
 		List<Item> items = getItems(cartId);
 		int size = items.size();
 		String orderNum = Integer.toString(userId);
 		orderNum.concat(Integer.toString(cartId));
+		int x = 0;
 		
 		for(int i = 0; i<=size; i++){
 			Item temp = items.get(i);
@@ -152,7 +157,7 @@ public class CartPersistImpl {
 			
 			PastOrder p = new PastOrder(orderNum, userId, bookId, qty);
 			
-			DbAccessImpl.create("INSERT INTO pastorder (orderNum, user_id, book_id, qty, date) "
+			x = DbAccessImpl.create("INSERT INTO pastorder (orderNum, user_id, book_id, qty, date) "
 					+ "VALUES ('"+orderNum+"', "+userId+", "+bookId+", "+qty+", '"+p.getDate()+"')");
 			DbAccessImpl.disconnect();
 			
@@ -163,10 +168,15 @@ public class CartPersistImpl {
 			int sold = b.getSold(bookId);
 			sold = sold + temp.getQty();
 			b.updateSold(sold, bookId);
+			
+			
+			
 		}
 		
 		//clear cart
-		DbAccessImpl.delete("DELETE FROM cart WHERE user_id = "+userId+";");
+		if(x>0){
+			DbAccessImpl.delete("DELETE FROM cart WHERE user_id = "+userId+";");
+		}//if stored in past order
 		
 	}
 	
