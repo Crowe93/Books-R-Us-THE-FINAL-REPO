@@ -130,6 +130,20 @@ public class ReportPersistImpl {
 	
 	public int updateBookSales(int bookId, int numSold, String date){
 		int i = 0;
+		int n = 0;
+		ResultSet result = DbAccessImpl.retrieve("SELECT numSold FROM booksales WHERE validDate = '"+  date +"';");
+		
+		try {
+			while (result.next()) {
+				 n = result.getInt(1);
+			} // while
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  // try-catch
+		DbAccessImpl.disconnect();
+		
+		numSold = numSold + n;
+		
 		i = DbAccessImpl.update("UPDATE booksales SET numSold = " + numSold + " WHERE validDate = '" + date + "' "
 				+ "AND book_id = "+bookId+";");
 		DbAccessImpl.disconnect();

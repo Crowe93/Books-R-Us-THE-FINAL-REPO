@@ -6,6 +6,9 @@ import java.util.List;
 
 import cs4050.bookstore.objectlayer.Item;
 import cs4050.bookstore.objectlayer.PastOrder;
+import cs4050.bookstore.objectlayer.BookSales;
+import cs4050.bookstore.objectlayer.DayReport;
+import cs4050.bookstore.logiclayer.ReportLogicImpl;
 
 public class CartPersistImpl {
 	
@@ -142,7 +145,7 @@ public class CartPersistImpl {
 	
 	public String completePurchase(int userId){
 		BookPersistImpl b = new BookPersistImpl();
-		ReportPersistImpl r = new ReportPersistImpl();
+		ReportLogicImpl r = new ReportLogicImpl();
 		int cartId = getCartId(userId);
 		List<Item> items = getItems(cartId);
 		int size = items.size();
@@ -161,13 +164,26 @@ public class CartPersistImpl {
 					+ "VALUES ('"+orderNum+"', "+userId+", "+bookId+", "+qty+", '"+p.getDate()+"')");
 			DbAccessImpl.disconnect();
 			
+			//updates book stock
 			int stock = b.getStock(bookId);
 			stock = stock - temp.getQty();
 			b.updateStock(stock, bookId);
 			
+			//update copies sold
 			int sold = b.getSold(bookId);
 			sold = sold + temp.getQty();
 			b.updateSold(sold, bookId);
+			
+			//add qty to book sales report
+			BookSales s = new BookSales(bookId, qty);
+			r.updateBookSales(s);
+			
+			//add total sales to day report
+			double price = b.getPrice(bookId);
+			double total = price * qty;
+			DayReport d = new DayReport(s.getDate(),total);
+			r.updateDayReport(d);
+			
 		}//for
 		
 		//clear cart

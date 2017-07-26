@@ -27,12 +27,37 @@ public class PayLogicImpl {
 		return payPersist.updateExpDate(e, userId);
 	}
 	
-	public int updateName(String n, int userId){
-		return payPersist.updateName(n, userId);
+	public int updateCardType(String n, int userId){
+		return payPersist.updateCardType(n, userId);
 	}
 	
 	public int updateBillingAddr(String b, int userId){
 		return payPersist.updateBillingAddr(b, userId);
+	}
+	
+	public int updatePayment(Payment p){
+		int i = 0;
+		int userId = p.getUserId();
+		String cardNum = p.getCardNum();
+		String expDate = p.getExpDate();
+		String csc = p.getCsc();
+		String cardType = p.getCardType();
+		String billingAddr = p.getBillingaddr();
+		
+		if(cardNum!=null || cardNum != ""){
+			i += payPersist.updateCardNum(cardNum, userId);
+		}
+		if(expDate!=null || expDate != ""){
+			i += payPersist.updateExpDate(expDate, userId);
+		}
+		if(cardType!=null || cardType != ""){
+			i += payPersist.updateCardType(cardType, userId);
+		}
+		if(billingAddr!=null || billingAddr != ""){
+			i += payPersist.updateBillingAddr(cardNum, userId);
+		}
+		
+		return i;
 	}
 	
 }

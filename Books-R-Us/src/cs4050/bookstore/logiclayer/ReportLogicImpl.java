@@ -98,5 +98,17 @@ public class ReportLogicImpl {
 		return reportPersist.getInvReport(date);
 	}
 	
-	
+	public int updateBookSales(BookSales b){
+		int i = 0;
+		
+		if(reportPersist.getBookSales(b.getBookId(), b.getDate()) == null){
+			reportPersist.createBookSales(b.getBookId(), b.getDate());
+			i = reportPersist.updateBookSales(b.getBookId(), b.getNumSold(), b.getDate());
+		}
+		else{
+			i = reportPersist.updateBookSales(b.getBookId(), b.getNumSold(), b.getDate());
+		}
+		
+		return i;
+	}
 }
