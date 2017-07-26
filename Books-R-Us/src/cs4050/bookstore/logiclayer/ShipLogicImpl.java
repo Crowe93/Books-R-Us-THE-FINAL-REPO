@@ -31,5 +31,15 @@ public class ShipLogicImpl {
 	public int updateZip(int userId, String z){
 		return shipPersist.updateZip(userId, z);
 	}
-
+	
+	public int updateShipping(Shipping s){
+		int i = -1;
+		i = shipPersist.updateStreet(s.getUserId(), s.getStreet());
+		i += shipPersist.updateCity(s.getUserId(), s.getCity());
+		i += shipPersist.updateState(s.getUserId(), s.getState());
+		i += shipPersist.updateZip(s.getUserId(), s.getZip());
+		
+		return i;
+	}
+	
 }
