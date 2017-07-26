@@ -365,7 +365,7 @@ public class Servlet extends HttpServlet {
 				String cardCVV = request.getParameter("cardccv");
 				String expirationMonth = request.getParameter("expDate");
 				String expirationYear = request.getParameter("expYear");
-				String expirationDate = expirationMonth.concat("/" + expirationYear);
+				String expirationDate = expirationMonth + "/" + expirationYear;
 				UserLogicImpl u = new UserLogicImpl();
 				PayLogicImpl p = new PayLogicImpl();
 				ShipLogicImpl s = new ShipLogicImpl();
