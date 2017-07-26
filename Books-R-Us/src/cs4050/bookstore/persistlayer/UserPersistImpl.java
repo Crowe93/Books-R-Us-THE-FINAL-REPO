@@ -21,16 +21,18 @@ public class UserPersistImpl {
 	} // insertUser
 	
 	public int insertUser(User u) {
+		int r=0;
 		String firstName = u.getFirst();
 		String lastName = u.getLast();
 		String email = u.getEmail();
 		String userName = u.getUsername();
 		String password = u.getPassword();
 		int type = u.getType();
-		
-		int r = DbAccessImpl.create("INSERT INTO USER (fname, lname, email, username, password, type) VALUES ('" + firstName + "', '" 
+		if(password.length()>=4){
+			r = DbAccessImpl.create("INSERT INTO USER (fname, lname, email, username, password, type) VALUES ('" + firstName + "', '" 
 				+ lastName + "', '" + email + "', '" + userName + "', '" + password + "', '" + type + "')");
-		DbAccessImpl.disconnect();
+			DbAccessImpl.disconnect();
+		}
 		return r;
 	} // insertUser
 	
