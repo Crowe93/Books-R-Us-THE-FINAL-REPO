@@ -77,11 +77,12 @@ $(document).ready(function () {
 							"&cardType=" + cardType + "&cardNum=" + cardNum + "&cardccv=" + cardCCV + "&expDate=" + expDate + "&expYear=" + expYear;
 		
 		$.get(requestURL, function (status, result) {
-			if (status) {
+			if (result.status) {
 				
 			}
 			else {
-				alert("something maybe happened");
+				alert(result);
+				alert(result.msg);
 			}
 		});
 	}
