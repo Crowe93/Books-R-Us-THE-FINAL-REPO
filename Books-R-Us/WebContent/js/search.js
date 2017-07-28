@@ -5,13 +5,17 @@ $(document).ready(function () {
 	
 	loadBooks();
 	
+	$('#search-value').keypress(function(event){
+		  if(event.keyCode == 13){
+		    $('.btn-search').click();
+		  }
+		});
+	
 	$(".btn-search").click(function () {
 		var searchVal = $("#search-value").val();
 		var filterType = $("#search-filter").val(); // 0 = title | 1 = isbn | 2 = author
 			
 		searchBooks(filterType, searchVal);
-		
-		
 	});
 	
 	$(document).on("click", ".add-book-btn", function () {
