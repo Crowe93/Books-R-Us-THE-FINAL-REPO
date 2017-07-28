@@ -124,7 +124,7 @@ $(document).ready(function () {
 				'<button class="btn btn-default button-0 add-book-btn" bookId="' + book.ISBN + '"> Add to Cart</button>		' +
 			'</div>' +
 		'</td>' +
-	'</tr>;'
+	'</tr>;';
 		
 		return html;
 	}
