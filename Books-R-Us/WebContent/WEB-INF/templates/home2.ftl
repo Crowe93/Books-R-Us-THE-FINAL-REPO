@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-        
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
     </head>
 
     <body>
@@ -100,22 +100,19 @@
                 </a>
             </div>
         </div>
+        
 
-    <!-- Search bar -->
-        <div class="dark">
-            <form>
-                <span class="icon"><i class="fa fa-search"></i></span>
-                <input type="text" class="search rounded" placeholder="Search...">
-            </form>            
-        </div>
+	
 
     <!-- best seller section -->
-        <div class="border">
-            <span style="font-size: 20px; background-color: white; padding: 0 15px;">
-                Best Sellers 
-            </span>
-        </div>
-
+    
+	    <!-- best seller section -->
+    
+	<div class="container-wrapper bs-sample">
+        <h3 class="text-center" > Best Sellers </h3>
+        <p class="text-center" style="font-style: italic"> See what fellow users are purchasing and loving! </p>
+        <hr style="width:80%">
+	
         <div class="container">
         <div class="row">
             <!-- BEGIN PRODUCTS -->
@@ -123,154 +120,175 @@
                 <span class="thumbnail">
                     <img src="images/into-water.jpg" alt="...">
                     <h4>Into the Water</h4>
-                    <div class="ratings">
+                    <div class="ratings text-center">
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star-empty"></span>
                     </div>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                    <p class="text-center">Novel by Paula Hawkins</p>
                     <hr class="line">
                     <div class="row">
-                        <div class="col-md-6 col-sm-6">
+                        <div class="col-md-3 col-sm-3" >
                             <p class="price">$29.90</p>
                         </div>
                         <div class="col-md-6 col-sm-6">
-                            <button class="btn btn-default" > BUY ITEM</button>
+                            <button type="submit" class="btn btn-default button-0" > BUY ITEM</button>
                         </div>
-                        
+                        <div class="col-md-3 col-sm-3" ></div>
+                    </div>
+                </span>
+            </div>
+            
+            <div class="col-md-3 col-sm-6">
+                <span class="thumbnail">
+                    <img src="https://i.stack.imgur.com/071TF.jpg" alt="...">
+                    <h4>Into the Water</h4>
+                    <div class="ratings text-center">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </div>
+                    <p class="text-center">Novel by Paula Hawkins</p>
+                    <hr class="line">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3" >
+                            <p class="price">$29.90</p>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <button type="submit" class="btn btn-default button-0" > BUY ITEM</button>
+                        </div>
+                        <div class="col-md-3 col-sm-3" ></div>
                     </div>
                 </span>
             </div>
             <div class="col-md-3 col-sm-6">
                 <span class="thumbnail">
-                    <img src="images/into-water.jpg" alt="...">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/6/62/Kite_runner.jpg" alt="...">
                     <h4>Into the Water</h4>
-                    <div class="ratings">
-                        <span class="glyphicon glyphicon-star"></span>
+                    <div class="ratings text-center">
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
                     </div>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                    <p class="text-center">Novel by Paula Hawkins</p>
                     <hr class="line">
                     <div class="row">
-                        <div class="col-md-6 col-sm-6">
+                        <div class="col-md-3 col-sm-3" >
                             <p class="price">$29.90</p>
                         </div>
                         <div class="col-md-6 col-sm-6">
-                            <button class="btn btn-default" > BUY ITEM</button>
+                            <button type="submit" class="btn btn-default button-0" > BUY ITEM</button>
                         </div>
-                        
+                        <div class="col-md-3 col-sm-3" ></div>
                     </div>
                 </span>
             </div>
             <div class="col-md-3 col-sm-6">
                 <span class="thumbnail">
-                    <img src="images/into-water.jpg" alt="...">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/A1HGWCA36hL.jpg" alt="...">
                     <h4>Into the Water</h4>
-                    <div class="ratings">
+                    <div class="ratings text-center">
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star-empty"></span>
                     </div>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                    <p class="text-center">Novel by Paula Hawkins</p>
                     <hr class="line">
                     <div class="row">
-                        <div class="col-md-6 col-sm-6">
+                        <div class="col-md-3 col-sm-3" >
                             <p class="price">$29.90</p>
                         </div>
                         <div class="col-md-6 col-sm-6">
-                            <button class="btn btn-default" > BUY ITEM</button>
+                            <button type="submit" class="btn btn-default button-0" > BUY ITEM</button>
                         </div>
-                        
-                    </div>
-                </span>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <span class="thumbnail">
-                    <img src="images/into-water.jpg" alt="...">
-                    <h4>Into the Water</h4>
-                    <div class="ratings">
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                    </div>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                    <hr class="line">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <p class="price">$29.90</p>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <button class="btn btn-default" > BUY ITEM</button>
-                        </div>
-                        
+                        <div class="col-md-3 col-sm-3" ></div>
                     </div>
                 </span>
             </div>
             <!-- END PRODUCTS -->
         </div>
     </div> 
-
-          <!-- best seller section -->
-        <div class="border">
-            <span style="font-size: 20px; background-color: white; padding: 0 15px;">
-                Other Products 
-            </span>
-        </div>
-
+    </div>
+    
+    <!-- random info to fill homepage -->
+    <div class="container random">
+    
+    	<h3 class="text-center" > Next Steps</h3>
+        <p class="text-center" style="font-style: italic"> Create an Account, Buy Books, and View Orders Online. </p>
+        <hr style="width:80%">
         
+        <div class="row next-step">
+        	<div class="col-md-1 col-sm-1"></div>
+        	<div class="col-md-5 col-sm-5 text-right">
+        		<h5>Already a Member?</h5>
+        		<p> Sign-in and get started looking through our extensive database!</p>
+        		<button class="btn btn-default button-1"><a href="login.html" style="text-decoration:none; color: #232323"> Log In</a></button>
+        	</div>
+        	
+        	<div class="col-md-5 col-sm-5 text-left">
+        		<h5>Need an Account?</h5>
+        		<p> What are you waiting for? Discover new favorites.</p>
+        		<button class="btn btn-default button-1"><a href="register.html" style="text-decoration:none; color: #232323"> Register</a></button>
+        	</div>
+        	<div class="col-md-1 col-sm-1"></div>
+   
+    </div>
+    </div>
 
-        <!-- Footer -->
-        <footer class="footer-distributed">
-			<div class="footer-left">
-				<h3>Company<span>logo</span></h3>
-				<p class="footer-links">
-					<a href="home.html">Home</a>ï¿½
-					<a href="search.html">Search</a>ï¿½
-					<a href="popular.html">Popular</a>ï¿½
-					<a href="contact.html">Contact</a>ï¿½
-					<a href="aboutus.html">About Us</a>ï¿½
-					<a href="profile.html">Account</a>
-				</p>
-				<p class="footer-company-name">Books-R-Us &copy; 2017</p>
+      <!-- Footer -->
+      <footer class="footer-distributed">
+		<div class="footer-left">
+			<h3>Company<span>logo</span></h3>
+			<p class="footer-links">
+				<a href="home.html">Home</a> ·
+				<a href="search.html">Search</a> ·
+				<a href="popular.html">Popular</a> ·
+				<a href="contact.html">Contact</a> ·
+				<a href="aboutus.html">About Us</a> ·
+				<a href="profile.html">Account</a>
+			</p>
+			<p class="footer-company-name">Books-R-Us &copy; 2017</p>
+		</div>
+	
+		<div class="footer-center">
+			<div>
+				<i class="fa fa-map-marker"></i>
+				<p><span>200 D.W. Brooks Drive </span> Athens, Georgia</p>
 			</div>
-
-			<div class="footer-center">
-				<div>
-					<i class="fa fa-map-marker"></i>
-					<p><span>200 D.W. Brooks Drive </span> Athens, Georgia</p>
-				</div>
-				<div>
-					<i class="fa fa-phone"></i>
-					<p>+1 555 123456</p>
-				</div>
-				<div>
-					<i class="fa fa-envelope"></i>
-					<p><a href="mailto:support@company.com">support@company.com</a></p>
-				</div>
+			<div>
+				<i class="fa fa-phone"></i>
+				<p>+1 555 123 4567</p>
 			</div>
-
-			<div class="footer-right">
-				<p class="footer-company-about">
-					<span>About the company</span>
-					Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
-				</p>
-				<div class="footer-icons">
-
-					<a href="#"><i class="fa fa-facebook"></i></a>
-					<a href="#"><i class="fa fa-twitter"></i></a>
-					<a href="#"><i class="fa fa-linkedin"></i></a>
-				    <a href="#"><i class="fa fa-github"></i></a>
-				</div>
+			<div>
+				<i class="fa fa-envelope"></i>
+				<p><a href="mailto:support@company.com">support@company.com</a></p>
 			</div>
-		</footer>
+		</div>
+	
+		<div class="footer-right">
+			<p class="footer-company-about">
+				<span>About the company</span>
+				Books-R-Us is a website that allows customers to create 
+				an account to be able to purchase books from vendors found on the website.  
+			</p>
+			<div class="footer-icons">
+	
+				<a href="#"><i class="fa fa-facebook"></i></a>
+				<a href="#"><i class="fa fa-twitter"></i></a>
+				<a href="#"><i class="fa fa-linkedin"></i></a>
+			    <a href="#"><i class="fa fa-github"></i></a>
+			</div>
+		</div>
+	</footer>
+	
+	
     </body>
 </html>

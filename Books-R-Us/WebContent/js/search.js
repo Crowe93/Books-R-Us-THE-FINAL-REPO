@@ -20,7 +20,11 @@ $(document).ready(function () {
 		
 		//test for user id
 		if (!userId)
-			$(location).attr('href','../Books-R-Us/login.html');
+			{
+				$(location).attr('href','login.html');
+				return;
+			}
+
 		
 		var bookId = $(this).attr("bookId");
 		addToCart(userId, bookId, $(this));
@@ -56,25 +60,7 @@ $(document).ready(function () {
 			$("#book-container").html("");
 			$.each(result, function (index, book) {
 				
-				var html = 		'					<tr>' +
-				'<td data-th="Product">' +
-				'<div class="row">' +
-					'<div class="col-sm-4 hidden-xs"><img src="' + book.imgurl + '"class="img-responsive"/></div>' +
-					'<div class="col-sm-8">' +
-						'<h4 class="text-left">' + book.title + '</h4>' +
-						'<p>' + book.author + '</p>' +
-						'<p>' + book.genre + '</p>' +
-						'<p>' + book.year + '</p>' +
-					'</div>' +
-				'</div>' +
-			'</td>' +
-
-					'<td class="actions" data-th="">' +
-				'<h3 class="text-left"> $' + book.price + '</h3>' +
-				'<button class="btn btn-info btn-default add-book-btn" bookId="' + book.ISBN + '"> Add to Cart</button>		' +						
-			'</td>' +
-			
-		'</tr>';
+				var html = getBookHtml(book);
 				
 				$("#book-container").append(html);
 			});
@@ -95,25 +81,7 @@ $(document).ready(function () {
 			$("#book-container").html("");
 			$.each(result, function (index, book) {
 				
-				var html = 		'					<tr>' +
-				'<td data-th="Product">' +
-				'<div class="row">' +
-					'<div class="col-sm-4 hidden-xs"><img src="' + book.imgurl + '"class="img-responsive"/></div>' +
-					'<div class="col-sm-8">' +
-						'<h4 class="text-left">' + book.title + '</h4>' +
-						'<p>' + book.author + '</p>' +
-						'<p>' + book.genre + '</p>' +
-						'<p>' + book.year + '</p>' +
-					'</div>' +
-				'</div>' +
-			'</td>' +
-
-					'<td class="actions" data-th="">' +
-				'<h3 class="text-left"> $' + book.price + '</h3>' +
-				'<button class="btn btn-info btn-default add-book-btn" bookId="' + book.ISBN + '"> Add to Cart</button>		' +						
-			'</td>' +
-			
-		'</tr>';
+				var html = getBookHtml(book);
 				
 				$("#book-container").append(html);
 			});
@@ -125,5 +93,36 @@ $(document).ready(function () {
 		  var parts = value.split("; " + name + "=");
 		  if (parts.length == 2) return parts.pop().split(";").shift();
 		}
+	
+	function getBookHtml(book) {
+		var html = '<tr>' +
+		'<!-- product details -->' +
+		'<td data-th="Product">' +
+			'<div class="row">' +
+				'<div class="col-sm-3 hidden-xs"><img style="width:150px; height: auto;" src="' + book.imgurl + '"class="img-responsive"/></div>' +
+				'<div class="col-sm-9">' +
+					'<h5 class="nomargin">' + book.title + '</h5>' +
+					'<p class="text-left">Novel by ' + book.author + '</p>' +
+					'<p class="text-left text-muted" style="font-style: italic; font-size:12px;" >' + book.genre + '</p>' +
+					'<hr align="left" style="width:65%">' +
+					'<p class=>Published by <mark>' + book.publisher + '</mark></p>' +
+					'<p class="text-left">Published in ' + book.year + '</p>' +
+					'<p class="text-primary"><span style="font-weight:bold;">ISBN-13: ' + book.id + '</span></p>' +
+					
+				'</div>' +
+			'</div>' +
+		'</td>' +
+		
+		'<!-- Product pricing -->' +
+		'<td>' +
+			'<div class="cart-price">' +
+				'<h4 class="text-left">$' + book.price + ' </h4>' +
+				'<button class="btn btn-default button-0 add-book-btn" bookId="' + book.ISBN + '"> Add to Cart</button>		' +
+			'</div>' +
+		'</td>' +
+	'</tr>;'
+		
+		return html;
+	}
 	
 });

@@ -64,10 +64,16 @@ $(document).ready(function () {
 				$("#addr-zip").val(result.shipping.zip);
 				
 				if (result.payment){
-					$("#card-type").val(result.payment.name);
+					$("#card-type").val(result.payment.cardType);
 					$("#card-number").val(result.payment.cardNum);
 					$("#card-ccv").val(result.payment.csc);
-					//card date/year later
+									
+					//parse month/year
+					var expDate = result.payment.expDate;
+					var split = expDate.split("/");
+					$("#card-exp-day").val(split[0]);
+					$("#card-exp-year").val(split[1]);
+					
 				}
 				
 				//now that loadProfile is done, load the cart (to prevent ResultSet errors)

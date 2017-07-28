@@ -50,7 +50,11 @@ $(document).ready(function (){
 					$("#card-type").text(result.payment.name);
 					$("#card-number").text(result.payment.cardNum);
 					$("#card-ccv").text(result.payment.csc);
-					//card date/year later
+
+					var expDate = result.payment.expDate;
+					var split = expDate.split("/");
+					$("#card-exp-day").text(split[0]);
+					$("#card-exp-year").text(split[1]);
 				}
 				
 				loadOrders(userId);
