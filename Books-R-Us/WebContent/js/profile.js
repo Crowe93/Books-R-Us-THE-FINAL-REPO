@@ -71,10 +71,9 @@ $(document).ready(function (){
 		$.get(requestURL, function (result) {
 			$("#order-container").html("");
 			$.each(result, function () {
-				var html = getOrderHtml($(this));
-				console.log($(this));
+				var html = getOrderHtml($(this)[0]);
 				$("#order-container").append(html);
-			})
+			});
 		});
 	}
 	
@@ -86,7 +85,7 @@ $(document).ready(function (){
 		var html = '<div class="order">' + 
 			'<div class="row">' + 
 				'<div class="col-md-6 date">' + 
- 				'<a href="#collapseExample" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">' + order[0].date +
+ 				'<a href="#collapseExample' + order.orderNum + '" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">' + order.date +
 						 
 					'</a>' + 
 				'</div>' + 
@@ -103,39 +102,16 @@ $(document).ready(function (){
 					'</tr>' + 
 				'</thead>' + 
 				
-				'<tbody class="collapse" id="collapseExample">' + 
+				'<tbody class="collapse" id="collapseExample' + order.orderNum + '">' + getBooksHtml(order.orderBooks) +
 					'<tr>' + 
-						'<td> ' + 
-							'<img src="images/into-water.jpg" style="width:100px; height:auto;">' + 
-						'</td>' + 
-						'<td>' + 
-							'<h3> Into the Water</h3>' + 
-							'<p>By Paula Hawkins</p>' + 
-							'<br>' + 
-							'<p style="font-size:15px">1 x $14.50</p>' + 
-						'</td>												' + 
-					'</tr>' + 
-					'<tr>' + 
-						'<td> ' + 
-							'<img src="images/into-water.jpg" style="width:100px; height:auto;">' + 
-						'</td>' + 
-						'<td>' + 
-							'<h3> Into the Water</h3>' + 
-							'<p>By Paula Hawkins</p>' + 
-							'<br>' + 
-							'<p style="font-size:15px">2 x $11.98</p>' + 
-						'</td>												' + 
-					'</tr>' + 
-					'<tr> ' + 
-						'<td></td>' + 
-						'<td class="text-right order-footer">' + 
-							'<h5>Order#: ' + order[0].orderNum + '</h5>' + 
-							'<h5>Shipping: FREE</h5>' + 
-							
-							'<h5 style="font-weight:bold"> Total: $40.98</h5>' + 
-						'</td>' + 
-					'</tr>' + 
-				
+					'<td></td>' + 
+					'<td class="text-right order-footer">' + 
+						'<h5>Order#: ' + order.orderNum + '</h5>' + 
+						'<h5>Shipping: ' + order.shipping + '</h5>' + 
+						
+						'<h5 style="font-weight:bold"> Total: $' + order.orderTotal.toFixed(2) + '</h5>' + 
+					'</td>' + 
+				'</tr>' + 
 				'</tbody>' + 
 			
 			'</table>' + 
@@ -143,5 +119,27 @@ $(document).ready(function (){
 		
 		return html;
 	}
+	
+	function getBooksHtml(books) {
+		var finalHtml = "";
+		
+		$.each(books, function () {
+			var book = $(this)[0];
+			var html = '<tr>' + 
+				'<td> ' + 
+					'<img src="' + book.imgurl + '" style="width:100px; height:auto;">' + 
+				'</td>' + 
+				'<td>' + 
+					'<h3>' + book.title + '</h3>' + 
+					'<p>By ' + book.author + '</p>' + 
+					'<br>' + 
+					'<p style="font-size:15px">' + book.stock + ' x $' + book.price.toFixed(2) + '</p>' + 
+				'</td>' + 
+			'</tr>';
+			finalHtml += html;
+		});
+		return finalHtml;
+	}
+	
 });
 

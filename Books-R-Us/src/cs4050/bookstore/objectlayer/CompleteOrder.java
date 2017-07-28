@@ -10,6 +10,8 @@ public class CompleteOrder {
 	private ArrayList<Book> orderBooks;
 	private ArrayList<PastOrder> orderEntries;
 	private String date;
+	private double orderTotal;
+	private String shipping = "FREE";
 	
 	public CompleteOrder(PastOrder orderEntry) {
 		orderBooks = new ArrayList<Book>();
@@ -32,6 +34,18 @@ public class CompleteOrder {
 			Book temp = b.getBook(entry.getBookId());
 			temp.setStock(entry.getQty());
 			orderBooks.add(temp);
+		}
+		
+		
+		//calculate order total
+		this.orderTotal = 0;
+		for (Book book : orderBooks) {
+			double bookVal = book.getPrice() * book.getStock();
+			this.orderTotal += bookVal;
+		}
+		if (this.orderTotal < 50) {
+			this.orderTotal += 5.99;
+			this.shipping = "5.99";
 		}
 	}
 }

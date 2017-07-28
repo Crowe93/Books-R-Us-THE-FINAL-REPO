@@ -120,7 +120,7 @@ $(document).ready(function () {
 		'<!-- Product pricing -->' +
 		'<td>' +
 			'<div class="cart-price">' +
-				'<h4 class="text-left">$' + book.price + ' </h4>' +
+				'<h4 class="text-left">$' + book.price.toFixed(2) + ' </h4>' +
 				'<button class="btn btn-default button-0 add-book-btn" bookId="' + book.ISBN + '"> Add to Cart</button>		' +
 			'</div>' +
 		'</td>' +
