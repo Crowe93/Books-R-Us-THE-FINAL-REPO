@@ -2,6 +2,7 @@ package cs4050.bookstore.boundarylayer;
 import java.io.IOException;
 import java.io.Writer;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -100,6 +101,7 @@ public class AdminServlet extends HttpServlet {
 			String editProfileInfo = request.getParameter("");
 			String editUserProfileInfo = request.getParameter("");
 			String deleteAccount = request.getParameter("");
+			String loadUsers = request.getParameter("loadUsers");
 
 			//vendors and admin operations below
 			String addBook = request.getParameter("add-button");
@@ -132,7 +134,17 @@ public class AdminServlet extends HttpServlet {
 					root.put("registerSuccessful","yes");
 					templateName = "login.ftl";
 				}
-								
+			} else if (loadUsers != null) {
+				UserLogicImpl u = new UserLogicImpl();
+				List<User> users = u.getAllUsers();
+				try {
+					sendJsonResponse(response, users);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return;
+				
 			} else if (addBook != null){
 				String idX = request.getParameter("isbn");
 				String image = request.getParameter("image");

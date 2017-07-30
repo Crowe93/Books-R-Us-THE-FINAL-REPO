@@ -35,7 +35,7 @@
 </head>
 
 <body>
-
+    <input type="hidden" id="userId" value="${userId}">
 	<!-- Navigation -->
 		<header id="header">
 			<div class="header_top">

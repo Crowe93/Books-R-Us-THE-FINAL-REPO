@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   	 <script src="js/loginRedirect.js"></script> 
+   	<script src="js/loginRedirect.js"></script>
+   	<script src="js/admin.js"></script> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
@@ -36,7 +37,7 @@
                </li>
                <hr width="80%">
                <li>
-                   <a href="manageUser.html"><i class="fa fa-user-o fa-fw" aria-hidden="true"></i>Manage Users</a>
+                   <a href="#section-manage-users"><i class="fa fa-user-o fa-fw" aria-hidden="true"></i>Manage Users</a>
                </li>
                <li>
                    <a href="manageBook.html"><i class="fa fa-book fa-fw" aria-hidden="true"></i>Manage Books</a>
@@ -162,7 +163,7 @@
             </div>
 
             <!--User Table-->    
-            <div class="row">
+            <div class="row" id="section-manage-users">
                 <div class="col-md-12 col-lg-12 col-sm-12">
                     <div class="white-box">
                         <h3 class="box-title">Manage Users</h3>
@@ -179,7 +180,7 @@
                                         <th>EDIT/DELETE</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="users-container">
                                     <tr>
                                         <td>1</td>
                                         <td>Chanice</td>

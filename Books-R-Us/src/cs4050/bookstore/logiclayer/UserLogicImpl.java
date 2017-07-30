@@ -83,19 +83,19 @@ public class UserLogicImpl {
 		String p = u.getPassword();
 		String e = u.getEmail();
 		
-		if(!f.equals(null) || !f.equals("")){
+		if(!f.equals(null) && !f.equals("")){
 			i += userPersist.updateFirstName(f,id);
 		}
-		if(!l.equals(null) || !l.equals("")){
+		if(!l.equals(null) && !l.equals("")){
 			i += userPersist.updateLastName(l, id);
 		}
-		if(!un.equals(null) || !un.equals("")){
+		if(!un.equals(null) && !un.equals("")){
 			i += userPersist.updateUsername(un, id);
 		}
-		if(!p.equals(null) || !p.equals("")){
+		if(!p.equals(null) && !p.equals("")){
 			i += userPersist.updatePassword(p, id);
 		}
-		if(!e.equals(null) || !e.equals("")){
+		if(!e.equals(null) && !e.equals("")){
 			i += userPersist.updateEmail(e, id);
 		}
 		

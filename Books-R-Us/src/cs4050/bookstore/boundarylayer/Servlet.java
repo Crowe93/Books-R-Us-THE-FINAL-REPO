@@ -364,7 +364,8 @@ public class Servlet extends HttpServlet {
 				String username = request.getParameter("username");
 				String oldPassword = request.getParameter("oldpassword");
 				String newPassword = request.getParameter("newpassword");
-
+				boolean isAdmin = Boolean.parseBoolean(request.getParameter("admin"));
+				
 				//shipping info
 				String street = request.getParameter("address");
 				String city = request.getParameter("city");
@@ -383,7 +384,14 @@ public class Servlet extends HttpServlet {
 				PayLogicImpl p = new PayLogicImpl();
 				ShipLogicImpl s = new ShipLogicImpl();
 				
-			
+				if (isAdmin) { //ignore all checks and force update due to admin status
+					User user = new User(userId, fname, lname, username, newPassword, email);
+					u.updateUser(user);
+					Shipping sX = new Shipping(userId, street, city, state, zip);
+					s.insertShipping(sX);
+					p.insertPayment(userId, cardNumber, expirationDate, cardCVV, cardType, fullAddress);
+					return;
+				}
 
 				if(oldPassword .equals("")){
 					UserPersistImpl y = new UserPersistImpl();
