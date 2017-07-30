@@ -166,6 +166,7 @@ public class Servlet extends HttpServlet {
 			String userEnteredPromo = request.getParameter("");
 			String confirmOrder = request.getParameter("confirmOrder");
 			String loadOrders = request.getParameter("loadOrders");
+			String loadBook = request.getParameter("loadBook");
 
 			//vendors and admin operations below
 			String addBook = request.getParameter("");
@@ -420,9 +421,9 @@ public class Servlet extends HttpServlet {
 
 				
 			} else if (deleteAccount != null) {
-				templateName = "home.ftl";
 				UserLogicImpl u = new UserLogicImpl();
-				u.deleteUser(u.getUserId(currentUser));
+				int userId = Integer.parseInt(request.getParameter("userId"));
+				u.deleteUser(userId);
 				return;
 			} else if (confirmOrder != null){
 				int userId = Integer.parseInt(request.getParameter("userId"));
@@ -442,6 +443,17 @@ public class Servlet extends HttpServlet {
 				}
 				return;
 				
+			} else if (loadBook != null){
+				int bookId = Integer.parseInt(request.getParameter("bookId"));
+				BookLogicImpl b = new BookLogicImpl();
+				Book result = b.getBook(bookId);
+				try {
+					sendJsonResponse(response, result);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return;
 			}
 				
 				

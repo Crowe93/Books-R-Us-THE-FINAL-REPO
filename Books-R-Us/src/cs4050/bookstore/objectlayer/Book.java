@@ -67,7 +67,7 @@ public class Book {
 		imgurl = img;
 	}
 	
-	public Book(int i, String t, String a, String p, String g, int y, double f){
+	public Book(int i, String t, String a, String p, String g, int y, double f, int stock, String img){
 		ISBN = i;
 		title = t;
 		author = a;
@@ -75,6 +75,8 @@ public class Book {
 		genre = g;
 		year = y;
 		price = f;
+		this.stock = stock;
+		this.imgurl = img;
 	}
 	
 	

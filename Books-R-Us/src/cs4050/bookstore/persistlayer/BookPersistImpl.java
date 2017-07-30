@@ -2,6 +2,7 @@ package cs4050.bookstore.persistlayer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,6 +64,14 @@ public class BookPersistImpl {
 			r = this.insertBook(id, title, author, publisher, year, genre, price, stock, imgUrl);
 		}
 		return r;
+	}
+	
+	public int updateBook(int bookId, Book newBook){
+		String query = MessageFormat.format(
+				"UPDATE book SET id = {0}, title = {1}, author = {2}, publisher = {3}, year = {4}, genre = {5}, price = {6}, stock = {7}, imgURL = {8}",
+				newBook.getISBN(), newBook.getTitle(), newBook.getAuthor(), newBook.getPublisher(), newBook.getYear(), newBook.getGenre(), newBook.getPrice(), newBook.getStock(), newBook.getImgurl());
+		System.out.println(query);
+		return DbAccessImpl.update(query);
 	}
 	
 	public int deleteBook(int bookId){

@@ -40,7 +40,7 @@
                    <a href="#section-manage-users"><i class="fa fa-user-o fa-fw" aria-hidden="true"></i>Manage Users</a>
                </li>
                <li>
-                   <a href="manageBook.html"><i class="fa fa-book fa-fw" aria-hidden="true"></i>Manage Books</a>
+                   <a href="#section-manage-books"><i class="fa fa-book fa-fw" aria-hidden="true"></i>Manage Books</a>
                </li>
                <li>
                    <a href="add-book.html"><i class="fa fa-book fa-fw" aria-hidden="true"></i>Add Books</a>
@@ -249,7 +249,7 @@
             </div>
 
             <!--Book Table-->    
-            <div class="row">
+            <div class="row" id="section-manage-books">
                 <div class="col-md-12 col-lg-12 col-sm-12">
                     <div class="white-box">
                         <h3 class="box-title">Manage Books</h3>
@@ -257,9 +257,8 @@
                             <table id="books" class="table table-hover">
                                 <thead>
                                     <tr>
-                                    	<th> # </th>
-                                    	<th>TITLE</th>
-                                        <th>ISBN</th>                                        
+                                    	<th>ISBN</th>
+                                    	<th>TITLE</th>                                        
                                         <th>AUTHOR</th>
                                         <th>PUBLISHER</th>
                                         <th>GENRE</th>
@@ -269,7 +268,7 @@
                                         <th>EDIT/DELETE</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="books-container">
                                     <tr>
                                     	<td>1</td>
                                     	<td>Into the Water</td>

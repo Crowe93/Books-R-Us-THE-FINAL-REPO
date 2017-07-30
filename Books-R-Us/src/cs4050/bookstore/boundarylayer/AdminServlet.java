@@ -204,22 +204,23 @@ public class AdminServlet extends HttpServlet {
 				}
 				
 			} else if (updateBook != null){
-				String ISBNX = request.getParameter("");
-				String image = request.getParameter("");
-				String title = request.getParameter("");
-				String author = request.getParameter("");
-				String publisher = request.getParameter("");
-				String genre = request.getParameter("");
-				String yearX = request.getParameter("");
-				String priceX = request.getParameter("");
-				String stockX = request.getParameter("");
+				int origBookId = Integer.parseInt(request.getParameter("bookId"));
+				String idX = request.getParameter("isbn");
+				String image = request.getParameter("image");
+				String title = request.getParameter("title");
+				String author = request.getParameter("author");
+				String publisher = request.getParameter("publisher");
+				String genre = request.getParameter("genre");
+				String yearX = request.getParameter("year");
+				String priceX = request.getParameter("price");
+				String stockX = request.getParameter("quantity");
 				int ISBN = 0;
 				double price = 0;
 				int year = 0;
 				int stock = 0;
 				
 				try{
-					ISBN = Integer.parseInt(ISBNX);
+					ISBN = Integer.parseInt(idX);
 					price = Double.parseDouble(priceX);
 					year = Integer.parseInt(yearX);
 					stock = Integer.parseInt(stockX);
@@ -227,12 +228,8 @@ public class AdminServlet extends HttpServlet {
 				}
 				
 				BookLogicImpl b = new BookLogicImpl();
-				int id = b.getBookId(title);
-				int r = b.updateTitle(title, id);
-				r = b.updateAuthor(author, id);
-				r = b.updatePublisher(publisher, id);
-				r = b.updateYear(year, id);
-				r = b.updatePrice(price, id);
+				Book newBook = new Book(ISBN, title, author, publisher, genre, year, price, stock, image);
+				b.updateBook(origBookId, newBook);
 				
 				templateName = "adminHome.ftl";
 				root.put("bookUpdated","yes");

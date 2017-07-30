@@ -25,6 +25,10 @@ private BookPersistImpl bookPersist = new BookPersistImpl();
 		return bookPersist.insertBook(title, author, publisher, year, stock, price);
 	}
 	
+	public int updateBook(int bookId, Book newBook) {
+		return bookPersist.updateBook(bookId, newBook);
+	}
+	
 	public int insertBook(Book b){
 		return bookPersist.insertBook(b);
 	}
