@@ -4,10 +4,13 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import cs4050.bookstore.logiclayer.BookLogicImpl;
+
 public class BookSales {
 	private int bookId = 0;
 	private String date = null;
 	private int numSold = 0;
+	private Book book;
 	
 	public BookSales(int bookId, int numSold, String date){
 		this.bookId = bookId;
@@ -29,6 +32,11 @@ public class BookSales {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         
 		date = (sdf.format(cal.getTime())).toString();
+	}
+	
+	public void loadBook() {
+		BookLogicImpl b = new BookLogicImpl();
+		book = b.getBook(bookId);
 	}
 	
 	public String getDate() {

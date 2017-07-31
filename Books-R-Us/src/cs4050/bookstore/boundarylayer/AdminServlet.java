@@ -289,6 +289,7 @@ public class AdminServlet extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				return;
 			}
 
 			

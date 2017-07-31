@@ -73,6 +73,9 @@ public class ReportPersistImpl {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}  // try-catch
+		for (BookSales sale : report) {
+			sale.loadBook();
+		}
 		DbAccessImpl.disconnect();
 		return report;
 	}
