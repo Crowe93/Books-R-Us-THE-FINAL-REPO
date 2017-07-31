@@ -86,7 +86,7 @@ $(document).ready(function () {
 				
 			}
 			else {
-				alert("something maybe happened");
+				$(location).attr("href", "profile.html");
 			}
 		});
 	}

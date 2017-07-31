@@ -32,6 +32,7 @@ $(document).ready(function () {
 				$("#price").val(book.price);
 				$("#quantity").val(book.stock);
 				$("#image").val(book.imgurl);
+				$("#min").val(book.minimum);
 			}
 		});
 	}

@@ -206,6 +206,7 @@ public class AdminServlet extends HttpServlet {
 				String yearX = request.getParameter("year");
 				String priceX = request.getParameter("price");
 				String stockX = request.getParameter("quantity");
+				int min = Integer.parseInt(request.getParameter("min"));
 				int ISBN = 0;
 				double price = 0;
 				int year = 0;
@@ -221,6 +222,7 @@ public class AdminServlet extends HttpServlet {
 				
 				BookLogicImpl b = new BookLogicImpl();
 				Book newBook = new Book(ISBN, title, author, publisher, genre, year, price, stock, image);
+				newBook.setMinimum(min);
 				b.updateBook(origBookId, newBook);
 				
 				templateName = "adminHome.ftl";

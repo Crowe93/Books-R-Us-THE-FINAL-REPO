@@ -23,6 +23,7 @@ public class DbAccessImpl  {
 		try {
 			Class.forName(DbAccessConfiguration.DB_DRIVE_NAME);
 			con = DriverManager.getConnection(DbAccessConfiguration.DB_CONNECTION_URL, DbAccessConfiguration.DB_CONNECTION_USERNAME, DbAccessConfiguration.DB_CONNECTION_PASSWORD);
+			System.out.println("ATTEMPTING TO CONNECT TO DB WITH " + DbAccessConfiguration.DB_CONNECTION_USERNAME + " " + DbAccessConfiguration.DB_CONNECTION_PASSWORD);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

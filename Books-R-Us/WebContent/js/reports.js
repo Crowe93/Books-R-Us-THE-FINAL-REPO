@@ -33,6 +33,15 @@ $(document).ready(function () {
 				var html = getSalesHtml($(this)[0]);
 				$("#sales-container").append(html);
 			});
+			var html2 = '<tr>' +
+	        '<td></td>' +
+	        '<td></td>' +
+	        '<td></td>' +
+	        '<td></td>' +
+	        '<td></td>' +
+	        '<td><strong>Day Total: <span class="text-success">$' + (report.netTotal.toFixed(2) - 5).toFixed(2) + '</span></strong></td>' +
+	        '</tr>';
+			$("#sales-container").append(html2);
 		});
 	}
 	

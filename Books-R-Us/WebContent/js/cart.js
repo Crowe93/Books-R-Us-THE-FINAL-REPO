@@ -3,6 +3,8 @@
  */
 $(document).ready(function () {
 	
+	$("#promo-code-msg").hide();
+	
 	var userId = getCookie("userId");
 	
 	loadCart(userId);
@@ -20,6 +22,17 @@ $(document).ready(function () {
 	$(document).on("click", ".btn-delete-item", function () {
 		var bookId = $(this).attr("bookId");
 		removeFromCart(userId, bookId);
+	});
+	
+	$("#btn-promo").click(function() {
+		var promoCode = $("#promo-code").val();
+		if (promoCode === "SHIP50")
+			{
+				$("#promo-code-msg").show();
+				$("#shipping").hide();
+				$("#promo-code-msg").html("FREE Shipping for orders over $50 has been applied!");
+			}
+
 	});
 	
 	

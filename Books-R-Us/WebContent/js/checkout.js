@@ -17,7 +17,8 @@ $(document).ready(function () {
 		$.get(requestURL, function (result, status) {
 			//console.log(result);
 			if (result.status == 1) {
-				alert(result.msg);
+				alert("Order placed successfully! " + result.msg);
+				$(location).attr("href", "home.html");
 			}
 			else
 				alert("Error: " + result.msg);

@@ -68,8 +68,8 @@ public class BookPersistImpl {
 	
 	public int updateBook(int bookId, Book newBook){
 		String query = MessageFormat.format(
-				"UPDATE book SET id = {0}, title = \"{1}\", author = \"{2}\", publisher = \"{3}\", year = %d, genre = \"{5}\", price = \"{6}\", stock = \"{7}\", imgURL = \"{8}\" WHERE id = {9}",
-				newBook.getISBN(), newBook.getTitle(), newBook.getAuthor(), newBook.getPublisher(), newBook.getYear(), newBook.getGenre(), newBook.getPrice(), newBook.getStock(), newBook.getImgurl(), bookId);
+				"UPDATE book SET id = {0}, title = \"{1}\", author = \"{2}\", publisher = \"{3}\", year = %d, genre = \"{5}\", price = \"{6}\", stock = \"{7}\", imgURL = \"{8}\", minimum = \"{9}\" WHERE id = {10}",
+				newBook.getISBN(), newBook.getTitle(), newBook.getAuthor(), newBook.getPublisher(), newBook.getYear(), newBook.getGenre(), newBook.getPrice(), newBook.getStock(), newBook.getImgurl(), newBook.getMinimum(), bookId);
 		query = String.format(query, newBook.getYear());
 		System.out.println(query);
 		return DbAccessImpl.update(query);
@@ -87,6 +87,7 @@ public class BookPersistImpl {
 			while (result.next()) {
 				b = new Book(result.getInt("id"), result.getString("title"), result.getString("author"), result.getString("publisher"), result.getString("genre"), result.getInt("year"), result.getDouble("price"), result.getInt("stock"), result.getInt("sold"), result.getString("imgURL"));
 				b.setStock(result.getInt("stock"));
+				b.setMinimum(result.getInt("minimum"));
 			} // while
 		} catch (SQLException e) {
 			e.printStackTrace();
