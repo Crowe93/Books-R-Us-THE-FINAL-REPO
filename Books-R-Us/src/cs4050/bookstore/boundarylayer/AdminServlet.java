@@ -17,6 +17,8 @@ import com.google.gson.Gson;
 import cs4050.bookstore.logiclayer.*;
 import cs4050.bookstore.objectlayer.Book;
 import cs4050.bookstore.objectlayer.CompleteOrder;
+import cs4050.bookstore.objectlayer.DayReport;
+import cs4050.bookstore.objectlayer.InventoryReport;
 import cs4050.bookstore.objectlayer.User;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapperBuilder;
@@ -266,6 +268,27 @@ public class AdminServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 				return;	
+			} else if (loadInventoryReport != null) {
+				ReportLogicImpl rep = new ReportLogicImpl();
+				InventoryReport invRep = rep.getInvReport();
+				try {
+					sendJsonResponse(response, invRep);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				return;
+			} else if (loadSalesReport != null) {
+				ReportLogicImpl rep = new ReportLogicImpl();
+				String date = request.getParameter("date");
+				DayReport salesRep = rep.getDayReport(date);
+				try {
+					sendJsonResponse(response, salesRep);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 
 			

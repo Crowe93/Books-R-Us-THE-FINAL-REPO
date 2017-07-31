@@ -94,8 +94,8 @@ public class ReportLogicImpl {
 		return i;
 	}
 	
-	public InventoryReport getInvReport(String date){
-		return reportPersist.getInvReport(date);
+	public InventoryReport getInvReport(){
+		return reportPersist.getInvReport();
 	}
 	
 	public int updateBookSales(BookSales b){

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/reports.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
@@ -36,10 +37,10 @@
                </li>
                <hr width="80%">
                <li>
-                   <a href="manageUser.html"><i class="fa fa-user-o fa-fw" aria-hidden="true"></i>Manage Users</a>
+                   <a href="admin.html"><i class="fa fa-user-o fa-fw" aria-hidden="true"></i>Manage Users</a>
                </li>
                <li>
-                   <a href="manageBook.html"><i class="fa fa-book fa-fw" aria-hidden="true"></i>Manage Books</a>
+                   <a href="admin.html"><i class="fa fa-book fa-fw" aria-hidden="true"></i>Manage Books</a>
                </li>
                <li>
                    <a href="add-book.html"><i class="fa fa-book fa-fw" aria-hidden="true"></i>Add Books</a>
@@ -84,8 +85,9 @@
                     <div class="white-box">
                         <div class="col-md-3 col-sm-4 col-xs-6 pull-right">
        						<form> 
-       							<input type="date" name="sales-date">
-       							<input class="go" type="submit" value="GO">
+       							<label name="sales-date">Date: </label>
+       							<input type="date" id="sales-date" name="sales-date" placeholder="yyyy-mm-dd">
+       							<button id="btn-sales-report" class="go">Go</button>
        						</form>
                         </div>
                         <h3 class="box-title">End Of Day Sale</h3>
@@ -95,18 +97,16 @@
                                     <tr>
                                         <th>#</th>
                                         <th>TITLE</th>
-                                        <th>ISBN</th>
                                         <th>PRICE</th>
                                         <th>DATE</th>
                                         <th>SOLD</th>
                                         <th>TOTAL</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="sales-container">
                                     <tr>
                                         <td>1</td>
                                         <td>Into the Water</td>
-                                        <td>564561545623</td>
                                         <td>$20</td>
                                         <td>07/04/2018</td>
                                         <td>2</td>
@@ -176,9 +176,9 @@
                                     <tr>
                                     	<th> # </th>
                                     	<th>TITLE</th>
-                                        <th>ISBN</th>                                        
-                                        <th>PUBLISHER</th>
-                                        <th>QUANTITY</th>
+                                        <th>PUBLISHER</th>                                        
+                                        <th>MINIMUM QUANTITY ALLOWED</th>
+                                        <th>QUANTITY ON HAND</th>
                                     </tr>
                                 </thead>
                                 <tbody id="low-inventory-container">

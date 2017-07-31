@@ -67,7 +67,7 @@ public class ReportPersistImpl {
 		ArrayList<BookSales> report = new ArrayList<BookSales>();
 		try {
 			while (result.next()) {
-				BookSales bookSales = new BookSales(result.getInt(1), result.getInt(2), result.getDate(3));
+				BookSales bookSales = new BookSales(result.getInt("book_id"), result.getInt("numSold"), result.getDate("validDate"));
 				report.add(bookSales);
 			} // while
 		} catch (SQLException e) {
@@ -161,10 +161,10 @@ public class ReportPersistImpl {
 		return i;
 	}
 	
-	public InventoryReport getInvReport(String date){
+	public InventoryReport getInvReport(){
 		InventoryReport ir;
 		List<Book> books = new ArrayList<Book>();
-		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM book WHERE stock <= 5;");
+		ResultSet result = DbAccessImpl.retrieve("SELECT * FROM book WHERE stock <= minimum;");
 		
 		try {
 			while (result.next()) {
