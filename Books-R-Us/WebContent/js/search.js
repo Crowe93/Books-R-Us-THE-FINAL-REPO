@@ -111,7 +111,7 @@ $(document).ready(function () {
 					'<hr align="left" style="width:65%">' +
 					'<p class=>Published by <mark>' + book.publisher + '</mark></p>' +
 					'<p class="text-left">Published in ' + book.year + '</p>' +
-					'<p class="text-primary"><span style="font-weight:bold;">ISBN-13: ' + book.id + '</span></p>' +
+					'<p class="text-primary"><span style="font-weight:bold;">ISBN-13: ' + book.ISBN + '</span></p>' +
 					
 				'</div>' +
 			'</div>' +
