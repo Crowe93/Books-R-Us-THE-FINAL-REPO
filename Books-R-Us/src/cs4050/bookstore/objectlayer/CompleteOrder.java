@@ -3,6 +3,7 @@ package cs4050.bookstore.objectlayer;
 import java.util.ArrayList;
 
 import cs4050.bookstore.logiclayer.BookLogicImpl;
+import cs4050.bookstore.logiclayer.UserLogicImpl;
 
 public class CompleteOrder {
 
@@ -12,6 +13,7 @@ public class CompleteOrder {
 	private String date;
 	private double orderTotal;
 	private String shipping = "FREE";
+	private User user;
 	
 	public CompleteOrder(PastOrder orderEntry) {
 		orderBooks = new ArrayList<Book>();
@@ -47,5 +49,10 @@ public class CompleteOrder {
 			this.orderTotal += 5.99;
 			this.shipping = "5.99";
 		}
+	}
+	
+	public void loadUser() {
+		UserLogicImpl u = new UserLogicImpl();
+		user = u.getUser(orderEntries.get(0).getUserId());
 	}
 }

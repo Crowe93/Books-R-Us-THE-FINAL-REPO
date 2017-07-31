@@ -172,6 +172,7 @@ public class CartPersistImpl {
 		orderNum = orderNum.concat(Integer.toString(cartId));
 		int x = 0;
 		
+		
 		for(int i = 0; i < size; i++){
 			Item temp = items.get(i);
 			int bookId = temp.getBookId();

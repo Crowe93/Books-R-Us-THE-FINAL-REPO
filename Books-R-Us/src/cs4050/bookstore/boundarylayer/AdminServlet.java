@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 
 import cs4050.bookstore.logiclayer.*;
 import cs4050.bookstore.objectlayer.Book;
+import cs4050.bookstore.objectlayer.CompleteOrder;
 import cs4050.bookstore.objectlayer.User;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapperBuilder;
@@ -102,13 +103,14 @@ public class AdminServlet extends HttpServlet {
 			String editUserProfileInfo = request.getParameter("");
 			String deleteAccount = request.getParameter("");
 			String loadUsers = request.getParameter("loadUsers");
+			String loadAllOrders = request.getParameter("loadAllOrders");
 
 			//vendors and admin operations below
 			String addBook = request.getParameter("add-button");
-			String removeBook = request.getParameter("");
-			String updateBook = request.getParameter("");
-			String getSalesReport = request.getParameter("");
-			String get = request.getParameter("");
+			String deleteBook = request.getParameter("deleteBook");
+			String updateBook = request.getParameter("updateBook");
+			String loadSalesReport = request.getParameter("loadSalesReport");
+			String loadInventoryReport = request.getParameter("loadInventoryReport");
 			
 			
 
@@ -182,29 +184,17 @@ public class AdminServlet extends HttpServlet {
 					root.put("addBookError","yes");
 				}
 
-			} else if (removeBook != null){ 
-				String idX = request.getParameter("id");
-				int id = 0;
-				
-				try{
-					id = Integer.parseInt(idX);
-				} catch (NumberFormatException e){
-				}
+			} else if (deleteBook != null){ 
+				int id = Integer.parseInt(request.getParameter("bookId"));
 				
 				BookLogicImpl b = new BookLogicImpl();
 				int r = b.deleteBook(id);
 				
-				if (r == 1){ //enter here if book was successfully deleted from the database
-					templateName = "adminHome.ftl";
-					root.put("bookDeleted","yes");
-
-				} else {
-					templateName = "adminHome.ftl";
-					root.put("deleteBookError","yes");
-				}
+				return;
 				
 			} else if (updateBook != null){
 				int origBookId = Integer.parseInt(request.getParameter("bookId"));
+				int userId = Integer.parseInt(request.getParameter("userId"));
 				String idX = request.getParameter("isbn");
 				String image = request.getParameter("image");
 				String title = request.getParameter("title");
@@ -232,7 +222,8 @@ public class AdminServlet extends HttpServlet {
 				b.updateBook(origBookId, newBook);
 				
 				templateName = "adminHome.ftl";
-				root.put("bookUpdated","yes");
+				//root.put("bookUpdated","yes");
+				root.put("userId", userId);
 			} else if(editUserProfileInfo != null){
 				String userIdX = request.getParameter("userId");
 				int userId = 0;
@@ -266,6 +257,15 @@ public class AdminServlet extends HttpServlet {
 				
 				
 				
+			} else if (loadAllOrders != null) {
+				List<CompleteOrder> orders = new UserLogicImpl().loadAllOrders();
+				try {
+					sendJsonResponse(response, orders);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return;	
 			}
 
 			

@@ -3,12 +3,30 @@
  */
 $(document).ready(function () {
 	
-	loadUsers();
+	loadOrders();
 	
 	$(document).on("click", ".btn-delete-user", function () {
 		var userId = $(this).parent().attr("userId");
 		deleteUser(userId);
 	});
+	
+	$(document).on("click", ".btn-delete-book", function () {
+		var bookId = $(this).parent().attr("bookId");
+		deleteBook(bookId);
+	});
+	
+	function loadOrders() {
+		var requestURL = "AdminServlet?loadAllOrders";
+		$.get(requestURL, function (result) {
+			loadUsers();
+			$("#orders-container").html("");
+			$.each(result, function() {
+				var html = getOrderHtml($(this)[0]);
+				$("#orders-container").append(html);
+			});
+			
+		});
+	}
 	
 	function loadUsers() {
 		var requestURL = "AdminServlet?loadUsers";
@@ -38,6 +56,13 @@ $(document).ready(function () {
 		var requestURL = "Servlet?deleteAccount&userId=" + userId;
 		$.get(requestURL, function () { 
 			loadUsers();
+		});
+	}
+	
+	function deleteBook(bookId) {
+		var requestURL = "AdminServlet?deleteBook&bookId=" + bookId;
+		$.get(requestURL, function () {
+			loadBooks();
 		});
 	}
 	
@@ -75,6 +100,19 @@ $(document).ready(function () {
             '<button class="btn-delete-book btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>' +								
         '</td>' +
     '</tr>';
+		return html;
+	}
+	
+	function getOrderHtml(order) {
+		
+		var html = '<tr>' +
+        '<td>' + order.orderNum + '</td>' +
+        '<td class="txt-oflo">' + order.user.username + '</td>' +
+        '<td>SHIPPING</td>' +
+        '<td class="txt-oflo">' + order.date + '</td>' +
+        '<td><span class="text-success">$' + order.orderTotal.toFixed(2) + '</span></td>' +
+    '</tr>';
+		
 		return html;
 	}
 });

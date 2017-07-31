@@ -301,5 +301,38 @@ public class UserPersistImpl {
 		
 		return orders;
 	}
+	
+	public List<CompleteOrder> loadAllOrders() {
+		List<CompleteOrder> orders = new ArrayList<CompleteOrder>();
+		String query = "SELECT * FROM pastorder;";
+		HashMap<String, CompleteOrder> orderHash = new HashMap<String, CompleteOrder>();
+		
+		ResultSet resultSet = DbAccessImpl.retrieve(query);
+		try {
+			while (resultSet.next()) {
+				String orderNum = resultSet.getString("orderNum");
+				PastOrder temp = new PastOrder(resultSet.getString("orderNum"), resultSet.getInt("user_id"), resultSet.getInt("book_id"), resultSet.getInt("qty"), resultSet.getString("date"));
+				if (!orderHash.containsKey(orderNum))
+				{
+					//create CompleteOrder
+					CompleteOrder order = new CompleteOrder(temp);
+					orderHash.put(orderNum, order);
+				}
+				else {
+					//add order entry
+					orderHash.get(orderNum).addEntry(temp);
+				}
+			}
+			for (String key : orderHash.keySet()) {
+				orders.add(orderHash.get(key));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return orders;
+	}
 
 }

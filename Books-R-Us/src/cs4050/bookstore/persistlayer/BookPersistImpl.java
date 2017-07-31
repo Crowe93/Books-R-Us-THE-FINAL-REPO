@@ -68,14 +68,15 @@ public class BookPersistImpl {
 	
 	public int updateBook(int bookId, Book newBook){
 		String query = MessageFormat.format(
-				"UPDATE book SET id = {0}, title = {1}, author = {2}, publisher = {3}, year = {4}, genre = {5}, price = {6}, stock = {7}, imgURL = {8}",
-				newBook.getISBN(), newBook.getTitle(), newBook.getAuthor(), newBook.getPublisher(), newBook.getYear(), newBook.getGenre(), newBook.getPrice(), newBook.getStock(), newBook.getImgurl());
+				"UPDATE book SET id = {0}, title = \"{1}\", author = \"{2}\", publisher = \"{3}\", year = %d, genre = \"{5}\", price = \"{6}\", stock = \"{7}\", imgURL = \"{8}\" WHERE id = {9}",
+				newBook.getISBN(), newBook.getTitle(), newBook.getAuthor(), newBook.getPublisher(), newBook.getYear(), newBook.getGenre(), newBook.getPrice(), newBook.getStock(), newBook.getImgurl(), bookId);
+		query = String.format(query, newBook.getYear());
 		System.out.println(query);
 		return DbAccessImpl.update(query);
 	}
 	
 	public int deleteBook(int bookId){
-		String query = "DELETE BOOK FROM BOOK WHERE book.id = " + bookId;
+		String query = "DELETE FROM BOOK WHERE book.id = " + bookId;
 		return DbAccessImpl.delete(query);
 	}
 	

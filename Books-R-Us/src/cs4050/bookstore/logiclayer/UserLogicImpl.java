@@ -70,6 +70,16 @@ public class UserLogicImpl {
 		return orders;
 	}
 	
+	public List<CompleteOrder> loadAllOrders() {
+		List<CompleteOrder> orders = userPersist.loadAllOrders();
+		for (CompleteOrder order : orders)
+		{
+			order.loadBookInfo();
+			order.loadUser();
+		}
+		return orders;
+	}
+	
 	public boolean cardSaved(int id){
 		return userPersist.cardSaved(id);
 	}
